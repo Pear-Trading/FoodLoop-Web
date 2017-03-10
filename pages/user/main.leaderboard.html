@@ -1,0 +1,28 @@
+<main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+  <div class="row">
+    <div class="col"> 
+      <table class="table">
+        <thead> 
+          <tr>  
+            <th>Position</th>
+            <th>Name</th>
+            <th>Pear points</th>
+            <th>Retailers spent with</th>
+            <th>Receipt submitted</th>
+          </tr>
+        </thead>
+        <tbody> 
+          <tr ng-repeat="user in leaderboard">
+            <td>{{$index + 1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.pear_points}}</td>
+            <td>{{user.retailer_spent}}</td>
+            <td>{{user.receipt_submitted}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- col -->
+  </div>
+  <!-- row first -->
+</main>
