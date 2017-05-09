@@ -12,24 +12,27 @@ export class RegisterComponent {
   signup: FormGroup;
   ageRanges: Object[];
   
-  constructor(private http: Http, private formBuilder: FormBuilder, private api: ApiService) {
-	  
-
-  this.api.getAgeRanges().subscribe(
-  result => {
-	  console.log(result);
-	  this.ageRanges = result.ages;
-	 }
-)
-  this.signup = this.formBuilder.group({
-    token:        ['', [Validators.required]],
-      full_name:    ['', [Validators.required]],
-      display_name: ['', [Validators.required]],
-      email:        ['', [Validators.required]],
-      postcode:     ['', [Validators.required]],
-      age_range:    ['', [Validators.required]],
-      password:     ['', [Validators.required]],
-  });
+  constructor(
+	private http: Http,
+	private formBuilder: FormBuilder,
+	private api: ApiService
+	) {	  
+	  this.api.getAgeRanges()
+		.subscribe(
+			result => {
+				console.log(result);
+				this.ageRanges = result.ages;
+			}
+		);
+	  this.signup = this.formBuilder.group({
+		token:        ['', [Validators.required]],
+		full_name:    ['', [Validators.required]],
+		display_name: ['', [Validators.required]],
+		email:        ['', [Validators.required]],
+		postcode:     ['', [Validators.required]],
+		age_range:    ['', [Validators.required]],
+		password:     ['', [Validators.required]],
+	  });
   }
   
   onSubmit() {

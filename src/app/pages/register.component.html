@@ -4,6 +4,7 @@
       <div class="col-md-6">
         <div class="card mx-4">
           <div class="card-block p-4">
+			<form [formGroup]="signup" (ngSubmit)="onSubmit()">
             <h1>Register</h1>
             <p class="text-muted">Create your account</p>
             <div class="input-group mb-3">
@@ -32,12 +33,9 @@
             </div>
 			
 			<div class="input-group mb-3">
-				<span class="input-group-addon"><i class="icon-calendar"></i></span>
-                <select required id="agerange" class="form-control">
-                  <option value="">Please select</option>
-                  <option value="1">Option #1</option>
-                  <option value="2">Option #2</option>
-                  <option value="3">Option #3</option>
+				<span class="input-group-addon">Age Range</span>
+                <select class="form-control" type="text" formControlName="age_range">
+                  <option *ngFor="let range of ageRanges" [value]="range.id">{{ range.string }}</option>
                 </select>
             </div>
 
@@ -52,7 +50,8 @@
             </div>
 
             <button type="button" class="btn btn-block btn-success">Create Account</button>
-          </div>
+            </form>
+		  </div>
         </div>
       </div>
     </div>

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HttpModule } from '@angular/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -26,8 +25,6 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-	FormsModule,
-	ReactiveFormsModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule
