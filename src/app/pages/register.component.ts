@@ -37,6 +37,17 @@ export class RegisterComponent {
   
   onSubmit() {
     console.log(this.signup.value);
+	
+	this.peopleService
+      .register(this.signup.value)
+      .subscribe(
+        result => {
+          console.log( registered! );
+        },
+        error => {
+          console.log( error._body );
+        }
+      );
   }
 
 
