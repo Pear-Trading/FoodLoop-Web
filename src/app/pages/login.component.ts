@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
+import {Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -15,6 +16,7 @@ export class LoginComponent {
   constructor(
 	private http: Http,
 	private formBuilder: FormBuilder,
+	private router: Router,
 	private api: ApiService
 	) {	  
 	  this.api.getAgeRanges()
@@ -33,11 +35,12 @@ export class LoginComponent {
   onSubmit() {
     console.log(this.signin.value);
 	
-	this.peopleService
+	this.api
       .register(this.signin.value)
       .subscribe(
         result => {
-          console.log( logged in! );
+          console.log('logged in!');
+		  this.router.navigate(['/dashboard'])
         },
         error => {
           console.log( error._body );
