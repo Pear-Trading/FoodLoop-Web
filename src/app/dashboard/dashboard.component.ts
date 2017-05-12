@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
   // lineChart1
   public lineChart1Data: Array<any> = [
     {
-      data: [65, 59, 84, 84, 51, 55, 40],
+      data: [44.72, 29.97, 16.65, 30.99, 47.75, 6.95, 6.95],
       label: 'Series A'
     }
   ];
@@ -68,8 +68,8 @@ export class DashboardComponent implements OnInit {
         display: false,
         ticks: {
           display: false,
-          min: 40 - 5,
-          max: 84 + 5,
+          min: 5 - 5,
+          max: 50 + 5,
         }
       }],
     },
@@ -467,7 +467,7 @@ export class DashboardComponent implements OnInit {
     for (let i = 0; i <= this.mainChartElements; i++) {
       this.mainChartData1.push(this.random(50, 200));
       this.mainChartData2.push(this.random(80, 100));
-      this.mainChartData3.push(65);
+      this.mainChartData3.push(this.random(50, 200));
     }
   }
 }
