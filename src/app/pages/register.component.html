@@ -13,6 +13,15 @@
             </div>
 			
 			<div class="input-group mb-3">
+				<span class="input-group-addon"><i class="icon-people"></i></span>
+                <select required class="form-control" type="text" formControlName="usertype">
+                  <option value=''>Please select</option>
+				  <option value='customer'>Customer</option>
+				  <option value='organisation'>Organisation</option>
+                </select>
+            </div>
+			
+			<div class="input-group mb-3">
               <span class="input-group-addon"><i class="icon-user"></i></span>
               <input type="text" class="form-control" formControlName="full_name" placeholder="Username">
             </div>
@@ -49,7 +58,7 @@
               <input type="password" class="form-control" formControlName="password" placeholder="Repeat password">
             </div>
 
-            <button type="button" class="btn btn-block btn-success">Create Account</button>
+            <button type="submit" class="btn btn-block btn-success">Create Account</button>
             </form>
 		  </div>
         </div>

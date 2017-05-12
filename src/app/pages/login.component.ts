@@ -36,7 +36,7 @@ export class LoginComponent {
     console.log(this.signin.value);
 	
 	this.api
-      .register(this.signin.value)
+      .login(this.signin.value)
       .subscribe(
         result => {
           console.log('logged in!');

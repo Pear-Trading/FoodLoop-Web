@@ -28,6 +28,7 @@ export class RegisterComponent {
 		);
 	  this.signup = this.formBuilder.group({
 		token:        ['', [Validators.required]],
+		usertype:     ['', [Validators.required]],
 		full_name:    ['', [Validators.required]],
 		display_name: ['', [Validators.required]],
 		email:        ['', [Validators.required]],
