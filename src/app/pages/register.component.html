@@ -4,7 +4,7 @@
       <div class="col-md-6">
         <div class="card mx-4">
           <div class="card-block p-4">
-			<form [formGroup]="signup" (ngSubmit)="onSubmit()">
+			<form [formGroup]="signup.getForm()" (ngSubmit)="onSubmit()">
             <h1>Register</h1>
             <p class="text-muted">Create your account</p>
             <div class="input-group mb-3">
@@ -70,7 +70,7 @@
 
             <div class="input-group mb-4">
               <span class="input-group-addon"><i class="icon-lock"></i></span>
-              <input type="password" class="form-control" formControlName="password" placeholder="Repeat password">
+              <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Repeat password">
             </div>
 
             <button type="submit" class="btn btn-block btn-success">Create Account</button>

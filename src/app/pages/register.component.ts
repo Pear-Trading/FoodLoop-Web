@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { ValidationManager } from "ng2-validation-manager";
 import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import {Router } from '@angular/router';
@@ -9,42 +10,47 @@ import 'rxjs/add/operator/map';
   templateUrl: 'register.component.html',
   providers: [ApiService]
 })
+
 export class RegisterComponent {
-  signup: FormGroup;
+  signup: ValidationManager;
   ageRanges: Object[];
   
   constructor(
 	private http: Http,
 	private formBuilder: FormBuilder,
 	private router: Router,
-	private api: ApiService
+	private api: ApiService,
 	) {	  
 	  this.api.getAgeRanges()
 		.subscribe(
-			result => {
-				console.log(result);
-				this.ageRanges = result.ages;
-			}
+		  result => {
+		    console.log(result);
+		    this.ageRanges = result.ages;
+		  }
 		);
-	  this.signup = this.formBuilder.group({
-		token:        ['', [Validators.required]],
-		usertype:     ['', [Validators.required]],
-		name:         ['', [Validators.required]],
-		full_name:    ['', [Validators.required]],
-		display_name: ['', [Validators.required]],
-		email:        ['', [Validators.required]],
-		postcode:     ['', [Validators.required]],
-		street_name:  ['', [Validators.required]],
-		town:         ['', [Validators.required]],
-		age_range:    ['', [Validators.required]],
-		password:     ['', [Validators.required]],
+	  this.signup = new ValidationManager({
+		token:        'required',
+		usertype:     'required',
+		name:         'required',
+		full_name:    'required',
+		display_name: 'required',
+		email:        'required',
+		postcode:     'required',
+		street_name:  'required',
+		town:         'required',
+		age_range:    'required',
+		password:     'required',
+		confirmpassword: 'required|equalTo:password'
 	  });
   }
   
   onSubmit() {
-    console.log(this.signup.value);
+	  
+    console.log(this.signup.isValid());
 	
-	this.api
+    console.log(this.signup.getForm().value);
+	
+	/* this.api
       .register(this.signup.value)
       .subscribe(
         result => {
@@ -54,7 +60,7 @@ export class RegisterComponent {
         error => {
           console.log( error._body );
         }
-      );
+      );*/
   }
 
 
