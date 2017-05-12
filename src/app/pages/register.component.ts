@@ -29,10 +29,13 @@ export class RegisterComponent {
 	  this.signup = this.formBuilder.group({
 		token:        ['', [Validators.required]],
 		usertype:     ['', [Validators.required]],
+		name:         ['', [Validators.required]],
 		full_name:    ['', [Validators.required]],
 		display_name: ['', [Validators.required]],
 		email:        ['', [Validators.required]],
 		postcode:     ['', [Validators.required]],
+		street_name:  ['', [Validators.required]],
+		town:         ['', [Validators.required]],
 		age_range:    ['', [Validators.required]],
 		password:     ['', [Validators.required]],
 	  });
