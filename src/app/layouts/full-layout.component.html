@@ -41,10 +41,10 @@
 
         <div class="dropdown-header text-center"><strong>Settings</strong></div>
 
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
-        <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
-        <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-default">42</span></a>
-        <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> User Settings</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Transaction History</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Points History<span class="badge badge-default">42</span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Notifications<span class="badge badge-primary">42</span></a>
         <div class="divider"></div>
         <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>
         <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
@@ -163,90 +163,24 @@
     <tabset>
       <tab>
         <ng-template tabHeading><i class="icon-list"></i></ng-template>
-        <div class="callout m-0 py-2 text-muted text-center bg-faded text-uppercase">
-          <small><b>Today</b></small>
+        <div class="callout m-0 py-2 text-muted text-center text-uppercase">
+          <small><b><a class="nav-link" href="#">User Settings</a></b></small>
         </div>
         <hr class="transparent mx-3 my-0">
-        <div class="callout callout-warning m-0 py-3">
-          <div class="avatar float-right">
-            <img src="assets/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-          </div>
-          <div>Meeting with <strong>Lucas</strong></div>
-          <small class="text-muted mr-3"><i class="icon-calendar"></i>&nbsp; 1 - 3pm</small>
-          <small class="text-muted"><i class="icon-location-pin"></i>&nbsp; Palo Alto, CA </small>
-        </div>
-        <hr class="mx-3 my-0">
-        <div class="callout callout-info m-0 py-3">
-          <div class="avatar float-right">
-            <img src="assets/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-          </div>
-          <div>Skype with <strong>Megan</strong></div>
-          <small class="text-muted mr-3"><i class="icon-calendar"></i>&nbsp; 4 - 5pm</small>
-          <small class="text-muted"><i class="icon-social-skype"></i>&nbsp; On-line </small>
+        <div class="callout m-0 py-2 text-muted text-center text-uppercase">
+          <small><b><a class="nav-link" href="#">Transaction History</a></b></small>
         </div>
         <hr class="transparent mx-3 my-0">
-        <div class="callout m-0 py-2 text-muted text-center bg-faded text-uppercase">
-          <small><b>Tomorrow</b></small>
+        <div class="callout m-0 py-2 text-muted text-center text-uppercase">
+          <small><b><a class="nav-link" href="#">Points History</a></b></small>
         </div>
         <hr class="transparent mx-3 my-0">
-        <div class="callout callout-danger m-0 py-3">
-          <div>New UI Project - <strong>deadline</strong></div>
-          <small class="text-muted mr-3"><i class="icon-calendar"></i>&nbsp; 10 - 11pm</small>
-          <small class="text-muted"><i class="icon-home"></i>&nbsp; creativeLabs HQ </small>
-          <div class="avatars-stack mt-2">
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-          </div>
+        <div class="callout m-0 py-2 text-muted text-center text-uppercase">
+          <small><b><a class="nav-link" href="#">Notifications</a></b></small>
         </div>
-        <hr class="mx-3 my-0">
-        <div class="callout callout-success m-0 py-3">
-          <div><strong>#10 Startups.Garden</strong> Meetup</div>
-          <small class="text-muted mr-3"><i class="icon-calendar"></i>&nbsp; 1 - 3pm</small>
-          <small class="text-muted"><i class="icon-location-pin"></i>&nbsp; Palo Alto, CA </small>
-        </div>
-        <hr class="mx-3 my-0">
-        <div class="callout callout-primary m-0 py-3">
-          <div><strong>Team meeting</strong></div>
-          <small class="text-muted mr-3"><i class="icon-calendar"></i>&nbsp; 4 - 6pm</small>
-          <small class="text-muted"><i class="icon-home"></i>&nbsp; creativeLabs HQ </small>
-          <div class="avatars-stack mt-2">
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/7.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-            <div class="avatar avatar-xs">
-              <img src="assets/img/avatars/8.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-            </div>
-          </div>
-        </div>
-        <hr class="mx-3 my-0">
+
+
+
       </tab>
       <tab>
         <ng-template tabHeading><i class="icon-speech"></i></ng-template>
