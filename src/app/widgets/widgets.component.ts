@@ -36,7 +36,7 @@ export class WidgetsComponent {
   // lineChart1
   public lineChart1Data: Array<any> = [
     {
-      data: [65, 59, 84, 84, 51, 55, 40],
+      data: [80, 59, 84, 84, 51, 55, 40],
       label: 'Series A'
     }
   ];
@@ -220,11 +220,11 @@ export class WidgetsComponent {
   // lineChart4
   public lineChart4Data: Array<any> = [
     {
-      data: [4, 18, 9, 17, 34, 22, 11, 3, 15, 12, 18, 9],
+      data: [4, 18, 9, 17, 80, 22, 11],
       label: 'Series A'
     }
   ];
-  public lineChart4Labels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  public lineChart4Labels: Array<any> = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   public lineChart4Options: any = {
     maintainAspectRatio: false,
     scales: {
@@ -259,7 +259,7 @@ export class WidgetsComponent {
       label: 'Series A'
     }
   ];
-  public barChart2Labels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  public barChart2Labels: Array<any> = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   public barChart2Options: any = {
     maintainAspectRatio: false,
     scales: {
@@ -338,7 +338,7 @@ export class WidgetsComponent {
   // lineChart5
   public lineChart5Data: Array<any> = [
     {
-      data: [65, 59, 84, 84, 51, 55, 40],
+      data: [4, 18, 9, 17, 34, 22, 11, 3, 15, 12, 18, 9],
       label: 'Series A'
     }
   ];
