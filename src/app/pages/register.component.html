@@ -4,13 +4,8 @@
       <div class="col-md-6">
         <div class="card mx-4">
           <div class="card-block p-4">
-			<form [formGroup]="signup.getForm()" (ngSubmit)="onSubmit()">
-            <h1>Register</h1>
+		    <h1>Register</h1>
             <p class="text-muted">Create your account</p>
-            <div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-key"></i></span>
-              <input type="text" class="form-control" formControlName="token" placeholder="Token">
-            </div>
 			
 			<div class="input-group mb-3">
 				<span class="input-group-addon"><i class="icon-people"></i></span>
@@ -19,6 +14,58 @@
 				  <option value='customer'>Customer</option>
 				  <option value='organisation'>Organisation</option>
                 </select>
+            </div>
+			
+			<form *ngIf="showtradersignup" [formGroup]="signup.getForm()" (ngSubmit)="onSubmit()">
+            
+			<div class="input-group mb-3">
+              <span class="input-group-addon"><i class="icon-key"></i></span>
+              <input type="text" class="form-control" formControlName="token" placeholder="Token">
+            </div>
+			
+			<div class="input-group mb-3">
+              <span class="input-group-addon"><i class="icon-user"></i></span>
+              <input type="text" class="form-control" formControlName="name" placeholder="Organisation Name">
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-addon">@</span>
+              <input type="text" class="form-control" formControlName="email" placeholder="Email">
+            </div>
+			
+			<div class="input-group mb-3">
+              <span class="input-group-addon"><i class="icon-user"></i></span>
+              <input type="text" class="form-control" formControlName="street_name" placeholder="Street Name">
+            </div>
+			
+			<div class="input-group mb-3">
+              <span class="input-group-addon"><i class="icon-user"></i></span>
+              <input type="text" class="form-control" formControlName="town" placeholder="Town">
+            </div>
+			
+			<div class="input-group mb-3">
+              <span class="input-group-addon"><i class="icon-user"></i></span>
+              <input type="text" class="form-control" formControlName="postcode" placeholder="Postcode">
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-addon"><i class="icon-lock"></i></span>
+              <input type="password" class="form-control" formControlName="password" placeholder="Password">
+            </div>
+
+            <div class="input-group mb-4">
+              <span class="input-group-addon"><i class="icon-lock"></i></span>
+              <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Repeat password">
+            </div>
+
+            <button type="submit" class="btn btn-block btn-success">Create Account</button>
+            </form>
+			
+			<form *ngIf="showcustomersignup" [formGroup]="signup.getForm()" (ngSubmit)="onSubmit()">
+            
+			<div class="input-group mb-3">
+              <span class="input-group-addon"><i class="icon-key"></i></span>
+              <input type="text" class="form-control" formControlName="token" placeholder="Token">
             </div>
 			
 			<div class="input-group mb-3">
@@ -39,16 +86,6 @@
             <div class="input-group mb-3">
               <span class="input-group-addon">@</span>
               <input type="text" class="form-control" formControlName="email" placeholder="Email">
-            </div>
-			
-			<div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-user"></i></span>
-              <input type="text" class="form-control" formControlName="street_name" placeholder="Street Name">
-            </div>
-			
-			<div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-user"></i></span>
-              <input type="text" class="form-control" formControlName="town" placeholder="Town">
             </div>
 			
 			<div class="input-group mb-3">
