@@ -8,6 +8,7 @@ import { LoginComponent } from './login.component';
 import { RegisterComponent } from './register.component';
 
 import { PagesRoutingModule } from './pages-routing.module';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 	PagesRoutingModule,
 	FormsModule,
 	ReactiveFormsModule,
+	TabsModule
   ],
   declarations: [
     P404Component,
