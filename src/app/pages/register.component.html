@@ -15,7 +15,7 @@
 				  <option value='customer'>Customer</option>
                 </select>
             </div> -->
-			<form [formGroup]="signup.getForm()" (ngSubmit)="onSubmit()">
+			<form [formGroup]="signupForm.getForm()">
 			<div class="input-group mb-3">
               <span class="input-group-addon"><i class="icon-key"></i></span>
               <input type="text" class="form-control" formControlName="token" placeholder="Token">
@@ -46,9 +46,9 @@
             </div>
 			</form>
 			
-			<div [ngSwitch]="signup.getForm().value.usertype">
+			<div [ngSwitch]="signupForm.getForm().value.usertype">
 			<div *ngSwitchCase="'customer'" >
-			<form [formGroup]="signup.getForm()" (ngSubmit)="onSubmit()">
+			<form [formGroup]="customerForm.getForm()" (ngSubmit)="onSubmitCustomer()">
 			<div class="input-group mb-3">
               <span class="input-group-addon"><i class="icon-user"></i></span>
               <input type="text" class="form-control" formControlName="display_name" placeholder="Display Name">
@@ -75,15 +75,15 @@
             </form>
 			</div>
 			<div *ngSwitchCase="'organisation'">
-			<form [formGroup]="signup.getForm()" (ngSubmit)="onSubmit()">
+			<form [formGroup]="organisationForm.getForm()" (ngSubmit)="onSubmitOrganisation()">
 			<div class="input-group mb-3">
               <span class="input-group-addon"><i class="icon-user"></i></span>
-              <input type="text" class="form-control" formControlName="street_name" placeholder="Street Name">
+              <input type="text" class="form-control" formControlName="name" placeholder="Organisation Name">
             </div>
 			
 			<div class="input-group mb-3">
               <span class="input-group-addon"><i class="icon-user"></i></span>
-              <input type="text" class="form-control" formControlName="name" placeholder="Organisation Name">
+              <input type="text" class="form-control" formControlName="street_name" placeholder="Street Name">
             </div>
 			
 			<div class="input-group mb-3">
