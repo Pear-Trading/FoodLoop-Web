@@ -72,7 +72,7 @@ export class RegisterComponent {
 		age_range:    customerForm.age_range,
 	};
 	console.log(data);
-	/* this.api
+	this.api
       .register(data)
       .subscribe(
         result => {
@@ -82,7 +82,7 @@ export class RegisterComponent {
         error => {
           console.log( error._body );
         }
-      );*/
+      );
   }
   onSubmitOrganisation() {
 	  
@@ -105,7 +105,7 @@ export class RegisterComponent {
 		postcode:     organisationForm.postcode,
 	};
 	console.log(data);
-	/* this.api
+	this.api
       .register(data)
       .subscribe(
         result => {
@@ -115,7 +115,7 @@ export class RegisterComponent {
         error => {
           console.log( error._body );
         }
-      );*/
+      );
   }
 
 
