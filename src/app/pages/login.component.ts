@@ -11,21 +11,13 @@ import 'rxjs/add/operator/map';
 })
 export class LoginComponent {
   signin: FormGroup;
-  ageRanges: Object[];
   
   constructor(
 	private http: Http,
 	private formBuilder: FormBuilder,
 	private router: Router,
 	private api: ApiService
-	) {	  
-	  this.api.getAgeRanges()
-		.subscribe(
-			result => {
-				console.log(result);
-				this.ageRanges = result.ages;
-			}
-		);
+	) {
 	  this.signin = this.formBuilder.group({
 		email:        ['', [Validators.required]],
 		password:     ['', [Validators.required]],
