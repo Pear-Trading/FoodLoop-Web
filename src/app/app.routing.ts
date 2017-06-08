@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './_guards/index';
+import { AuthGuard } from './_guards/auth.guard';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
@@ -15,7 +15,7 @@ export const routes: Routes = [
   {
     path: '',
     component: FullLayoutComponent,
-	// canActivate: [AuthGuard],
+	canActivate: [AuthGuard],
     data: {
       title: 'Home'
     },

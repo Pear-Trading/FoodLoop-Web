@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../providers/api-service';
-import {Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,6 +26,7 @@ export class FullLayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+  
   userlogout() {
 	console.log('logout clicked');
 	this.api
@@ -33,6 +34,7 @@ export class FullLayoutComponent implements OnInit {
 	  .subscribe(
 		result => {
 		  console.log('Logged out!');
+		  window.location.reload();
 		}
 	  );
   }

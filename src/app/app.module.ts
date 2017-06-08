@@ -15,7 +15,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
 // Routing & Guard Module
 import { AppRoutingModule } from './app.routing';
-import { AuthGuard } from './_guards/index';
+import { AuthGuard } from './_guards/auth.guard';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
