@@ -33,7 +33,7 @@ export class RegisterComponent {
 	  this.signupForm = new ValidationManager({
 		token:        'required',
 		usertype:     'required',
-		email:        'required',
+		email:        'required|email',
 		password:     'required',
 		confirmpassword: 'required|equalTo:password'
 	  });
@@ -114,6 +114,7 @@ export class RegisterComponent {
         },
         error => {
           console.log( error._body );
+		  
         }
       );
   }
