@@ -74,82 +74,12 @@ export class ApiService {
   
   // Leaderboard Api
   
-  private leaderboard_daily_total() {
-    return this.http.post(
+  public leaderboard_fetch(data) {
+    this.http.post(
 		  this.apiUrl + '/stats/leaderboard',
 		  {
 			session_key : this.sessionKey,
-      type : 'daily_total'
-		}
-		).map( response => response.json() );
-	}
-  
-  private leaderboard_daily_count() {
-    return this.http.post(
-		  this.apiUrl + '/stats/leaderboard',
-		  {
-			session_key : this.sessionKey,
-      type : 'daily_count'
-		}
-		).map( response => response.json() );
-	}
-  
-  private leaderboard_weekly_total() {
-    return this.http.post(
-		  this.apiUrl + '/stats/leaderboard',
-		  {
-			session_key : this.sessionKey,
-      type : 'weekly_total'
-		}
-		).map( response => response.json() );
-	}
-  
-  private leaderboard_weekly_count() {
-    return this.http.post(
-		  this.apiUrl + '/stats/leaderboard',
-		  {
-			session_key : this.sessionKey,
-      type : 'weekly_count'
-		}
-		).map( response => response.json() );
-	}
-  
-  private leaderboard_monthly_total() {
-    return this.http.post(
-		  this.apiUrl + '/stats/leaderboard',
-		  {
-			session_key : this.sessionKey,
-      type : 'monthly_total'
-		}
-		).map( response => response.json() );
-	}
-  
-  private leaderboard_monthly_count() {
-    return this.http.post(
-		  this.apiUrl + '/stats/leaderboard',
-		  {
-			session_key : this.sessionKey,
-      type : 'monthly_count'
-		}
-		).map( response => response.json() );
-	}
-  
-  private leaderboard_all_time_total() {
-    return this.http.post(
-		  this.apiUrl + '/stats/leaderboard',
-		  {
-			session_key : this.sessionKey,
-      type : 'all_time_total'
-		}
-		).map( response => response.json() );
-	}
-  
-  private leaderboard_all_time_count() {
-    return this.http.post(
-		  this.apiUrl + '/stats/leaderboard',
-		  {
-			session_key : this.sessionKey,
-      type : 'all_time_count'
+      type : data
 		}
 		).map( response => response.json() );
 	}
