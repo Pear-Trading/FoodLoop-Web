@@ -65,9 +65,9 @@
             </div>
 			
 			<div class="input-group mb-3">
-				<span class="input-group-addon">Age Range</span>
-                <select class="form-control" type="text" formControlName="age_range">
-                  <option *ngFor="let range of ageRanges" [value]="range.id">{{ range.string }}</option>
+				<span class="input-group-addon">Year of Birth</span>
+                <select class="form-control" type="text" formControlName="year_of_birth">
+                  <option *ngFor="let range of years" [value]="range">{{ range }}</option>
                 </select>
             </div>
 

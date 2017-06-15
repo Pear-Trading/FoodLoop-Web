@@ -34,12 +34,6 @@ export class ApiService {
 	  localStorage.removeItem('sessionKey');
   }
   
-  public getAgeRanges() {
-    return this.http.get(
-      this.apiUrl + '/info/ages'
-    ).map( res => res.json() );
-  }
-
   public register(data) {
     return this.http.post(
       this.apiUrl + '/register',

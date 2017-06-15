@@ -15,21 +15,21 @@ export class RegisterComponent {
   signupForm: ValidationManager;
   customerForm: ValidationManager;
   organisationForm: ValidationManager;
-  ageRanges: Object[];
+  years: Object[];
   
   constructor(
 	private http: Http,
 	private formBuilder: FormBuilder,
 	private router: Router,
 	private api: ApiService,
-	) {	  
-	  this.api.getAgeRanges()
-		.subscribe(
-		  result => {
-		    console.log(result);
-		    this.ageRanges = result.ages;
-		  }
-		);
+	) {
+	this.years = [];
+	let max = new Date().getFullYear() - 10,
+		min = max - 140;
+
+	for (let i = max; i>=min; i--){
+		this.years.push(i);
+	}
 	  this.signupForm = new ValidationManager({
 		token:        'required',
 		usertype:     'required',
@@ -41,7 +41,7 @@ export class RegisterComponent {
 		display_name: 'required',
 		full_name:    'required',
 		postcode:     'required',
-		age_range:    'required',
+		year_of_birth:    'required',
 	  });
 	  this.organisationForm = new ValidationManager({
 		name:         'required',
@@ -69,7 +69,7 @@ export class RegisterComponent {
 		display_name: customerForm.display_name,
 		full_name:    customerForm.full_name,
 		postcode:     customerForm.postcode,
-		age_range:    customerForm.age_range,
+		year_of_birth:customerForm.year_of_birth,
 	};
 	console.log(data);
 	this.api
