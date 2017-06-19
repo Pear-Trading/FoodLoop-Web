@@ -84,4 +84,14 @@ export class ApiService {
 		).map( response => response.json() );
 	}
   
+  // Fake data to mimic
+
+  public graph_data(data) {
+    return Observable.of(
+      {
+        day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
+        customerno : [1,2,3,4,5,6,7],
+      }
+    )
+  }
 }

@@ -1,12 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { ApiService } from '../providers/api-service';
 import { Router } from '@angular/router';
 
 @Component({
   templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
+  thisweekcustomerno: any;
 
-  // constructor( ) { }
+  constructor( 
+  private http: Http,
+  private api: ApiService,
+  
+  ) { 
+    this.api.graph_data(undefined)
+    .subscribe(
+      result => { 
+        console.log(result);
+        this.thisweekcustomerno = result;
+        this.lineChart1Data[0].data = this.thisweekcustomerno.customerno;
+        this.lineChart1Labels = this.thisweekcustomerno.day;
+      }
+    )
+  }
 
   public brandPrimary = '#20a8d8';
   public brandSuccess = '#4dbd74';
@@ -45,11 +62,11 @@ export class DashboardComponent implements OnInit {
   // lineChart1
   public lineChart1Data: Array<any> = [
     {
-      data: [44.72, 29.97, 16.65, 30.99, 47.75, 6.95, 6.95],
+      data: [],
       label: 'Series A'
     }
   ];
-  public lineChart1Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChart1Labels: Array<any> = [];
   public lineChart1Options: any = {
     maintainAspectRatio: false,
     scales: {
@@ -68,8 +85,6 @@ export class DashboardComponent implements OnInit {
         display: false,
         ticks: {
           display: false,
-          min: 5 - 5,
-          max: 50 + 5,
         }
       }],
     },

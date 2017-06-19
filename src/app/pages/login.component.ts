@@ -35,6 +35,10 @@ export class LoginComponent implements OnInit {
 		    console.log('Logged out!');
 		  }
 		);
+    
+    this.api.graph_data(undefined).subscribe(
+      result => { console.log(result) }
+    )
 		
 		// get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
