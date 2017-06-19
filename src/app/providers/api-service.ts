@@ -75,7 +75,7 @@ export class ApiService {
   // Leaderboard Api
   
   public leaderboard_fetch(data) {
-    this.http.post(
+    return this.http.post(
 		  this.apiUrl + '/stats/leaderboard',
 		  {
 			session_key : this.sessionKey,

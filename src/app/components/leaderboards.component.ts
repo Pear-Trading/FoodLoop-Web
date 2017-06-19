@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import 'rxjs/add/operator/map';
@@ -11,7 +11,6 @@ export class LeaderboardsComponent {
 
   constructor(
   private http: Http,
-	private formBuilder: FormBuilder,
 	private api: ApiService,
   ) { 
   }

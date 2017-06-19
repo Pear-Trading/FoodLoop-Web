@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { LeaderboardsComponent } from './leaderboards.component';
 import { ButtonsComponent } from './buttons.component';
 import { CardsComponent } from './cards.component';
 import { FormsComponent } from './forms.component';
@@ -17,6 +18,13 @@ const routes: Routes = [
       title: 'Components'
     },
     children: [
+      {
+        path: 'leaderboards',
+        component: LeaderboardsComponent,
+        data: {
+          title: 'Leaderboards'
+        }
+      },
       {
         path: 'buttons',
         component: ButtonsComponent,

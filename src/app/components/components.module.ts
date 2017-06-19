@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 
+// Pagesto be used in Production
+import { LeaderboardsComponent } from './leaderboards.component';
+
+// Buttons Component
 import { ButtonsComponent } from './buttons.component';
 import { CardsComponent } from './cards.component';
 
@@ -30,6 +34,7 @@ import { ComponentsRoutingModule } from './components-routing.module';
     TabsModule
   ],
   declarations: [
+    LeaderboardsComponent,
     ButtonsComponent,
     CardsComponent,
     FormsComponent,
