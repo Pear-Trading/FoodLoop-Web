@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   thisweekcustomerno: any;
+  lastweekcustomerno: any;
+  thisweekpoints: any;
+  lastweekpoints: any;
 
   constructor( 
   private http: Http,
@@ -18,9 +21,18 @@ export class DashboardComponent implements OnInit {
     .subscribe(
       result => { 
         console.log(result);
-        this.thisweekcustomerno = result;
+        this.thisweekcustomerno = result.customersthisweek;
         this.lineChart1Data[0].data = this.thisweekcustomerno.customerno;
         this.lineChart1Labels = this.thisweekcustomerno.day;
+        this.lastweekcustomerno = result.customerslastweek;
+        this.lineChart2Data[0].data = this.lastweekcustomerno.customerno;
+        this.lineChart2Labels = this.lastweekcustomerno.day;
+        this.thisweekpoints = result.pointsthisweek;
+        this.lineChart3Data[0].data = this.thisweekpoints.points;
+        this.lineChart3Labels = this.thisweekpoints.day;
+        this.lastweekpoints = result.pointslastweek;
+        this.barChart1Data[0].data = this.lastweekpoints.points;
+        this.barChart1Labels = this.lastweekpoints.day;
       }
     )
   }
@@ -114,11 +126,11 @@ export class DashboardComponent implements OnInit {
   // lineChart2
   public lineChart2Data: Array<any> = [
     {
-      data: [1, 18, 9, 17, 34, 22, 11],
-      label: 'Series A'
+      data: [],
+      label: 'Series B'
     }
   ];
-  public lineChart2Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChart2Labels: Array<any> = [];
   public lineChart2Options: any = {
     maintainAspectRatio: false,
     scales: {
@@ -137,8 +149,6 @@ export class DashboardComponent implements OnInit {
         display: false,
         ticks: {
           display: false,
-          min: 1 - 5,
-          max: 34 + 5,
         }
       }],
     },
@@ -170,11 +180,11 @@ export class DashboardComponent implements OnInit {
   // lineChart3
   public lineChart3Data: Array<any> = [
     {
-      data: [78, 81, 80, 45, 34, 12, 40],
+      data: [],
       label: 'Series A'
     }
   ];
-  public lineChart3Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChart3Labels: Array<any> = [];
   public lineChart3Options: any = {
     maintainAspectRatio: false,
     scales: {
@@ -212,11 +222,11 @@ export class DashboardComponent implements OnInit {
   // barChart1
   public barChart1Data: Array<any> = [
     {
-      data: [78, 81, 80, 45, 34, 12, 40, 78, 81, 80, 45, 34, 12, 40, 12, 40],
+      data: [],
       label: 'Series A'
     }
   ];
-  public barChart1Labels: Array<any> = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'];
+  public barChart1Labels: Array<any> = [];
   public barChart1Options: any = {
     maintainAspectRatio: false,
     scales: {

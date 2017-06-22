@@ -88,10 +88,28 @@ export class ApiService {
 
   public graph_data(data) {
     return Observable.of(
-      {
-        day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
-        customerno : [1,2,3,4,5,6,7],
-      }
+    {
+      "customersthisweek" :
+        {
+          day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
+          customerno : [1,2,3,4,5,6,7],
+        },
+      "customerslastweek" :
+        {
+          day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
+          customerno : [7,6,5,4,3,2,1],
+        },
+      "pointsthisweek" :
+        {
+          day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
+          points : [1,2,3,4,5,6,7],
+        },
+      "pointslastweek" :
+        {
+          day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
+          points : [1,2,3,4,5,6,7],
+        }
+    }  
     )
   }
 }
