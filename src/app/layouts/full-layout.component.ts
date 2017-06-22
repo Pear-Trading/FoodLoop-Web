@@ -8,10 +8,27 @@ import { Router } from '@angular/router';
   providers: [ApiService]
 })
 export class FullLayoutComponent implements OnInit {
+  customersThisMonth: any;
+  moneySpentThisMonth: any;
+  pointsTotal: any;
+  averageTransactionToday: any;
+  
   constructor(
   private api: ApiService,
   private router: Router,
-  ) {}
+  ) {
+    /* this.api.breadcrumb_data(undefined)
+    .subscribe(
+      result => { 
+        console.log(result);
+        this.customersThisMonth = result.customersthismonth;
+        this.moneySpentThisMonth = result.moneyspentthismonth;
+        this.pointsTotal = result.pointstotal;
+        this.averageTransactionToday = result.averagetransactiontoday;
+      }
+    ) */
+  }
+  
   public disabled = false;
   public status: {isopen: boolean} = {isopen: false};
 

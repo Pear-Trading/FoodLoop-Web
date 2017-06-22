@@ -7,10 +7,14 @@ import { Router } from '@angular/router';
   templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
-  thisweekcustomerno: any;
-  lastweekcustomerno: any;
-  thisweekpoints: any;
-  lastweekpoints: any;
+  customersThisWeek: any;
+  customersLastWeek: any;
+  pointsThisWeek: any;
+  pointsLastWeek: any;
+  customersThisMonth: any;
+  moneySpentThisMonth: any;
+  pointsTotal: any;
+  averageTransactionToday: any;
 
   constructor( 
   private http: Http,
@@ -21,20 +25,30 @@ export class DashboardComponent implements OnInit {
     .subscribe(
       result => { 
         console.log(result);
-        this.thisweekcustomerno = result.customersthisweek;
-        this.lineChart1Data[0].data = this.thisweekcustomerno.customerno;
-        this.lineChart1Labels = this.thisweekcustomerno.day;
-        this.lastweekcustomerno = result.customerslastweek;
-        this.lineChart2Data[0].data = this.lastweekcustomerno.customerno;
-        this.lineChart2Labels = this.lastweekcustomerno.day;
-        this.thisweekpoints = result.pointsthisweek;
-        this.lineChart3Data[0].data = this.thisweekpoints.points;
-        this.lineChart3Labels = this.thisweekpoints.day;
-        this.lastweekpoints = result.pointslastweek;
-        this.barChart1Data[0].data = this.lastweekpoints.points;
-        this.barChart1Labels = this.lastweekpoints.day;
+        this.customersThisWeek = result.customersthisweek;
+        this.lineChart1Data[0].data = this.customersThisWeek.customerno;
+        this.lineChart1Labels = this.customersThisWeek.day;
+        this.customersLastWeek = result.customerslastweek;
+        this.lineChart2Data[0].data = this.customersLastWeek.customerno;
+        this.lineChart2Labels = this.customersLastWeek.day;
+        this.pointsThisWeek = result.pointsthisweek;
+        this.lineChart3Data[0].data = this.pointsThisWeek.points;
+        this.lineChart3Labels = this.pointsThisWeek.day;
+        this.pointsLastWeek = result.pointslastweek;
+        this.barChart1Data[0].data = this.pointsLastWeek.points;
+        this.barChart1Labels = this.pointsLastWeek.day;
       }
-    )
+    ),
+    this.api.breadcrumb_data(undefined)
+    .subscribe(
+      result => { 
+        console.log(result);
+        this.customersThisMonth = result.customersthismonth;
+        this.moneySpentThisMonth = result.moneyspentthismonth;
+        this.pointsTotal = result.pointstotal;
+        this.averageTransactionToday = result.averagetransactiontoday;
+      }
+    )  
   }
 
   public brandPrimary = '#20a8d8';
