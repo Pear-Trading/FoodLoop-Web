@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LeaderboardsComponent } from './leaderboards.component';
+import { AddDataComponent } from './add-data.component';
 import { ButtonsComponent } from './buttons.component';
 import { CardsComponent } from './cards.component';
 import { FormsComponent } from './forms.component';
@@ -25,6 +26,14 @@ const routes: Routes = [
           title: 'Leaderboards'
         }
       },
+      {
+        path: 'add-data',
+        component: AddDataComponent,
+        data: {
+          title: 'Add Data'
+        }
+      },
+      // Template example pages
       {
         path: 'buttons',
         component: ButtonsComponent,
