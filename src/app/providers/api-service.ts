@@ -96,7 +96,7 @@ export class ApiService {
     }  
     )
   }
-  
+   
   // Fake chart data to mimic
 
   public graph_data(data) {

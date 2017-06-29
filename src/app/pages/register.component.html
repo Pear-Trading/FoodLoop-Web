@@ -17,87 +17,120 @@
             </div> -->
 			<form [formGroup]="signupForm.getForm()">
 			<div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-key"></i></span>
-              <input type="text" class="form-control" formControlName="token" placeholder="Token">
-            </div>
+        <span class="input-group-addon"><i class="icon-key"></i></span>
+        <input type="text" class="form-control" formControlName="token" placeholder="Token">
+      </div>
 
-            <div class="input-group mb-3">
-              <span class="input-group-addon">@</span>
-              <input type="text" class="form-control" formControlName="email" placeholder="Email">
-            </div>
+      <div class="input-group mb-3">
+        <span class="input-group-addon">@</span>
+        <input type="text" class="form-control" formControlName="email" placeholder="Email">
+      </div>
 			
 			<div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-lock"></i></span>
-              <input type="password" class="form-control" formControlName="password" placeholder="Password">
-            </div>
+        <span class="input-group-addon"><i class="icon-lock"></i></span>
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      </div>
 
-            <div class="input-group mb-4">
-              <span class="input-group-addon"><i class="icon-lock"></i></span>
-              <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Repeat password">
-            </div>
+      <div class="input-group mb-4">
+        <span class="input-group-addon"><i class="icon-lock"></i></span>
+        <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Repeat password">
+      </div>
 			
 			<div class="input-group mb-3">
 				<span class="input-group-addon"><i class="icon-people"></i></span>
-                <select required class="form-control" type="text" formControlName="usertype">
-                  <option value=''>Please select</option>
-				  <option value='organisation'>Organisation</option>
-				  <option value='customer'>Customer</option>
-                </select>
-            </div>
+          <select required class="form-control" type="text" formControlName="usertype">
+            <option value=''>Please select</option>
+            <option value='organisation'>Organisation</option>
+            <option value='customer'>Customer</option>
+          </select>
+      </div>
 			</form>
 			
 			<div [ngSwitch]="signupForm.getForm().value.usertype">
 			<div *ngSwitchCase="'customer'" >
 			<form [formGroup]="customerForm.getForm()" (ngSubmit)="onSubmitCustomer()">
 			<div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-user"></i></span>
-              <input type="text" class="form-control" formControlName="display_name" placeholder="Display Name">
-            </div>
+        <span class="input-group-addon"><i class="icon-user"></i></span>
+        <input type="text" class="form-control" formControlName="display_name" placeholder="Display Name">
+      </div>
 			
 			<div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-user"></i></span>
-              <input type="text" class="form-control" formControlName="full_name" placeholder="Full Name">
-            </div>
+        <span class="input-group-addon"><i class="icon-user"></i></span>
+        <input type="text" class="form-control" formControlName="full_name" placeholder="Full Name">
+      </div>
 			
 			<div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-user"></i></span>
-              <input type="text" class="form-control" formControlName="postcode" placeholder="Postcode">
-            </div>
+        <span class="input-group-addon"><i class="icon-user"></i></span>
+        <input type="text" class="form-control" formControlName="postcode" placeholder="Postcode">
+      </div>
 			
 			<div class="input-group mb-3">
 				<span class="input-group-addon">Year of Birth</span>
-                <select class="form-control" type="text" formControlName="year_of_birth">
-                  <option *ngFor="let range of years" [value]="range">{{ range }}</option>
-                </select>
-            </div>
+          <select class="form-control" type="text" formControlName="year_of_birth">
+            <option *ngFor="let range of years" [value]="range">{{ range }}</option>
+          </select>
+      </div>
 
-            <button type="submit" class="btn btn-block btn-success">Create Account</button>
-            </form>
+      <button type="submit" class="btn btn-block btn-success">Create Account</button>
+      </form>
 			</div>
 			<div *ngSwitchCase="'organisation'">
 			<form [formGroup]="organisationForm.getForm()" (ngSubmit)="onSubmitOrganisation()">
 			<div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-user"></i></span>
-              <input type="text" class="form-control" formControlName="name" placeholder="Organisation Name">
-            </div>
+        <span class="input-group-addon"><i class="icon-user"></i></span>
+        <input type="text" class="form-control" formControlName="name" placeholder="Organisation Name">
+      </div>
+      
+      <!-- Uses the UK SIC 2007 classifications for sector as used by ONS -->
+      
+      <div class="input-group mb-3">
+        <select required class="form-control" type="text" formControlName="sector">
+          <option value=''>Select Organisation Sector</option>
+          <option value='A'>Agriculture, Forestry & Fishing</option>
+          <option value='B'>Mining & Quarrying</option>
+          <option value='C'>Manufacturing</option>
+          <option value='D'>Electricity, Gas, Steam & Air Conditiioning</option>
+          <option value='E'>Water & Waste Management</option>
+          <option value='F'>Construction</option>
+          <option value='G'>Wholesale & Retail Trade</option>
+          <option value='H'>Transportation & Storage</option>
+          <option value='I'>Accomodation & Food Services</option>
+          <option value='J'>Information & Communication</option>
+          <option value='K'>Financial & Insurance Activities</option>
+          <option value='L'>Real Estate</option>
+          <option value='M'>Professional, Scientfic & Technical</option>
+          <option value='N'>Administrative & Support Services</option>
+          <option value='O'>Public Administration, Defence & Social Security</option>
+          <option value='P'>Education</option>
+          <option value='Q'>Human Health & Social Work</option>
+          <option value='R'>Arts, Entertainment & Recreation</option>
+          <option value='S'>Other Service Activities</option>
+          <option value='T'>Household Domestic Business</option>
+        </select>
+      </div>
 			
 			<div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-user"></i></span>
-              <input type="text" class="form-control" formControlName="street_name" placeholder="Street Name">
-            </div>
+        <span class="input-group-addon"><i class="icon-user"></i></span>
+        <input type="text" class="form-control" formControlName="street_name" placeholder="Street Name">
+      </div>
 			
 			<div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-user"></i></span>
-              <input type="text" class="form-control" formControlName="town" placeholder="Town">
-            </div>
+        <span class="input-group-addon"><i class="icon-user"></i></span>
+        <input type="text" class="form-control" formControlName="town" placeholder="Town">
+      </div>
+            
+      <div class="input-group mb-3">
+        <span class="input-group-addon"><i class="icon-user"></i></span>
+        <input type="text" class="form-control" formControlName="town" placeholder="Town">
+      </div>
 			
 			<div class="input-group mb-3">
-              <span class="input-group-addon"><i class="icon-user"></i></span>
-              <input type="text" class="form-control" formControlName="postcode" placeholder="Postcode">
-            </div>
+        <span class="input-group-addon"><i class="icon-user"></i></span>
+        <input type="text" class="form-control" formControlName="postcode" placeholder="Postcode">
+      </div>
 
-            <button type="submit" class="btn btn-block btn-success">Create Account</button>
-            </form>
+        <button type="submit" class="btn btn-block btn-success">Create Account</button>
+        </form>
 			</div>
 			<div heading="Pending" *ngSwitchDefault>Please Select a User Type</div>
 			</div>
