@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Pagesto be used in Production
 import { LeaderboardsComponent } from './leaderboards.component';
@@ -31,6 +32,8 @@ import { ComponentsRoutingModule } from './components-routing.module';
   imports: [
     ComponentsRoutingModule,
     BsDropdownModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
     ModalModule.forRoot(),
     TabsModule
   ],

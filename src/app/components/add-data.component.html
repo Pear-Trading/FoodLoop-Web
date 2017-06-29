@@ -3,196 +3,248 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <strong>Basic Form</strong> Elements
+          <strong>Profile & Payroll Data</strong>
+          <small>Required Data marked in <strong>bold</strong>.</small>
         </div>
-        <div class="card-block">
-          <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+        <form class="form-horizontal" [formGroup]="payrollForm" (ngSubmit)="onSubmitPayroll()">
+          <div class="card-block">
             <div class="form-group row">
-              <label class="col-md-3 form-control-label">Static</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Period of entry month</strong></label>
               <div class="col-md-9">
-                <p class="form-control-static">Username</p>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Text Input</label>
-              <div class="col-md-9">
-                <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text">
+                <input type="month" class="form-control" formControlName="entryperiod">
                 <span class="help-block">This is a help text</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="email-input">Email Input</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total amount of Employees</strong></label>
               <div class="col-md-9">
-                <input type="email" id="email-input" name="email-input" class="form-control" placeholder="Enter Email">
-                <span class="help-block">Please enter your email</span>
+                <input type="number" class="form-control" formControlName="employeeamount" placeholder="0">
+                <span class="help-block">This is a help text</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="password-input">Password</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total amount of local Employees</strong></label>
               <div class="col-md-9">
-                <input type="password" id="password-input" name="password-input" class="form-control" placeholder="Password">
-                <span class="help-block">Please enter a complex password</span>
+                <input type="number" class="form-control" formControlName="localemployeeamount" placeholder="0">
+                <span class="help-block">This is a help text</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="disabled-input">Disabled Input</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Gross Payroll</strong></label>
               <div class="col-md-9">
-                <input type="text" id="disabled-input" name="disabled-input" class="form-control" placeholder="Disabled" disabled>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="textarea-input">Textarea</label>
-              <div class="col-md-9">
-                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" placeholder="Content.."></textarea>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="select">Select</label>
-              <div class="col-md-9">
-                <select id="select" name="select" class="form-control">
-                  <option value="0">Please select</option>
-                  <option value="1">Option #1</option>
-                  <option value="2">Option #2</option>
-                  <option value="3">Option #3</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="select">Select Large</label>
-              <div class="col-md-9">
-                <select id="select" name="select" class="form-control form-control-lg">
-                  <option value="0">Please select</option>
-                  <option value="1">Option #1</option>
-                  <option value="2">Option #2</option>
-                  <option value="3">Option #3</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="select">Select Small</label>
-              <div class="col-md-9">
-                <select id="select" name="select" class="form-control form-control-sm">
-                  <option value="0">Please select</option>
-                  <option value="1">Option #1</option>
-                  <option value="2">Option #2</option>
-                  <option value="3">Option #3</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="select">Disabled Select</label>
-              <div class="col-md-9">
-                <select id="disabledSelect" class="form-control" disabled>
-                  <option value="0">Please select</option>
-                  <option value="1">Option #1</option>
-                  <option value="2">Option #2</option>
-                  <option value="3">Option #3</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="multiple-select">Multiple select</label>
-              <div class="col-md-9">
-                <select id="multiple-select" name="multiple-select" class="form-control" size="5" multiple>
-                  <option value="1">Option #1</option>
-                  <option value="2">Option #2</option>
-                  <option value="3">Option #3</option>
-                  <option value="4">Option #4</option>
-                  <option value="5">Option #5</option>
-                  <option value="6">Option #6</option>
-                  <option value="7">Option #7</option>
-                  <option value="8">Option #8</option>
-                  <option value="9">Option #9</option>
-                  <option value="10">Option #10</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label">Radios</label>
-              <div class="col-md-9">
-                <div class="radio">
-                  <label for="radio1">
-                    <input type="radio" id="radio1" name="radios" value="option1"> Option 1
-                  </label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="grosspayroll" placeholder="0.00">
                 </div>
-                <div class="radio">
-                  <label for="radio2">
-                    <input type="radio" id="radio2" name="radios" value="option2"> Option 2
-                  </label>
-                </div>
-                <div class="radio">
-                  <label for="radio3">
-                    <input type="radio" id="radio3" name="radios" value="option3"> Option 3
-                  </label>
-                </div>
+                <span class="help-block">This is a help text</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label">Inline Radios</label>
+              <label class="col-md-3 form-control-label" for="text-input">Total Income Tax</label>
               <div class="col-md-9">
-                <label class="radio-inline" for="inline-radio1">
-                  <input type="radio" id="inline-radio1" name="inline-radios" value="option1"> One
-                </label>
-                <label class="radio-inline" for="inline-radio2">
-                  <input type="radio" id="inline-radio2" name="inline-radios" value="option2"> Two
-                </label>
-                <label class="radio-inline" for="inline-radio3">
-                  <input type="radio" id="inline-radio3" name="inline-radios" value="option3"> Three
-                </label>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label">Checkboxes</label>
-              <div class="col-md-9">
-                <div class="checkbox">
-                  <label for="checkbox1">
-                    <input type="checkbox" id="checkbox1" name="checkbox1" value="option1"> Option 1
-                  </label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="payrollincometax" placeholder="0.00">
                 </div>
-                <div class="checkbox">
-                  <label for="checkbox2">
-                    <input type="checkbox" id="checkbox2" name="checkbox2" value="option2"> Option 2
-                  </label>
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input">Employees Total NI</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="payrollemployeeni" placeholder="0.00">
                 </div>
-                <div class="checkbox">
-                  <label for="checkbox3">
-                    <input type="checkbox" id="checkbox3" name="checkbox3" value="option3"> Option 3
-                  </label>
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input">Employers Total NI</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="payrollemployerni" placeholder="0.00">
                 </div>
+                <span class="help-block">This is a help text</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label">Inline Checkboxes</label>
+              <label class="col-md-3 form-control-label" for="text-input">Total Pensions</label>
               <div class="col-md-9">
-                <label class="checkbox-inline" for="inline-checkbox1">
-                  <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" value="option1">One
-                </label>
-                <label class="checkbox-inline" for="inline-checkbox2">
-                  <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" value="option2">Two
-                </label>
-                <label class="checkbox-inline" for="inline-checkbox3">
-                  <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" value="option3">Three
-                </label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="payrolltotalpension" placeholder="0.00">
+                </div>
+                <span class="help-block">This is a help text</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="file-input">File input</label>
+              <label class="col-md-3 form-control-label" for="text-input">Total Other Benefits</label>
               <div class="col-md-9">
-                <input type="file" id="file-input" name="file-input">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="payrollotherbenefit" placeholder="0.00">
+                </div>
+                <span class="help-block">A total of other payments such as refunded fuel etc.</span>
               </div>
             </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="file-multiple-input">Multiple File input</label>
-              <div class="col-md-9">
-                <input type="file" id="file-multiple-input" name="file-multiple-input" multiple>
-              </div>
-            </div>
-          </form>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          </div>
+         </form>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <strong>Total Suppliers Data</strong>
+          <small>Required Data marked in <strong>bold</strong>.</small>
         </div>
-        <div class="card-footer">
-          <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
-          <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+        <form class="form-horizontal" [formGroup]="suppliersForm" (ngSubmit)="onSubmitSuppliers()">
+          <div class="card-block">
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Period of entry month</strong></label>
+              <div class="col-md-9">
+                <input type="month" class="form-control" formControlName="entryperiod">
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Gross Spend</strong></label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="grossspend" placeholder="0.00">
+                </div>
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total amount of Suppliers</strong></label>
+              <div class="col-md-9">
+                <input type="number" class="form-control" formControlName="suppliersamount" placeholder="0">
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total amount of local Suppliers</strong></label>
+              <div class="col-md-9">
+                <input type="number" class="form-control" formControlName="localsuppliersamount" placeholder="0">
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          </div>
+         </form>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <strong>Individual Supplier Data</strong>
+          <small>Optional but recommended.</small>
         </div>
+        <form class="form-horizontal" [formGroup]="singleSupplierForm" (ngSubmit)="onSubmitSingleSupplier()">
+          <div class="card-block">
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input">Supplier Business Name</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="supplierbusinessname">
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input">Postcode</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="postcode">
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input">Monthly Spend</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="monthlyspend" placeholder="0.00">
+                </div>
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          </div>
+         </form>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <strong>Individual Employee Data</strong>
+          <small>Optional but recommended.</small>
+        </div>
+        <form class="form-horizontal" [formGroup]="employeeForm" (ngSubmit)="onSubmitEmployee()">
+          <div class="card-block">
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input">Employee number</label>
+              <div class="col-md-9">
+                <input type="number" class="form-control" formControlName="employeeno" placeholder="0">
+                <span class="help-block">Used to identify employee anonymously</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input">Gross Wage</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="grosswage" placeholder="0.00">
+                </div>
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input">Total Income Tax</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="employeeincometax" placeholder="0.00">
+                </div>
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input">Total Income Tax</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="employeeni" placeholder="0.00">
+                </div>
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input">Employee's Pension</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="employeepension" placeholder="0.00">
+                </div>
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input">Total Employee Other Benefits</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
+                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="employeeotherbenefit" placeholder="0.00">
+                </div>
+                <span class="help-block">A total of other payments such as refunded fuel etc.</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          </div>
+         </form>
       </div>
     </div>
   </div><!--/.row-->

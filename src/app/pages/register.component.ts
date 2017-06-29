@@ -116,7 +116,6 @@ export class RegisterComponent {
         },
         error => {
           console.log( error._body );
-		  
         }
       );
   }
