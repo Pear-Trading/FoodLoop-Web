@@ -45,7 +45,7 @@ export class RegisterComponent {
 	  });
 	  this.organisationForm = new ValidationManager({
 		name:         'required',
-    name:         'sector',
+    sector:       'required',
 		street_name:  'required',
 		town:         'required',
 		postcode:     'required',
@@ -101,7 +101,7 @@ export class RegisterComponent {
 		email:        signupForm.email,
 		password:     signupForm.password,
 		name:         organisationForm.name,
-    name:         organisationForm.sector,
+    sector:       organisationForm.sector,
 		street_name:  organisationForm.street_name,
 		town:         organisationForm.town,
 		postcode:     organisationForm.postcode,
