@@ -37,11 +37,13 @@ export class AddDataComponent {
 		localsuppliersamount: ['', [Validators.required]],
 	  });
     this.singleSupplierForm = this.formBuilder.group({
+    entryperiod:          ['', [Validators.required]],
     supplierbusinessname: [''],
     postcode:             [''],
     monthlyspend:         [''],
 	  });
     this.employeeForm = this.formBuilder.group({
+    entryperiod:          ['', [Validators.required]],
     employeeno:           [''],
     employeeincometax:    [''],
     employeegrosswage:    [''],

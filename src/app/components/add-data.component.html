@@ -147,6 +147,13 @@
         <form class="form-horizontal" [formGroup]="singleSupplierForm" (ngSubmit)="onSubmitSingleSupplier()">
           <div class="card-block">
             <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Period of entry month</strong></label>
+              <div class="col-md-9">
+                <input type="month" class="form-control" formControlName="entryperiod">
+                <span class="help-block">Must be filled in to submit this data.</span>
+              </div>
+            </div>
+            <div class="form-group row">
               <label class="col-md-3 form-control-label" for="text-input">Supplier Business Name</label>
               <div class="col-md-9">
                 <input type="text" class="form-control" formControlName="supplierbusinessname">
@@ -183,6 +190,13 @@
         </div>
         <form class="form-horizontal" [formGroup]="employeeForm" (ngSubmit)="onSubmitEmployee()">
           <div class="card-block">
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Period of entry month</strong></label>
+              <div class="col-md-9">
+                <input type="month" class="form-control" formControlName="entryperiod">
+                <span class="help-block">Must be filled in to submit this data.</span>
+              </div>
+            </div>
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="text-input">Employee number</label>
               <div class="col-md-9">
