@@ -15,13 +15,14 @@ export class DashboardComponent implements OnInit {
   moneySpentThisMonth: any;
   pointsTotal: any;
   averageTransactionToday: any;
+  shuffledArray: any;
 
-  constructor( 
+  constructor(
   private http: Http,
   private api: ApiService,
-  
   ) { 
-    this.api.graph_data(undefined)
+  this.shuffle = this.shuffledArray;
+  this.api.graph_data(undefined)
     .subscribe(
       result => { 
         console.log(result);
@@ -39,7 +40,7 @@ export class DashboardComponent implements OnInit {
         this.barChart1Labels = this.pointsLastWeek.day;
       }
     ),
-    this.api.breadcrumb_data(undefined)
+  this.api.breadcrumb_data(undefined)
     .subscribe(
       result => { 
         console.log(result);
@@ -50,7 +51,31 @@ export class DashboardComponent implements OnInit {
       }
     )  
   }
+  
+  // Fisher-Yates shuffle function
+  public shuffle(array) {
+    return new Promise(resolve => {
+      let counter = array.length;
 
+      // While there are elements in the array
+      while (counter > 0) {
+        // Pick a random index
+        let index = Math.floor(Math.random() * counter);
+
+        // Decrease counter by 1
+        counter--;
+
+        // And swap the last element with it
+        let temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+      }
+
+      this.shuffledArray = array;
+      resolve(true);
+    });
+  }
+  
   public brandPrimary = '#20a8d8';
   public brandSuccess = '#4dbd74';
   public brandInfo = '#63c2de';
