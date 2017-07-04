@@ -22,115 +22,123 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
-        <div class="card-block pb-0">
-          <div class="btn-group float-right" dropdown>
-            <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
-              <i class="icon-settings"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+    <div *ngIf="showGraph.customersthisweekgraph">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-inverse card-primary">
+          <div class="card-block pb-0">
+            <div class="btn-group float-right" dropdown>
+              <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
+                <i class="icon-settings"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
             </div>
+            <h4 class="mb-0">138</h4>
+            <p>Customers this week</p>
           </div>
-          <h4 class="mb-0">138</h4>
-          <p>Customers this week</p>
+          <div class="chart-wrapper px-3" style="height:70px;">
+            <canvas baseChart class="chart"
+            [datasets]="lineChart1Data"
+            [labels]="lineChart1Labels"
+            [options]="lineChart1Options"
+            [colors]="lineChart1Colours"
+            [legend]="lineChart1Legend"
+            [chartType]="lineChart1Type"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
         </div>
-        <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="lineChart1Data"
-          [labels]="lineChart1Labels"
-          [options]="lineChart1Options"
-          [colors]="lineChart1Colours"
-          [legend]="lineChart1Legend"
-          [chartType]="lineChart1Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-info">
-        <div class="card-block pb-0">
-          <button type="button" class="btn btn-transparent p-0 float-right">
-            <i class="icon-location-pin"></i>
-          </button>
-          <h4 class="mb-0">9.823</h4>
-          <p>Customers last week</p>
-        </div>
-        <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="lineChart2Data"
-          [labels]="lineChart2Labels"
-          [options]="lineChart2Options"
-          [colors]="lineChart2Colours"
-          [legend]="lineChart2Legend"
-          [chartType]="lineChart2Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-warning">
-        <div class="card-block pb-0">
-          <div class="btn-group float-right">
-            <button type="button" class="btn btn-transparent dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="icon-settings"></i>
+      </div><!--/.col-->
+    </div>
+    <div *ngIf="showGraph.customerslastweekgraph">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-inverse card-info">
+          <div class="card-block pb-0">
+            <button type="button" class="btn btn-transparent p-0 float-right">
+              <i class="icon-location-pin"></i>
             </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+            <h4 class="mb-0">9.823</h4>
+            <p>Customers last week</p>
           </div>
-          <h4 class="mb-0">9.823</h4>
-          <p>Points earned this week</p>
-        </div>
-        <div class="chart-wrapper" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="lineChart3Data"
-          [labels]="lineChart3Labels"
-          [options]="lineChart3Options"
-          [colors]="lineChart3Colours"
-          [legend]="lineChart3Legend"
-          [chartType]="lineChart3Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-danger">
-        <div class="card-block pb-0">
-          <div class="btn-group float-right" dropdown>
-            <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
-              <i class="icon-settings"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+          <div class="chart-wrapper px-3" style="height:70px;">
+            <canvas baseChart class="chart"
+            [datasets]="lineChart2Data"
+            [labels]="lineChart2Labels"
+            [options]="lineChart2Options"
+            [colors]="lineChart2Colours"
+            [legend]="lineChart2Legend"
+            [chartType]="lineChart2Type"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
           </div>
-          <h4 class="mb-0">9.823</h4>
-          <p>Points earned last week</p>
         </div>
-        <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="barChart1Data"
-          [labels]="barChart1Labels"
-          [options]="barChart1Options"
-          [colors]="barChart1Colours"
-          [legend]="barChart1Legend"
-          [chartType]="barChart1Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
+      </div><!--/.col-->
+    </div>
+    <div *ngIf="showGraph.pointsthisweekgraph">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-inverse card-warning">
+          <div class="card-block pb-0">
+            <div class="btn-group float-right">
+              <button type="button" class="btn btn-transparent dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="icon-settings"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+            <h4 class="mb-0">9.823</h4>
+            <p>Points earned this week</p>
+          </div>
+          <div class="chart-wrapper" style="height:70px;">
+            <canvas baseChart class="chart"
+            [datasets]="lineChart3Data"
+            [labels]="lineChart3Labels"
+            [options]="lineChart3Options"
+            [colors]="lineChart3Colours"
+            [legend]="lineChart3Legend"
+            [chartType]="lineChart3Type"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
         </div>
-      </div>
-    </div><!--/.col-->
+      </div><!--/.col-->
+    </div>
+    <div *ngIf="showGraph.pointslastweekgraph">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card card-inverse card-danger">
+          <div class="card-block pb-0">
+            <div class="btn-group float-right" dropdown>
+              <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
+                <i class="icon-settings"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+            <h4 class="mb-0">9.823</h4>
+            <p>Points earned last week</p>
+          </div>
+          <div class="chart-wrapper px-3" style="height:70px;">
+            <canvas baseChart class="chart"
+            [datasets]="barChart1Data"
+            [labels]="barChart1Labels"
+            [options]="barChart1Options"
+            [colors]="barChart1Colours"
+            [legend]="barChart1Legend"
+            [chartType]="barChart1Type"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div><!--/.col-->
+    </div>
   </div><!--/.row-->
   <div class="card">
     <div class="card-block">

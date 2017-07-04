@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   pointsTotal: any;
   averageTransactionToday: any;
   shuffledArray: any;
+  showGraph;
 
   constructor(
   private http: Http,
@@ -26,15 +27,21 @@ export class DashboardComponent implements OnInit {
     .subscribe(
       result => { 
         console.log(result);
+        // Return what graphs to show
+        this.showGraph = result.graphstoshow;
+        // Chart 1
         this.customersThisWeek = result.customersthisweek;
         this.lineChart1Data[0].data = this.customersThisWeek.customerno;
         this.lineChart1Labels = this.customersThisWeek.day;
+        // Chart 2
         this.customersLastWeek = result.customerslastweek;
         this.lineChart2Data[0].data = this.customersLastWeek.customerno;
         this.lineChart2Labels = this.customersLastWeek.day;
+        // Chart 3
         this.pointsThisWeek = result.pointsthisweek;
         this.lineChart3Data[0].data = this.pointsThisWeek.points;
         this.lineChart3Labels = this.pointsThisWeek.day;
+        // Chart 4
         this.pointsLastWeek = result.pointslastweek;
         this.barChart1Data[0].data = this.pointsLastWeek.points;
         this.barChart1Labels = this.pointsLastWeek.day;
