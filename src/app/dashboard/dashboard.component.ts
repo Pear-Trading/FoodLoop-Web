@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Directive, Component, OnInit } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import { Router } from '@angular/router';
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   customersThisWeek: any;
   customersLastWeek: any;
+  customersLastMonth: any;
+  customersLastYear: any;
   pointsThisWeek: any;
   pointsLastWeek: any;
   customersThisMonth: any;
@@ -16,7 +18,8 @@ export class DashboardComponent implements OnInit {
   pointsTotal: any;
   averageTransactionToday: any;
   shuffledArray: any;
-  showGraph;
+  showGraph: any;
+  percentOfCustomersSector: any;
 
   constructor(
   private http: Http,
@@ -29,6 +32,8 @@ export class DashboardComponent implements OnInit {
         console.log(result);
         // Return what graphs to show
         this.showGraph = result.graphstoshow;
+        // Percentage Chart
+        this.percentOfCustomersSector = result.percentofcustomerssector;
         // Chart 1
         this.customersThisWeek = result.customersthisweek;
         this.lineChart1Data[0].data = this.customersThisWeek.customerno;
@@ -38,10 +43,18 @@ export class DashboardComponent implements OnInit {
         this.lineChart2Data[0].data = this.customersLastWeek.customerno;
         this.lineChart2Labels = this.customersLastWeek.day;
         // Chart 3
-        this.pointsThisWeek = result.pointsthisweek;
-        this.lineChart3Data[0].data = this.pointsThisWeek.points;
-        this.lineChart3Labels = this.pointsThisWeek.day;
+        this.customersLastMonth = result.customerslastmonth;
+        this.lineChart3Data[0].data = this.customersLastMonth.customerno;
+        this.lineChart3Labels = this.customersLastMonth.day;
         // Chart 4
+        this.customersLastYear = result.customerslastyear;
+        this.lineChart4Data[0].data = this.customersLastYear.customerno;
+        this.lineChart4Labels = this.customersLastYear.day;
+        // Chart 5
+        this.pointsThisWeek = result.pointsthisweek;
+        this.lineChart5Data[0].data = this.pointsThisWeek.points;
+        this.lineChart5Labels = this.pointsThisWeek.day;
+        // Chart 6
         this.pointsLastWeek = result.pointslastweek;
         this.barChart1Data[0].data = this.pointsLastWeek.points;
         this.barChart1Labels = this.pointsLastWeek.day;
@@ -221,17 +234,110 @@ export class DashboardComponent implements OnInit {
   ];
   public lineChart2Legend = false;
   public lineChart2Type = 'line';
-
-
+  
   // lineChart3
   public lineChart3Data: Array<any> = [
+    {
+      data: [],
+      label: 'Series B'
+    }
+  ];
+  public lineChart3Labels: Array<any> = [];
+  public lineChart3Options: any = {
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        display: false
+      }],
+      yAxes: [{
+        display: false
+      }]
+    },
+    elements: {
+      line: {
+        borderWidth: 2
+      },
+      point: {
+        radius: 2,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    }
+  };
+  public lineChart3Colours: Array<any> = [
+    { // grey
+      backgroundColor: this.brandInfo,
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public lineChart3Legend = false;
+  public lineChart3Type = 'line';
+  
+  // lineChart4
+  public lineChart4Data: Array<any> = [
+    {
+      data: [],
+      label: 'Series B'
+    }
+  ];
+  public lineChart4Labels: Array<any> = [];
+  public lineChart4Options: any = {
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 2,
+          fontColor: 'transparent',
+        }
+
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          display: false,
+        }
+      }],
+    },
+    elements: {
+      line: {
+        tension: 0.00001,
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    }
+  };
+  public lineChart4Colours: Array<any> = [
+    { // grey
+      backgroundColor: this.brandInfo,
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public lineChart4Legend = false;
+  public lineChart4Type = 'line';
+  
+  // lineChart5
+  public lineChart5Data: Array<any> = [
     {
       data: [],
       label: 'Series A'
     }
   ];
-  public lineChart3Labels: Array<any> = [];
-  public lineChart3Options: any = {
+  public lineChart5Labels: Array<any> = [];
+  public lineChart5Options: any = {
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
@@ -255,14 +361,14 @@ export class DashboardComponent implements OnInit {
       display: false
     }
   };
-  public lineChart3Colours: Array<any> = [
+  public lineChart5Colours: Array<any> = [
     {
       backgroundColor: 'rgba(255,255,255,.2)',
       borderColor: 'rgba(255,255,255,.55)',
     }
   ];
-  public lineChart3Legend = false;
-  public lineChart3Type = 'line';
+  public lineChart5Legend = false;
+  public lineChart5Type = 'line';
 
 
   // barChart1

@@ -22,6 +22,20 @@
     </div>
   </div>
   <div class="row">
+    <div *ngIf="showGraph.percentofcustomerssectorgraph" class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-primary">
+        <div class="card-block">
+          <div class="h1 text-muted text-right mb-4">
+            <i class="icon-pie-chart"></i>
+          </div>
+          <div class="h4 mb-0">{{percentOfCustomersSector}}%</div>
+          <small class="text-muted text-uppercase font-weight-bold">Returning Visitors</small>
+          <div class="progress progress-white progress-xs mt-3">
+            <div class="progress-bar" role="progressbar" [style.width]="percentOfCustomersSector + '%'" attr.aria-valuenow="{{percentOfCustomersSector}}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
     <div *ngIf="showGraph.customersthisweekgraph" class="col-sm-6 col-lg-3">
       <div class="card card-inverse card-primary">
         <div class="card-block pb-0">
@@ -73,6 +87,50 @@
         </div>
       </div>
     </div><!--/.col-->
+    <div *ngIf="showGraph.customerslastmonthgraph" class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-info">
+        <div class="card-block pb-0">
+          <button type="button" class="btn btn-transparent p-0 float-right">
+            <i class="icon-location-pin"></i>
+          </button>
+          <h4 class="mb-0">9.823</h4>
+          <p>Customers last month</p>
+        </div>
+        <div class="chart-wrapper px-3" style="height:70px;">
+          <canvas baseChart class="chart"
+          [datasets]="lineChart3Data"
+          [labels]="lineChart3Labels"
+          [options]="lineChart3Options"
+          [colors]="lineChart3Colours"
+          [legend]="lineChart3Legend"
+          [chartType]="lineChart3Type"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div *ngIf="showGraph.customerslastyeargraph" class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-info">
+        <div class="card-block pb-0">
+          <button type="button" class="btn btn-transparent p-0 float-right">
+            <i class="icon-location-pin"></i>
+          </button>
+          <h4 class="mb-0">9.823</h4>
+          <p>Customers last year</p>
+        </div>
+        <div class="chart-wrapper px-3" style="height:70px;">
+          <canvas baseChart class="chart"
+          [datasets]="lineChart4Data"
+          [labels]="lineChart4Labels"
+          [options]="lineChart4Options"
+          [colors]="lineChart4Colours"
+          [legend]="lineChart4Legend"
+          [chartType]="lineChart4Type"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+    </div><!--/.col-->
     <div *ngIf="showGraph.pointsthisweekgraph" class="col-sm-6 col-lg-3">
       <div class="card card-inverse card-warning">
         <div class="card-block pb-0">
@@ -91,12 +149,12 @@
         </div>
         <div class="chart-wrapper" style="height:70px;">
           <canvas baseChart class="chart"
-          [datasets]="lineChart3Data"
-          [labels]="lineChart3Labels"
-          [options]="lineChart3Options"
-          [colors]="lineChart3Colours"
-          [legend]="lineChart3Legend"
-          [chartType]="lineChart3Type"
+          [datasets]="lineChart5Data"
+          [labels]="lineChart5Labels"
+          [options]="lineChart5Options"
+          [colors]="lineChart5Colours"
+          [legend]="lineChart5Legend"
+          [chartType]="lineChart5Type"
           (chartHover)="chartHovered($event)"
           (chartClick)="chartClicked($event)"></canvas>
         </div>
