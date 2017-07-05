@@ -93,15 +93,24 @@ export class ApiService {
       "moneyspentthismonth" : 156.02,
       "pointstotal" : 506,
       "averagetransactiontoday" : 3.69
-    }  
+    }
     )
   }
    
   // Fake chart data to mimic
-
+    
   public graph_data(data) {
     return Observable.of(
     {
+      // graphstoshow is on server and changes every hour, listing what graphs to display
+      "graphstoshow" :
+        {
+          customersthisweekgraph : true,
+          customerslastweekgraph : false,
+          pointsthisweekgraph : true,
+          pointslastweekgraph : false,
+          
+        },
       "customersthisweek" :
         {
           day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
