@@ -7,19 +7,23 @@ import { Router } from '@angular/router';
   templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
+  shuffledArray: any;
+  showGraph: any;
+  showSnippet: any;
+  customersThisMonth: any;
+  moneySpentThisMonth: any;
+  pointsTotal: any;
+  averageTransactionToday: any;
   customersThisWeek: any;
   customersLastWeek: any;
   customersLastMonth: any;
   customersLastYear: any;
   pointsThisWeek: any;
   pointsLastWeek: any;
-  customersThisMonth: any;
-  moneySpentThisMonth: any;
-  pointsTotal: any;
-  averageTransactionToday: any;
-  shuffledArray: any;
-  showGraph: any;
   percentOfCustomersSector: any;
+  noOfCustomersSector: any;
+  percentOfLocalSuppliers: any;
+  percentOfSingleCompetitorLocalSuppliers: any;
 
   constructor(
   private http: Http,
@@ -30,34 +34,51 @@ export class DashboardComponent implements OnInit {
     .subscribe(
       result => { 
         console.log(result);
-        // Return what graphs to show
-        this.showGraph = result.graphstoshow;
+        // Return what data to show 4 of
+        this.showGraph = result.elementstoshow.graphs;
+        this.showSnippet = result.elementstoshow.snippets;
         // Percentage Chart
-        this.percentOfCustomersSector = result.percentofcustomerssector;
+        this.percentOfLocalSuppliers = result.data.localsuppliers.percentownlocal;
+        this.percentOfSingleCompetitorLocalSuppliers = result.data.localsuppliers.percentsinglecompetitorlocal;
+        // Percentage Chart 2
+        this.percentOfCustomersSector = result.data.customersinsector.percent;
+        this.noOfCustomersSector = result.data.customersinsector.customerno;
         // Chart 1
-        this.customersThisWeek = result.customersthisweek;
+        this.customersThisWeek = result.data.customersthisweek;
         this.lineChart1Data[0].data = this.customersThisWeek.customerno;
         this.lineChart1Labels = this.customersThisWeek.day;
         // Chart 2
-        this.customersLastWeek = result.customerslastweek;
+        this.customersLastWeek = result.data.customerslastweek;
         this.lineChart2Data[0].data = this.customersLastWeek.customerno;
         this.lineChart2Labels = this.customersLastWeek.day;
         // Chart 3
-        this.customersLastMonth = result.customerslastmonth;
+        this.customersLastMonth = result.data.customerslastmonth;
         this.lineChart3Data[0].data = this.customersLastMonth.customerno;
         this.lineChart3Labels = this.customersLastMonth.day;
         // Chart 4
-        this.customersLastYear = result.customerslastyear;
+        this.customersLastYear = result.data.customerslastyear;
         this.lineChart4Data[0].data = this.customersLastYear.customerno;
-        this.lineChart4Labels = this.customersLastYear.day;
+        this.lineChart4Labels = this.customersLastYear.month;
         // Chart 5
-        this.pointsThisWeek = result.pointsthisweek;
+        this.pointsThisWeek = result.data.pointsthisweek;
         this.lineChart5Data[0].data = this.pointsThisWeek.points;
         this.lineChart5Labels = this.pointsThisWeek.day;
         // Chart 6
-        this.pointsLastWeek = result.pointslastweek;
+        this.pointsLastWeek = result.data.pointslastweek;
         this.barChart1Data[0].data = this.pointsLastWeek.points;
         this.barChart1Labels = this.pointsLastWeek.day;
+        // Chart 7
+        this.customersLastWeek = result.data.customerslastweek;
+        this.lineChart6Data[0].data = this.customersLastWeek.returningcustomerno;
+        this.lineChart6Labels = this.customersLastWeek.day;
+        // Chart 8
+        this.customersLastMonth = result.data.customerslastmonth;
+        this.lineChart7Data[0].data = this.customersLastMonth.returningcustomerno;
+        this.lineChart7Labels = this.customersLastMonth.day;
+        // Chart 9
+        this.customersLastYear = result.data.customerslastyear;
+        this.lineChart8Data[0].data = this.customersLastYear.returningcustomerno;
+        this.lineChart8Labels = this.customersLastYear.month;
       }
     ),
   this.api.breadcrumb_data(undefined)
@@ -328,6 +349,153 @@ export class DashboardComponent implements OnInit {
   ];
   public lineChart4Legend = false;
   public lineChart4Type = 'line';
+  
+  // lineChart6
+  public lineChart6Data: Array<any> = [
+    {
+      data: [],
+      label: 'Series B'
+    }
+  ];
+  public lineChart6Labels: Array<any> = [];
+  public lineChart6Options: any = {
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 2,
+          fontColor: 'transparent',
+        }
+
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          display: false,
+        }
+      }],
+    },
+    elements: {
+      line: {
+        tension: 0.00001,
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    }
+  };
+  public lineChart6Colours: Array<any> = [
+    { // grey
+      backgroundColor: this.brandInfo,
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public lineChart6Legend = false;
+  public lineChart6Type = 'line';
+  
+  // lineChart7
+  public lineChart7Data: Array<any> = [
+    {
+      data: [],
+      label: 'Series B'
+    }
+  ];
+  public lineChart7Labels: Array<any> = [];
+  public lineChart7Options: any = {
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        display: false
+      }],
+      yAxes: [{
+        display: false
+      }]
+    },
+    elements: {
+      line: {
+        borderWidth: 2
+      },
+      point: {
+        radius: 2,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    }
+  };
+  public lineChart7Colours: Array<any> = [
+    { // grey
+      backgroundColor: this.brandInfo,
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public lineChart7Legend = false;
+  public lineChart7Type = 'line';
+  
+  // lineChart8
+  public lineChart8Data: Array<any> = [
+    {
+      data: [],
+      label: 'Series B'
+    }
+  ];
+  public lineChart8Labels: Array<any> = [];
+  public lineChart8Options: any = {
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 2,
+          fontColor: 'transparent',
+        }
+
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          display: false,
+        }
+      }],
+    },
+    elements: {
+      line: {
+        tension: 0.00001,
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    }
+  };
+  public lineChart8Colours: Array<any> = [
+    { // grey
+      backgroundColor: this.brandInfo,
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public lineChart8Legend = false;
+  public lineChart8Type = 'line';
   
   // lineChart5
   public lineChart5Data: Array<any> = [

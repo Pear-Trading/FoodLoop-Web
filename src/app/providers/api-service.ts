@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
  
 @Injectable()
 export class ApiService {
-  private apiUrl = 'https://dev.app.peartrade.org/api';
+  private apiUrl = 'https://dev.peartrade.org/api';
   private sessionKey: string = null;
   constructor(
     private http: Http,
@@ -102,52 +102,101 @@ export class ApiService {
   public graph_data(data) {
     return Observable.of(
     {
-    // graphstoshow is on server and changes every hour, listing what graphs to display
-    "graphstoshow" :
-      {
-        customersthisweekgraph : true,
-        customerslastweekgraph : true,
-        customerslastmonthgraph : true,
-        customerslastyeargraph : true,
-        percentofcustomerssectorgraph : true,
-        pointsthisweekgraph : true,
-        pointslastweekgraph : true,
-      },
-    "customersthisweek" :
-      {
-        day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
-        customerno : [1,2,3,4,5,6,7],
-      },
-    "customerslastweek" :
-      {
-        day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
-        customerno : [7,6,5,4,3,2,1],
-      },
-      // can take differing size arrays, so any month works. Example here is for April
-      "customerslastmonth" :
-      {
-        day : ['April 1','April 2','April 3','April 4','April 5','April 6','April 7','April 8',
-        'April 9','April 10','April 11','April 12','April 13','April 14','April 15','April 16',
-        'April 17','April 18','April 19','April 20','April 21','April 22','April 23','April 24',
-        'April 25','April 26','April 27','April 28','April 29','April 30'],
-        customerno : [7,6,5,4,3,2,1,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
-      },
-      "customerslastyear" :
-      {
-        day : ['January','February','March','April','May','June','July','August','September','October','November','December'],
-        customerno : [7,6,5,4,3,2,1,8,9,10,11,12],
-      },
-      percentofcustomerssector : 76,
-      "pointsthisweek" :
+      // graphstoshow is on server and changes every hour, listing what snippets & graphs to display
+      "elementstoshow" :
         {
-          day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
-          points : [1,2,3,4,5,6,7],
+        "graphs" :
+          {
+            customersthisweek : true,
+            customerslastweek : true,
+            customerslastmonth : true,
+            customerslastyear : true,
+            returningcustomerslastweek : true,
+            returningcustomerslastmonth : true,
+            returningcustomerslastyear : true,
+            noofcustomerssector : true,
+            percentofcustomerssector : true,
+            pointsthisweek : true,
+            percentlocalsuppliersvscompetitor : true,
+          },
+        "snippets" :
+        {
+          customersthismonth: false,
+          moneyspentthismonth: true,
+          pointstotal: true,
+          averagetransactiontoday: false,
+          percentownlocalsupplier : true,
+          percentsinglecompetitorlocalsupplier : true,
         },
-      "pointslastweek" :
+      },
+      "data" :
+        "graphs" :
+          {
+          "customersthisweek" :
+            {
+              day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
+              customerno : [1,2,3,4,5,6,7],
+              returningcustomerno : [1,1,2,3,4,5,4],
+              totalcustomerno: 
+            },
+          "customerslastweek" :
+            {
+              day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
+              customerno : [7,6,5,4,3,2,1],
+              returningcustomerno : [3,4,5,4,3,2,1],
+            },
+          // can take differing size arrays, so any month works. Example here is for April
+          "customerslastmonth" :
+            {
+              day : ['April 1','April 2','April 3','April 4','April 5','April 6','April 7','April 8',
+              'April 9','April 10','April 11','April 12','April 13','April 14','April 15','April 16',
+              'April 17','April 18','April 19','April 20','April 21','April 22','April 23','April 24',
+              'April 25','April 26','April 27','April 28','April 29','April 30'],
+              customerno : [7,6,5,4,3,2,1,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
+              returningcustomerno : [4,5,4,3,2,1,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
+            },
+          "customerslastyear" :
+            {
+              month : ['January','February','March','April','May','June','July','August','September','October','November','December'],
+              customerno : [7,6,5,4,3,2,1,8,9,10,11,12],
+              returningcustomerno : [3,2,4,2,1,1,1,6,4,8,5,12],
+            },
+          // If the number is potential or actual customers in their sector has yet to be determined
+          "customersinsector" : 
+            {
+            percent : 76,
+            customerno : 34000,
+            },
+          "pointsthisweek" :
+            {
+              day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
+              points : [1,2,3,4,5,6,7],
+            },
+          "pointslastweek" :
+            {
+              day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
+              points : [1,2,3,4,5,6,7],
+            },
+          "localsuppliers" :
+            {
+              percentownlocal : 50,
+              percentsinglecompetitorlocal : 65,
+            },
+          },
+        "snippets" :
         {
-          day : ['Monday', 'tuesday','wednesday','thursday','friday','saturday','sunday'],
-          points : [1,2,3,4,5,6,7],
-        }
+          "customersinsector" : 
+            {
+            percent : 76,
+            customerno : 34000,
+            },
+          "localsuppliers" :
+            {
+              percentownlocal : 50,
+              percentsinglecompetitorlocal : 65,
+            },
+          
+        },
     }  
     )
   }
