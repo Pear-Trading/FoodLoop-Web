@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://dev.peartrade.org/api'
+  apiUrl: 'http://192.168.2.156:3000/api'
 };
