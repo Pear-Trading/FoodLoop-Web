@@ -12,6 +12,7 @@ export class FullLayoutComponent implements OnInit {
   moneySpentThisMonth: any;
   pointsTotal: any;
   averageTransactionToday: any;
+  displayName: any;
   
   constructor(
   private api: ApiService,
@@ -42,9 +43,12 @@ export class FullLayoutComponent implements OnInit {
     this.status.isopen = !this.status.isopen;
   }
 
-  ngOnInit(): void {}
+  // getDisplayName function from api didnt work
+  ngOnInit(): void {
+    this.displayName = localStorage.getItem('displayname') || 'User';
+  }
   
-  userlogout() {
+  userLogout() {
 	console.log('logout clicked');
 	this.api
 	  .logout()

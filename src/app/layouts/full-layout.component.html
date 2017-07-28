@@ -19,7 +19,7 @@
     <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
       <a href class="nav-link dropdown-toggle" dropdownToggle (click)="false">
         <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-        <span class="d-md-down-none">admin</span>
+        <span class="d-md-down-none">{{displayName}}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
 
@@ -38,7 +38,7 @@
         <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Notifications<span class="badge badge-primary">42</span></a>
         <div class="divider"></div>
         <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>
-        <a class="dropdown-item" (click)="userlogout()"><i class="fa fa-lock"></i> Logout</a>
+        <a class="dropdown-item" (click)="userLogout()"><i class="fa fa-lock"></i> Logout</a>
       </div>
     </li>
     <li class="nav-item d-md-down-none">
@@ -63,6 +63,9 @@
           <ul class="nav-dropdown-items">
             <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/leaderboards']"><i class="icon-puzzle"></i> Leaderboards</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/account-edit']"><i class="icon-puzzle"></i> Edit Account</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLinkActive="active" [routerLink]="['/components/add-data']"><i class="icon-puzzle"></i> Add Data</a>

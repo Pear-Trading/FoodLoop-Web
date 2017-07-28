@@ -41,6 +41,9 @@ testem.log
 /e2e/*.js
 /e2e/*.map
 
+# local env variable
+/src/environments/environment.local.ts
+
 # =========================
 # Operating System Files
 # =========================

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-// Pagesto be used in Production
+// Pages to be used in Production
 import { LeaderboardsComponent } from './leaderboards.component';
 import { AddDataComponent } from './add-data.component';
+import { AccountEditComponent } from './account-edit.component';
 
 // Buttons Component
 import { ButtonsComponent } from './buttons.component';
@@ -30,6 +32,7 @@ import { ComponentsRoutingModule } from './components-routing.module';
 
 @NgModule({
   imports: [
+    CommonModule,
     ComponentsRoutingModule,
     BsDropdownModule.forRoot(),
     FormsModule,
@@ -39,6 +42,7 @@ import { ComponentsRoutingModule } from './components-routing.module';
   ],
   declarations: [
     LeaderboardsComponent,
+    AccountEditComponent,
     AddDataComponent,
     ButtonsComponent,
     CardsComponent,

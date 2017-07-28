@@ -50,7 +50,13 @@ export class ApiService {
       data
     ).map( response => response.json() );
     login_event.subscribe(
-      result => {  this.setSessionKey(result.session_key) }
+      result => {  
+      this.setSessionKey(result.session_key); 
+      this.setUserInfo(
+        data.email,
+        result.display_name,
+        );
+      }
     );
     return login_event;
   }
@@ -71,6 +77,75 @@ export class ApiService {
 		this.apiUrl + '/search',
 		data
 	  ).map( response => response.json() );
+  }
+  
+  // Handles user data interaction
+  
+  // Checks for login status
+
+  public hasLoggedIn() {
+    return this.getSessionKey() ? true : false;
+  }
+
+  // Pulls user info to store locally on login
+
+  public setUserInfo(
+    email: string,
+    display_name: string) {
+    console.log("set UserInfo");
+    localStorage.setItem('email',email);
+    localStorage.setItem('displayname',display_name);
+  }
+  
+  // Used for getting account details and updating
+  
+  public accountFullLoad() {
+	  let key = this.sessionKey;
+	  return this.http.post(
+      this.apiUrl + '/user',
+      { session_key : key },
+	  ).map( response => response.json() );
+  }
+  
+  public accountEditUpdate(data) {
+	  data.session_key = this.sessionKey;
+	  return this.http.post(
+      this.apiUrl + '/user/account',
+      data
+	  ).map( response => response.json() );
+  }
+
+  // Deletes account details on logout
+
+  public removeUserInfo() {
+    console.log("remove UserInfo");
+    localStorage.removeItem('email');
+    localStorage.removeItem('displayname');
+  }
+
+  public getFullName() {
+    console.log("get Full Name");
+    localStorage.getItem('fullname');
+  }
+
+  public getDisplayName() {
+    console.log("get Display Name");
+    localStorage.getItem('displayname');
+  }
+
+  public getPostcode() {
+    console.log("get Postcode");
+    localStorage.getItem('postcode');
+  }
+
+  public getYearOfBirth() {
+    console.log("get Year of Birth");
+    localStorage.getItem('yearofbirth');
+  }
+
+  public getEmail() {
+    console.log("get email");
+    localStorage.getItem('email');
   }
   
   // Leaderboard Api

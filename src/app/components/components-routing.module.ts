@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LeaderboardsComponent } from './leaderboards.component';
+import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 import { ButtonsComponent } from './buttons.component';
 import { CardsComponent } from './cards.component';
@@ -24,6 +25,13 @@ const routes: Routes = [
         component: LeaderboardsComponent,
         data: {
           title: 'Leaderboards'
+        }
+      },
+      {
+        path: 'account-edit',
+        component: AccountEditComponent,
+        data: {
+          title: 'Edit Account'
         }
       },
       {
