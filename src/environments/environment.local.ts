@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://192.168.2.156:3000/api'
+  // insert local URL here
+  apiUrl: ''
 };
