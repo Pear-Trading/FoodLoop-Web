@@ -45,64 +45,66 @@
           </div>
          </form>
          <div [ngSwitch]="accountType">
-         <div *ngSwitchCase="'organisation'">
-         <form class="form-horizontal" [formGroup]="settingOrganisationForm" (ngSubmit)="onSubmitOrganisation()">
-           <div class="card-block">
-              <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="text-input"><strong>Business Name</strong></label>
-                <div class="col-md-9">
-                  <input type="text" class="form-control" formControlName="name">
-                  <span class="help-block">This is a help text</span>
+           <div *ngSwitchCase="'organisation'">
+             <form class="form-horizontal" [formGroup]="settingOrganisationForm" (ngSubmit)="onSubmitOrganisation()">
+               <div class="card-block">
+                  <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="text-input"><strong>Business Name</strong></label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" formControlName="name">
+                      <span class="help-block">This is a help text</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="card-block">
-              <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="text-input"><strong>Street Name</strong></label>
-                <div class="col-md-9">
-                  <input type="text" class="form-control" formControlName="street_name">
-                  <span class="help-block">This is a help text</span>
+                <div class="card-block">
+                  <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="text-input"><strong>Street Name</strong></label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" formControlName="street_name">
+                      <span class="help-block">This is a help text</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="card-block">
-              <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="text-input"><strong>Location</strong></label>
-                <div class="col-md-9">
-                  <input type="text" class="form-control" formControlName="town">
-                  <span class="help-block">This is a help text</span>
+                <div class="card-block">
+                  <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="text-input"><strong>Location</strong></label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" formControlName="town">
+                      <span class="help-block">This is a help text</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
-            </div>
-          </form>
-          </div>
-          <div *ngSwitchCase="'customer'">
-          <form class="form-horizontal" [formGroup]="settingCustomerForm" (ngSubmit)="onSubmitCustomer()">
-           <div class="card-block">
-              <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="text-input"><strong>Full Name</strong></label>
-                <div class="col-md-9">
-                  <input type="text" class="form-control" formControlName="full_name">
-                  <span class="help-block">This is a help text</span>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
                 </div>
-              </div>
+              </form>
             </div>
-            <div class="card-block">
-              <div class="form-group row">
-                <label class="col-md-3 form-control-label" for="text-input"><strong>Display Name</strong></label>
-                <div class="col-md-9">
-                  <input type="text" class="form-control" formControlName="display_name">
-                  <span class="help-block">This is a help text</span>
+            <div *ngSwitchCase="'customer'">
+              <form class="form-horizontal" [formGroup]="settingCustomerForm" (ngSubmit)="onSubmitCustomer()">
+               <div class="card-block">
+                  <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="text-input"><strong>Full Name</strong></label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" formControlName="full_name">
+                      <span class="help-block">This is a help text</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
+                <div class="card-block">
+                  <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="text-input"><strong>Display Name</strong></label>
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" formControlName="display_name">
+                      <span class="help-block">This is a help text</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                </div>
+              </form>
             </div>
-            <div class="card-footer">
-              <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
-            </div>
-          </form>
+        </div>
       </div>
     </div>
   </div><!--/.row-->
