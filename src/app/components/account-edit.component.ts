@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
@@ -13,6 +13,7 @@ export class AccountEditComponent {
   settingOrganisationForm: FormGroup;
   settingCustomerForm: FormGroup;
   accountType: any;
+  @ViewChild('fileInput') fileInput;
 
   constructor(
   private http: Http,
@@ -20,10 +21,11 @@ export class AccountEditComponent {
 	private api: ApiService,
 	) {	
 	  this.settingForm = this.formBuilder.group({
-      email        : ['', [Validators.required]],
-      postcode     : ['', [Validators.required]],
-      password     : ['', [Validators.required]],
-      new_password : [''],
+      email           : ['', [Validators.required]],
+      postcode        : ['', [Validators.required]],
+      password        : ['', [Validators.required]],
+      new_password    : [''],
+      profile_picture : [''],
 	  }); 
     this.settingOrganisationForm = this.formBuilder.group({
       name         : ['', [Validators.required]],
@@ -40,7 +42,7 @@ export class AccountEditComponent {
     this.api.accountFullLoad().subscribe(
       result => {
         console.log(result);
-        this.settingForm.setValue({
+        this.settingForm.patchValue({
           email:        result.email,
           postcode:     result.postcode,
           password:     '',
@@ -73,8 +75,17 @@ export class AccountEditComponent {
   
   let settingForm = this.settingForm.value;
 	let settingOrganisationForm = this.settingOrganisationForm.value;
-	
-  let data = {
+  
+  // image upload code
+  let fi = this.fileInput.nativeElement;
+  let data = new FormData();
+  
+  if (fi.files && fi.files[0]) {
+    let fileToUpload = fi.files[0];
+    data.append("file", fileToUpload);
+  }
+
+  let submitData = {
     email:        settingForm.email,
     postcode:     settingForm.postcode,
     password:     settingForm.password,
@@ -83,6 +94,10 @@ export class AccountEditComponent {
     street_name:  settingOrganisationForm.street_name,
     town:         settingOrganisationForm.town,
   }
+  
+  data.append('form', JSON.stringify(submitData));
+  
+  console.log(data);
 	this.api
     .accountEditUpdate(data)
     .subscribe(
@@ -105,7 +120,16 @@ export class AccountEditComponent {
   let settingForm = this.settingForm.value;
 	let settingCustomerForm = this.settingCustomerForm.value;
 	
-  let data = {
+  // image upload code
+  let fi = this.fileInput.nativeElement;
+  let data = new FormData();
+  
+  if (fi.files && fi.files[0]) {
+    let fileToUpload = fi.files[0];
+    data.append("file", fileToUpload);
+  }
+
+  let submitData = {
     email:        settingForm.email,
     postcode:     settingForm.postcode,
     password:     settingForm.password,
@@ -113,6 +137,9 @@ export class AccountEditComponent {
     full_name:    settingCustomerForm.full_name,
     display_name: settingCustomerForm.display_name,
   }
+  
+  data.append('form', JSON.stringify(submitData));
+  
 	this.api
     .accountEditUpdate(data)
     .subscribe(
