@@ -16,6 +16,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 // Routing & Guard Module
 import { AppRoutingModule } from './app.routing';
 import { AuthGuard } from './_guards/auth.guard';
+import { ApiService } from './providers/api-service';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
@@ -27,16 +28,19 @@ import { P500Component } from './pages/500.component';
 
 // Submodules
 import { AuthModule } from './auth/auth.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
     AuthModule,
+    DashboardModule,
+    // Loaded last to allow for 404 catchall
+    AppRoutingModule,
   ],
   declarations: [
     AppComponent,
@@ -51,6 +55,7 @@ import { AuthModule } from './auth/auth.module';
   ],
   providers: [
 	AuthGuard,
+  ApiService,
   {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
