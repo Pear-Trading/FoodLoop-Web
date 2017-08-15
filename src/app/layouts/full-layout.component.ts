@@ -8,10 +8,6 @@ import { Router } from '@angular/router';
   providers: [ApiService]
 })
 export class FullLayoutComponent implements OnInit {
-  customersThisMonth: any;
-  moneySpentThisMonth: any;
-  pointsTotal: any;
-  averageTransactionToday: any;
   displayName: any;
   
   constructor(
@@ -38,14 +34,15 @@ export class FullLayoutComponent implements OnInit {
   }
   
   userLogout() {
-	console.log('logout clicked');
-	this.api
-	  .logout()
-	  .subscribe(
-		result => {
-		  console.log('Logged out!');
-		  window.location.reload();
-		}
-	  );
+  console.log('logout clicked');
+  this.api
+    .logout()
+    .subscribe(
+    result => {
+      console.log('Logged out!');
+      // TODO Reload? srsly?
+      window.location.reload();
+    }
+    );
   }
 }
