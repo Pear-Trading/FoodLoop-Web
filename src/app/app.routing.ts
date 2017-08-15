@@ -29,10 +29,6 @@ export const routes: Routes = [
         loadChildren: './components/components.module#ComponentsModule'
       },
       {
-        path: 'icons',
-        loadChildren: './icons/icons.module#IconsModule'
-      },
-      {
         path: 'widgets',
         loadChildren: './widgets/widgets.module#WidgetsModule'
       },
