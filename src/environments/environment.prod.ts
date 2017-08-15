@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://app.peartrade.org/api'
+  apiUrl: 'https://app.peartrade.org/api'
 };
