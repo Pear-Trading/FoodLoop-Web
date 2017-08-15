@@ -6,10 +6,13 @@ import { AuthGuard } from './_guards/auth.guard';
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
+import { P404Component } from './pages/404.component';
+import { P500Component } from './pages/500.component';
+
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: '/dashboard',
     pathMatch: 'full',
   },
   {
@@ -38,19 +41,8 @@ export const routes: Routes = [
       }
     ]
   },
-  {
-    path: 'pages',
-    component: SimpleLayoutComponent,
-    data: {
-      title: 'Pages'
-    },
-    children: [
-      {
-        path: '',
-        loadChildren: './pages/pages.module#PagesModule',
-      }
-    ]
-  }
+  { path: '404', component: P404Component },
+  { path: '500', component: P500Component },
 ];
 
 @NgModule({

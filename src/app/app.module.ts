@@ -21,6 +21,10 @@ import { AuthGuard } from './_guards/auth.guard';
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
+// Error Pages
+import { P404Component } from './pages/404.component';
+import { P500Component } from './pages/500.component';
+
 // Submodules
 import { AuthModule } from './auth/auth.module';
 
@@ -42,6 +46,8 @@ import { AuthModule } from './auth/auth.module';
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
+    P404Component,
+    P500Component,
   ],
   providers: [
 	AuthGuard,
