@@ -15,20 +15,9 @@ export class FullLayoutComponent implements OnInit {
   displayName: any;
   
   constructor(
-  private api: ApiService,
-  private router: Router,
-  ) {
-    /* this.api.breadcrumb_data(undefined)
-    .subscribe(
-      result => { 
-        console.log(result);
-        this.customersThisMonth = result.customersthismonth;
-        this.moneySpentThisMonth = result.moneyspentthismonth;
-        this.pointsTotal = result.pointstotal;
-        this.averageTransactionToday = result.averagetransactiontoday;
-      }
-    ) */
-  }
+    private api: ApiService,
+    private router: Router,
+  ) {}
   
   public disabled = false;
   public status: {isopen: boolean} = {isopen: false};
