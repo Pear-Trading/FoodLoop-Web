@@ -21,13 +21,14 @@ npm install -g @angular/cli
 npm install
 ```
 
-## Environments
-
-See src/environments/environments.ts
-
 [LocalLoop-Server]:https://github.com/Pear-Trading/Foodloop-Server
 [tj/n]:https://github.com/tj/n
 [marcelklehr/nodist]:https://github.com/marcelklehr/nodist
+
+## Environments
+
+The app defaults to using the development server. For other options, see
+`src/environments/environments.ts`
 
 # Old README
 
