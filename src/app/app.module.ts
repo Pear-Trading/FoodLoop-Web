@@ -21,6 +21,9 @@ import { AuthGuard } from './_guards/auth.guard';
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
+// Submodules
+import { AuthModule } from './auth/auth.module';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
     HttpModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    AuthModule,
   ],
   declarations: [
     AppComponent,
