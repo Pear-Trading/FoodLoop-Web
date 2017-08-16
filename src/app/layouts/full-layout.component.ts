@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 })
 export class FullLayoutComponent implements OnInit {
   displayName: any;
-  
+
   constructor(
     private api: ApiService,
     private router: Router,
   ) {}
-  
+
   public disabled = false;
   public status: {isopen: boolean} = {isopen: false};
 
@@ -32,17 +32,16 @@ export class FullLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.displayName = localStorage.getItem('displayname') || 'User';
   }
-  
+
   userLogout() {
-  console.log('logout clicked');
-  this.api
+    console.log('logout clicked');
+    this.api
     .logout()
     .subscribe(
-    result => {
-      console.log('Logged out!');
-      // TODO Reload? srsly?
-      window.location.reload();
-    }
+      result => {
+        console.log('Logged out!');
+        this.router.navigate(['/login']);
+      }
     );
   }
 }
