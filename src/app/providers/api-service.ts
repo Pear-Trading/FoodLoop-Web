@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/map';
 
 /* this provider handles the interaction between server and client */
- 
+
 @Injectable()
 export class ApiService {
   private apiUrl = environment.apiUrl;
@@ -17,26 +17,26 @@ export class ApiService {
 		this.sessionKey = localStorage.getItem('sessionKey');
 	  }
   }
-  
+
   // Login API
-  
+
   private getSessionKey() {
 	  console.log('get key');
 	  return this.sessionKey;
   }
-  
+
   private setSessionKey(key) {
 	  console.log('set key');
 	  this.sessionKey = key;
 	  localStorage.setItem('sessionKey', this.sessionKey);
   }
-  
+
   private removeSessionKey() {
 	  console.log('remove key');
 	  this.sessionKey = null;
 	  localStorage.removeItem('sessionKey');
   }
-  
+
   public register(data) {
     return this.http.post(
       this.apiUrl + '/register',
@@ -50,8 +50,8 @@ export class ApiService {
       data
     ).map( response => response.json() );
     login_event.subscribe(
-      result => {  
-      this.setSessionKey(result.session_key); 
+      result => {
+      this.setSessionKey(result.session_key);
       this.setUserInfo(
         data.email,
         result.display_name,
@@ -60,7 +60,7 @@ export class ApiService {
     );
     return login_event;
   }
-  
+
 	public logout() {
 		console.log(this.sessionKey);
 		return this.http.post(
@@ -78,9 +78,9 @@ export class ApiService {
 		data
 	  ).map( response => response.json() );
   }
-  
+
   // Handles user data interaction
-  
+
   // Checks for login status
 
   public hasLoggedIn() {
@@ -96,9 +96,9 @@ export class ApiService {
     localStorage.setItem('email',email);
     localStorage.setItem('displayname',display_name);
   }
-  
+
   // Used for getting account details and updating
-  
+
   public accountFullLoad() {
 	  let key = this.sessionKey;
 	  return this.http.post(
@@ -106,7 +106,7 @@ export class ApiService {
       { session_key : key },
 	  ).map( response => response.json() );
   }
-  
+
   public accountEditUpdate(data) {
 	  data.session_key = this.sessionKey;
 	  return this.http.post(
@@ -147,9 +147,9 @@ export class ApiService {
     console.log("get email");
     localStorage.getItem('email');
   }
-  
+
   // Leaderboard Api
-  
+
   public leaderboard_fetch(data) {
     return this.http.post(
 		  this.apiUrl + '/stats/leaderboard',
@@ -159,9 +159,9 @@ export class ApiService {
 		}
 		).map( response => response.json() );
 	}
-  
+
   // Fake Breadcrumb data
-  
+
   public breadcrumb_data(data) {
     return Observable.of(
     {
@@ -172,9 +172,9 @@ export class ApiService {
     }
     )
   }
-   
+
   // Fake chart data to mimic
-    
+
   public graph_data(data) {
     return Observable.of(
     {
@@ -236,7 +236,7 @@ export class ApiService {
             returningcustomerno : [3,2,4,2,1,1,1,6,4,8,5,12],
           },
         // If the number is potential or actual customers in their sector has yet to be determined
-        "customersinsector" : 
+        "customersinsector" :
           {
           percent : 76,
           customerno : 34000,
@@ -257,7 +257,7 @@ export class ApiService {
             percentsinglecompetitorlocal : 65,
           },
         },
-    }  
+    }
     )
   }
 }
