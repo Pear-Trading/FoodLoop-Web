@@ -13,12 +13,13 @@ import { DashboardRoutingModule } from './dashboard.routing';
 
 @NgModule({
   imports: [
-    DashboardRoutingModule,
-    ChartsModule,
-    BsDropdownModule,
+    // Angular imports
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
+    BsDropdownModule,
+    DashboardRoutingModule,
   ],
   declarations: [
     DashboardComponent,
