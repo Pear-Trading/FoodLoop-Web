@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { AuthGuard } from '../_guards/auth.guard';
 
 import { DashboardComponent } from './dashboard.component';
@@ -10,6 +11,7 @@ import { AddDataComponent } from './add-data.component';
 
 // Using child path to allow for FullLayout theming
 const routes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
     path: '',
     component: FullLayoutComponent,
