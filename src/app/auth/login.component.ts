@@ -14,50 +14,50 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
 
   constructor(
-	private route: ActivatedRoute,
-	private http: Http,
-	private formBuilder: FormBuilder,
-	private router: Router,
-	private api: ApiService
-	) {
-	  this.signin = this.formBuilder.group({
-		email:        ['', [Validators.required]],
-		password:     ['', [Validators.required]],
-	  });
+    private route: ActivatedRoute,
+    private http: Http,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private api: ApiService
+  ) {
+    this.signin = this.formBuilder.group({
+      email:    ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
   }
 
   ngOnInit() {
-	  // reset login status
-	  this.api
-		.logout()
-		.subscribe(
-		  result => {
-		    console.log('Logged out!');
-		  }
-		);
+    // reset login status
+    this.api
+    .logout()
+    .subscribe(
+      result => {
+        console.log('Logged out!');
+      }
+    );
 
     this.api.graph_data(undefined).subscribe(
       result => { console.log(result) }
     )
 
-		// get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   onSubmit() {
     console.log(this.signin.value);
 
-	this.api
-      .login(this.signin.value)
-      .subscribe(
-        result => {
-          console.log('logged in!');
-		  this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          console.log( error._body );
-        }
-      );
+    this.api
+    .login(this.signin.value)
+    .subscribe(
+      result => {
+        console.log('logged in!');
+        this.router.navigate([this.returnUrl]);
+      },
+      error => {
+        console.log( error._body );
+      }
+    );
   }
 
 
