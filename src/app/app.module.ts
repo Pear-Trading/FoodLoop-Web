@@ -52,12 +52,13 @@ import { DashboardModule } from './dashboard/dashboard.module';
     P500Component,
   ],
   providers: [
-	AuthGuard,
-  ApiService,
-  {
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
+    AuthGuard,
+    ApiService,
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
