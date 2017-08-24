@@ -25,12 +25,14 @@ describe('AppComponent', () => {
         ]
       })
       .compileComponents();
+  }));
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.componentInstance;
     de = fixture.debugElement;
     appDocument = de.nativeElement;
-  }));
+  });
 
   it('should create the app', async(() => {
     expect(app).toBeTruthy();
