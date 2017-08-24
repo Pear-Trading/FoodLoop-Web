@@ -130,10 +130,21 @@
       </div>
 
         <button type="submit" class="btn btn-block btn-success">Create Account</button>
-        </form>
+      </form>
 			</div>
 			<div heading="Pending" *ngSwitchDefault>Please Select a User Type</div>
 			</div>
+      <div [ngSwitch]="registerStatus">
+        <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+          Register Succeeded.
+        </div>
+        <div *ngSwitchCase="'validation_failed'" class="alert alert-danger" role="alert">
+          Form validation failed, please ensure the form is filled.
+        </div>
+        <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
+          Failed to send to server, please try again later.
+        </div>
+      </div>
 		  </div>
         </div>
       </div>

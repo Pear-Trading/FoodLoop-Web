@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 export class LoginComponent implements OnInit {
   signin: FormGroup;
   returnUrl: string;
+  loginStatus: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -52,10 +53,14 @@ export class LoginComponent implements OnInit {
     .subscribe(
       result => {
         console.log('logged in!');
+        this.loginStatus = "success";
+        console.log(this.loginStatus);
         this.router.navigate([this.returnUrl]);
       },
       error => {
         console.log( error._body );
+        this.loginStatus = "send_failed";
+        console.log(this.loginStatus);
       }
     );
   }

@@ -16,6 +16,7 @@ export class RegisterComponent {
   customerForm: ValidationManager;
   organisationForm: ValidationManager;
   years: Object[];
+  registerStatus: any;
   
   constructor(
 	private http: Http,
@@ -57,6 +58,8 @@ export class RegisterComponent {
     console.log(this.signupForm.isValid());
 	if (!this.signupForm.isValid() && !this.customerForm.isValid()) {
 		console.log("Not Valid!");
+    this.registerStatus = "validation_failed";
+    console.log(this.registerStatus);
 		return;
 	}
     let signupForm = this.signupForm.getForm().value;
@@ -90,6 +93,8 @@ export class RegisterComponent {
     console.log(this.signupForm.isValid());
 	if (!this.signupForm.isValid() || !this.organisationForm.isValid()) {
 		console.log("Not Valid!");
+    this.registerStatus = "validation_failed";
+    console.log(this.registerStatus);
 		return;
 	}
     let signupForm = this.signupForm.getForm().value;
@@ -112,10 +117,14 @@ export class RegisterComponent {
       .subscribe(
         result => {
           console.log('registered!');
-		  this.router.navigate(['/dashboard']);
+          this.registerStatus = "success";
+          console.log(this.registerStatus);
+        this.router.navigate(['/dashboard']);
         },
         error => {
           console.log( error._body );
+          this.registerStatus = "send_failed";
+          console.log(this.registerStatus);
         }
       );
   }
