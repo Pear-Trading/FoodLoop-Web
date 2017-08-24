@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
   templateUrl: 'account-edit.component.html',
   providers: [ApiService]
 })
-export class AccountEditComponent {
+export class AccountEditComponent implements OnInit {
   settingForm: FormGroup;
   settingOrganisationForm: FormGroup;
   settingCustomerForm: FormGroup;
@@ -17,27 +17,27 @@ export class AccountEditComponent {
 
   constructor(
   private http: Http,
-	private formBuilder: FormBuilder,
-	private api: ApiService,
-	) {	
-	  this.settingForm = this.formBuilder.group({
+  private formBuilder: FormBuilder,
+  private api: ApiService,
+  ) {
+    this.settingForm = this.formBuilder.group({
       email           : ['', [Validators.required]],
       postcode        : ['', [Validators.required]],
       password        : ['', [Validators.required]],
       new_password    : [''],
       profile_picture : [''],
-	  }); 
+    });
     this.settingOrganisationForm = this.formBuilder.group({
       name         : ['', [Validators.required]],
       street_name  : ['', [Validators.required]],
       town         : ['', [Validators.required]],
-	  });
+    });
     this.settingCustomerForm = this.formBuilder.group({
       full_name     : ['', [Validators.required]],
       display_name  : ['', [Validators.required]],
     });
   }
-  
+
   ngOnInit(): void {
     this.api.accountFullLoad().subscribe(
       result => {
@@ -65,27 +65,27 @@ export class AccountEditComponent {
       }
     );
   }
-  
+
   onSubmitOrganisation() {
-	 console.log(this.settingForm.valid);
-	if (!this.settingForm.valid && !this.settingOrganisationForm.valid) {
-		console.log("Not Valid!");
-		return;
-	}
-  
-  let settingForm = this.settingForm.value;
-	let settingOrganisationForm = this.settingOrganisationForm.value;
-  
-  // image upload code
-  let fi = this.fileInput.nativeElement;
-  let data = new FormData();
-  
-  if (fi.files && fi.files[0]) {
-    let fileToUpload = fi.files[0];
-    data.append("file", fileToUpload);
+  console.log(this.settingForm.valid);
+  if (!this.settingForm.valid && !this.settingOrganisationForm.valid) {
+    console.log('Not Valid!');
+    return;
   }
 
-  let submitData = {
+  const settingForm = this.settingForm.value;
+  const settingOrganisationForm = this.settingOrganisationForm.value;
+
+  // image upload code
+  const fi = this.fileInput.nativeElement;
+  const data = new FormData();
+
+  if (fi.files && fi.files[0]) {
+    const fileToUpload = fi.files[0];
+    data.append('file', fileToUpload);
+  }
+
+  const submitData = {
     email:        settingForm.email,
     postcode:     settingForm.postcode,
     password:     settingForm.password,
@@ -93,12 +93,12 @@ export class AccountEditComponent {
     name:         settingOrganisationForm.name,
     street_name:  settingOrganisationForm.street_name,
     town:         settingOrganisationForm.town,
-  }
-  
+  };
+
   data.append('form', JSON.stringify(submitData));
-  
+
   console.log(data);
-	this.api
+  this.api
     .accountEditUpdate(data)
     .subscribe(
       result => {
@@ -109,38 +109,38 @@ export class AccountEditComponent {
       }
     );
   }
-  
+
   onSubmitCustomer() {
-	 console.log(this.settingForm.valid);
-	if (!this.settingForm.valid && !this.settingCustomerForm.valid) {
-		console.log("Not Valid!");
-		return;
-	}
-  
-  let settingForm = this.settingForm.value;
-	let settingCustomerForm = this.settingCustomerForm.value;
-	
-  // image upload code
-  let fi = this.fileInput.nativeElement;
-  let data = new FormData();
-  
-  if (fi.files && fi.files[0]) {
-    let fileToUpload = fi.files[0];
-    data.append("file", fileToUpload);
+   console.log(this.settingForm.valid);
+  if (!this.settingForm.valid && !this.settingCustomerForm.valid) {
+    console.log('Not Valid!');
+    return;
   }
 
-  let submitData = {
+  const settingForm = this.settingForm.value;
+  const settingCustomerForm = this.settingCustomerForm.value;
+
+  // image upload code
+  const fi = this.fileInput.nativeElement;
+  const data = new FormData();
+
+  if (fi.files && fi.files[0]) {
+    const fileToUpload = fi.files[0];
+    data.append('file', fileToUpload);
+  }
+
+  const submitData = {
     email:        settingForm.email,
     postcode:     settingForm.postcode,
     password:     settingForm.password,
     new_password: settingForm.new_password,
     full_name:    settingCustomerForm.full_name,
     display_name: settingCustomerForm.display_name,
-  }
-  
+  };
+
   data.append('form', JSON.stringify(submitData));
-  
-	this.api
+
+  this.api
     .accountEditUpdate(data)
     .subscribe(
       result => {
