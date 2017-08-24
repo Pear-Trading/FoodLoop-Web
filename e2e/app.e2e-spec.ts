@@ -1,6 +1,6 @@
 import { CoreUIPage } from './app.po';
 
-describe('core-ui App', function() {
+describe('LocalLoop App', () => {
   let page: CoreUIPage;
 
   beforeEach(() => {
@@ -9,6 +9,6 @@ describe('core-ui App', function() {
 
   it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getLoginHeaderText()).toEqual('Login');
   });
 });
