@@ -89,9 +89,21 @@
                 <span class="help-block">A total of other payments such as refunded fuel etc.</span>
               </div>
             </div>
+            <div class="form-group row">
+              <div class="col-md-9">
+                <div [ngSwitch]="payrollFormStatus">
+                  <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+                    Submit Succeeded.
+                  </div>
+                  <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
+                    Error received, please try again.
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+            <button type="submit" [disabled]="!payrollForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
           </div>
          </form>
       </div>
@@ -133,9 +145,21 @@
                 <span class="help-block">This is a help text</span>
               </div>
             </div>
+            <div class="form-group row">
+              <div class="col-md-9">
+                <div [ngSwitch]="suppliersFormStatus">
+                  <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+                    Submit Succeeded.
+                  </div>
+                  <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
+                    Error received, please try again.
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+            <button type="submit" [disabled]="!suppliersForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
           </div>
          </form>
       </div>
@@ -177,9 +201,21 @@
                 <span class="help-block">This is a help text</span>
               </div>
             </div>
+            <div class="form-group row">
+              <div class="col-md-9">
+                <div [ngSwitch]="singleSupplierFormStatus">
+                  <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+                    Submit Succeeded.
+                  </div>
+                  <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
+                    Error received, please try again.
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+            <button type="submit" [disabled]="!singleSupplierForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
           </div>
          </form>
       </div>
@@ -254,9 +290,21 @@
                 <span class="help-block">A total of other payments such as refunded fuel etc.</span>
               </div>
             </div>
+            <div class="form-group row">
+              <div class="col-md-9">
+                <div [ngSwitch]="employeeFormStatus">
+                  <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+                    Submit Succeeded.
+                  </div>
+                  <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
+                    Error received, please try again.
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+            <button type="submit" [disabled]="!employeeForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
           </div>
          </form>
       </div>

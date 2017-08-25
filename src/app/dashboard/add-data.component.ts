@@ -13,6 +13,10 @@ export class AddDataComponent {
   suppliersForm: FormGroup;
   singleSupplierForm: FormGroup;
   employeeForm: FormGroup;
+  payrollFormStatus: any;
+  suppliersFormStatus: any;
+  singleSupplierFormStatus: any;
+  employeeFormStatus: any;
 
   constructor(
   private http: Http,
@@ -61,9 +65,13 @@ export class AddDataComponent {
       .subscribe(
         result => {
           console.log('data submitted!');
+          this.payrollFormStatus = "success";
+          console.log(this.payrollFormStatus);
         },
         error => {
           console.log( error._body );
+          this.payrollFormStatus = "send_failed";
+          console.log(this.payrollFormStatus);
         }
       );
   }
@@ -76,9 +84,13 @@ export class AddDataComponent {
       .subscribe(
         result => {
           console.log('data submitted!');
+          this.suppliersFormStatus = "success";
+          console.log(this.suppliersFormStatus);
         },
         error => {
           console.log( error._body );
+          this.suppliersFormStatus = "send_failed";
+          console.log(this.suppliersFormStatus);
         }
       );
   }
@@ -91,9 +103,13 @@ export class AddDataComponent {
       .subscribe(
         result => {
           console.log('data submitted!');
+          this.singleSupplierFormStatus = "success";
+          console.log(this.singleSupplierFormStatus);
         },
         error => {
           console.log( error._body );
+          this.singleSupplierFormStatus = "send_failed";
+          console.log(this.singleSupplierFormStatus);
         }
       );
   }
@@ -106,9 +122,13 @@ export class AddDataComponent {
       .subscribe(
         result => {
           console.log('data submitted!');
+          this.employeeFormStatus = "success";
+          console.log(this.employeeFormStatus);
         },
         error => {
           console.log( error._body );
+          this.employeeFormStatus = "send_failed";
+          console.log(this.employeeFormStatus);
         }
       );
   }

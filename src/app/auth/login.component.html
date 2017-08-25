@@ -17,15 +17,15 @@
                     <input type="password" class="form-control" formControlName="password" placeholder="Password">
                   </div>
                   <div class="mb-4">
-                      <div [ngSwitch]="loginStatus">
-                        <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
-                          Login Succeeded, routing to homepage.
-                        </div>
-                        <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
-                          Error received, please try again.
-                        </div>
+                    <div [ngSwitch]="loginStatus">
+                      <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+                        Login Succeeded, routing to homepage.
+                      </div>
+                      <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
+                        Error received, please try again.
                       </div>
                     </div>
+                  </div>
                   <div class="row">
                     <div class="col-6">
                       <button type="submit" [disabled]="!signin.valid" class="btn btn-primary px-4">Login</button>

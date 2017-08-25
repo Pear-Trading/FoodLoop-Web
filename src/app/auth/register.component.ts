@@ -81,10 +81,14 @@ export class RegisterComponent {
       .subscribe(
         result => {
           console.log('registered!');
+          this.registerStatus = "success";
+          console.log(this.registerStatus);
 		  this.router.navigate(['/dashboard']);
         },
         error => {
           console.log( error._body );
+          this.registerStatus = "send_failed";
+          console.log(this.registerStatus)
         }
       );
   }

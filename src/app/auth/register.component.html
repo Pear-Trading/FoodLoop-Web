@@ -134,12 +134,12 @@
 			</div>
 			<div heading="Pending" *ngSwitchDefault>Please Select a User Type</div>
 			</div>
-      <div [ngSwitch]="registerStatus">
+      <div class="mb-3" [ngSwitch]="registerStatus">
         <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
           Register Succeeded.
         </div>
         <div *ngSwitchCase="'validation_failed'" class="alert alert-danger" role="alert">
-          Form validation failed, please ensure the form is filled.
+          Form validation failed, please ensure the form is filled correctly.
         </div>
         <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
           Failed to send to server, please try again later.

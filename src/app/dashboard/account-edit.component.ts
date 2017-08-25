@@ -14,6 +14,7 @@ export class AccountEditComponent implements OnInit {
   settingCustomerForm: FormGroup;
   accountType: any;
   @ViewChild('fileInput') fileInput;
+  submitStatus: any;
 
   constructor(
   private http: Http,
@@ -70,6 +71,8 @@ export class AccountEditComponent implements OnInit {
   console.log(this.settingForm.valid);
   if (!this.settingForm.valid && !this.settingOrganisationForm.valid) {
     console.log('Not Valid!');
+    this.submitStatus = "validation_failed";
+    console.log(this.submitStatus);
     return;
   }
 
@@ -103,9 +106,13 @@ export class AccountEditComponent implements OnInit {
     .subscribe(
       result => {
         console.log('data submitted!');
+        this.submitStatus = "success";
+        console.log(this.submitStatus);
       },
       error => {
         console.log( error._body );
+        this.submitStatus = "send_failed";
+        console.log(this.submitStatus);
       }
     );
   }
@@ -114,6 +121,8 @@ export class AccountEditComponent implements OnInit {
    console.log(this.settingForm.valid);
   if (!this.settingForm.valid && !this.settingCustomerForm.valid) {
     console.log('Not Valid!');
+    this.submitStatus = "validation_failed";
+    console.log(this.submitStatus);
     return;
   }
 
@@ -145,9 +154,13 @@ export class AccountEditComponent implements OnInit {
     .subscribe(
       result => {
         console.log('data submitted!');
+        this.submitStatus = "success";
+        console.log(this.submitStatus);
       },
       error => {
         console.log( error._body );
+        this.submitStatus = "send_failed";
+        console.log(this.submitStatus);
       }
     );
   }

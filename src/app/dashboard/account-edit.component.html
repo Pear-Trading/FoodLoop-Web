@@ -82,6 +82,19 @@
                     </div>
                   </div>
                 </div>
+                <div class="card-block">
+                  <div [ngSwitch]="submitStatus">
+                    <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+                      Account Update Succeeded.
+                    </div>
+                    <div *ngSwitchCase="'validation_failed'" class="alert alert-danger" role="alert">
+                      Form validation failed, please ensure the form is filled correctly.
+                    </div>
+                    <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
+                      Failed to send to server, please try again later.
+                    </div>
+                  </div>
+                </div>
                 <div class="card-footer">
                   <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
                 </div>
@@ -104,6 +117,19 @@
                     <div class="col-md-9">
                       <input type="text" class="form-control" formControlName="display_name">
                       <span class="help-block">This is a help text</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-block">
+                  <div [ngSwitch]="submitStatus">
+                    <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+                      Account Update Succeeded.
+                    </div>
+                    <div *ngSwitchCase="'validation_failed'" class="alert alert-danger" role="alert">
+                      Form validation failed, please ensure the form is filled correctly.
+                    </div>
+                    <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
+                      Failed to send to server, please try again later.
                     </div>
                   </div>
                 </div>
