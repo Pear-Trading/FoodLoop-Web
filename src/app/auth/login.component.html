@@ -10,11 +10,11 @@
                 <form [formGroup]="signin" (ngSubmit)="onSubmit()">
                   <div class="input-group mb-3">
                     <span class="input-group-addon">@</span>
-                    <input type="text" class="form-control" formControlName="email" placeholder="Email">
+                    <input id="username" type="text" class="form-control" formControlName="email" placeholder="Email">
                   </div>
                   <div class="input-group mb-4">
                     <span class="input-group-addon"><i class="icon-lock"></i></span>
-                    <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                    <input id="password" type="password" class="form-control" formControlName="password" placeholder="Password">
                   </div>
                   <div class="mb-4">
                     <div [ngSwitch]="loginStatus">
