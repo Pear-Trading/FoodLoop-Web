@@ -20,18 +20,18 @@ export class ApiService {
 
   // Login API
 
-  private getSessionKey() {
+  public getSessionKey() {
 	  console.log('get key');
 	  return this.sessionKey;
   }
 
-  private setSessionKey(key) {
+  public setSessionKey(key) {
 	  console.log('set key');
 	  this.sessionKey = key;
 	  localStorage.setItem('sessionKey', this.sessionKey);
   }
 
-  private removeSessionKey() {
+  public removeSessionKey() {
 	  console.log('remove key');
 	  this.sessionKey = null;
 	  localStorage.removeItem('sessionKey');
@@ -71,12 +71,24 @@ export class ApiService {
 		).map( response => { this.removeSessionKey(); return response.json() } );
 	}
 
+  // Searches organisations used for transaction submission
+  
   public search(data) {
 	  data.session_key = this.sessionKey;
 	  return this.http.post(
 		this.apiUrl + '/search',
 		data
 	  ).map( response => response.json() );
+  }
+  
+  // Uploads a transaction
+  
+  public upload(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post(
+      this.apiUrl + '/upload',
+      data
+    ).map( response => response.json() )
   }
 
   // Handles user data interaction

@@ -16,6 +16,9 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
+      "scripts": [
+        "../node_modules/moment/min/moment.min.js"
+      ],
       "styles": [
         "scss/style.scss"
       ],
