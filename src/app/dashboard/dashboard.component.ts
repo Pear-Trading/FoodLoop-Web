@@ -2,6 +2,7 @@ import { Directive, Component, OnInit } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import { Router } from '@angular/router';
+import { Customer7DayWidget } from '../widgets/customers.component';
 
 @Component({
   templateUrl: 'dashboard.component.html'
