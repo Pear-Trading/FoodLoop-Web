@@ -17,6 +17,8 @@ import { AppRoutingModule } from './app.routing';
 import { AuthGuard } from './_guards/auth.guard';
 import { ApiService } from './providers/api-service';
 
+import { OrgGraphsService } from './providers/org-graphs.service';
+
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
@@ -54,6 +56,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
   providers: [
     AuthGuard,
     ApiService,
+    OrgGraphsService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

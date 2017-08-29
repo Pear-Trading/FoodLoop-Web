@@ -1,18 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../providers/api-service';
+import { OrgGraphsService } from '../providers/org-graphs.service';
+
+interface ChartData {
+  data: Array<number>;
+  label: string;
+}
 
 @Component({
-  selector: 'widget-customer-7-days',
+  selector: 'widget-customers-last-7-days',
   templateUrl: 'customers.component.html',
 })
 export class Customer7DayWidget implements OnInit {
-  public lineChartData: Array<any> = [
+
+  public lineChartData: Array<ChartData> = [
     {
       data: [],
       label: 'Series A'
     }
   ];
-  public lineChartLabels: Array<any> = [];
+  public lineChartLabels: Array<string>;
   public lineChartOptions: any = {
     maintainAspectRatio: false,
     scales: {
@@ -59,16 +65,15 @@ export class Customer7DayWidget implements OnInit {
 
   public customerSum: Number = 0;
 
-  constructor(private api: ApiService) { }
+  constructor(private graphService: OrgGraphsService) { }
 
   ngOnInit(): void {
-    this.api.graph_data(undefined)
+    this.graphService.getGraph('customers_last_7_days')
       .subscribe(
         result => {
           console.log(result);
-          const customersThisWeek = result.data.customersthisweek;
-          this.lineChartData[0].data = customersThisWeek.customerno;
-          this.lineChartLabels = customersThisWeek.day;
+          this.lineChartData[0].data = result.graph.count;
+          this.lineChartLabels = result.graph.day;
           this.customerSum = this.lineChartData[0].data.reduce((a, b) => a + b, 0);
         }
       );
