@@ -1,17 +1,10 @@
 <div class="card card-inverse card-primary">
   <div class="card-block pb-0">
-    <div class="btn-group float-right" dropdown>
-      <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
-        <i class="icon-settings"></i>
-      </button>
-      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
-    </div>
-    <h4 class="mb-0">{{ customerSum }}</h4>
-    <p>Customers this week</p>
+    <button type="button" class="btn btn-transparent p-0 float-right">
+      <i [ngClass]="graphIcon"></i>
+    </button>
+    <h4 class="mb-0">{{ graphSum }}</h4>
+    <p>{{ graphTitle }}</p>
   </div>
   <div class="chart-wrapper px-3" style="height:70px;">
     <canvas baseChart
