@@ -30,8 +30,8 @@
               <input type="text" class="form-control" placeholder="Organisation Name" [(ngModel)]="submitOrg.name" (input)="organisationSearch($event)" (ngModelChange)="transactionFormValidate()">
               <span class="help-block">This is a help text</span>
             </div>
-          <org-result organisation="Trouble"></org-result>
           </div>
+          <org-table *ngIf="storeList != null" [orgList]="storeList" (onClick)="addStore($event)"></org-table>
           <div *ngIf="showAddStore">
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="text-input"><strong>Organisation Street Name</strong></label>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
-import { OrgResultComponent } from '../shared/org-result.component';
+import { OrgTableComponent } from '../shared/org-table.component';
 import * as moment from 'moment';
 import 'rxjs/add/operator/map';
 
@@ -22,7 +22,7 @@ export class AddDataComponent {
   employeeFormStatus: any;
   transactionFormStatus: any;
   transactionFormStatusError: string = 'Error received, please try again.';
- 
+
  submitOrg = {
     name: '',
     street_name: '',
@@ -45,7 +45,7 @@ export class AddDataComponent {
   private http: Http,
 	private formBuilder: FormBuilder,
 	private api: ApiService,
-	) {	
+	) {
     this.payrollForm = this.formBuilder.group({
 		entryperiod:         ['', [Validators.required]],
 		employeeamount:      ['', [Validators.required]],
@@ -81,7 +81,7 @@ export class AddDataComponent {
     this.myDate = moment().format('YYYY-MM-DD[T]HH:mm');
     // this.myDate = new Date().toISOString().slice(0, 16);
   }
-  
+
   ngOnInit(): void {
     this.getMinDate();
   }
@@ -98,7 +98,7 @@ export class AddDataComponent {
       this.minDate = aprilDate.subtract(1, 'years').format('YYYY-MM-DD');
     }
   }
-  
+
   initializeItems() {
     // Dont bother searching for an empty or undefined string
     if ( this.submitOrg.name == '' ) {
@@ -229,8 +229,10 @@ export class AddDataComponent {
         console.log('Upload Error');
         console.log(error);
         try {
-          let jsonError = JSON.parse(error.body);
-          this.transactionFormStatusError = JSON.stringify(jsonError.status) + 'Error, ' + JSON.stringify(jsonError.message);
+          console.log(error.error);
+          let jsonError = error.json();
+          console.log("boop");
+          this.transactionFormStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
         } catch(e) {
           this.transactionFormStatusError = 'There was a server error, please try again later.';
         }
@@ -251,10 +253,10 @@ export class AddDataComponent {
     this.amount = null;
     this.transactionFormInvalid = true;
   }
-  
+
   onSubmitPayroll() {
 	 console.log(this.payrollForm.value);
-	
+
 	this.api
       .login(this.payrollForm.value)
       .subscribe(
@@ -270,10 +272,10 @@ export class AddDataComponent {
         }
       );
   }
-  
+
   onSubmitSuppliers() {
 	 console.log(this.suppliersForm.value);
-	
+
 	this.api
       .login(this.suppliersForm.value)
       .subscribe(
@@ -289,10 +291,10 @@ export class AddDataComponent {
         }
       );
   }
-  
+
   onSubmitSingleSupplier() {
 	 console.log(this.singleSupplierForm.value);
-	
+
 	this.api
       .login(this.singleSupplierForm.value)
       .subscribe(
@@ -308,10 +310,10 @@ export class AddDataComponent {
         }
       );
   }
-  
+
   onSubmitEmployee() {
 	 console.log(this.employeeForm.value);
-	
+
 	this.api
       .login(this.employeeForm.value)
       .subscribe(

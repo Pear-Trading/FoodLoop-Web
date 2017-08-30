@@ -11,6 +11,7 @@ import { AddDataComponent } from './add-data.component';
 
 import { DashboardRoutingModule } from './dashboard.routing';
 import { OrgResultComponent } from '../shared/org-result.component';
+import { OrgTableComponent } from '../shared/org-table.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { OrgResultComponent } from '../shared/org-result.component';
     AccountEditComponent,
     AddDataComponent,
     OrgResultComponent,
+    OrgTableComponent,
   ]
 })
 export class DashboardModule { }
