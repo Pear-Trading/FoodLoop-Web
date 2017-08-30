@@ -36,6 +36,9 @@
     </div>
   </div>
   <div class="row">
+    <div *ngFor="let widget of widgetList" class="col-sm-6 col-lg-3">
+      <widget-graph *ngIf="widget.type == 'graph'" [graphName]="widget.name" [graphTitle]="widget.title" [graphIcon]="widget.icon"></widget-graph>
+    </div>
     <div *ngIf="showGraph.noofcustomerssector" class="col-sm-6 col-lg-3">
       <div class="card card-inverse card-primary">
         <div class="card-block">
@@ -57,53 +60,6 @@
             <div class="progress-bar" role="progressbar" [style.width]="percentOfCustomersSector + '%'" attr.aria-valuenow="{{percentOfCustomersSector}}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
           <small class="text-muted">Lorem ipsum dolor sit amet enim.</small>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div *ngIf="showGraph.customersthisweek" class="col-sm-6 col-lg-3">
-      <widget-customers-last-7-days></widget-customers-last-7-days>
-    </div><!--/.col-->
-    <div *ngIf="showGraph.customerslastweek" class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-info">
-        <div class="card-block pb-0">
-          <button type="button" class="btn btn-transparent p-0 float-right">
-            <i class="icon-location-pin"></i>
-          </button>
-          <h4 class="mb-0">9.823</h4>
-          <p>Customers last week</p>
-        </div>
-        <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="lineChart2Data"
-          [labels]="lineChart2Labels"
-          [options]="lineChart2Options"
-          [colors]="lineChart2Colours"
-          [legend]="lineChart2Legend"
-          [chartType]="lineChart2Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div *ngIf="showGraph.customerslastmonth" class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-info">
-        <div class="card-block pb-0">
-          <button type="button" class="btn btn-transparent p-0 float-right">
-            <i class="icon-location-pin"></i>
-          </button>
-          <h4 class="mb-0">9.823</h4>
-          <p>Customers last month</p>
-        </div>
-        <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="lineChart3Data"
-          [labels]="lineChart3Labels"
-          [options]="lineChart3Options"
-          [colors]="lineChart3Colours"
-          [legend]="lineChart3Legend"
-          [chartType]="lineChart3Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
         </div>
       </div>
     </div><!--/.col-->

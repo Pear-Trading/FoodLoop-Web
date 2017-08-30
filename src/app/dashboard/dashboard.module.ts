@@ -9,7 +9,7 @@ import { LeaderboardsComponent } from './leaderboards.component';
 import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 
-import { Customer7DayWidget } from '../widgets/customers.component';
+import { GraphWidget } from '../widgets/graph-widget.component';
 
 import { DashboardRoutingModule } from './dashboard.routing';
 
@@ -28,7 +28,7 @@ import { DashboardRoutingModule } from './dashboard.routing';
     LeaderboardsComponent,
     AccountEditComponent,
     AddDataComponent,
-    Customer7DayWidget,
+    GraphWidget,
   ]
 })
 export class DashboardModule { }

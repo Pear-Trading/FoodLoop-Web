@@ -2,7 +2,7 @@ import { Directive, Component, OnInit } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import { Router } from '@angular/router';
-import { Customer7DayWidget } from '../widgets/customers.component';
+import { GraphWidget } from '../widgets/graph-widget.component';
 
 @Component({
   templateUrl: 'dashboard.component.html'
@@ -26,6 +26,21 @@ export class DashboardComponent implements OnInit {
   percentOfLocalSuppliers: any;
   percentOfSingleCompetitorLocalSuppliers: any;
 
+  public widgetList = [
+    {
+      type: 'graph',
+      name: 'customers_last_7_days',
+      icon: 'icon-people',
+      title: 'Customers Last 7 Days',
+    },
+    {
+      type: 'graph',
+      name: 'customers_last_30_days',
+      icon: 'icon-people',
+      title: 'Customers Last 30 Days',
+    },
+  ];
+
   constructor(
   private http: Http,
   private api: ApiService,
@@ -48,14 +63,6 @@ export class DashboardComponent implements OnInit {
         this.customersThisWeek = result.data.customersthisweek;
         this.lineChart1Data[0].data = this.customersThisWeek.customerno;
         this.lineChart1Labels = this.customersThisWeek.day;
-        // Chart 2
-        this.customersLastWeek = result.data.customerslastweek;
-        this.lineChart2Data[0].data = this.customersLastWeek.customerno;
-        this.lineChart2Labels = this.customersLastWeek.day;
-        // Chart 3
-        this.customersLastMonth = result.data.customerslastmonth;
-        this.lineChart3Data[0].data = this.customersLastMonth.customerno;
-        this.lineChart3Labels = this.customersLastMonth.day;
         // Chart 4
         this.customersLastYear = result.data.customerslastyear;
         this.lineChart4Data[0].data = this.customersLastYear.customerno;
@@ -204,100 +211,6 @@ export class DashboardComponent implements OnInit {
   public lineChart1Legend = false;
   public lineChart1Type = 'line';
 
-  // lineChart2
-  public lineChart2Data: Array<any> = [
-    {
-      data: [],
-      label: 'Series B'
-    }
-  ];
-  public lineChart2Labels: Array<any> = [];
-  public lineChart2Options: any = {
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
-        }
-
-      }],
-      yAxes: [{
-        display: false,
-        ticks: {
-          display: false,
-        }
-      }],
-    },
-    elements: {
-      line: {
-        tension: 0.00001,
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart2Colours: Array<any> = [
-    { // grey
-      backgroundColor: this.brandInfo,
-      borderColor: 'rgba(255,255,255,.55)'
-    }
-  ];
-  public lineChart2Legend = false;
-  public lineChart2Type = 'line';
-  
-  // lineChart3
-  public lineChart3Data: Array<any> = [
-    {
-      data: [],
-      label: 'Series B'
-    }
-  ];
-  public lineChart3Labels: Array<any> = [];
-  public lineChart3Options: any = {
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        display: false
-      }],
-      yAxes: [{
-        display: false
-      }]
-    },
-    elements: {
-      line: {
-        borderWidth: 2
-      },
-      point: {
-        radius: 2,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart3Colours: Array<any> = [
-    { // grey
-      backgroundColor: this.brandInfo,
-      borderColor: 'rgba(255,255,255,.55)'
-    }
-  ];
-  public lineChart3Legend = false;
-  public lineChart3Type = 'line';
-  
   // lineChart4
   public lineChart4Data: Array<any> = [
     {
