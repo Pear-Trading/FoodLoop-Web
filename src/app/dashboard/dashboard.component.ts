@@ -44,11 +44,11 @@ export class DashboardComponent implements OnInit {
   constructor(
   private http: Http,
   private api: ApiService,
-  ) { 
+  ) {
   this.shuffle = this.shuffledArray;
   this.api.graph_data(undefined)
     .subscribe(
-      result => { 
+      result => {
         console.log(result);
         // Return what data to show 4 of
         this.showGraph = result.elementstoshow.graphs;
@@ -91,16 +91,16 @@ export class DashboardComponent implements OnInit {
     ),
   this.api.breadcrumb_data(undefined)
     .subscribe(
-      result => { 
+      result => {
         console.log(result);
         this.customersThisMonth = result.customersthismonth;
         this.moneySpentThisMonth = result.moneyspentthismonth;
         this.pointsTotal = result.pointstotal;
         this.averageTransactionToday = result.averagetransactiontoday;
       }
-    )  
+    );
   }
-  
+
   // Fisher-Yates shuffle function
   public shuffle(array) {
     return new Promise(resolve => {
@@ -109,13 +109,13 @@ export class DashboardComponent implements OnInit {
       // While there are elements in the array
       while (counter > 0) {
         // Pick a random index
-        let index = Math.floor(Math.random() * counter);
+        const index = Math.floor(Math.random() * counter);
 
         // Decrease counter by 1
         counter--;
 
         // And swap the last element with it
-        let temp = array[counter];
+        const temp = array[counter];
         array[counter] = array[index];
         array[index] = temp;
       }
@@ -124,7 +124,7 @@ export class DashboardComponent implements OnInit {
       resolve(true);
     });
   }
-  
+
   public brandPrimary = '#20a8d8';
   public brandSuccess = '#4dbd74';
   public brandInfo = '#63c2de';
@@ -263,7 +263,7 @@ export class DashboardComponent implements OnInit {
   ];
   public lineChart4Legend = false;
   public lineChart4Type = 'line';
-  
+
   // lineChart6
   public lineChart6Data: Array<any> = [
     {
@@ -316,7 +316,7 @@ export class DashboardComponent implements OnInit {
   ];
   public lineChart6Legend = false;
   public lineChart6Type = 'line';
-  
+
   // lineChart7
   public lineChart7Data: Array<any> = [
     {
@@ -357,7 +357,7 @@ export class DashboardComponent implements OnInit {
   ];
   public lineChart7Legend = false;
   public lineChart7Type = 'line';
-  
+
   // lineChart8
   public lineChart8Data: Array<any> = [
     {
@@ -410,7 +410,7 @@ export class DashboardComponent implements OnInit {
   ];
   public lineChart8Legend = false;
   public lineChart8Type = 'line';
-  
+
   // lineChart5
   public lineChart5Data: Array<any> = [
     {
