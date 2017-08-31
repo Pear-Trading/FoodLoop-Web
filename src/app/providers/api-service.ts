@@ -18,6 +18,16 @@ export class ApiService {
 	  }
   }
 
+  public post(url, data) {
+    if ( this.sessionKey != null ) {
+      data.session_key = this.sessionKey;
+    }
+    return this.http.post(
+      this.apiUrl + url,
+      data
+    ).map( response => response.json() );
+  }
+
   // Login API
 
   public getSessionKey() {

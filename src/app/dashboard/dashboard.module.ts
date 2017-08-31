@@ -9,6 +9,8 @@ import { LeaderboardsComponent } from './leaderboards.component';
 import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 
+import { GraphWidget } from '../widgets/graph-widget.component';
+
 import { DashboardRoutingModule } from './dashboard.routing';
 import { OrgResultComponent } from '../shared/org-result.component';
 import { OrgTableComponent } from '../shared/org-table.component';
@@ -30,6 +32,7 @@ import { OrgTableComponent } from '../shared/org-table.component';
     AddDataComponent,
     OrgResultComponent,
     OrgTableComponent,
+    GraphWidget,
   ]
 })
 export class DashboardModule { }
