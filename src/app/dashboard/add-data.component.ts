@@ -12,7 +12,6 @@ import 'rxjs/add/operator/map';
 })
 export class AddDataComponent {
   payrollForm: FormGroup;
-  suppliersForm: FormGroup;
   singleSupplierForm: FormGroup;
   employeeForm: FormGroup;
   transactionForm: FormGroup;
@@ -56,12 +55,6 @@ export class AddDataComponent {
     payrollemployerni:   [''],
     payrolltotalpension: [''],
     payrollotherbenefit: [''],
-	  });
-    this.suppliersForm = this.formBuilder.group({
-		entryperiod:          ['', [Validators.required]],
-		grossspend:           ['', [Validators.required]],
-		suppliersamount:      ['', [Validators.required]],
-		localsuppliersamount: ['', [Validators.required]],
 	  });
     this.singleSupplierForm = this.formBuilder.group({
     entryperiod:          ['', [Validators.required]],
@@ -269,25 +262,6 @@ export class AddDataComponent {
           console.log( error._body );
           this.payrollFormStatus = "send_failed";
           console.log(this.payrollFormStatus);
-        }
-      );
-  }
-
-  onSubmitSuppliers() {
-	 console.log(this.suppliersForm.value);
-
-	this.api
-      .login(this.suppliersForm.value)
-      .subscribe(
-        result => {
-          console.log('data submitted!');
-          this.suppliersFormStatus = "success";
-          console.log(this.suppliersFormStatus);
-        },
-        error => {
-          console.log( error._body );
-          this.suppliersFormStatus = "send_failed";
-          console.log(this.suppliersFormStatus);
         }
       );
   }

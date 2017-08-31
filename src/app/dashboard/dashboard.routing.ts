@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../_guards/auth.guard';
 
 import { DashboardComponent } from './dashboard.component';
-import { LeaderboardsComponent } from './leaderboards.component';
 import { FullLayoutComponent } from '../layouts/full-layout.component';
 import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
@@ -21,11 +20,6 @@ const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
         data: { title: 'Dashboard' },
-      },
-      {
-        path: 'leaderboards',
-        component: LeaderboardsComponent,
-        data: { title: 'Leaderboards' },
       },
       {
         path: 'account-edit',

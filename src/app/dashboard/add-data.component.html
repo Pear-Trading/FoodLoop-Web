@@ -3,7 +3,7 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <strong>Submit Supplier Transaction</strong>
+          <strong>Submit Transaction</strong>
           <small>Required Data marked in <strong>bold</strong>.</small>
         </div>
         <div class="card-block">
@@ -177,62 +177,6 @@
             <button type="submit" [disabled]="!payrollForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
           </div>
         </form>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <strong>Total Suppliers Data</strong>
-          <small>Required Data marked in <strong>bold</strong>.</small>
-        </div>
-        <form class="form-horizontal" [formGroup]="suppliersForm" (ngSubmit)="onSubmitSuppliers()">
-          <div class="card-block">
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Period of entry month</strong></label>
-              <div class="col-md-9">
-                <input type="month" class="form-control" formControlName="entryperiod">
-                <span class="help-block">This is a help text</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Gross Spend</strong></label>
-              <div class="col-md-9">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
-                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="grossspend" placeholder="0.00">
-                </div>
-                <span class="help-block">This is a help text</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Total amount of Suppliers</strong></label>
-              <div class="col-md-9">
-                <input type="number" class="form-control" formControlName="suppliersamount" placeholder="0">
-                <span class="help-block">This is a help text</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Total amount of local Suppliers</strong></label>
-              <div class="col-md-9">
-                <input type="number" class="form-control" formControlName="localsuppliersamount" placeholder="0">
-                <span class="help-block">This is a help text</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-9">
-                <div [ngSwitch]="suppliersFormStatus">
-                  <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
-                    Submit Succeeded.
-                  </div>
-                  <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
-                    Error received, please try again.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <button type="submit" [disabled]="!suppliersForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
-          </div>
-         </form>
       </div>
       <div class="card">
         <div class="card-header">
