@@ -5,6 +5,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { DashboardComponent } from './dashboard.component';
+import { DashboardCustomerComponent } from './dashboard-customer.component';
 import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 
@@ -26,6 +27,7 @@ import { OrgTableComponent } from '../shared/org-table.component';
   ],
   declarations: [
     DashboardComponent,
+    DashboardCustomerComponent,
     AccountEditComponent,
     AddDataComponent,
     OrgResultComponent,

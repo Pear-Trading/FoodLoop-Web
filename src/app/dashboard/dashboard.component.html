@@ -18,20 +18,6 @@
           <div class="text-muted">Average Transaction Today</div>
           <strong>{{averageTransactionToday | currency:'GBP':true:'1.2-2'}}</strong>
         </li>
-        <li *ngIf="showSnippet.percentownlocalsupplier" class="hidden-sm-down">
-          <div class="text-muted">Local Suppliers</div>
-          <strong>{{percentOfLocalSuppliers}}%</strong>
-          <div class="progress progress-xs mt-2">
-              <div class="progress-bar bg-info" role="progressbar" [style.width]="percentOfLocalSuppliers + '%'" attr.aria-valuenow="{{percentOfLocalSuppliers}}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </li>
-        <li *ngIf="showSnippet.percentsinglecompetitorlocalsupplier" class="hidden-sm-down">
-          <div class="text-muted">Competitor Local Suppliers</div>
-          <strong>{{percentOfSingleCompetitorLocalSuppliers}}%</strong>
-          <div class="progress progress-xs mt-2">
-              <div class="progress-bar bg-info" role="progressbar" [style.width]="percentOfSingleCompetitorLocalSuppliers + '%'" attr.aria-valuenow="{{percentOfSingleCompetitorLocalSuppliers}}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </li>
       </ul>
     </div>
   </div>

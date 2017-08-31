@@ -63,9 +63,10 @@ export class ApiService {
       result => {
       this.setSessionKey(result.session_key);
       this.setUserInfo(
-        data.email,
-        result.display_name,
+        result.email,
+        result.display_name
         );
+        this.setUserType(result.user_type)
       }
     );
     return login_event;
@@ -73,16 +74,17 @@ export class ApiService {
 
 	public logout() {
 		console.log(this.sessionKey);
+    let key = this.sessionKey;
 		return this.http.post(
 		  this.apiUrl + '/logout',
 		  {
-			session_key : this.sessionKey,
+			session_key : key,
 		}
 		).map( response => { this.removeSessionKey(); return response.json() } );
 	}
 
   // Searches organisations used for transaction submission
-  
+
   public search(data) {
 	  data.session_key = this.sessionKey;
 	  return this.http.post(
@@ -90,9 +92,9 @@ export class ApiService {
 		data
 	  ).map( response => response.json() );
   }
-  
+
   // Uploads a transaction
-  
+
   public upload(data) {
     data.session_key = this.sessionKey;
     return this.http.post(
@@ -117,6 +119,13 @@ export class ApiService {
     console.log("set UserInfo");
     localStorage.setItem('email',email);
     localStorage.setItem('displayname',display_name);
+  }
+
+  // Sets usertype
+
+  public setUserType(user_type: string) {
+    console.log("set UserType");
+    localStorage.setItem('usertype',user_type);
   }
 
   // Used for getting account details and updating
@@ -173,14 +182,26 @@ export class ApiService {
   // Leaderboard Api
 
   public leaderboard_fetch(data) {
+    let key = this.sessionKey;
     return this.http.post(
 		  this.apiUrl + '/stats/leaderboard',
 		  {
-			session_key : this.sessionKey,
+			session_key : key,
       type : data
 		}
 		).map( response => response.json() );
 	}
+
+  // Basic Customer User stats API
+  public basicStats() {
+    let key = this.sessionKey;
+    return this.http.post(
+		  this.apiUrl + '/stats',
+		  {
+        session_key : key,
+		  }
+		).map( response => response.json() );
+  }
 
   // Fake Breadcrumb data
 
@@ -219,12 +240,12 @@ export class ApiService {
           },
         "snippets" :
           {
-            customersthismonth: false,
+            customersthismonth: true,
             moneyspentthismonth: true,
             pointstotal: true,
-            averagetransactiontoday: false,
-            percentownlocalsupplier : true,
-            percentsinglecompetitorlocalsupplier : true,
+            averagetransactiontoday: true,
+            percentownlocalsupplier : false,
+            percentsinglecompetitorlocalsupplier : false,
           },
         },
       "data" :

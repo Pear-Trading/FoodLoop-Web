@@ -15,6 +15,8 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 // Routing & Guard Module
 import { AppRoutingModule } from './app.routing';
 import { AuthGuard } from './_guards/auth.guard';
+import { OrgGuard } from './_guards/org.guard';
+import { CustomerGuard } from './_guards/customer.guard';
 import { ApiService } from './providers/api-service';
 
 import { OrgGraphsService } from './providers/org-graphs.service';
@@ -55,6 +57,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
   ],
   providers: [
     AuthGuard,
+    OrgGuard,
+    CustomerGuard,
     ApiService,
     OrgGraphsService,
     {

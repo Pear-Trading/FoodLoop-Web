@@ -16,11 +16,11 @@ export class AddDataComponent {
   employeeForm: FormGroup;
   transactionForm: FormGroup;
   payrollFormStatus: any;
-  suppliersFormStatus: any;
   singleSupplierFormStatus: any;
   employeeFormStatus: any;
   transactionFormStatus: any;
   transactionFormStatusError: string = 'Error received, please try again.';
+  accountType: any;
 
  submitOrg = {
     name: '',
@@ -77,6 +77,7 @@ export class AddDataComponent {
 
   ngOnInit(): void {
     this.getMinDate();
+    this.accountType = localStorage.getItem('usertype');
   }
 
   getMinDate(){

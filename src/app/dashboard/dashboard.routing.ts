@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from '../_guards/auth.guard';
+import { OrgGuard } from '../_guards/org.guard';
+import { CustomerGuard } from '../_guards/customer.guard';
 
 import { DashboardComponent } from './dashboard.component';
+import { DashboardCustomerComponent } from './dashboard-customer.component';
 import { FullLayoutComponent } from '../layouts/full-layout.component';
 import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
@@ -20,6 +23,13 @@ const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
         data: { title: 'Dashboard' },
+        canActivate: [OrgGuard],
+      },
+      {
+        path: 'dashboard-customer',
+        component: DashboardCustomerComponent,
+        data: { title: 'Customer Dashboard' },
+        canActivate: [CustomerGuard],
       },
       {
         path: 'account-edit',

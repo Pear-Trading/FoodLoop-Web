@@ -37,6 +37,7 @@ export class AccountEditComponent implements OnInit {
       full_name     : ['', [Validators.required]],
       display_name  : ['', [Validators.required]],
     });
+    this.accountType = localStorage.getItem('usertype');
   }
 
   ngOnInit(): void {
@@ -59,7 +60,6 @@ export class AccountEditComponent implements OnInit {
           display_name: result.display_name,
         });
         this.api.setUserInfo( result.email, result.display_name );
-        this.accountType = ( result.name == null ? 'customer' : 'organisation' );
       },
       error => {
         console.log( error._body );

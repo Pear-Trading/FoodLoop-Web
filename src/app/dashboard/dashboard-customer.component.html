@@ -2,34 +2,28 @@
   <div class="card">
     <div class="card-footer">
       <ul>
-        <li *ngIf="showSnippet.customersthismonth" class="hidden-sm-down">
-          <div class="text-muted">Customers This Month</div>
-          <strong>{{customersThisMonth}}</strong>
+        <li class="hidden-sm-down">
+          <div class="text-muted">My Points</div>
+          <strong>{{ basicStats.user_sum / 10 | number:'1.0-0' }}</strong>
         </li>
-        <li *ngIf="showSnippet.moneyspentthismonth" class="hidden-sm-down">
-          <div class="text-muted">Money Spent This Month</div>
-          <strong>{{moneySpentThisMonth | currency:'GBP':true:'1.2-2'}}</strong>
+        <li class="hidden-sm-down">
+          <div class="text-muted">My Rank</div>
+            <div *ngIf="basicStats.user_position == 0" class="statuscontent">
+              <strong>Unranked</strong>
+            </div>
+    				<div *ngIf="basicStats.user_position != 0" class="statuscontent">
+    					<strong>{{ basicStats.user_position }}</strong>
+    				</div>
         </li>
-        <li *ngIf="showSnippet.pointstotal" class="hidden-sm-down">
-          <div class="text-muted">Points Total</div>
-          <strong>{{pointsTotal}}</strong>
+        <li class="hidden-sm-down">
+          <div class="text-muted">My Total Spend</div>
+          <strong>{{ basicStats.user_sum | currency:'GBP':true:'1.2-2' }}</strong>
         </li>
-        <li *ngIf="showSnippet.averagetransactiontoday" class="hidden-sm-down">
-          <div class="text-muted">Average Transaction Today</div>
-          <strong>{{averageTransactionToday | currency:'GBP':true:'1.2-2'}}</strong>
-        </li>
-        <li *ngIf="showSnippet.percentownlocalsupplier" class="hidden-sm-down">
-          <div class="text-muted">Local Suppliers</div>
-          <strong>{{percentOfLocalSuppliers}}%</strong>
+        <li class="hidden-sm-down">
+          <div class="text-muted">Value to Local Economy</div>
+          <strong>{{ basicStats.user_sum * 2.3 | currency:'GBP':true:'1.2-2' }}</strong>
           <div class="progress progress-xs mt-2">
               <div class="progress-bar bg-info" role="progressbar" [style.width]="percentOfLocalSuppliers + '%'" attr.aria-valuenow="{{percentOfLocalSuppliers}}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </li>
-        <li *ngIf="showSnippet.percentsinglecompetitorlocalsupplier" class="hidden-sm-down">
-          <div class="text-muted">Competitor Local Suppliers</div>
-          <strong>{{percentOfSingleCompetitorLocalSuppliers}}%</strong>
-          <div class="progress progress-xs mt-2">
-              <div class="progress-bar bg-info" role="progressbar" [style.width]="percentOfSingleCompetitorLocalSuppliers + '%'" attr.aria-valuenow="{{percentOfSingleCompetitorLocalSuppliers}}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </li>
       </ul>
@@ -39,273 +33,5 @@
     <div *ngFor="let widget of widgetList" class="col-sm-6 col-lg-3">
       <widget-graph *ngIf="widget.type == 'graph'" [graphName]="widget.name" [graphTitle]="widget.title" [graphIcon]="widget.icon"></widget-graph>
     </div>
-    <div *ngIf="showGraph.noofcustomerssector" class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
-        <div class="card-block">
-          <div class="h4 mb-0">{{noOfCustomersSector}}</div>
-          <div>No. of Customers in your Sector</div>
-          <div class="progress progress-white progress-xs mt-3">
-            <div class="progress-bar" role="progressbar" [style.width]="percentOfCustomersSector + '%'" attr.aria-valuenow="{{percentOfCustomersSector}}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div *ngIf="showGraph.percentofcustomerssector" class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
-        <div class="card-block">
-          <div class="h4 mb-0">{{percentOfCustomersSector}}%</div>
-          <div>Customers in your Sector</div>
-          <div class="progress progress-white progress-xs mt-3">
-            <div class="progress-bar" role="progressbar" [style.width]="percentOfCustomersSector + '%'" attr.aria-valuenow="{{percentOfCustomersSector}}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div *ngIf="showGraph.customerslastyear" class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-info">
-        <div class="card-block pb-0">
-          <button type="button" class="btn btn-transparent p-0 float-right">
-            <i class="icon-location-pin"></i>
-          </button>
-          <h4 class="mb-0">9.823</h4>
-          <p>Customers last year</p>
-        </div>
-        <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="lineChart4Data"
-          [labels]="lineChart4Labels"
-          [options]="lineChart4Options"
-          [colors]="lineChart4Colours"
-          [legend]="lineChart4Legend"
-          [chartType]="lineChart4Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div *ngIf="showGraph.returningcustomerslastweek" class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-info">
-        <div class="card-block pb-0">
-          <button type="button" class="btn btn-transparent p-0 float-right">
-            <i class="icon-location-pin"></i>
-          </button>
-          <h4 class="mb-0">9.823</h4>
-          <p>Returning Customers last week</p>
-        </div>
-        <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="lineChart6Data"
-          [labels]="lineChart6Labels"
-          [options]="lineChart6Options"
-          [colors]="lineChart6Colours"
-          [legend]="lineChart6Legend"
-          [chartType]="lineChart6Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div *ngIf="showGraph.returningcustomerslastmonth" class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-info">
-        <div class="card-block pb-0">
-          <button type="button" class="btn btn-transparent p-0 float-right">
-            <i class="icon-location-pin"></i>
-          </button>
-          <h4 class="mb-0">9.823</h4>
-          <p>Returning Customers last month</p>
-        </div>
-        <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="lineChart7Data"
-          [labels]="lineChart7Labels"
-          [options]="lineChart7Options"
-          [colors]="lineChart7Colours"
-          [legend]="lineChart7Legend"
-          [chartType]="lineChart7Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div *ngIf="showGraph.returningcustomerslastyear" class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-info">
-        <div class="card-block pb-0">
-          <button type="button" class="btn btn-transparent p-0 float-right">
-            <i class="icon-location-pin"></i>
-          </button>
-          <h4 class="mb-0">9.823</h4>
-          <p>Returning Customers last year</p>
-        </div>
-        <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="lineChart8Data"
-          [labels]="lineChart8Labels"
-          [options]="lineChart8Options"
-          [colors]="lineChart8Colours"
-          [legend]="lineChart8Legend"
-          [chartType]="lineChart8Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div *ngIf="showGraph.pointsthisweek" class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-warning">
-        <div class="card-block pb-0">
-          <div class="btn-group float-right">
-            <button type="button" class="btn btn-transparent dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="icon-settings"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
-          <h4 class="mb-0">9.823</h4>
-          <p>Points earned this week</p>
-        </div>
-        <div class="chart-wrapper" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="lineChart5Data"
-          [labels]="lineChart5Labels"
-          [options]="lineChart5Options"
-          [colors]="lineChart5Colours"
-          [legend]="lineChart5Legend"
-          [chartType]="lineChart5Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div *ngIf="showGraph.pointslastweek" class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-danger">
-        <div class="card-block pb-0">
-          <div class="btn-group float-right" dropdown>
-            <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
-              <i class="icon-settings"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
-          <h4 class="mb-0">9.823</h4>
-          <p>Points earned last week</p>
-        </div>
-        <div class="chart-wrapper px-3" style="height:70px;">
-          <canvas baseChart class="chart"
-          [datasets]="barChart1Data"
-          [labels]="barChart1Labels"
-          [options]="barChart1Options"
-          [colors]="barChart1Colours"
-          [legend]="barChart1Legend"
-          [chartType]="barChart1Type"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div *ngIf="showGraph.percentlocalsuppliersvscompetitor" class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
-        <div class="card-block">
-          <div>Your suppliers that are local vs a local competitor</div>
-          <ul class="horizontal-bars type-3">
-            <li>
-              <i class="icon-pie-chart"></i>
-              <span class="title">Yours</span>
-              <span class="value">{{percentOfLocalSuppliers}}%</span>
-              <div class="bars">
-                <div class="progress progress-xs">
-                  <div class="progress-bar bg-warning" role="progressbar" [style.width]="percentOfLocalSuppliers + '%'" attr.aria-valuenow="{{percentOfLocalSuppliers}}" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <i class="icon-pie-chart"></i>
-              <span class="title">A competitor</span>
-              <span class="value">{{percentOfSingleCompetitorLocalSuppliers}}%</span>
-              <div class="bars">
-                <div class="progress progress-xs">
-                  <div class="progress-bar bg-warning" role="progressbar" [style.width]="percentOfSingleCompetitorLocalSuppliers + '%'" attr.aria-valuenow="{{percentOfSingleCompetitorLocalSuppliers}}" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div><!--/.col-->
   </div><!--/.row-->
-  <div class="card">
-    <div class="card-block">
-      <div class="row">
-        <div class="col-sm-5">
-          <h4 class="card-title mb-0">Customers</h4>
-          <div class="small text-muted">November 2015</div>
-        </div><!--/.col-->
-        <div class="col-sm-7 hidden-sm-down">
-          <button type="button" class="btn btn-primary float-right"><i class="icon-cloud-download"></i></button>
-          <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
-              <label class="btn btn-outline-secondary">
-                <input type="radio" name="options" id="option1"> Day
-              </label>
-              <label class="btn btn-outline-secondary active">
-                <input type="radio" name="options" id="option2" checked> Month
-              </label>
-              <label class="btn btn-outline-secondary">
-                <input type="radio" name="options" id="option3"> Year
-              </label>
-            </div>
-          </div>
-        </div><!--/.col-->
-      </div><!--/.row-->
-      <div class="chart-wrapper" style="height:300px;margin-top:40px;">
-        <canvas baseChart class="chart"
-        [datasets]="mainChartData"
-        [labels]="mainChartLabels"
-        [options]="mainChartOptions"
-        [colors]="mainChartColours"
-        [legend]="mainChartLegend"
-        [chartType]="mainChartType"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
-      </div>
-    </div>
-    <div class="card-footer">
-      <ul>
-        <li class="hidden-sm-down">
-          <div class="text-muted">Customers</div>
-          <strong>24.093 Users (20%)</strong>
-          <div class="progress progress-xs mt-2">
-            <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </li>
-        <li>
-          <div class="text-muted">Pageviews</div>
-          <strong>78.706 Views (60%)</strong>
-          <div class="progress progress-xs mt-2">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </li>
-        <li class="hidden-sm-down">
-          <div class="text-muted">New Users</div>
-          <strong>22.123 Users (80%)</strong>
-          <div class="progress progress-xs mt-2">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </li>
-        <li class="hidden-sm-down">
-          <div class="text-muted">Bounce Rate</div>
-          <strong>40.15%</strong>
-          <div class="progress progress-xs mt-2">
-            <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
 </div>
