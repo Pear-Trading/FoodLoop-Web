@@ -83,6 +83,20 @@ export class ApiService {
 		).map( response => { this.removeSessionKey(); return response.json() } );
 	}
 
+  // Submits feedback
+
+  public feedback(data) {
+    data.app_name = 'Foodloop Web';
+    data.package_name = 'Foodloop Web';
+    data.version_code = '';
+    data.version_number = '';
+      console.log(data);
+      return this.http.post(
+        this.apiUrl + '/feedback',
+        data
+      ).map( response => response.json() );
+  }
+
   // Searches organisations used for transaction submission
 
   public search(data) {

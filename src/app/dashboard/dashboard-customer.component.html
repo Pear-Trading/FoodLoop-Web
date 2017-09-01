@@ -2,11 +2,11 @@
   <div class="card">
     <div class="card-footer">
       <ul>
-        <li class="hidden-sm-down">
+        <li>
           <div class="text-muted">My Points</div>
           <strong>{{ basicStats.user_sum / 10 | number:'1.0-0' }}</strong>
         </li>
-        <li class="hidden-sm-down">
+        <li>
           <div class="text-muted">My Rank</div>
             <div *ngIf="basicStats.user_position == 0" class="statuscontent">
               <strong>Unranked</strong>
@@ -15,23 +15,117 @@
     					<strong>{{ basicStats.user_position }}</strong>
     				</div>
         </li>
-        <li class="hidden-sm-down">
+      </ul>
+      </div>
+      <div class="card-footer">
+        <ul>
+        <li>
           <div class="text-muted">My Total Spend</div>
           <strong>{{ basicStats.user_sum | currency:'GBP':true:'1.2-2' }}</strong>
         </li>
-        <li class="hidden-sm-down">
+        <li>
           <div class="text-muted">Value to Local Economy</div>
           <strong>{{ basicStats.user_sum * 2.3 | currency:'GBP':true:'1.2-2' }}</strong>
-          <div class="progress progress-xs mt-2">
-              <div class="progress-bar bg-info" role="progressbar" [style.width]="percentOfLocalSuppliers + '%'" attr.aria-valuenow="{{percentOfLocalSuppliers}}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
         </li>
       </ul>
     </div>
   </div>
   <div class="row">
-    <div *ngFor="let widget of widgetList" class="col-sm-6 col-lg-3">
-      <widget-graph *ngIf="widget.type == 'graph'" [graphName]="widget.name" [graphTitle]="widget.title" [graphIcon]="widget.icon"></widget-graph>
-    </div>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-primary">
+        <div class="card-block">
+          <div class="h4 mb-0">{{ basicStats.today_sum | currency:'GBP':true:'1.2-2' }}</div>
+          <div>Total Today</div>
+          <!-- <div class="progress progress-white progress-xs mt-3">
+            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-primary">
+        <div class="card-block">
+          <div class="h4 mb-0">{{ basicStats.today_sum / (basicStats.today_count ? basicStats.today_count : 1) | currency:'GBP':true:'1.2-2' }}</div>
+          <div>Avg. Spend Today</div>
+          <!-- <div class="progress progress-white progress-xs mt-3">
+            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-primary">
+        <div class="card-block">
+          <div class="h4 mb-0">{{ basicStats.week_sum | currency:'GBP':true:'1.2-2' }}</div>
+          <div>Last Week Total</div>
+          <!-- <div class="progress progress-white progress-xs mt-3">
+            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-primary">
+        <div class="card-block">
+          <div class="h4 mb-0">{{ basicStats.week_sum / (basicStats.week_count ? basicStats.week_count : 1) | currency:'GBP':true:'1.2-2' }}</div>
+          <div>Last Week Avg. Spend</div>
+          <!-- <div class="progress progress-white progress-xs mt-3">
+            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-primary">
+        <div class="card-block">
+          <div class="h4 mb-0">{{ basicStats.month_sum | currency:'GBP':true:'1.2-2' }}</div>
+          <div>Last Month Total</div>
+          <!-- <div class="progress progress-white progress-xs mt-3">
+            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-primary">
+        <div class="card-block">
+          <div class="h4 mb-0">{{ basicStats.month_sum / (basicStats.month_count ? basicStats.month_count : 1) | currency:'GBP':true:'1.2-2' }}</div>
+          <div>Last Month Avg. Spend</div>
+          <!-- <div class="progress progress-white progress-xs mt-3">
+            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-primary">
+        <div class="card-block">
+          <div class="h4 mb-0">{{ basicStats.user_sum | currency:'GBP':true:'1.2-2' }}</div>
+          <div>User Total</div>
+          <!-- <div class="progress progress-white progress-xs mt-3">
+            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card card-inverse card-primary">
+        <div class="card-block">
+          <div class="h4 mb-0">{{ basicStats.user_sum / (basicStats.user_count ? basicStats.user_count : 1) | currency:'GBP':true:'1.2-2' }}</div>
+          <div>User Avg. Spend</div>
+          <!-- <div class="progress progress-white progress-xs mt-3">
+            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
+        </div>
+      </div>
+    </div><!--/.col-->
   </div><!--/.row-->
 </div>

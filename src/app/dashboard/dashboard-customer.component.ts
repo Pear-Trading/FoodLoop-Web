@@ -8,7 +8,6 @@ import { GraphWidget } from '../widgets/graph-widget.component';
   templateUrl: 'dashboard-customer.component.html'
 })
 export class DashboardCustomerComponent implements OnInit {
-  showSnippet: any;
   customersThisMonth: any;
   moneySpentThisMonth: any;
   pointsTotal: any;
@@ -35,21 +34,6 @@ export class DashboardCustomerComponent implements OnInit {
     global_count: 0,
     user_position: 0,
   };
-
-  public widgetList = [
-    {
-      type: 'graph',
-      name: 'customers_last_7_days',
-      icon: 'icon-people',
-      title: 'Customers Last 7 Days',
-    },
-    {
-      type: 'graph',
-      name: 'customers_last_30_days',
-      icon: 'icon-people',
-      title: 'Customers Last 30 Days',
-    },
-  ];
 
   constructor(
   private http: Http,
