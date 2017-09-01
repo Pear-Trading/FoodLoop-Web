@@ -5,13 +5,13 @@ import { ApiService } from '../providers/api-service';
 import 'rxjs/add/operator/map';
 
 @Component({
-  templateUrl: 'add-data.component.html',
+  templateUrl: 'feedback.component.html',
   providers: [ApiService]
 })
-export class FeedbackPage {
+export class FeedbackComponent {
   feedbackForm: FormGroup;
-  loggedIn: boolean;
   loggedInEmail: any;
+  noEmail: boolean = false;
   username: any;
   feedbackFormStatus: any;
   feedbackFormStatusError: string = 'Error received, please try again.';
@@ -21,7 +21,10 @@ export class FeedbackPage {
   	private formBuilder: FormBuilder,
   	private api: ApiService,
   ) {
-    this.getUserEmail();
+    this.loggedInEmail = localStorage.getItem('email');
+    if (this.loggedInEmail == null) {
+      this.noEmail = true;
+    }
 
     this.feedbackForm = this.formBuilder.group({
       email:           ['', [Validators.required]],
@@ -64,25 +67,6 @@ export class FeedbackPage {
           console.log(this.feedbackFormStatus);
         }
       );
-  }
-
-  getUserEmail() {
-    this.api.getEmail().subscribe(
-      result => {
-        if (result) {
-          console.log('Email has been received');
-          this.loggedInEmail = result;
-          this.loggedIn = true;
-        } else {
-          console.log('Email is not available');
-          this.loggedIn = false;
-        }
-      },
-      err => {
-        console.log('Email could not be received');
-        this.loggedIn = false;
-      }
-    );
   }
 
 }

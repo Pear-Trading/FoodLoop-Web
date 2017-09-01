@@ -11,14 +11,14 @@
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="text-input"><strong>Email</strong></label>
               <div class="col-md-9">
-                <input type="text" class="form-control" formControlName="email" [(ngModel)]="loggedInEmail" [readonly]="loggedIn">
-                <span class="help-block">Enter your account email if it is not shown here.</span>
+                <input type="text" class="form-control" formControlName="email" [(ngModel)]="loggedInEmail" [disabled]="noEmail">
+                <span class="help-block">Your email will load here.</span>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="text-input"><strong>Enter Feedback Here</strong></label>
               <div class="col-md-9">
-                <textarea rows="7" class="form-control" formControlName="feedbacktext">
+                <textarea rows="7" class="form-control" formControlName="feedbacktext"></textarea>
                 <span class="help-block">Please enter your feedback in this textbox.</span>
               </div>
             </div>
@@ -26,7 +26,7 @@
               <div class="col-md-9">
                 <div [ngSwitch]="feedbackFormStatus">
                   <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
-                    Submit Succeeded.
+                    Thank you for submitting feedback!
                   </div>
                   <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
                     {{feedbackFormStatusError}}
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" [disabled]="!payrollForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+            <button type="submit" [disabled]="!feedbackForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
           </div>
         </form>
       </div>

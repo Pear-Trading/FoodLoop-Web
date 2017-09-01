@@ -88,8 +88,8 @@ export class ApiService {
   public feedback(data) {
     data.app_name = 'Foodloop Web';
     data.package_name = 'Foodloop Web';
-    data.version_code = '';
-    data.version_number = '';
+    data.version_code = 'dev';
+    data.version_number = 'dev';
       console.log(data);
       return this.http.post(
         this.apiUrl + '/feedback',

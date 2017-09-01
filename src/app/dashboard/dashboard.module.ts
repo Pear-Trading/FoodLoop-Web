@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardCustomerComponent } from './dashboard-customer.component';
 import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
+import { FeedbackComponent } from './feedback.component';
 
 import { GraphWidget } from '../widgets/graph-widget.component';
 
@@ -32,6 +33,7 @@ import { OrgTableComponent } from '../shared/org-table.component';
     AddDataComponent,
     OrgResultComponent,
     OrgTableComponent,
+    FeedbackComponent,
     GraphWidget,
   ]
 })
