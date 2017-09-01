@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 })
 export class FeedbackComponent {
   feedbackForm: FormGroup;
-  loggedInEmail: any;
+  loggedInEmail: string;
   noEmail: boolean = false;
   username: any;
   feedbackFormStatus: any;
@@ -21,15 +21,34 @@ export class FeedbackComponent {
   	private formBuilder: FormBuilder,
   	private api: ApiService,
   ) {
-    this.loggedInEmail = localStorage.getItem('email');
-    if (this.loggedInEmail == null) {
-      this.noEmail = true;
-    }
-
     this.feedbackForm = this.formBuilder.group({
       email:           ['', [Validators.required]],
       feedbacktext:    ['', [Validators.required]],
     });
+  }
+
+  ngOnInit(): void {
+
+    if(localStorage.getItem('email')) {
+      this.loggedInEmail = localStorage.getItem('email');
+    }
+    console.log('loggedInEmail: ' + this.loggedInEmail);
+    if (this.loggedInEmail) {
+      console.log('email not found in storage');
+      this.api.accountFullLoad().subscribe(
+        result => {
+          console.log(result);
+          this.feedbackForm.patchValue({
+            email:        result.email,
+          });
+          this.api.setUserInfo( result.email, result.display_name );
+        },
+        error => {
+          console.log( error._body );
+          this.noEmail = true;
+        }
+      );
+    }
   }
 
   onSubmit() {

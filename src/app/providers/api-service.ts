@@ -66,7 +66,7 @@ export class ApiService {
         result.email,
         result.display_name
         );
-        this.setUserType(result.user_type)
+      this.setUserType(result.user_type)
       }
     );
     return login_event;

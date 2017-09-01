@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     .subscribe(
       result => {
         console.log('Logged out!');
+        localStorage.clear();
       }
     );
 

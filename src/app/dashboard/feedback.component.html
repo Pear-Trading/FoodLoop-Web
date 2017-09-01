@@ -11,8 +11,8 @@
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="text-input"><strong>Email</strong></label>
               <div class="col-md-9">
-                <input type="text" class="form-control" formControlName="email" [(ngModel)]="loggedInEmail" [disabled]="noEmail">
-                <span class="help-block">Your email will load here.</span>
+                <input type="text" class="form-control" name="email" formControlName="email" placeholder="Enter Account Email Here" [(ngModel)]="loggedInEmail" [disabled]="noEmail">
+                <span class="help-block">Enter your email here if it doesn't show.</span>
               </div>
             </div>
             <div class="form-group row">
