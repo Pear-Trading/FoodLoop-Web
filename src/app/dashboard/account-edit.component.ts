@@ -13,7 +13,7 @@ export class AccountEditComponent implements OnInit {
   settingOrganisationForm: FormGroup;
   settingCustomerForm: FormGroup;
   accountType: any;
-  @ViewChild('fileInput') fileInput;
+  // @ViewChild('fileInput') fileInput;
   submitStatus: any;
 
   constructor(
@@ -26,7 +26,6 @@ export class AccountEditComponent implements OnInit {
       postcode        : ['', [Validators.required]],
       password        : ['', [Validators.required]],
       new_password    : [''],
-      // profile_picture : [''],
     });
     this.settingOrganisationForm = this.formBuilder.group({
       name         : ['', [Validators.required]],
@@ -80,13 +79,13 @@ export class AccountEditComponent implements OnInit {
   const settingOrganisationForm = this.settingOrganisationForm.value;
 
   // image upload code
-  const fi = this.fileInput.nativeElement;
-  const data = new FormData();
+  // const fi = this.fileInput.nativeElement;
+  // const data = new FormData();
 
-  if (fi.files && fi.files[0]) {
-    const fileToUpload = fi.files[0];
-    data.append('file', fileToUpload);
-  }
+  // if (fi.files && fi.files[0]) {
+  //   const fileToUpload = fi.files[0];
+  //   data.append('file', fileToUpload);
+  // }
 
   const submitData = {
     email:        settingForm.email,
@@ -98,11 +97,11 @@ export class AccountEditComponent implements OnInit {
     town:         settingOrganisationForm.town,
   };
 
-  data.append('form', JSON.stringify(submitData));
+  // data.append('form', JSON.stringify(submitData));
 
-  console.log(data);
+  console.log(submitData);
   this.api
-    .accountEditUpdate(data)
+    .accountEditUpdate(submitData)
     .subscribe(
       result => {
         console.log('data submitted!');
@@ -130,13 +129,13 @@ export class AccountEditComponent implements OnInit {
   const settingCustomerForm = this.settingCustomerForm.value;
 
   // image upload code
-  const fi = this.fileInput.nativeElement;
+  // const fi = this.fileInput.nativeElement;
   const data = new FormData();
 
-  if (fi.files && fi.files[0]) {
-    const fileToUpload = fi.files[0];
-    data.append('file', fileToUpload);
-  }
+  // if (fi.files && fi.files[0]) {
+  //   const fileToUpload = fi.files[0];
+  //   data.append('file', fileToUpload);
+  // }
 
   const submitData = {
     email:        settingForm.email,
@@ -147,10 +146,10 @@ export class AccountEditComponent implements OnInit {
     display_name: settingCustomerForm.display_name,
   };
 
-  data.append('form', JSON.stringify(submitData));
+  // data.append('form', JSON.stringify(submitData));
 
   this.api
-    .accountEditUpdate(data)
+    .accountEditUpdate(submitData)
     .subscribe(
       result => {
         console.log('data submitted!');
