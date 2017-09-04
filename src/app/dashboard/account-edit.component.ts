@@ -26,7 +26,7 @@ export class AccountEditComponent implements OnInit {
       postcode        : ['', [Validators.required]],
       password        : ['', [Validators.required]],
       new_password    : [''],
-      profile_picture : [''],
+      // profile_picture : [''],
     });
     this.settingOrganisationForm = this.formBuilder.group({
       name         : ['', [Validators.required]],
