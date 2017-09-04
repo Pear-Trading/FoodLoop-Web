@@ -1,0 +1,90 @@
+// Here you can add other styles
+
+// white title font variant on type-2 as defined in _widgets.css
+.horizontal-bars {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+
+    .title {
+      width: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      color: $text-muted;
+      vertical-align: middle;
+    }
+
+    .bars {
+      position: absolute;
+      top: 15px;
+      width: 100%;
+      padding-left: 100px;
+
+      .progress:first-child {
+        margin-bottom: 2px;
+      }
+    }
+
+    &.legend {
+      text-align: center;
+
+      .badge {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        padding: 0;
+      }
+    }
+
+    &.divider {
+      height: 40px;
+
+      i {
+        margin: 0 !important;
+      }
+    }
+  }
+
+  &.type-3 {
+
+    li {
+      overflow: hidden;
+
+      i {
+        display: inline-block;
+        margin-right: $spacer;
+        margin-left: 5px;
+        font-size: 18px;
+        line-height: 40px;
+      }
+
+      .title {
+        display: inline-block;
+        width: auto;
+        margin-top: -9px;
+        font-size: $font-size-base;
+        font-weight: normal;
+        line-height: 40px;
+        color: $white;
+      }
+
+      .value {
+        float: right;
+        font-weight: 600;
+      }
+
+      .bars {
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        padding: 0;
+      }
+    }
+  }
+}
