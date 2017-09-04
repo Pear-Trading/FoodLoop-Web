@@ -64,7 +64,7 @@ export class ApiService {
       this.setSessionKey(result.session_key);
       this.setUserInfo(
         result.email,
-        result.display_name
+        result.display_name || result.name
         );
       this.setUserType(result.user_type)
       }
