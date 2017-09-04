@@ -75,6 +75,37 @@
                 </div>
                 <div class="card-block">
                   <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="text-input"><strong>Industry Sector</strong></label>
+                    <div class="col-md-9">
+                      <select required class="form-control" type="text" formControlName="sector">
+                        <option value=''>Select Organisation Sector</option>
+                        <option value='A'>Agriculture, Forestry & Fishing</option>
+                        <option value='B'>Mining & Quarrying</option>
+                        <option value='C'>Manufacturing</option>
+                        <option value='D'>Electricity, Gas, Steam & Air Conditioning</option>
+                        <option value='E'>Water & Waste Management</option>
+                        <option value='F'>Construction</option>
+                        <option value='G'>Wholesale & Retail Trade</option>
+                        <option value='H'>Transportation & Storage</option>
+                        <option value='I'>Accomodation & Food Services</option>
+                        <option value='J'>Information & Communication</option>
+                        <option value='K'>Financial & Insurance Activities</option>
+                        <option value='L'>Real Estate</option>
+                        <option value='M'>Professional, Scientfic & Technical</option>
+                        <option value='N'>Administrative & Support Services</option>
+                        <option value='O'>Public Administration, Defence & Social Security</option>
+                        <option value='P'>Education</option>
+                        <option value='Q'>Human Health & Social Work</option>
+                        <option value='R'>Arts, Entertainment & Recreation</option>
+                        <option value='S'>Other Service Activities</option>
+                        <option value='T'>Household Domestic Business</option>
+                      </select>
+                      <span class="help-block">Alter this if your business sector has changed.</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-block">
+                  <div class="form-group row">
                     <label class="col-md-3 form-control-label" for="text-input"><strong>City/Town Location</strong></label>
                     <div class="col-md-9">
                       <input type="text" class="form-control" formControlName="town">

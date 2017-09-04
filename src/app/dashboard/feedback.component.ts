@@ -41,7 +41,7 @@ export class FeedbackComponent {
           this.feedbackForm.patchValue({
             email:        result.email,
           });
-          this.api.setUserInfo( result.email, result.display_name );
+          this.api.setUserInfo( result.email, result.display_name || result.name );
         },
         error => {
           console.log( error._body );

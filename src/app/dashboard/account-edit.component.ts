@@ -31,6 +31,7 @@ export class AccountEditComponent implements OnInit {
       name         : ['', [Validators.required]],
       street_name  : ['', [Validators.required]],
       town         : ['', [Validators.required]],
+      sector       : ['', [Validators.required]],
     });
     this.settingCustomerForm = this.formBuilder.group({
       full_name     : ['', [Validators.required]],
@@ -53,12 +54,13 @@ export class AccountEditComponent implements OnInit {
           name:         result.name,
           street_name:  result.street_name,
           town:         result.town,
+          sector:       result.sector,
         });
         this.settingCustomerForm.patchValue({
           full_name:    result.full_name,
           display_name: result.display_name,
         });
-        this.api.setUserInfo( result.email, result.display_name );
+        this.api.setUserInfo( result.email, result.display_name || result.name );
       },
       error => {
         console.log( error._body );
@@ -95,6 +97,7 @@ export class AccountEditComponent implements OnInit {
     name:         settingOrganisationForm.name,
     street_name:  settingOrganisationForm.street_name,
     town:         settingOrganisationForm.town,
+    sector:       settingOrganisationForm.sector,
   };
 
   // data.append('form', JSON.stringify(submitData));
