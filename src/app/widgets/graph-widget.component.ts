@@ -83,8 +83,8 @@ export class GraphWidget implements OnInit {
   }
 
   private setData(data: any) {
-    this.setChartData(data.count);
-    this.setChartLabels(data.day);
+    this.setChartData(data.data);
+    this.setChartLabels(data.labels);
   }
 
   private setChartData(data: Array<number>) {
