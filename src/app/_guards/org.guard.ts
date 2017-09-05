@@ -7,15 +7,16 @@ export class OrgGuard implements CanActivate {
   constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (localStorage.getItem('usertype') == 'organisation') {
-      console.log('Organisation logged in')
+    if (localStorage.getItem('usertype') === 'organisation') {
+      console.log('Organisation logged in');
       // org logged in so return true
       return true;
+    } else if (localStorage.getItem('usertype') === 'customer') {
+      console.log('not an organisation');
+      this.router.navigate(['/dashboard-customer']);
+      return false;
     }
-
-    // org not logged in so redirect to customer dashboard
-    console.log('not an organisation')
-    this.router.navigate(['/dashboard-customer']);
+    this.router.navigate(['/login']);
     return false;
   }
 }
