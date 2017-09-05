@@ -39,6 +39,28 @@ export class DashboardComponent implements OnInit {
       icon: 'icon-people',
       title: 'Customers Last 30 Days',
     },
+    {
+      type: 'graph',
+      name: 'sales_last_7_days',
+      icon: 'icon-diamond',
+      title: 'Sales Last 7 Days',
+    },
+    {
+      type: 'graph',
+      name: 'sales_last_30_days',
+      icon: 'icon-diamond',
+      title: 'Sales Last 30 Days',
+    },
+    {
+      type: 'graph',
+      name: 'purchases_last_7_days',
+      title: 'Purchases Last 7 Days',
+    },
+    {
+      type: 'graph',
+      name: 'purchases_last_30_days',
+      title: 'Purchases Last 30 Days',
+    },
   ];
 
   constructor(
