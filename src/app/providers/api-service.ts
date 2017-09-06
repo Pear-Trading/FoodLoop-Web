@@ -97,6 +97,19 @@ export class ApiService {
       ).map( response => response.json() );
   }
 
+  // gets transaction list for log
+
+  public transList(data) {
+	  let key = this.sessionKey;
+	  return this.http.post(
+		this.apiUrl + '/outgoing-transactions',
+		{
+      session_key : key,
+      page : data
+    }
+	  ).map( response => response.json() );
+  }
+
   // Searches organisations used for transaction submission
 
   public search(data) {
@@ -200,8 +213,8 @@ export class ApiService {
     return this.http.post(
 		  this.apiUrl + '/stats/leaderboard',
 		  {
-			session_key : key,
-      type : data
+  			session_key : key,
+        type : data
 		}
 		).map( response => response.json() );
 	}

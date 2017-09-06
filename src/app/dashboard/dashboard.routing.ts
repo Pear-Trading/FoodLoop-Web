@@ -11,6 +11,7 @@ import { FullLayoutComponent } from '../layouts/full-layout.component';
 import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 import { FeedbackComponent } from './feedback.component';
+import { TransactionLogComponent } from './transaction-log.component';
 
 // Using child path to allow for FullLayout theming
 const routes: Routes = [
@@ -41,6 +42,11 @@ const routes: Routes = [
         path: 'add-data',
         component: AddDataComponent,
         data: { title: 'Add Transaction' },
+      },
+      {
+        path: 'transaction-log',
+        component: TransactionLogComponent,
+        data: { title: 'Transaction Log' },
       },
       {
         path: 'feedback',
