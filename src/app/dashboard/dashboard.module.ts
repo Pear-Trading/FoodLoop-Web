@@ -9,12 +9,14 @@ import { DashboardCustomerComponent } from './dashboard-customer.component';
 import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 import { FeedbackComponent } from './feedback.component';
+import { TransactionLogComponent } from './transaction-log.component';
 
 import { GraphWidget } from '../widgets/graph-widget.component';
 
 import { DashboardRoutingModule } from './dashboard.routing';
 import { OrgResultComponent } from '../shared/org-result.component';
 import { OrgTableComponent } from '../shared/org-table.component';
+import { TransactionResultComponent } from '../shared/transaction-result.component';
 
 @NgModule({
   imports: [
@@ -33,6 +35,8 @@ import { OrgTableComponent } from '../shared/org-table.component';
     AddDataComponent,
     OrgResultComponent,
     OrgTableComponent,
+    TransactionLogComponent,
+    TransactionResultComponent,
     FeedbackComponent,
     GraphWidget,
   ]
