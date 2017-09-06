@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardCustomerComponent } from './dashboard-customer.component';
@@ -26,6 +27,7 @@ import { TransactionResultComponent } from '../shared/transaction-result.compone
     ReactiveFormsModule,
     ChartsModule,
     BsDropdownModule,
+    NgxPaginationModule,
     DashboardRoutingModule,
   ],
   declarations: [

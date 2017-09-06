@@ -1,7 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
-import { TransactionResultComponent } from '../shared/transaction-result.component';
+// import { PaginatePipe } from 'ngx-pagination';
+import {PaginationInstance} from 'ngx-pagination';
+// import { PaginationControlsComponent } from 'ngx-pagination';
+// import { PaginationControlsDirective } from 'ngx-pagination';
+// import { TransactionResultComponent } from '../shared/transaction-result.component';
 import * as moment from 'moment';
 import 'rxjs/add/operator/map';
 
@@ -15,7 +19,13 @@ export class TransactionLogComponent {
   noTransactionList = true;
   myDate: any;
   minDate: any;
-  logPage: any = 1;
+
+  public paginateConfig: PaginationInstance = {
+        id: 'transpaginate',
+        itemsPerPage: 10,
+        currentPage: 1,
+        totalItems: 0
+    };
 
   constructor(
   private http: Http,
@@ -27,7 +37,7 @@ export class TransactionLogComponent {
 
   ngOnInit(): void {
     this.getMinDate();
-    this.loadTransactions();
+    this.loadTransactions(1);
   }
 
   getMinDate(){
@@ -43,12 +53,15 @@ export class TransactionLogComponent {
     }
   }
 
-  loadTransactions() {
-    this.api.transList(this.logPage).subscribe(
+  loadTransactions(logPage: number) {
+    console.log(logPage);
+    this.api.transList(logPage).subscribe(
       result => {
         if(result.transactions.length > 0) {
           this.transactionList = result.transactions;
-          console.log(this.transactionList);
+          //TODO Rename in server
+          this.paginateConfig.totalItems = result.page_no;
+          this.paginateConfig.currentPage = logPage;
           this.noTransactionList = false;
         } else {
         // handle the case when the transactionList is empty
