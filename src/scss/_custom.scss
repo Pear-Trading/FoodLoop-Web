@@ -1,5 +1,14 @@
 // Here you can add other styles
+.clickable {
+  cursor: pointer;
+}
 
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #d2eef7;
+}
+.table-hover tbody tr:hover td {
+    background-color: $table-bg-hover;
+}
 // white title font variant on type-2 as defined in _widgets.css
 .horizontal-bars {
   padding: 0;

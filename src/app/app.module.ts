@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
 
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
@@ -37,6 +38,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
   imports: [
     BrowserModule,
     HttpModule,
+    NgxPaginationModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     AuthModule,
