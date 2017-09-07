@@ -9,6 +9,11 @@
 .table-hover tbody tr:hover td {
     background-color: $table-bg-hover;
 }
+
+.table thead tr {
+    background-color: #0f81a8;
+    color: #e8ebed;
+}
 // white title font variant on type-2 as defined in _widgets.css
 .horizontal-bars {
   padding: 0;
