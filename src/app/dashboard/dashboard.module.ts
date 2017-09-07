@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
+import { CurrencyPipe } from '@angular/common';
+
 import { DashboardComponent } from './dashboard.component';
 import { DashboardCustomerComponent } from './dashboard-customer.component';
 import { AccountEditComponent } from './account-edit.component';
@@ -35,6 +37,9 @@ import { OrgTableComponent } from '../shared/org-table.component';
     OrgTableComponent,
     FeedbackComponent,
     GraphWidget,
-  ]
+  ],
+  providers: [
+    CurrencyPipe
+  ],
 })
 export class DashboardModule { }

@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import { Router } from '@angular/router';
 import { GraphWidget } from '../widgets/graph-widget.component';
+import { DataType } from '../shared/data-types.enum';
 
 @Component({
   templateUrl: 'dashboard.component.html'
@@ -44,22 +45,26 @@ export class DashboardComponent implements OnInit {
       name: 'sales_last_7_days',
       icon: 'icon-diamond',
       title: 'Sales Last 7 Days',
+      dataType: DataType.currency,
     },
     {
       type: 'graph',
       name: 'sales_last_30_days',
       icon: 'icon-diamond',
       title: 'Sales Last 30 Days',
+      dataType: DataType.currency,
     },
     {
       type: 'graph',
       name: 'purchases_last_7_days',
       title: 'Purchases Last 7 Days',
+      dataType: DataType.currency,
     },
     {
       type: 'graph',
       name: 'purchases_last_30_days',
       title: 'Purchases Last 30 Days',
+      dataType: DataType.currency,
     },
   ];
 
