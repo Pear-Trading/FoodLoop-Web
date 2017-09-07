@@ -2,19 +2,19 @@
   <div class="card">
     <div class="card-footer">
       <ul>
-        <li *ngIf="showSnippet.customersthismonth" class="hidden-sm-down">
+        <li class="hidden-sm-down">
           <div class="text-muted">Customers This Month</div>
           <strong>{{customersThisMonth}}</strong>
         </li>
-        <li *ngIf="showSnippet.moneyspentthismonth" class="hidden-sm-down">
+        <li class="hidden-sm-down">
           <div class="text-muted">Money Spent This Month</div>
           <strong>{{moneySpentThisMonth | currency:'GBP':true:'1.2-2'}}</strong>
         </li>
-        <li *ngIf="showSnippet.pointstotal" class="hidden-sm-down">
+        <li class="hidden-sm-down">
           <div class="text-muted">Points Total</div>
           <strong>{{pointsTotal}}</strong>
         </li>
-        <li *ngIf="showSnippet.averagetransactiontoday" class="hidden-sm-down">
+        <li class="hidden-sm-down">
           <div class="text-muted">Average Transaction Today</div>
           <strong>{{averageTransactionToday | currency:'GBP':true:'1.2-2'}}</strong>
         </li>
