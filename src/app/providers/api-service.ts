@@ -230,19 +230,6 @@ export class ApiService {
 		).map( response => response.json() );
   }
 
-  // Fake Breadcrumb data
-
-  public breadcrumb_data(data) {
-    return Observable.of(
-    {
-      "customersthismonth" : 196,
-      "moneyspentthismonth" : 156.02,
-      "pointstotal" : 506,
-      "averagetransactiontoday" : 3.69
-    }
-    )
-  }
-
   // Fake chart data to mimic
 
   public graph_data(data) {

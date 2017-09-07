@@ -1,20 +1,13 @@
 import { Directive, Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { ApiService } from '../providers/api-service';
 import { Router } from '@angular/router';
 import { GraphWidget } from '../widgets/graph-widget.component';
+import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
 import { DataType } from '../shared/data-types.enum';
 
 @Component({
   templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
-
-  // Snippet data
-  public customersThisMonth: number;
-  public moneySpentThisMonth: number;
-  public pointsTotal: number;
-  public averageTransactionToday: number;
 
   shuffledArray: any;
 
@@ -60,20 +53,8 @@ export class DashboardComponent implements OnInit {
   ];
 
   constructor(
-  private http: Http,
-  private api: ApiService,
   ) {
-  this.shuffle = this.shuffledArray;
-  this.api.breadcrumb_data(undefined)
-    .subscribe(
-      result => {
-        console.log(result);
-        this.customersThisMonth = result.customersthismonth;
-        this.moneySpentThisMonth = result.moneyspentthismonth;
-        this.pointsTotal = result.pointstotal;
-        this.averageTransactionToday = result.averagetransactiontoday;
-      }
-    );
+    this.shuffle = this.shuffledArray;
   }
 
   // Fisher-Yates shuffle function

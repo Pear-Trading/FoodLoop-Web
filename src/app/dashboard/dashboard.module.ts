@@ -15,6 +15,7 @@ import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
 
 import { GraphWidget } from '../widgets/graph-widget.component';
+import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
 
 import { DashboardRoutingModule } from './dashboard.routing';
 import { OrgResultComponent } from '../shared/org-result.component';
@@ -43,6 +44,7 @@ import { TransactionResultComponent } from '../shared/transaction-result.compone
     TransactionResultComponent,
     FeedbackComponent,
     GraphWidget,
+    OrgBarSnippetComponent,
   ],
   providers: [
     CurrencyPipe
