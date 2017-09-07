@@ -9,13 +9,6 @@ export class OrgSnippetsService {
   constructor(private api: ApiService) { }
 
   public getData(): Observable<any> {
-    return Observable.of(
-      {
-        'customersthismonth' : 196,
-        'moneyspentthismonth' : 156.02,
-        'pointstotal' : 506,
-        'averagetransactiontoday' : 3.69
-      }
-    );
+    return this.api.post(this.orgSnippetsUrl);
   }
 }

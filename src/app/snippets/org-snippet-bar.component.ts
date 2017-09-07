@@ -7,10 +7,10 @@ import { OrgSnippetsService } from '../providers/org-snippets.service';
 })
 export class OrgBarSnippetComponent implements OnInit {
 
-  public customersThisMonth: number;
-  public moneySpentThisMonth: number;
-  public pointsTotal: number;
-  public averageTransactionToday: number;
+  public customersThisMonth = 0;
+  public moneySpentThisMonth = 0;
+  public pointsTotal = 0;
+  public averageTransactionToday = 0;
 
   constructor(
     private snippetsService: OrgSnippetsService,
@@ -20,10 +20,10 @@ export class OrgBarSnippetComponent implements OnInit {
     this.snippetsService.getData()
       .subscribe(
         result => {
-          this.customersThisMonth = result.customersthismonth;
-          this.moneySpentThisMonth = result.moneyspentthismonth;
-          this.pointsTotal = result.pointstotal;
-          this.averageTransactionToday = result.averagetransactiontoday;
+          this.customersThisMonth = result.snippets.this_month_customer_count;
+          this.moneySpentThisMonth = result.snippets.this_month_customer_spend;
+          this.pointsTotal = result.snippets.pear_points_total;
+          this.averageTransactionToday = result.snippets.today_sales_average;
         }
       );
   }
