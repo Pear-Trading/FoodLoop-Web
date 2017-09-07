@@ -18,7 +18,7 @@ export class ApiService {
 	  }
   }
 
-  public post(url, data) {
+  public post(url: string, data: any = {}) {
     if ( this.sessionKey != null ) {
       data.session_key = this.sessionKey;
     }
