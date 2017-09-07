@@ -3,7 +3,8 @@
     <button type="button" class="btn btn-transparent p-0 float-right">
       <i [ngClass]="graphIcon"></i>
     </button>
-    <h4 class="mb-0">{{ graphSum }}</h4>
+    <h4 *ngIf="dataType == availableDataTypes.number" class="mb-0">{{ graphSum }}</h4>
+    <h4 *ngIf="dataType == availableDataTypes.currency" class="mb-0">{{ graphSum | currency:'GBP':true:'1.2-2' }}</h4>
     <p>{{ graphTitle }}</p>
   </div>
   <div class="chart-wrapper px-3" style="height:70px;">
