@@ -3,19 +3,19 @@
     <ul>
       <li class="hidden-sm-down">
         <div class="text-muted">Customers This Month</div>
-        <strong>{{customersThisMonth}}</strong>
+        <strong>{{ thisMonthSalesCount }}</strong>
       </li>
       <li class="hidden-sm-down">
         <div class="text-muted">Money Spent This Month</div>
-        <strong>{{moneySpentThisMonth | currency:'GBP':true:'1.2-2'}}</strong>
+        <strong>{{ thisMonthPurchasesTotal | currency:'GBP':true:'1.2-2'}}</strong>
       </li>
       <li class="hidden-sm-down">
-        <div class="text-muted">Points Total</div>
-        <strong>{{pointsTotal}}</strong>
+        <div class="text-muted">Customers Today</div>
+        <strong>{{ todaySalesCount }}</strong>
       </li>
       <li class="hidden-sm-down">
         <div class="text-muted">Average Transaction Today</div>
-        <strong>{{averageTransactionToday | currency:'GBP':true:'1.2-2'}}</strong>
+        <strong>{{ ( todaySalesTotal / todaySalesCount ) || 0 | currency:'GBP':true:'1.2-2'}}</strong>
       </li>
     </ul>
   </div>
