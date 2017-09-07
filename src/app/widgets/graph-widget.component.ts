@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 import { OrgGraphsService } from '../providers/org-graphs.service';
+import { DataType } from '../shared/data-types.enum';
 
 interface ChartData {
   data: Array<number>;
@@ -14,11 +16,13 @@ export class GraphWidget implements OnInit {
   @Input() public graphName: string;
   @Input() public graphTitle = 'Graph';
   @Input() public graphIcon = 'icon-graph';
+  @Input() public dataType: DataType = DataType.number;
 
   @Output() public graphHover = new EventEmitter();
   @Output() public graphClick = new EventEmitter();
 
   public graphSum: Number = 0;
+  public availableDataTypes = DataType;
 
   public lineChartData: Array<ChartData> = [
     {
@@ -60,7 +64,14 @@ export class GraphWidget implements OnInit {
     },
     legend: {
       display: false
-    }
+    },
+    tooltips: {
+      callbacks: {
+        label: (tooltip, data) => {
+          return this.tooltipLabelCallback(tooltip, data);
+        },
+      },
+    },
   };
   public lineChartColours: Array<any> = [
     {
@@ -72,11 +83,21 @@ export class GraphWidget implements OnInit {
   public lineChartType = 'line';
 
 
-  constructor(private graphService: OrgGraphsService) { }
+  constructor(
+    private graphService: OrgGraphsService,
+    private currencyPipe: CurrencyPipe,
+  ) { }
 
   ngOnInit(): void {
     if ( this.graphName == null ) {
       throw new Error('Attribute \'graphName\' is required on component \'widget-graph\'');
+    }
+    if ( this.dataType === undefined ) {
+      // Need to do this as it may be passed in a loop with an undefined value
+      this.dataType = DataType.number;
+    }
+    if ( !( this.dataType in DataType ) ) {
+      console.warn('Unknown DataType for graph \'' + this.graphName + '\' - defaulting to number');
     }
     this.graphService.getGraph(this.graphName)
       .subscribe( result => this.setData(result.graph) );
@@ -111,5 +132,13 @@ export class GraphWidget implements OnInit {
 
   public chartHovered(e: any): void {
     console.log(e);
+  }
+
+  private tooltipLabelCallback(tooltipItem: any, data: any) {
+    const value = tooltipItem.yLabel;
+    if ( this.dataType === DataType.currency ) {
+      return this.currencyPipe.transform(value, 'GBP', true, '1.2-2');
+    }
+    return value || '0';
   }
 }

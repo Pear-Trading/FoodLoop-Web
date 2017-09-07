@@ -5,6 +5,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import { CurrencyPipe } from '@angular/common';
+
 import { DashboardComponent } from './dashboard.component';
 import { DashboardCustomerComponent } from './dashboard-customer.component';
 import { AccountEditComponent } from './account-edit.component';
@@ -13,6 +15,7 @@ import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
 
 import { GraphWidget } from '../widgets/graph-widget.component';
+import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
 
 import { DashboardRoutingModule } from './dashboard.routing';
 import { OrgResultComponent } from '../shared/org-result.component';
@@ -41,6 +44,10 @@ import { TransactionResultComponent } from '../shared/transaction-result.compone
     TransactionResultComponent,
     FeedbackComponent,
     GraphWidget,
-  ]
+    OrgBarSnippetComponent,
+  ],
+  providers: [
+    CurrencyPipe
+  ],
 })
 export class DashboardModule { }
