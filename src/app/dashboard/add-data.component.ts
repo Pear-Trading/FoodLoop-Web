@@ -46,30 +46,30 @@ export class AddDataComponent {
 	private api: ApiService,
 	) {
     this.payrollForm = this.formBuilder.group({
-		entryperiod:         ['', [Validators.required]],
-		employeeamount:      ['', [Validators.required]],
-		localemployeeamount: ['', [Validators.required]],
-		grosspayroll:        ['', [Validators.required]],
-    payrollincometax:    ['', [Validators.required]],
-    payrollemployeeni:   ['', [Validators.required]],
-    payrollemployerni:   ['', [Validators.required]],
-    payrolltotalpension: ['', [Validators.required]],
-    payrollotherbenefit: ['', [Validators.required]],
+		entry_period:         ['', [Validators.required]],
+		employee_amount:      ['', [Validators.required]],
+		local_employee_amount: ['', [Validators.required]],
+		gross_payroll:        ['', [Validators.required]],
+    payroll_income_tax:    ['', [Validators.required]],
+    payroll_employee_ni:   ['', [Validators.required]],
+    payroll_employer_ni:   ['', [Validators.required]],
+    payroll_total_pension: ['', [Validators.required]],
+    payroll_other_benefit: ['', [Validators.required]],
 	  });
     this.singleSupplierForm = this.formBuilder.group({
-    entryperiod:          ['', [Validators.required]],
-    supplierbusinessname: ['', [Validators.required]],
+    entry_period:          ['', [Validators.required]],
+    supplier_business_name: ['', [Validators.required]],
     postcode:             ['', [Validators.required]],
-    monthlyspend:         ['', [Validators.required]],
+    monthly_spend:         ['', [Validators.required]],
 	  });
     this.employeeForm = this.formBuilder.group({
-    entryperiod:          ['', [Validators.required]],
-    employeeno:           ['', [Validators.required]],
-    employeeincometax:    ['', [Validators.required]],
-    employeegrosswage:    ['', [Validators.required]],
-    employeeni:           ['', [Validators.required]],
-    employeepension:      ['', [Validators.required]],
-    employeeotherbenefit: ['', [Validators.required]],
+    entry_period:          ['', [Validators.required]],
+    employee_no:           ['', [Validators.required]],
+    employee_income_tax:    ['', [Validators.required]],
+    employee_gross_wage:    ['', [Validators.required]],
+    employee_ni:           ['', [Validators.required]],
+    employee_pension:      ['', [Validators.required]],
+    employee_other_benefit: ['', [Validators.required]],
 	  });
     this.myDate = moment().format('YYYY-MM-DD[T]HH:mm');
     // this.myDate = new Date().toISOString().slice(0, 16);
