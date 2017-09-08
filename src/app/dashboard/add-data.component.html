@@ -87,14 +87,14 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Total amount of Employees</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total amount of Employees</strong></label>
               <div class="col-md-9">
                 <input type="number" class="form-control" formControlName="employeeamount" placeholder="0">
                 <span class="help-block">Enter the amount of employees the organisation has for the entry month.</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Total amount of local Employees</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total amount of local Employees</strong></label>
               <div class="col-md-9">
                 <input type="number" class="form-control" formControlName="localemployeeamount" placeholder="0">
                 <span class="help-block">Enter the amount of employees that live locally to the organisation for the entry month.</span>
@@ -111,7 +111,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Total Income Tax</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total Income Tax</strong></label>
               <div class="col-md-9">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
@@ -121,7 +121,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Employees Total NI</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Employees Total NI</strong></label>
               <div class="col-md-9">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
@@ -131,7 +131,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Employers Total NI</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Employers Total NI</strong></label>
               <div class="col-md-9">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
@@ -141,7 +141,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Total Pensions</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total Pensions</strong></label>
               <div class="col-md-9">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
@@ -151,7 +151,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Total Other Benefits</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total Other Benefits</strong></label>
               <div class="col-md-9">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
@@ -181,7 +181,7 @@
       <div *ngIf="accountType == 'organisation'" class="card">
         <div class="card-header">
           <strong>Individual Supplier Data</strong>
-          <small>Optional but recommended.</small>
+          <small>Required Data marked in <strong>bold</strong>.</small>
         </div>
         <form class="form-horizontal" [formGroup]="singleSupplierForm" (ngSubmit)="onSubmitSingleSupplier()">
           <div class="card-block">
@@ -193,21 +193,21 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Supplier Business Name</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Supplier Business Name</strong></label>
               <div class="col-md-9">
                 <input type="text" class="form-control" formControlName="supplierbusinessname">
                 <span class="help-block">Enter the business name of the supplier.</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Postcode</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Postcode</strong></label>
               <div class="col-md-9">
                 <input type="text" class="form-control" formControlName="postcode">
                 <span class="help-block">Enter the postcode where the supplier is located.</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Monthly Spend</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Monthly Spend</strong></label>
               <div class="col-md-9">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
@@ -237,7 +237,7 @@
       <div *ngIf="accountType == 'organisation'" class="card">
         <div class="card-header">
           <strong>Individual Employee Data</strong>
-          <small>Optional but recommended.</small>
+          <small>Required Data marked in <strong>bold</strong>.</small>
         </div>
         <form class="form-horizontal" [formGroup]="employeeForm" (ngSubmit)="onSubmitEmployee()">
           <div class="card-block">
@@ -249,14 +249,14 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Employee number</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Employee number</strong></label>
               <div class="col-md-9">
                 <input type="number" class="form-control" formControlName="employeeno" placeholder="0">
                 <span class="help-block">Used to identify employee anonymously</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Gross Wage</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Gross Wage</strong></label>
               <div class="col-md-9">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
@@ -266,7 +266,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Total Income Tax</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total Income Tax</strong></label>
               <div class="col-md-9">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
@@ -276,7 +276,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Total Employee NI</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total Employee NI</strong></label>
               <div class="col-md-9">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
@@ -286,7 +286,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Employee's Pension</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Employee's Pension</strong></label>
               <div class="col-md-9">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
@@ -296,7 +296,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input">Total Employee Other Benefits</label>
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Total Employee Other Benefits</strong></label>
               <div class="col-md-9">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
