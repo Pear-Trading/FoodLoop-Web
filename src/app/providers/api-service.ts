@@ -55,21 +55,23 @@ export class ApiService {
   }
 
   public login(data) {
-    const login_event = this.http.post(
-      this.apiUrl + '/login',
-      data
-    ).map( response => response.json() );
-    login_event.subscribe(
-      result => {
-      this.setSessionKey(result.session_key);
-      this.setUserInfo(
-        result.email,
-        result.display_name || result.name
+    return this.http
+      .post(
+        this.apiUrl + '/login',
+        data
+      )
+      .map(
+        result => {
+          const json = result.json();
+          this.setSessionKey(json.session_key);
+          this.setUserInfo(
+          json.email,
+          json.display_name || json.name
         );
-      this.setUserType(result.user_type);
-      }
-    );
-    return login_event;
+        this.setUserType(json.user_type);
+        return json;
+        }
+      );
   }
 
   public logout() {
