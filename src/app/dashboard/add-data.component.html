@@ -72,7 +72,7 @@
           <button type="submit" (click)="postTransaction()" [disabled]="transactionFormInvalid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
         </div>
       </div>
-      <div *ngIf="accountType == 'organisation'" class="card">
+      <div *ngIf="false" class="card">
         <div class="card-header">
           <strong>Profile & Payroll Data</strong>
           <small>Required Data marked in <strong>bold</strong>.</small>
@@ -178,63 +178,7 @@
           </div>
         </form>
       </div>
-      <div *ngIf="accountType == 'organisation'" class="card">
-        <div class="card-header">
-          <strong>Individual Supplier Data</strong>
-          <small>Required Data marked in <strong>bold</strong>.</small>
-        </div>
-        <form class="form-horizontal" [formGroup]="singleSupplierForm" (ngSubmit)="onSubmitSingleSupplier()">
-          <div class="card-block">
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Period of entry month</strong></label>
-              <div class="col-md-9">
-                <input type="month" class="form-control" formControlName="entry_period">
-                <span class="help-block">Enter the month and year for this information.</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Supplier Business Name</strong></label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" formControlName="supplier_business_name">
-                <span class="help-block">Enter the business name of the supplier.</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Postcode</strong></label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" formControlName="postcode">
-                <span class="help-block">Enter the postcode where the supplier is located.</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Monthly Spend</strong></label>
-              <div class="col-md-9">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
-                  <input type="number" min="0.00" step="0.01" class="form-control" formControlName="monthly_spend" placeholder="0.00">
-                </div>
-                <span class="help-block">Enter the monthly spend paid towards the supplier.</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-9">
-                <div [ngSwitch]="singleSupplierFormStatus">
-                  <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
-                    Submit Succeeded.
-                  </div>
-                  <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
-                    Error received, please try again.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <button type="submit" [disabled]="!singleSupplierForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
-          </div>
-         </form>
-      </div>
-      <div *ngIf="accountType == 'organisation'" class="card">
+      <div *ngIf="false" class="card">
         <div class="card-header">
           <strong>Individual Employee Data</strong>
           <small>Required Data marked in <strong>bold</strong>.</small>
