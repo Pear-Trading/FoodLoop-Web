@@ -7,7 +7,6 @@ import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: 'login.component.html',
-  providers: [ApiService]
 })
 export class LoginComponent implements OnInit {
   signin: FormGroup;
@@ -38,10 +37,6 @@ export class LoginComponent implements OnInit {
       }
     );
 
-    this.api.graph_data(undefined).subscribe(
-      result => { console.log(result) }
-    )
-
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
@@ -54,17 +49,15 @@ export class LoginComponent implements OnInit {
     .subscribe(
       result => {
         console.log('logged in!');
-        this.loginStatus = "success";
+        this.loginStatus = 'success';
         console.log(this.loginStatus);
         this.router.navigate([this.returnUrl]);
       },
       error => {
         console.log( error._body );
-        this.loginStatus = "send_failed";
+        this.loginStatus = 'send_failed';
         console.log(this.loginStatus);
       }
     );
   }
-
-
 }

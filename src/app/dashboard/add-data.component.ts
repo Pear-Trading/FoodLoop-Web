@@ -8,7 +8,6 @@ import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: 'add-data.component.html',
-  providers: [ApiService]
 })
 export class AddDataComponent {
   payrollForm: FormGroup;
