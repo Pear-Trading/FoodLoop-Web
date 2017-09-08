@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './full-layout.component.html',
-  providers: [ApiService]
 })
 export class FullLayoutComponent implements OnInit {
   displayName: any;

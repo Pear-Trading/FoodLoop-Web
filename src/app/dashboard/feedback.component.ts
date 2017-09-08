@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: 'feedback.component.html',
-  providers: [ApiService]
 })
 export class FeedbackComponent {
   feedbackForm: FormGroup;

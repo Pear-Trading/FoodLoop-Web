@@ -7,7 +7,6 @@ import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: 'login.component.html',
-  providers: [ApiService]
 })
 export class LoginComponent implements OnInit {
   signin: FormGroup;

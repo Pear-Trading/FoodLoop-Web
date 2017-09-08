@@ -11,7 +11,6 @@ import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: 'transaction-log.component.html',
-  providers: [ApiService]
 })
 export class TransactionLogComponent {
 

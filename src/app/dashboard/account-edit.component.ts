@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: 'account-edit.component.html',
-  providers: [ApiService]
 })
 export class AccountEditComponent implements OnInit {
   settingForm: FormGroup;

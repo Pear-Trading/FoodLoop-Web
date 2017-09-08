@@ -8,7 +8,6 @@ import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: 'register.component.html',
-  providers: [ApiService]
 })
 
 export class RegisterComponent {

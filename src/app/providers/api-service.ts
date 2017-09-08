@@ -19,9 +19,7 @@ export class ApiService {
   }
 
   public post(url: string, data: any = {}) {
-    if ( this.sessionKey != null ) {
-      data.session_key = this.sessionKey;
-    }
+    data.session_key = this.sessionKey;
     return this.http.post(
       this.apiUrl + url,
       data
@@ -77,12 +75,18 @@ export class ApiService {
   public logout() {
     console.log(this.sessionKey);
     const key = this.sessionKey;
-    return this.http.post(
-      this.apiUrl + '/logout',
-      {
-      session_key : key,
-    }
-    ).map( response => { this.removeSessionKey(); return response.json(); } );
+    return this.http
+      .post(
+        this.apiUrl + '/logout',
+        { session_key : key },
+      )
+      .map(
+        response => {
+          localStorage.clear();
+          this.sessionKey = null;
+          return response.json();
+        }
+      );
   }
 
   // Submits feedback
