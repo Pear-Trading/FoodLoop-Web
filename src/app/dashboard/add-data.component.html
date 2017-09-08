@@ -69,7 +69,7 @@
           </div>
         </div>
         <div class="card-footer">
-          <button type="submit" (click)="postTransaction()" [disabled]="TransactionFormInvalid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          <button type="submit" (click)="postTransaction()" [disabled]="transactionFormInvalid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
         </div>
       </div>
       <div *ngIf="accountType == 'organisation'" class="card">
