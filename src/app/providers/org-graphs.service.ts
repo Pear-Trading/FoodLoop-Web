@@ -7,7 +7,8 @@ export class OrgGraphsService {
 
   constructor(private api: ApiService) { }
 
-  public getGraph(name: string) {
-    return this.api.post(this.orgGraphUrl, { graph: name });
+  public getGraph(name: string, data: any = {}) {
+    data.graph = name;
+    return this.api.post(this.orgGraphUrl, data);
   }
 }
