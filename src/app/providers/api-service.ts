@@ -130,6 +130,32 @@ export class ApiService {
     ).map( response => response.json() )
   }
 
+  // handles Org data added
+
+  public orgPayroll(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post(
+      this.apiUrl + '/org/payroll',
+      data
+    ).map( response => response.json() )
+  }
+
+  public orgSupplier(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post(
+      this.apiUrl + '/org/supplier',
+      data
+    ).map( response => response.json() )
+  }
+
+  public orgEmployee(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post(
+      this.apiUrl + '/org/employee',
+      data
+    ).map( response => response.json() )
+  }
+
   // Handles user data interaction
 
   // Checks for login status

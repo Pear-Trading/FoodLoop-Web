@@ -158,7 +158,7 @@ export class AddDataComponent {
   }
 
   transactionFormValidate() {
-    if( this.submitOrg.name.length == 0 ||
+    if( this.submitOrg.name.length == 0 &&
         this.amount == 0 ) {
           this.transactionFormInvalid = true;
         }else{
@@ -252,7 +252,7 @@ export class AddDataComponent {
 	 console.log(this.payrollForm.value);
 
 	this.api
-      .login(this.payrollForm.value)
+      .orgPayroll(this.payrollForm.value)
       .subscribe(
         result => {
           console.log('data submitted!');
@@ -271,7 +271,7 @@ export class AddDataComponent {
 	 console.log(this.singleSupplierForm.value);
 
 	this.api
-      .login(this.singleSupplierForm.value)
+      .orgSupplier(this.singleSupplierForm.value)
       .subscribe(
         result => {
           console.log('data submitted!');
@@ -290,7 +290,7 @@ export class AddDataComponent {
 	 console.log(this.employeeForm.value);
 
 	this.api
-      .login(this.employeeForm.value)
+      .orgEmployee(this.employeeForm.value)
       .subscribe(
         result => {
           console.log('data submitted!');
