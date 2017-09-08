@@ -55,12 +55,6 @@ export class AddDataComponent {
     payroll_total_pension: ['', [Validators.required]],
     payroll_other_benefit: ['', [Validators.required]],
 	  });
-    this.singleSupplierForm = this.formBuilder.group({
-    entry_period:          ['', [Validators.required]],
-    supplier_business_name: ['', [Validators.required]],
-    postcode:             ['', [Validators.required]],
-    monthly_spend:         ['', [Validators.required]],
-	  });
     this.employeeForm = this.formBuilder.group({
     entry_period:          ['', [Validators.required]],
     employee_no:           ['', [Validators.required]],
