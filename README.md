@@ -3,6 +3,7 @@
 This is the repository for the LocalLoop web interface, for traders and
 customers to see and submit data to the service.
 
+| Branch | Status |
 | --- | --- |
 | *Master:* | [![Build Status](https://travis-ci.org/Pear-Trading/Foodloop-Web.svg?branch=master)](https://travis-ci.org/Pear-Trading/Foodloop-Web) |
 | *Development:* | [![Build Status](https://travis-ci.org/Pear-Trading/Foodloop-Web.svg?branch=development)](https://travis-ci.org/Pear-Trading/Foodloop-Web) |
