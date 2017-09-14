@@ -5,8 +5,8 @@ customers to see and submit data to the service.
 
 | Branch | Status |
 | --- | --- |
-| *Master:* | [![Build Status](https://travis-ci.org/Pear-Trading/Foodloop-Web.svg?branch=master)](https://travis-ci.org/Pear-Trading/Foodloop-Web) |
-| *Development:* | [![Build Status](https://travis-ci.org/Pear-Trading/Foodloop-Web.svg?branch=development)](https://travis-ci.org/Pear-Trading/Foodloop-Web) |
+| *Master:* | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=master)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
+| *Development:* | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=development)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
 
 ## Getting Started
 
