@@ -1,0 +1,29 @@
+  <div class="card">
+    <div class="card-block">
+      <div class="row">
+        <div class="col-sm-5">
+          <h4 class="card-title mb-0">Customers</h4>
+        </div><!--/.col-->
+        <div class="col-sm-7 hidden-sm-down">
+          <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
+              <label class="btn btn-outline-secondary active">
+                <input type="radio" name="options" id="option2" checked> Week
+              </label>
+            </div>
+          </div>
+        </div><!--/.col-->
+      </div><!--/.row-->
+      <div class="chart-wrapper" style="height:300px;margin-top:40px;">
+        <canvas baseChart class="chart"
+        [datasets]="chartData"
+        [labels]="chartLabels"
+        [options]="mainChartOptions"
+        [colors]="mainChartColours"
+        [legend]="chartLegend"
+        [chartType]="chartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+  </div>

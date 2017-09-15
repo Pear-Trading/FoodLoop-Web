@@ -1,0 +1,19 @@
+<div class="form-group row">
+  <label class="col-md-3 form-control-label" for="text-input"><strong>Organisation Search Results</strong></label>
+  <div class="col-md-9">
+    <span class="help-block"><strong>Select an Organisation from the table below</strong></span>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Organisation Name</th>
+          <th>Street Name</th>
+          <th>Town</th>
+          <th>Postcode</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr org-result *ngFor="let org of orgList" [org]="org" (onClick)="orgClick($event)"></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -17,6 +17,33 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# dependencies
+/node_modules
+/bower_components
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+*.launch
+.settings/
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# local env variable
+/src/environments/environment.local.ts
+
 # =========================
 # Operating System Files
 # =========================
