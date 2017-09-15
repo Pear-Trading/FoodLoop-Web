@@ -35,6 +35,15 @@ npm install
 The app defaults to using the development server. For other options, see
 `src/environments/environments.ts`
 
+## Licences
+
+### CoreUI
+
+The interface itself is based off of [CoreUI][core-ui] which is MIT Licenced.
+For information, see [MIT Licence](./LICENCE.MIT) included in this repo.
+
+[core-ui]: http://coreui.io
+
 # Old README
 
 This is the old README with some minor tips on getting started, and more reading.
