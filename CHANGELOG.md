@@ -3,6 +3,7 @@
 # Next Release
 
 * Fixed register box view on login page
+* Made the form reset properly if adding a new one
 
 # v0.0.1
 
