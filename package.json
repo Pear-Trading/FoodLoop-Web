@@ -1,11 +1,10 @@
 {
-  "name": "coreui-angular",
-  "version": "1.0.0-alpha.5",
-  "description": "Open Source Bootstrap Admin Template",
+  "name": "localloop-web",
+  "version": "0.0.1",
+  "description": "LocalLoop Web - Web interface for LocalLoop app",
   "author": "",
-  "url": "http://coreui.io",
-  "copyright": "Copyright 2017 creativeLabs Łukasz Holeczek",
-  "license": "MIT",
+  "url": "http://www.peartrade.org",
+  "copyright": "Copyright 2017 Pear Trading Ltd",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
