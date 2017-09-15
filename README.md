@@ -3,6 +3,11 @@
 This is the repository for the LocalLoop web interface, for traders and
 customers to see and submit data to the service.
 
+| Branch | Status |
+| --- | --- |
+| *Master:* | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=master)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
+| *Development:* | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=development)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
+
 ## Getting Started
 
 To get started with development, you will need an up to date version of
@@ -29,6 +34,15 @@ npm install
 
 The app defaults to using the development server. For other options, see
 `src/environments/environments.ts`
+
+## Licences
+
+### CoreUI
+
+The interface itself is based off of [CoreUI][core-ui] which is MIT Licenced.
+For information, see [MIT Licence](./LICENCE.MIT) included in this repo.
+
+[core-ui]: http://coreui.io
 
 # Old README
 
