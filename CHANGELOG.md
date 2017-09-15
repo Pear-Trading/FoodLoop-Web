@@ -2,6 +2,8 @@
 
 # Next Release
 
+* Fixed register box view on login page
+
 # v0.0.1
 
 * Added Travis Testing
