@@ -151,7 +151,8 @@ export class AddDataComponent {
   }
 
   transactionFormValidate() {
-    if( this.submitOrg.name.length == 0 &&
+    if( this.submitOrg.name.length == 0 ||
+        this.submitOrg.town.length == 0 ||
         this.amount == 0 ) {
           this.transactionFormInvalid = true;
         }else{
