@@ -6,7 +6,7 @@
           <div class="card-block p-4">
 		    <h1>Register</h1>
             <p class="text-muted">Create your account</p>
-			
+
 			<!-- <div class="input-group mb-3">
 				<span class="input-group-addon"><i class="icon-people"></i></span>
                 <select required class="form-control" type="text" formControlName="usertype">
@@ -25,7 +25,7 @@
         <span class="input-group-addon">@</span>
         <input type="text" class="form-control" formControlName="email" placeholder="Email">
       </div>
-			
+
 			<div class="input-group mb-3">
         <span class="input-group-addon"><i class="icon-lock"></i></span>
         <input type="password" class="form-control" formControlName="password" placeholder="Password">
@@ -35,7 +35,7 @@
         <span class="input-group-addon"><i class="icon-lock"></i></span>
         <input type="password" class="form-control" formControlName="confirmpassword" placeholder="Repeat password">
       </div>
-			
+
 			<div class="input-group mb-3">
 				<span class="input-group-addon"><i class="icon-people"></i></span>
           <select required class="form-control" type="text" formControlName="usertype">
@@ -45,7 +45,7 @@
           </select>
       </div>
 			</form>
-			
+
 			<div [ngSwitch]="signupForm.getForm().value.usertype">
 			<div *ngSwitchCase="'customer'" >
 			<form [formGroup]="customerForm.getForm()" (ngSubmit)="onSubmitCustomer()">
@@ -53,17 +53,17 @@
         <span class="input-group-addon"><i class="icon-user"></i></span>
         <input type="text" class="form-control" formControlName="display_name" placeholder="Display Name">
       </div>
-			
+
 			<div class="input-group mb-3">
         <span class="input-group-addon"><i class="icon-user"></i></span>
         <input type="text" class="form-control" formControlName="full_name" placeholder="Full Name">
       </div>
-			
+
 			<div class="input-group mb-3">
         <span class="input-group-addon"><i class="icon-user"></i></span>
         <input type="text" class="form-control" formControlName="postcode" placeholder="Postcode">
       </div>
-			
+
 			<div class="input-group mb-3">
 				<span class="input-group-addon">Year of Birth</span>
           <select class="form-control" type="text" formControlName="year_of_birth">
@@ -80,9 +80,9 @@
         <span class="input-group-addon"><i class="icon-user"></i></span>
         <input type="text" class="form-control" formControlName="name" placeholder="Organisation Name">
       </div>
-      
+
       <!-- Uses the UK SIC 2007 classifications for sector as used by ONS -->
-      
+
       <div class="input-group mb-3">
         <select required class="form-control" type="text" formControlName="sector">
           <option value=''>Select Organisation Sector</option>
@@ -108,17 +108,17 @@
           <option value='T'>Household Domestic Business</option>
         </select>
       </div>
-			
+
 			<div class="input-group mb-3">
         <span class="input-group-addon"><i class="icon-user"></i></span>
         <input type="text" class="form-control" formControlName="street_name" placeholder="Street Name">
       </div>
-			
+
 			<div class="input-group mb-3">
         <span class="input-group-addon"><i class="icon-user"></i></span>
         <input type="text" class="form-control" formControlName="town" placeholder="Town">
       </div>
- 
+
 			<div class="input-group mb-3">
         <span class="input-group-addon"><i class="icon-user"></i></span>
         <input type="text" class="form-control" formControlName="postcode" placeholder="Postcode">
@@ -137,7 +137,7 @@
           Form validation failed, please ensure the form is filled correctly.
         </div>
         <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
-          Failed to send to server, please try again later.
+          {{registerStatusError}}
         </div>
       </div>
 		  </div>

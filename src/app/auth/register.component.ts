@@ -16,7 +16,8 @@ export class RegisterComponent {
   organisationForm: ValidationManager;
   years: Object[];
   registerStatus: any;
-  
+  registerStatusError: string = 'Error received, please try again.';
+
   constructor(
 	private http: Http,
 	private formBuilder: FormBuilder,
@@ -51,9 +52,9 @@ export class RegisterComponent {
 		postcode:     'required',
 	  });
   }
-  
+
   onSubmitCustomer() {
-	  
+
     console.log(this.signupForm.isValid());
 	if (!this.signupForm.isValid() && !this.customerForm.isValid()) {
 		console.log("Not Valid!");
@@ -63,7 +64,7 @@ export class RegisterComponent {
 	}
     let signupForm = this.signupForm.getForm().value;
 	let customerForm = this.customerForm.getForm().value;
-	
+
 	let data = {
 		token:        signupForm.token,
 		usertype:     signupForm.usertype,
@@ -85,14 +86,23 @@ export class RegisterComponent {
 		  this.router.navigate(['/dashboard']);
         },
         error => {
-          console.log( error._body );
+          console.log('Register Error');
+          console.log(error);
+          try {
+            console.log(error.error);
+            let jsonError = error.json();
+            console.log("boop");
+            this.registerStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
+          } catch(e) {
+            this.registerStatusError = 'There was a server error, please try again later.';
+          }
           this.registerStatus = "send_failed";
-          console.log(this.registerStatus)
+          console.log(this.registerStatus);
         }
       );
   }
   onSubmitOrganisation() {
-	  
+
     console.log(this.signupForm.isValid());
 	if (!this.signupForm.isValid() || !this.organisationForm.isValid()) {
 		console.log("Not Valid!");
@@ -102,7 +112,7 @@ export class RegisterComponent {
 	}
     let signupForm = this.signupForm.getForm().value;
 	let organisationForm = this.organisationForm.getForm().value;
-	
+
 	let data = {
 		token:        signupForm.token,
 		usertype:     signupForm.usertype,
@@ -125,7 +135,16 @@ export class RegisterComponent {
         this.router.navigate(['/dashboard']);
         },
         error => {
-          console.log( error._body );
+          console.log('Register Error');
+          console.log(error);
+          try {
+            console.log(error.error);
+            let jsonError = error.json();
+            console.log("boop");
+            this.registerStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
+          } catch(e) {
+            this.registerStatusError = 'There was a server error, please try again later.';
+          }
           this.registerStatus = "send_failed";
           console.log(this.registerStatus);
         }

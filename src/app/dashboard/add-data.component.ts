@@ -239,6 +239,7 @@ export class AddDataComponent {
     this.storeList = null;
     this.amount = null;
     this.transactionFormInvalid = true;
+    this.showAddStore = false;
   }
 
   onSubmitPayroll() {
