@@ -13,6 +13,7 @@ import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
+import { PayrollLogComponent } from './payroll-log.component';
 
 import { GraphWidget } from '../widgets/graph-widget.component';
 import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
@@ -22,6 +23,7 @@ import { DashboardRoutingModule } from './dashboard.routing';
 import { OrgResultComponent } from '../shared/org-result.component';
 import { OrgTableComponent } from '../shared/org-table.component';
 import { TransactionResultComponent } from '../shared/transaction-result.component';
+import { PayrollResultComponent } from '../shared/payroll-result.component';
 
 @NgModule({
   imports: [
@@ -43,6 +45,8 @@ import { TransactionResultComponent } from '../shared/transaction-result.compone
     OrgTableComponent,
     TransactionLogComponent,
     TransactionResultComponent,
+    PayrollLogComponent,
+    PayrollResultComponent,
     FeedbackComponent,
     GraphWidget,
     OrgBarSnippetComponent,

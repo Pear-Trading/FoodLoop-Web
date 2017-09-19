@@ -12,6 +12,7 @@ import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
+import { PayrollLogComponent } from './payroll-log.component';
 
 // Using child path to allow for FullLayout theming
 const routes: Routes = [
@@ -47,6 +48,12 @@ const routes: Routes = [
         path: 'transaction-log',
         component: TransactionLogComponent,
         data: { title: 'Transaction Log' },
+      },
+      {
+        path: 'payroll-log',
+        component: PayrollLogComponent,
+        data: { title: 'Payroll Log' },
+        canActivate: [OrgGuard],
       },
       {
         path: 'feedback',

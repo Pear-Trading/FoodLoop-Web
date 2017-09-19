@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class FullLayoutComponent implements OnInit {
   public displayName: string;
+  public accountType: any;
   public disabled = false;
   public status: {isopen: boolean} = {isopen: false};
 
@@ -29,6 +30,7 @@ export class FullLayoutComponent implements OnInit {
   // getDisplayName function from api didnt work
   ngOnInit(): void {
     this.displayName = localStorage.getItem('displayname') || 'User';
+    this.accountType = localStorage.getItem('usertype');
   }
 
   userLogout() {

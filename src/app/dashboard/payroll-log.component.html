@@ -10,13 +10,13 @@
           <table class="table table-striped table-hover">
             <thead>
               <tr>
-                <th>Seller</th>
-                <th>Value</th>
-                <th>Purchase Time</th>
+                <th>Entry Period</th>
+                <th>Gross Payroll</th>
+                <th>Employees</th>
               </tr>
             </thead>
             <tbody>
-              <tr transaction-result *ngFor="let payroll of payrollList | paginate: paginateConfig" [payroll]="payroll"></tr>
+              <tr payroll-result *ngFor="let payroll of payrollList | paginate: paginateConfig" [payroll]="payroll"></tr>
             </tbody>
           </table>
           <pagination-template #p="paginationApi"

@@ -2,6 +2,7 @@
 
 # Next Release
 
+* Payroll Log Data added
 * Fixed register box view on login page
 * Made the form reset properly if adding a new one
 * Added better error messages on register and account edit
