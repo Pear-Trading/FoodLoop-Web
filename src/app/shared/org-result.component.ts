@@ -9,6 +9,7 @@ interface OrgData {
 }
 
 @Component({
+  // tslint:disable-next-line
   selector: '[org-result]',
   templateUrl: 'org-result.component.html',
 })
@@ -19,6 +20,6 @@ export class OrgResultComponent {
   public orgClick(): void {
     this.onClick.emit(
       this.org
-    )
+    );
   }
 }
