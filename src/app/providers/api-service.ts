@@ -136,12 +136,25 @@ export class ApiService {
     ).map( response => response.json() );
   }
 
+  // gets payroll list for log
+
+  public payrollList(data) {
+    const key = this.sessionKey;
+    return this.http.post(
+    this.apiUrl + '/v1/organisation/payroll',
+    {
+      session_key : key,
+      page : data
+    }
+    ).map( response => response.json() );
+  }
+
   // handles Org data added
 
   public orgPayroll(data) {
     data.session_key = this.sessionKey;
     return this.http.post(
-      this.apiUrl + '/org/payroll',
+      this.apiUrl + '/v1/organisation/payroll/add',
       data
     ).map( response => response.json() );
   }
@@ -149,7 +162,7 @@ export class ApiService {
   public orgSupplier(data) {
     data.session_key = this.sessionKey;
     return this.http.post(
-      this.apiUrl + '/org/supplier',
+      this.apiUrl + '/v1/organisation/supplier/add',
       data
     ).map( response => response.json() );
   }
@@ -157,7 +170,7 @@ export class ApiService {
   public orgEmployee(data) {
     data.session_key = this.sessionKey;
     return this.http.post(
-      this.apiUrl + '/org/employee',
+      this.apiUrl + '/v1/organisation/employee/add',
       data
     ).map( response => response.json() );
   }

@@ -45,6 +45,11 @@
             <i class="icon-basket"></i> Transaction Log
           </a>
         </li>
+        <li  *ngIf="accountType == 'organisation'" class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/payroll-log']">
+            <i class="icon-basket"></i> Payroll Log
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
