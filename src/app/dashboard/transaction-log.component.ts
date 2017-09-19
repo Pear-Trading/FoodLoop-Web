@@ -12,12 +12,13 @@ import 'rxjs/add/operator/map';
 @Component({
   templateUrl: 'transaction-log.component.html',
 })
-export class TransactionLogComponent {
+export class TransactionLogComponent implements OnInit {
 
   transactionList;
   noTransactionList = true;
   myDate: any;
   minDate: any;
+  public p: any;
 
   public paginateConfig: PaginationInstance = {
         id: 'transpaginate',
@@ -28,8 +29,8 @@ export class TransactionLogComponent {
 
   constructor(
   private http: Http,
-	private api: ApiService,
-	) {
+  private api: ApiService,
+  ) {
     this.myDate = moment().format('YYYY-MM-DD[T]HH:mm');
     // this.myDate = new Date().toISOString().slice(0, 16);
   }
@@ -39,13 +40,13 @@ export class TransactionLogComponent {
     this.loadTransactions(1);
   }
 
-  getMinDate(){
+  getMinDate() {
     // gets the April 1st date of the current year
-    let aprilDate = moment().month(3).date(1);
-    let now = moment();
+    const aprilDate = moment().month(3).date(1);
+    const now = moment();
     // Checks if current time is before April 1st, if so returns true
-    let beforeApril = now.isBefore(aprilDate);
-    if ( beforeApril == true ) {
+    const beforeApril = now.isBefore(aprilDate);
+    if ( beforeApril === true ) {
       this.minDate = aprilDate.subtract(2, 'years').format('YYYY-MM-DD');
     } else {
       this.minDate = aprilDate.subtract(1, 'years').format('YYYY-MM-DD');
@@ -56,9 +57,9 @@ export class TransactionLogComponent {
     console.log(logPage);
     this.api.transList(logPage).subscribe(
       result => {
-        if(result.transactions.length > 0) {
+        if (result.transactions.length > 0) {
           this.transactionList = result.transactions;
-          //TODO Rename in server
+          // TODO Rename in server
           this.paginateConfig.totalItems = result.page_no;
           this.paginateConfig.currentPage = logPage;
           this.noTransactionList = false;
