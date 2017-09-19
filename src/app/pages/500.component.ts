@@ -7,11 +7,10 @@ import { Location } from '@angular/common';
 export class P500Component {
 
   constructor(
-	private location: Location
- ) {
-	 }
+    private location: Location,
+  ) { }
 
-	 goBack(): void {
-  this.location.back();
-} 
+  goBack(): void {
+    this.location.back();
+  }
 }

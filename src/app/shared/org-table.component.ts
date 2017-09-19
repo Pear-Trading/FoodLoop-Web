@@ -10,6 +10,7 @@ interface OrgData {
 }
 
 @Component({
+  // tslint:disable-next-line
   selector: 'org-table',
   templateUrl: 'org-table.component.html',
 })
