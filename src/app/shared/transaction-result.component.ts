@@ -8,6 +8,7 @@ interface TransactionData {
 }
 
 @Component({
+  // tslint:disable-next-line
   selector: '[transaction-result]',
   templateUrl: 'transaction-result.component.html',
 })
