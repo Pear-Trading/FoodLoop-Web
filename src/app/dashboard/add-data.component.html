@@ -72,7 +72,7 @@
           <button type="submit" (click)="postTransaction()" [disabled]="transactionFormInvalid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
         </div>
       </div>
-      <div *ngIf="false" class="card">
+      <div  *ngIf="accountType == 'organisation'" class="card">
         <div class="card-header">
           <strong>Profile & Payroll Data</strong>
           <small>Required Data marked in <strong>bold</strong>.</small>
