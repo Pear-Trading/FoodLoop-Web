@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 export class MapComponent implements OnInit {
 
   lat: number = 54.0466;
-  lng: number = 2.8007;
+  lng: number = -2.8007;
 
   constructor(
     private http: Http,
