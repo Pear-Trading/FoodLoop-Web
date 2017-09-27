@@ -22,7 +22,16 @@
               [zoom]="zoom"
               [scaleControl]="true"
               (idle)="viewBoundsChanged($event)">
-              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+              <agm-marker
+                  *ngFor="let m of markers"
+                  [latitude]="m.lat"
+                  [longitude]="m.lng"
+                  [label]="m.label">
+
+                <agm-info-window>
+                  <strong>{{m.label}}</strong>
+                </agm-info-window>
+              </agm-marker>
             </agm-map>
           </div>
         </div>

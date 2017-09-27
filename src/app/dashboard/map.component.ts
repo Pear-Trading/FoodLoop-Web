@@ -15,6 +15,25 @@ export class MapComponent implements OnInit {
 
   dataReceived: string = 'yes';
 
+  markers = [
+	  {
+		  lat: 54.0466,
+		  lng: -2.8007,
+		  label: 'A',
+
+	  },
+	  {
+      lat: 54.0453,
+		  lng: -2.83,
+		  label: 'B'
+	  },
+	  {
+      lat: 54.0563,
+		  lng: -2.8279,
+		  label: 'C'
+	  }
+  ]
+
   map: any;
 
   constructor(
