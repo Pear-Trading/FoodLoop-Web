@@ -11,6 +11,7 @@ export class MapComponent implements OnInit {
 
   lat: number = 54.0466;
   lng: number = -2.8007;
+  zoom: number = 12;
 
   constructor(
     private http: Http,
