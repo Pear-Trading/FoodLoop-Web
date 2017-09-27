@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 
 import { CurrencyPipe } from '@angular/common';
 
@@ -62,7 +62,8 @@ import { environment } from '../../environments/environment';
     GraphPanel,
   ],
   providers: [
-    CurrencyPipe
+    CurrencyPipe,
+    GoogleMapsAPIWrapper,
   ],
 })
 export class DashboardModule { }

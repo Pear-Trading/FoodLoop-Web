@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import { AgmCoreModule } from '@agm/core';
@@ -13,13 +13,47 @@ export class MapComponent implements OnInit {
   lng: number = -2.8007;
   zoom: number = 12;
 
+  dataReceived: string = 'yes';
+
+  map: any;
+
   constructor(
     private http: Http,
     private api: ApiService,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
+  public onMapReady(map: any) {
+    this.map = map;
   }
+
+  public viewBoundsChanged() {
+    console.log("finding bounds");
+    const resp = this.map.getBounds();
+    console.log("found bounds");
+    console.log(resp.getNorthEast().lat());
+    console.log(resp.getNorthEast().lng());
+    console.log(resp.getSouthWest().lat());
+    console.log(resp.getSouthWest().lng());
+    const mapData = {
+      north_east_lat: resp.getNorthEast().lat(),
+      north_east_lng: resp.getNorthEast().lng(),
+      south_west_lat: resp.getSouthWest().lat(),
+      south_west_lng: resp.getSouthWest().lng()
+    };
+    this.api.getMapData(mapData).subscribe(
+      result => {
+        this.dataReceived = 'yes';
+      },
+      error => {
+        // this.dataReceived = 'no';
+        console.log('Retrieval Error');
+        console.log( error._body );
+      }
+    );
+  }
+
+
 
 }
