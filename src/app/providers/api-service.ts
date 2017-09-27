@@ -268,7 +268,7 @@ export class ApiService {
   public getMapData(data) {
     data.session_key = this.sessionKey;
     return this.http.post(
-    this.apiUrl + '/map',
+    this.apiUrl + '/v1/suppliers/location',
     data
     ).map( response => response.json() );
   }

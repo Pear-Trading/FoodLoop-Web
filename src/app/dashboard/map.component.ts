@@ -15,24 +15,7 @@ export class MapComponent implements OnInit {
 
   dataReceived: string = 'yes';
 
-  markers = [
-	  {
-		  lat: 54.0466,
-		  lng: -2.8007,
-		  label: 'A',
-
-	  },
-	  {
-      lat: 54.0453,
-		  lng: -2.83,
-		  label: 'B'
-	  },
-	  {
-      lat: 54.0563,
-		  lng: -2.8279,
-		  label: 'C'
-	  }
-  ]
+  markers: Array<{latitude: number, longitude: number, name: string}>;
 
   map: any;
 
@@ -56,14 +39,19 @@ export class MapComponent implements OnInit {
     console.log(resp.getSouthWest().lat());
     console.log(resp.getSouthWest().lng());
     const mapData = {
-      north_east_lat: resp.getNorthEast().lat(),
-      north_east_lng: resp.getNorthEast().lng(),
-      south_west_lat: resp.getSouthWest().lat(),
-      south_west_lng: resp.getSouthWest().lng()
-    };
+      north_east: {
+        latitude:  resp.getNorthEast().lat(),
+        longitude: resp.getNorthEast().lng()
+      },
+      south_west: {
+        latitude:  resp.getSouthWest().lat(),
+        longitude: resp.getSouthWest().lng()
+      },
+    }
     this.api.getMapData(mapData).subscribe(
       result => {
         this.dataReceived = 'yes';
+        this.markers = result.suppliers;
       },
       error => {
         // this.dataReceived = 'no';
