@@ -45,6 +45,7 @@ testem.log
 /src/environments/environment.local.ts
 /src/environments/environment.prod.ts
 /src/environments/environment.dev.ts
+/src/environments/environment.ci.ts
 
 # =========================
 # Operating System Files
