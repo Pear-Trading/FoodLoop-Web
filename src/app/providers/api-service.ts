@@ -264,6 +264,15 @@ export class ApiService {
     ).map( response => response.json() );
   }
 
+  // Initial Map Data
+  public getMapData(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post(
+    this.apiUrl + '/v1/supplier/location',
+    data
+    ).map( response => response.json() );
+  }
+
   // Basic Customer User stats API
   public basicStats() {
     const key = this.sessionKey;
