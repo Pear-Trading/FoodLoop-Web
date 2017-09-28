@@ -2,6 +2,10 @@
 
 # Next Release
 
+# v0.0.2
+
+* Supplier map added to organisation view
+* Fix various linter errors
 * Payroll Log Data added
 * Fixed register box view on login page
 * Made the form reset properly if adding a new one
