@@ -1,0 +1,23 @@
+#! /bin/bash
+
+VERSION=`git describe --tags`
+
+echo "Building releases for $VERSION"
+
+echo "Building Prod Release..."
+
+ng build --prod
+
+tar -czf ../LocalLoop-Web-prod-$VERSION.tar.gz dist
+
+echo "Building Dev Release..."
+
+ng build --dev
+
+tar -cvzf ../LocalLoop-Web-dev-$VERSION.tar.gz dist
+
+echo "Cleaning up build artefacts..."
+
+rm -rf dist
+
+echo "Done"

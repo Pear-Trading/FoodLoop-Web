@@ -1,0 +1,41 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Supplier Map</strong>
+          <small>Required Data marked in <strong>bold</strong>.</small>
+        </div>
+        <div [ngSwitch]="dataReceived">
+          <div *ngSwitchCase="'no'"class="card-block">
+            <div class="alert alert-danger" role="alert">
+              No map data received, check your connection.
+            </div>
+          </div>
+          <div *ngSwitchCase="'yes'">
+            <!-- this creates a google map on the page with the given lat/lng from -->
+            <!-- the component as the initial center of the map: -->
+            <agm-map
+            (mapReady)="onMapReady($event)"
+              [latitude]="lat"
+              [longitude]="lng"
+              [zoom]="zoom"
+              [scaleControl]="true"
+              (idle)="viewBoundsChanged($event)">
+              <agm-marker
+                  *ngFor="let m of markers"
+                  [latitude]="m.latitude"
+                  [longitude]="m.longitude"
+                  [label]="m.name[0]">
+
+                <agm-info-window>
+                  <strong>{{m.name}}</strong>
+                </agm-info-window>
+              </agm-marker>
+            </agm-map>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!--/.row-->
+</div>

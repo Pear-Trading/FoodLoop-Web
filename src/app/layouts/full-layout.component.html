@@ -40,9 +40,19 @@
             <i class="icon-envelope-letter"></i> Enter Feedback
           </a>
         </li>
+        <li  *ngIf="accountType == 'organisation'" class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/map']">
+            <i class="icon-map"></i> Supplier Map
+          </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/transaction-log']">
             <i class="icon-basket"></i> Transaction Log
+          </a>
+        </li>
+        <li  *ngIf="accountType == 'organisation'" class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/payroll-log']">
+            <i class="icon-basket"></i> Payroll Log
           </a>
         </li>
       </ul>

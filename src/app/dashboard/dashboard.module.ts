@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 
 import { CurrencyPipe } from '@angular/common';
 
@@ -13,6 +14,8 @@ import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
+import { PayrollLogComponent } from './payroll-log.component';
+import { MapComponent } from './map.component';
 
 import { GraphWidget } from '../widgets/graph-widget.component';
 import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
@@ -22,6 +25,10 @@ import { DashboardRoutingModule } from './dashboard.routing';
 import { OrgResultComponent } from '../shared/org-result.component';
 import { OrgTableComponent } from '../shared/org-table.component';
 import { TransactionResultComponent } from '../shared/transaction-result.component';
+import { PayrollResultComponent } from '../shared/payroll-result.component';
+
+// API key env variable import
+import { environment } from '../../environments/environment';
 
 @NgModule({
   imports: [
@@ -30,6 +37,9 @@ import { TransactionResultComponent } from '../shared/transaction-result.compone
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.mapApiKey
+    }),
     BsDropdownModule,
     NgxPaginationModule,
     DashboardRoutingModule,
@@ -43,13 +53,17 @@ import { TransactionResultComponent } from '../shared/transaction-result.compone
     OrgTableComponent,
     TransactionLogComponent,
     TransactionResultComponent,
+    PayrollLogComponent,
+    PayrollResultComponent,
+    MapComponent,
     FeedbackComponent,
     GraphWidget,
     OrgBarSnippetComponent,
     GraphPanel,
   ],
   providers: [
-    CurrencyPipe
+    CurrencyPipe,
+    GoogleMapsAPIWrapper,
   ],
 })
 export class DashboardModule { }

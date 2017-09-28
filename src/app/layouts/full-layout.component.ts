@@ -7,15 +7,15 @@ import { Router } from '@angular/router';
   templateUrl: './full-layout.component.html',
 })
 export class FullLayoutComponent implements OnInit {
-  displayName: any;
+  public displayName: string;
+  public accountType: any;
+  public disabled = false;
+  public status: {isopen: boolean} = {isopen: false};
 
   constructor(
     private api: ApiService,
     private router: Router,
   ) {}
-
-  public disabled = false;
-  public status: {isopen: boolean} = {isopen: false};
 
   public toggled(open: boolean): void {
     console.log('Dropdown is now: ', open);
@@ -30,6 +30,7 @@ export class FullLayoutComponent implements OnInit {
   // getDisplayName function from api didnt work
   ngOnInit(): void {
     this.displayName = localStorage.getItem('displayname') || 'User';
+    this.accountType = localStorage.getItem('usertype');
   }
 
   userLogout() {

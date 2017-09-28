@@ -3,11 +3,12 @@ import * as moment from 'moment';
 
 interface TransactionData {
   seller: number;
-  value: string;
+  value: number;
   purchase_time: string;
 }
 
 @Component({
+  // tslint:disable-next-line
   selector: '[transaction-result]',
   templateUrl: 'transaction-result.component.html',
 })

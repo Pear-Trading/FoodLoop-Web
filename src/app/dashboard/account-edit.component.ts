@@ -14,6 +14,7 @@ export class AccountEditComponent implements OnInit {
   accountType: any;
   // @ViewChild('fileInput') fileInput;
   submitStatus: any;
+  submitStatusError = 'Error received, please try again.';
 
   constructor(
   private http: Http,
@@ -71,7 +72,7 @@ export class AccountEditComponent implements OnInit {
   console.log(this.settingForm.valid);
   if (!this.settingForm.valid && !this.settingOrganisationForm.valid) {
     console.log('Not Valid!');
-    this.submitStatus = "validation_failed";
+    this.submitStatus = 'validation_failed';
     console.log(this.submitStatus);
     return;
   }
@@ -107,12 +108,21 @@ export class AccountEditComponent implements OnInit {
     .subscribe(
       result => {
         console.log('data submitted!');
-        this.submitStatus = "success";
+        this.submitStatus = 'success';
         console.log(this.submitStatus);
       },
       error => {
-        console.log( error._body );
-        this.submitStatus = "send_failed";
+        console.log('Edit Error');
+        console.log(error);
+        try {
+          console.log(error.error);
+          const jsonError = error.json();
+          console.log('boop');
+          this.submitStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
+        } catch (e) {
+          this.submitStatusError = 'There was a server error, please try again later.';
+        }
+        this.submitStatus = 'send_failed';
         console.log(this.submitStatus);
       }
     );
@@ -122,7 +132,7 @@ export class AccountEditComponent implements OnInit {
    console.log(this.settingForm.valid);
   if (!this.settingForm.valid && !this.settingCustomerForm.valid) {
     console.log('Not Valid!');
-    this.submitStatus = "validation_failed";
+    this.submitStatus = 'validation_failed';
     console.log(this.submitStatus);
     return;
   }
@@ -155,12 +165,21 @@ export class AccountEditComponent implements OnInit {
     .subscribe(
       result => {
         console.log('data submitted!');
-        this.submitStatus = "success";
+        this.submitStatus = 'success';
         console.log(this.submitStatus);
       },
       error => {
-        console.log( error._body );
-        this.submitStatus = "send_failed";
+        console.log('Edit Error');
+        console.log(error);
+        try {
+          console.log(error.error);
+          const jsonError = error.json();
+          console.log('boop');
+          this.submitStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
+        } catch (e) {
+          this.submitStatusError = 'There was a server error, please try again later.';
+        }
+        this.submitStatus = 'send_failed';
         console.log(this.submitStatus);
       }
     );

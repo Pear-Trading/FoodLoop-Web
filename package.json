@@ -1,6 +1,6 @@
 {
   "name": "localloop-web",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "LocalLoop Web - Web interface for LocalLoop app",
   "author": "",
   "url": "http://www.peartrade.org",
@@ -10,13 +10,15 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "test:once": "ng test --watch=false",
+    "test:ci": "ng test --watch=false --env=ci",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ci": "npm run test:once && npm run e2e"
+    "e2e:ci": "ng e2e --env=ci",
+    "ci": "npm run test:ci && npm run e2e:ci"
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.0.0-beta.1",
     "@angular/common": "4.0.3",
     "@angular/compiler": "4.0.3",
     "@angular/core": "4.0.3",

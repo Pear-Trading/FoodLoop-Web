@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 @Component({
   templateUrl: 'add-data.component.html',
 })
-export class AddDataComponent {
+export class AddDataComponent implements OnInit {
   payrollForm: FormGroup;
   singleSupplierForm: FormGroup;
   employeeForm: FormGroup;
@@ -18,7 +18,7 @@ export class AddDataComponent {
   singleSupplierFormStatus: any;
   employeeFormStatus: any;
   transactionFormStatus: any;
-  transactionFormStatusError: string = 'Error received, please try again.';
+  transactionFormStatusError = 'Error received, please try again.';
   accountType: any;
 
  submitOrg = {
@@ -41,20 +41,20 @@ export class AddDataComponent {
 
   constructor(
   private http: Http,
-	private formBuilder: FormBuilder,
-	private api: ApiService,
-	) {
+  private formBuilder: FormBuilder,
+  private api: ApiService,
+  ) {
     this.payrollForm = this.formBuilder.group({
-		entry_period:         ['', [Validators.required]],
-		employee_amount:      ['', [Validators.required]],
-		local_employee_amount: ['', [Validators.required]],
-		gross_payroll:        ['', [Validators.required]],
+    entry_period:         ['', [Validators.required]],
+    employee_amount:      ['', [Validators.required]],
+    local_employee_amount: ['', [Validators.required]],
+    gross_payroll:        ['', [Validators.required]],
     payroll_income_tax:    ['', [Validators.required]],
     payroll_employee_ni:   ['', [Validators.required]],
     payroll_employer_ni:   ['', [Validators.required]],
     payroll_total_pension: ['', [Validators.required]],
     payroll_other_benefit: ['', [Validators.required]],
-	  });
+    });
     this.employeeForm = this.formBuilder.group({
     entry_period:          ['', [Validators.required]],
     employee_no:           ['', [Validators.required]],
@@ -63,7 +63,7 @@ export class AddDataComponent {
     employee_ni:           ['', [Validators.required]],
     employee_pension:      ['', [Validators.required]],
     employee_other_benefit: ['', [Validators.required]],
-	  });
+    });
     this.myDate = moment().format('YYYY-MM-DD[T]HH:mm');
     // this.myDate = new Date().toISOString().slice(0, 16);
   }
@@ -73,13 +73,13 @@ export class AddDataComponent {
     this.accountType = localStorage.getItem('usertype');
   }
 
-  getMinDate(){
+  getMinDate() {
     // gets the April 1st date of the current year
-    let aprilDate = moment().month(3).date(1);
-    let now = moment();
+    const aprilDate = moment().month(3).date(1);
+    const now = moment();
     // Checks if current time is before April 1st, if so returns true
-    let beforeApril = now.isBefore(aprilDate);
-    if ( beforeApril == true ) {
+    const beforeApril = now.isBefore(aprilDate);
+    if ( beforeApril === true ) {
       this.minDate = aprilDate.subtract(2, 'years').format('YYYY-MM-DD');
     } else {
       this.minDate = aprilDate.subtract(1, 'years').format('YYYY-MM-DD');
@@ -88,16 +88,16 @@ export class AddDataComponent {
 
   initializeItems() {
     // Dont bother searching for an empty or undefined string
-    if ( this.submitOrg.name == '' ) {
+    if ( this.submitOrg.name === '' ) {
       return;
     }
-    var searchData = {
+    const searchData = {
       search_name: this.submitOrg.name,
     };
 
     this.api.search(searchData).subscribe(
       data => {
-        if(data.validated.length > 0) {
+        if (data.validated.length > 0) {
           this.storeList = data.validated;
           this.showAddStore = false;
           this.transactionAdditionType = 1;
@@ -107,7 +107,7 @@ export class AddDataComponent {
           this.transactionAdditionType = 2;
         }
         // handle the case when the storelist is empty
-        if(this.storeList.length < 1 ) {
+        if (this.storeList.length < 1) {
           this.storeList = null;
           this.showAddStore = true;
           this.transactionAdditionType = 3;
@@ -120,7 +120,7 @@ export class AddDataComponent {
   }
 
   // if user select a item from the list
-  addStore(store){
+  addStore(store) {
     this.submitOrg = store;
     this.transactionFormValidate();
     this.organisationId = store.id;
@@ -132,39 +132,40 @@ export class AddDataComponent {
     this.initializeItems();
 
     // set val to the value of the searchbar
-    let val = ev.target.value;
+    const val = ev.target.value;
 
     // Filter the store list so search seems quicker
-    if (val && val.trim() != '' && this.storeList != null) {
+    if (val && val.trim() !== '' && this.storeList !== null) {
       this.storeList = this.storeList.filter(
         (item) => {
           return ( item.name.toLowerCase().indexOf( val.toLowerCase() ) > -1 );
         }
-      )
+      );
     }
 
     // if nothing is found
-    if(!this.storeList === null){
+    if (!this.storeList === null) {
       // display add new store button
       this.showAddStore = true;
     }
   }
 
   transactionFormValidate() {
-    if( this.submitOrg.name.length == 0 &&
-        this.amount == 0 ) {
+    if (this.submitOrg.name.length === 0 ||
+        this.submitOrg.town.length === 0 ||
+        this.amount === 0 ) {
           this.transactionFormInvalid = true;
-        }else{
+        } else {
           this.transactionFormInvalid = false;
         }
   }
 
   public postTransaction() {
 
-    var myParams: any;
+    let myParams: any;
     let purchaseTime: string;
     purchaseTime = moment(this.myDate, 'YYYY-MM-DD[T]HH:mm').local().format('YYYY-MM-DD[T]HH:mm:ss.SSSZ');
-    switch(this.transactionAdditionType){
+    switch (this.transactionAdditionType) {
       case 1:
         myParams = {
           transaction_type  : this.transactionAdditionType,
@@ -199,16 +200,16 @@ export class AddDataComponent {
     .upload(myParams)
     .subscribe(
       result => {
-        if ( result.success == true ) {
+        if ( result.success === true ) {
           console.log('Successful Upload');
           console.log(result);
-          this.transactionFormStatus = "success";
+          this.transactionFormStatus = 'success';
           console.log(this.transactionFormStatus);
           this.resetForm();
         } else {
           console.log('Upload Error');
           this.transactionFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
-          this.transactionFormStatus = "send_failed";
+          this.transactionFormStatus = 'send_failed';
           console.log(this.transactionFormStatus);
         }
       },
@@ -217,13 +218,13 @@ export class AddDataComponent {
         console.log(error);
         try {
           console.log(error.error);
-          let jsonError = error.json();
-          console.log("boop");
+          const jsonError = error.json();
+          console.log('boop');
           this.transactionFormStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
-        } catch(e) {
+        } catch (e) {
           this.transactionFormStatusError = 'There was a server error, please try again later.';
         }
-        this.transactionFormStatus = "send_failed";
+        this.transactionFormStatus = 'send_failed';
         console.log(this.transactionFormStatus);
       }
     );
@@ -239,60 +240,61 @@ export class AddDataComponent {
     this.storeList = null;
     this.amount = null;
     this.transactionFormInvalid = true;
+    this.showAddStore = false;
   }
 
   onSubmitPayroll() {
-	 console.log(this.payrollForm.value);
+   console.log(this.payrollForm.value);
 
-	this.api
+  this.api
       .orgPayroll(this.payrollForm.value)
       .subscribe(
         result => {
           console.log('data submitted!');
-          this.payrollFormStatus = "success";
+          this.payrollFormStatus = 'success';
           console.log(this.payrollFormStatus);
         },
         error => {
           console.log( error._body );
-          this.payrollFormStatus = "send_failed";
+          this.payrollFormStatus = 'send_failed';
           console.log(this.payrollFormStatus);
         }
       );
   }
 
   onSubmitSingleSupplier() {
-	 console.log(this.singleSupplierForm.value);
+   console.log(this.singleSupplierForm.value);
 
-	this.api
+  this.api
       .orgSupplier(this.singleSupplierForm.value)
       .subscribe(
         result => {
           console.log('data submitted!');
-          this.singleSupplierFormStatus = "success";
+          this.singleSupplierFormStatus = 'success';
           console.log(this.singleSupplierFormStatus);
         },
         error => {
           console.log( error._body );
-          this.singleSupplierFormStatus = "send_failed";
+          this.singleSupplierFormStatus = 'send_failed';
           console.log(this.singleSupplierFormStatus);
         }
       );
   }
 
   onSubmitEmployee() {
-	 console.log(this.employeeForm.value);
+   console.log(this.employeeForm.value);
 
-	this.api
+  this.api
       .orgEmployee(this.employeeForm.value)
       .subscribe(
         result => {
           console.log('data submitted!');
-          this.employeeFormStatus = "success";
+          this.employeeFormStatus = 'success';
           console.log(this.employeeFormStatus);
         },
         error => {
           console.log( error._body );
-          this.employeeFormStatus = "send_failed";
+          this.employeeFormStatus = 'send_failed';
           console.log(this.employeeFormStatus);
         }
       );

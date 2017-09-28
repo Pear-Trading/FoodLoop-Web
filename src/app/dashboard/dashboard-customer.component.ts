@@ -15,7 +15,7 @@ export class DashboardCustomerComponent implements OnInit {
 
   /* Setting up dashboard's main variables*/
   name: any;
-  email:any;
+  email: any;
   myPearPoints: any;
   trends: any;
   myRank: any;

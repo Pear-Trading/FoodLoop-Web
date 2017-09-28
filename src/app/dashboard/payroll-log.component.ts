@@ -10,15 +10,14 @@ import * as moment from 'moment';
 import 'rxjs/add/operator/map';
 
 @Component({
-  templateUrl: 'transaction-log.component.html',
+  templateUrl: 'payroll-log.component.html',
 })
-export class TransactionLogComponent implements OnInit {
+export class PayrollLogComponent implements OnInit {
 
-  transactionList;
-  noTransactionList = true;
+  payrollList;
+  noPayrollList = true;
   myDate: any;
   minDate: any;
-  public p: any;
 
   public paginateConfig: PaginationInstance = {
         id: 'transpaginate',
@@ -29,44 +28,44 @@ export class TransactionLogComponent implements OnInit {
 
   constructor(
   private http: Http,
-  private api: ApiService,
-  ) {
+	private api: ApiService,
+	) {
     this.myDate = moment().format('YYYY-MM-DD[T]HH:mm');
     // this.myDate = new Date().toISOString().slice(0, 16);
   }
 
   ngOnInit(): void {
     this.getMinDate();
-    this.loadTransactions(1);
+    this.loadPayrolls(1);
   }
 
-  getMinDate() {
+  getMinDate(){
     // gets the April 1st date of the current year
-    const aprilDate = moment().month(3).date(1);
-    const now = moment();
+    let aprilDate = moment().month(3).date(1);
+    let now = moment();
     // Checks if current time is before April 1st, if so returns true
-    const beforeApril = now.isBefore(aprilDate);
-    if ( beforeApril === true ) {
+    let beforeApril = now.isBefore(aprilDate);
+    if ( beforeApril == true ) {
       this.minDate = aprilDate.subtract(2, 'years').format('YYYY-MM-DD');
     } else {
       this.minDate = aprilDate.subtract(1, 'years').format('YYYY-MM-DD');
     }
   }
 
-  loadTransactions(logPage: number) {
+  loadPayrolls(logPage: number) {
     console.log(logPage);
-    this.api.transList(logPage).subscribe(
+    this.api.payrollList(logPage).subscribe(
       result => {
-        if (result.transactions.length > 0) {
-          this.transactionList = result.transactions;
-          // TODO Rename in server
+        if(result.payrolls.length > 0) {
+          this.payrollList = result.payrolls;
+          //TODO Rename in server
           this.paginateConfig.totalItems = result.page_no;
           this.paginateConfig.currentPage = logPage;
-          this.noTransactionList = false;
+          this.noPayrollList = false;
         } else {
-        // handle the case when the transactionList is empty
-          this.transactionList = null;
-          this.noTransactionList = true;
+        // handle the case when the payrollList is empty
+          this.payrollList = null;
+          this.noPayrollList = true;
         }
       },
       error => {
