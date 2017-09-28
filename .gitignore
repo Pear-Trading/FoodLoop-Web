@@ -43,6 +43,8 @@ testem.log
 
 # local env variable
 /src/environments/environment.local.ts
+/src/environments/environment.prod.ts
+/src/environments/environment.dev.ts
 
 # =========================
 # Operating System Files
