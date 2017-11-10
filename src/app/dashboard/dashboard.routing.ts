@@ -38,12 +38,17 @@ const routes: Routes = [
       {
         path: 'account-edit',
         component: AccountEditComponent,
-        data: { title: 'Leaderboards' },
+        data: { title: 'Edit Account' },
       },
       {
         path: 'add-data',
         component: AddDataComponent,
         data: { title: 'Add Transaction' },
+      },
+      {
+        path: 'leaderboard',
+        component: LeaderboardComponent,
+        data: { title: 'Leaderboards' },
       },
       {
         path: 'transaction-log',

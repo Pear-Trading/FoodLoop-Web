@@ -15,6 +15,7 @@ import { AddDataComponent } from './add-data.component';
 import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
 import { PayrollLogComponent } from './payroll-log.component';
+import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
 
 import { GraphWidget } from '../widgets/graph-widget.component';
@@ -26,6 +27,7 @@ import { OrgResultComponent } from '../shared/org-result.component';
 import { OrgTableComponent } from '../shared/org-table.component';
 import { TransactionResultComponent } from '../shared/transaction-result.component';
 import { PayrollResultComponent } from '../shared/payroll-result.component';
+import { LeaderboardResultComponent } from '../shared/leaderboard-result.component';
 
 // API key env variable import
 import { environment } from '../../environments/environment';
@@ -55,6 +57,8 @@ import { environment } from '../../environments/environment';
     TransactionResultComponent,
     PayrollLogComponent,
     PayrollResultComponent,
+    LeaderboardComponent,
+    LeaderboardResultComponent,
     MapComponent,
     FeedbackComponent,
     GraphWidget,

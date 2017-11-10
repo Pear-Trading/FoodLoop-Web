@@ -253,13 +253,16 @@ export class ApiService {
 
   // Leaderboard Api
 
-  public leaderboard_fetch(data) {
+  public leaderboard_fetch(
+    type: string,
+    page: number) {
     const key = this.sessionKey;
     return this.http.post(
-      this.apiUrl + '/stats/leaderboard',
+      this.apiUrl + '/stats/leaderboard/paged',
       {
         session_key : key,
-        type : data
+        type : type,
+        page: page,
     }
     ).map( response => response.json() );
   }

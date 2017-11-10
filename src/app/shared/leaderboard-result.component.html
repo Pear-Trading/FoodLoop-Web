@@ -1,0 +1,3 @@
+<td>{{ item.position }}</td>
+<td class="text-truncate">{{ item.display_name }}</td>
+<td>{{ listType.includes('total') ? (item.value  | currency:'GBP':true:'1.2-2') : (item.value | number:'1.0-0') }}</td>
