@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 interface LeaderboardData {
-  seller: number;
+  position: number;
+  display_name: number,
   value: number;
-  purchase_time: string;
 }
 
 @Component({
@@ -12,7 +12,8 @@ interface LeaderboardData {
   templateUrl: 'leaderboard-result.component.html',
 })
 export class LeaderboardResultComponent implements OnInit {
-  @Input() public leaderboard: leaderboardData;
+  @Input() public leaderboard: LeaderboardData;
+  @Input() public listType: string;
 
   ngOnInit(): void {
   }

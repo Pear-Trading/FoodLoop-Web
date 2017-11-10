@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
 })
 export class LeaderboardComponent implements OnInit {
 
-  transactionList;
+  leaderboardList;
   noLeaderboardList = false;
   public p: any;
 
@@ -31,10 +31,7 @@ export class LeaderboardComponent implements OnInit {
   constructor(
   private http: Http,
   private api: ApiService,
-  ) {
-    this.myDate = moment().format('YYYY-MM-DD[T]HH:mm');
-    // this.myDate = new Date().toISOString().slice(0, 16);
-  }
+  ) { }
 
   ngOnInit(): void {
     this.loadLeaderboard(0);
@@ -51,22 +48,22 @@ export class LeaderboardComponent implements OnInit {
   // }
 
   public changeLeaderboard(event) {
-    this.loadLeaderboard();
+    this.loadLeaderboard(0);
   }
 
 
   loadLeaderboard(leadPage: number) {
-    console.log(leadPage, listType);
-    this.api.leaderboard_fetch(listType,leadPage).subscribe(
+    console.log(leadPage, this.listType);
+    this.api.leaderboard_fetch(this.listType,leadPage).subscribe(
       result => {
-        if (result.transactions.length > 0) {
-          this.transactionList = result.transactions;
+        if (result.leaderboard.length > 0) {
+          this.leaderboardList = result.leaderboard;
           // TODO Rename in server
-          this.paginateConfig.totalItems = result.page_no;
+          this.paginateConfig.totalItems = result.count;
           this.paginateConfig.currentPage = result.page;
           this.noLeaderboardList = false;
         } else {
-        // handle the case when the transactionList is empty
+        // handle the case when the leaderboardList is empty
           this.leaderboardList = null;
           this.noLeaderboardList = true;
         }

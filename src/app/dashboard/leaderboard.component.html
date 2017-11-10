@@ -7,15 +7,17 @@
           <small>By default this loads the page with your position.</small>
         </div>
         <div *ngIf="!noLeaderboardList" class="card-block">
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Choose Leaderboard type
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item">Action</a>
-              <a class="dropdown-item">Another action</a>
-              <a class="dropdown-item">Something else here</a>
-            </div>
+          <div class="input-group mb-3">
+            <select type="text" [(ngModel)]="listType" (ngModelChange)="changeLeaderboard($event)">
+              <option value="daily_total">Yesterday Total</option>
+              <option value="daily_count">Yesterday Count</option>
+              <option value="weekly_total" selected>Last Week Total</option>
+              <option value="weekly_count">Last Week Count</option>
+              <option value="monthly_total">Last Month Total</option>
+              <option value="monthly_count">Last Month Count</option>
+              <option value="all_time_total">All Time Total</option>
+              <option value="all_time_count">All Time Count</option>
+            </select>
           </div>
           <table class="table table-striped table-hover">
             <thead>
@@ -26,7 +28,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr transaction-result *ngFor="let leaderboard of leaderboardList | paginate: paginateConfig" [leaderboard]="leaderboard"></tr>
+              <tr leaderboard-result *ngFor="let leaderboard of leaderboardList | paginate: paginateConfig" [leaderboard]="leaderboard" [listType]="listType"></tr>
             </tbody>
           </table>
           <pagination-template #p="paginationApi"

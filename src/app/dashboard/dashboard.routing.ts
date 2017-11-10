@@ -13,6 +13,7 @@ import { AddDataComponent } from './add-data.component';
 import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
 import { PayrollLogComponent } from './payroll-log.component';
+import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
 
 // Using child path to allow for FullLayout theming
