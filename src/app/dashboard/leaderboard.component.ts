@@ -9,7 +9,7 @@ import {PaginationInstance} from 'ngx-pagination';
 import 'rxjs/add/operator/map';
 
 @Component({
-  templateUrl: 'leaderboard-log.component.html',
+  templateUrl: 'leaderboard.component.html',
 })
 export class LeaderboardComponent implements OnInit {
 
