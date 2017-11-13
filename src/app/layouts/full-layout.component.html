@@ -40,12 +40,12 @@
             <i class="icon-envelope-letter"></i> Enter Feedback
           </a>
         </li>
-        <li  *ngIf="accountType == 'customer'" class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/map']">
-            <i class="icon-map"></i> Supplier Map
+            <i class="icon-map"></i> Purchase Map
           </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="accountType == 'customer'" class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/leaderboard']">
             <i class="icon-basket"></i> Leaderboard
           </a>

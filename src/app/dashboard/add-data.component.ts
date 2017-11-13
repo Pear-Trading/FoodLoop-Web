@@ -237,7 +237,7 @@ export class AddDataComponent implements OnInit {
       town: '',
       postcode: '',
     };
-    this.storeList = null;
+    this.storeList = [];
     this.amount = null;
     this.transactionFormInvalid = true;
     this.showAddStore = false;
