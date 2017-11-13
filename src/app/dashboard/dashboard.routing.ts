@@ -50,6 +50,7 @@ const routes: Routes = [
         path: 'leaderboard',
         component: LeaderboardComponent,
         data: { title: 'Leaderboards' },
+        canActivate: [CustomerGuard],
       },
       {
         path: 'transaction-log',
@@ -59,8 +60,7 @@ const routes: Routes = [
       {
         path: 'map',
         component: MapComponent,
-        data: { title: 'Supplier Map' },
-        canActivate: [OrgGuard],
+        data: { title: 'Purchase Map' },
       },
       {
         path: 'payroll-log',
