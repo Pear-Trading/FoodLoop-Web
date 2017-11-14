@@ -19,6 +19,7 @@
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.1",
+    "@agm/js-marker-clusterer": "^1.0.0-beta.2",
     "@angular/common": "4.0.3",
     "@angular/compiler": "4.0.3",
     "@angular/core": "4.0.3",
@@ -32,6 +33,7 @@
     "angular-in-memory-web-api": "^0.3.1",
     "chart.js": "2.5.0",
     "core-js": "2.4.1",
+    "js-marker-clusterer": "^1.0.0",
     "moment": "^2.18.1",
     "ng2-charts": "1.6.0",
     "ng2-validation-manager": "^0.3.1",
