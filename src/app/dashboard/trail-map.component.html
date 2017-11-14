@@ -25,13 +25,17 @@
               <agm-marker-cluster maxZoom="13" imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
                 <agm-marker
                     *ngFor="let m of markers"
+                    [iconUrl]="'/assets/img/map-pin-lis.png'"
                     [latitude]="m.latitude"
-                    [longitude]="m.longitude"
-                    [label]="m.name[0]">
-
-                  <agm-info-window>
-                    <strong>{{m.name}}</strong>
-                  </agm-info-window>
+                    [longitude]="m.longitude">
+                  <agm-snazzy-info-window
+                  [maxWidth]="500"
+                  [closeWhenOthersOpen]="true">
+                    <ng-template>
+                      <h4><strong>{{m.name}}</strong></h4>
+                      <img src="assets/img/avatars/default.png" class="img-avatar" alt="avatar-image">
+                    </ng-template>
+                  </agm-snazzy-info-window>
                 </agm-marker>
               </agm-marker-cluster>
             </agm-map>

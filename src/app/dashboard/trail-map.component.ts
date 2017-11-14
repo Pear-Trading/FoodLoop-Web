@@ -5,7 +5,7 @@ import { AgmCoreModule } from '@agm/core';
 import 'rxjs/add/operator/map';
 
 @Component({
-  templateUrl: 'map.component.html',
+  templateUrl: 'trail-map.component.html',
 })
 export class TrailMapComponent implements OnInit {
 

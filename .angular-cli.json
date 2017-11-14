@@ -20,7 +20,8 @@
         "../node_modules/moment/min/moment.min.js"
       ],
       "styles": [
-        "scss/style.scss"
+        "scss/style.scss",
+        "../node_modules/snazzy-info-window/dist/snazzy-info-window.css"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
