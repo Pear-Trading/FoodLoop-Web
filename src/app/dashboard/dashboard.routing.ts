@@ -16,6 +16,7 @@ import { PayrollLogComponent } from './payroll-log.component';
 import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
 import { TrailMapComponent } from './trail-map.component';
+import { TrailMapComponent2 } from './trail-map-2.component';
 
 // Using child path to allow for FullLayout theming
 const routes: Routes = [
@@ -67,6 +68,11 @@ const routes: Routes = [
         path: 'story-trail',
         component: TrailMapComponent,
         data: { title: 'Story Trail' },
+      },
+      {
+        path: 'story-trail-2',
+        component: TrailMapComponent2,
+        data: { title: 'Story Trail 2' },
       },
       {
         path: 'payroll-log',
