@@ -2,19 +2,24 @@
 
 VERSION=`git describe --tags`
 
+if [ ! -d ../WebApp-Releases ]; then
+  echo "Making new Releases Directory"
+  mkdir ../WebApp-Releases
+fi
+
 echo "Building releases for $VERSION"
 
 echo "Building Prod Release..."
 
 ng build --prod
 
-tar -czf ../LocalLoop-Web-prod-$VERSION.tar.gz dist
+tar -czf ../WebApp-Releases/LocalLoop-Web-prod-$VERSION.tar.gz dist
 
 echo "Building Dev Release..."
 
 ng build --dev
 
-tar -cvzf ../LocalLoop-Web-dev-$VERSION.tar.gz dist
+tar -czf ../WebApp-Releases/LocalLoop-Web-dev-$VERSION.tar.gz dist
 
 echo "Cleaning up build artefacts..."
 
