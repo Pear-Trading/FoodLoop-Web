@@ -30,8 +30,8 @@ export class TrailMapComponent2 implements OnInit {
     this.map = map;
   }
 
-  public onMarkerClick() {
-    
+  public onMarkerClick(clickedMarker) {
+    console.log(clickedMarker);
   }
 
   public viewBoundsChanged() {
