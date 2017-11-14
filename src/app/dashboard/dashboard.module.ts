@@ -5,6 +5,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
 import { CurrencyPipe } from '@angular/common';
 
@@ -42,6 +43,7 @@ import { environment } from '../../environments/environment';
     AgmCoreModule.forRoot({
       apiKey: environment.mapApiKey
     }),
+    AgmJsMarkerClustererModule,
     BsDropdownModule,
     NgxPaginationModule,
     DashboardRoutingModule,
