@@ -2,6 +2,8 @@
 
 # Next Release
 
+# v0.0.3
+
 * Customer Leaderboards added
 * Map made available to Customers
 * Clustering added to Map
