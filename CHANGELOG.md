@@ -2,6 +2,17 @@
 
 # Next Release
 
+# v0.0.3
+
+* Customer Leaderboards added
+* Map made available to Customers
+* Clustering added to Map
+* Map renamed from "Supplier Map" to "Purchase Map" to fall in line with
+previous change
+* Added placeholder while password reset is not present
+* Fixed error on store list during a transaction
+
+
 # v0.0.2
 
 * Supplier map added to organisation view

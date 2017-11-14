@@ -1,0 +1,3 @@
+<td>{{ leaderboard.position }}</td>
+<td class="text-truncate">{{ leaderboard.display_name }}</td>
+<td>{{ listType.includes('total') ? (leaderboard.value | currency:'GBP':true:'1.2-2') : (leaderboard.value | number:'1.0-0') }}</td>

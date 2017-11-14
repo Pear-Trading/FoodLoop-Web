@@ -32,7 +32,7 @@ export class AddDataComponent implements OnInit {
   organisationPostcode: string;
   amount: number;
   transactionAdditionType = 1;
-  storeList;
+  storeList = [];
   showAddStore = false;
   submitReceipt = false;
   transactionFormInvalid = true;
@@ -108,7 +108,7 @@ export class AddDataComponent implements OnInit {
         }
         // handle the case when the storelist is empty
         if (this.storeList.length < 1) {
-          this.storeList = null;
+          this.storeList = [];
           this.showAddStore = true;
           this.transactionAdditionType = 3;
         }
@@ -135,7 +135,7 @@ export class AddDataComponent implements OnInit {
     const val = ev.target.value;
 
     // Filter the store list so search seems quicker
-    if (val && val.trim() !== '' && this.storeList !== null) {
+    if (val && val.trim() !== '' && this.storeList.length > 0) {
       this.storeList = this.storeList.filter(
         (item) => {
           return ( item.name.toLowerCase().indexOf( val.toLowerCase() ) > -1 );
@@ -237,7 +237,7 @@ export class AddDataComponent implements OnInit {
       town: '',
       postcode: '',
     };
-    this.storeList = null;
+    this.storeList = [];
     this.amount = null;
     this.transactionFormInvalid = true;
     this.showAddStore = false;

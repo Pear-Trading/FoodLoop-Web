@@ -31,7 +31,7 @@
               <span class="help-block">Enter the name of the organisation money was spent. Choose existing ones from below or if not found, enter the details below.</span>
             </div>
           </div>
-          <org-table *ngIf="storeList != null" [orgList]="storeList" (onClick)="addStore($event)"></org-table>
+          <org-table *ngIf="storeList.length > 0" [orgList]="storeList" (onClick)="addStore($event)"></org-table>
           <div *ngIf="showAddStore">
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="text-input"><strong>Organisation Street Name</strong></label>

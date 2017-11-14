@@ -10,7 +10,7 @@
                 <form [formGroup]="signin" (ngSubmit)="onSubmit()">
                   <div class="input-group mb-3">
                     <span class="input-group-addon">@</span>
-                    <input id="username" type="text" class="form-control" formControlName="email" placeholder="Email">
+                    <input id="username" type="email" class="form-control" formControlName="email" placeholder="Email">
                   </div>
                   <div class="input-group mb-4">
                     <span class="input-group-addon"><i class="icon-lock"></i></span>
@@ -31,8 +31,9 @@
                       <button type="submit" [disabled]="!signin.valid" class="btn btn-primary px-4">Login</button>
                     </div>
                     <div class="col-6 text-right">
-                      <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                      <button type="button" class="btn btn-link px-0" disabled>Forgot password?</button>
                     </div>
+                    <label class="col-12"><strong>Password reset is currently in development and disabled in testing, please contact an administrator to reset your password.</strong></label>
                   </div>
                 </form>
             </div>

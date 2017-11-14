@@ -12,9 +12,9 @@ describe('Login Page', () => {
     expect(page.getLoginHeaderText()).toEqual('Login');
   });
 
-  it('should have a username box of type text', () => {
+  it('should have a username box of type email', () => {
     expect(page.isUsernameFieldPresent()).toBeTruthy();
-    expect(page.getUsernameFieldType()).toBe('text');
+    expect(page.getUsernameFieldType()).toEqual('email');
   });
 
   it('should have a password box of type password', () => {
