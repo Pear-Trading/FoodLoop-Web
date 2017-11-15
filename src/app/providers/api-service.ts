@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-	import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/map';
@@ -23,7 +23,7 @@ export class ApiService {
     return this.http.post(
       this.apiUrl + url,
       data
-    ).map( response => response.json() );
+    );
   }
 
   // Login API
@@ -49,7 +49,7 @@ export class ApiService {
     return this.http.post(
       this.apiUrl + '/register',
       data
-    ).map( response => response.json() );
+    );
   }
 
   public login(data) {
@@ -100,7 +100,7 @@ export class ApiService {
       return this.http.post(
         this.apiUrl + '/feedback',
         data
-      ).map( response => response.json() );
+      );
   }
 
   // gets transaction list for log
@@ -113,7 +113,7 @@ export class ApiService {
       session_key : key,
       page : data
     }
-    ).map( response => response.json() );
+    );
   }
 
   // Searches organisations used for transaction submission
@@ -123,7 +123,7 @@ export class ApiService {
     return this.http.post(
     this.apiUrl + '/search',
     data
-    ).map( response => response.json() );
+    );
   }
 
   // Uploads a transaction
@@ -133,7 +133,7 @@ export class ApiService {
     return this.http.post(
       this.apiUrl + '/upload',
       data
-    ).map( response => response.json() );
+    );
   }
 
   // gets payroll list for log
@@ -146,7 +146,7 @@ export class ApiService {
       session_key : key,
       page : data
     }
-    ).map( response => response.json() );
+    );
   }
 
   // handles Org data added
@@ -156,7 +156,7 @@ export class ApiService {
     return this.http.post(
       this.apiUrl + '/v1/organisation/payroll/add',
       data
-    ).map( response => response.json() );
+    );
   }
 
   public orgSupplier(data) {
@@ -164,7 +164,7 @@ export class ApiService {
     return this.http.post(
       this.apiUrl + '/v1/organisation/supplier/add',
       data
-    ).map( response => response.json() );
+    );
   }
 
   public orgEmployee(data) {
@@ -172,7 +172,7 @@ export class ApiService {
     return this.http.post(
       this.apiUrl + '/v1/organisation/employee/add',
       data
-    ).map( response => response.json() );
+    );
   }
 
   // Handles user data interaction
@@ -207,7 +207,7 @@ export class ApiService {
     return this.http.post(
       this.apiUrl + '/user',
       { session_key : key },
-    ).map( response => response.json() );
+    );
   }
 
   public accountEditUpdate(data) {
@@ -215,7 +215,7 @@ export class ApiService {
     return this.http.post(
       this.apiUrl + '/user/account',
       data
-    ).map( response => response.json() );
+    );
   }
 
   // Deletes account details on logout
@@ -264,7 +264,7 @@ export class ApiService {
         type : type,
         page: page,
     }
-    ).map( response => response.json() );
+    );
   }
 
   // Initial Map Data
@@ -273,7 +273,7 @@ export class ApiService {
     return this.http.post(
     this.apiUrl + '/v1/supplier/location',
     data
-    ).map( response => response.json() );
+    );
   }
 
   // Basic Customer User stats API
@@ -284,6 +284,6 @@ export class ApiService {
       {
         session_key : key,
       }
-    ).map( response => response.json() );
+    );
   }
 }
