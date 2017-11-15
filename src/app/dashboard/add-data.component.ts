@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import { OrgTableComponent } from '../shared/org-table.component';
 import * as moment from 'moment';
@@ -40,7 +39,6 @@ export class AddDataComponent implements OnInit {
   minDate: any;
 
   constructor(
-  private http: Http,
   private formBuilder: FormBuilder,
   private api: ApiService,
   ) {

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import 'rxjs/add/operator/map';
 
@@ -17,7 +16,6 @@ export class AccountEditComponent implements OnInit {
   submitStatusError = 'Error received, please try again.';
 
   constructor(
-  private http: Http,
   private formBuilder: FormBuilder,
   private api: ApiService,
   ) {
