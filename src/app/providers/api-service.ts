@@ -20,7 +20,7 @@ export class ApiService {
 
   public post(url: string, data: any = {}) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + url,
       data
     );
@@ -46,7 +46,7 @@ export class ApiService {
   }
 
   public register(data) {
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/register',
       data
     );
@@ -54,13 +54,13 @@ export class ApiService {
 
   public login(data) {
     return this.http
-      .post(
+      .post<any>(
         this.apiUrl + '/login',
         data
       )
       .map(
         result => {
-          const json = result.json();
+          const json = result;
           this.setSessionKey(json.session_key);
           this.setUserInfo(
           json.email,
@@ -76,7 +76,7 @@ export class ApiService {
     console.log(this.sessionKey);
     const key = this.sessionKey;
     return this.http
-      .post(
+      .post<any>(
         this.apiUrl + '/logout',
         { session_key : key },
       )
@@ -84,7 +84,7 @@ export class ApiService {
         response => {
           localStorage.clear();
           this.sessionKey = null;
-          return response.json();
+          return response;
         }
       );
   }
@@ -97,7 +97,7 @@ export class ApiService {
     data.version_code = 'dev';
     data.version_number = 'dev';
       console.log(data);
-      return this.http.post(
+      return this.http.post<any>(
         this.apiUrl + '/feedback',
         data
       );
@@ -107,7 +107,7 @@ export class ApiService {
 
   public transList(data) {
     const key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
     this.apiUrl + '/outgoing-transactions',
     {
       session_key : key,
@@ -120,7 +120,7 @@ export class ApiService {
 
   public search(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
     this.apiUrl + '/search',
     data
     );
@@ -130,7 +130,7 @@ export class ApiService {
 
   public upload(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/upload',
       data
     );
@@ -140,7 +140,7 @@ export class ApiService {
 
   public payrollList(data) {
     const key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
     this.apiUrl + '/v1/organisation/payroll',
     {
       session_key : key,
@@ -153,7 +153,7 @@ export class ApiService {
 
   public orgPayroll(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/v1/organisation/payroll/add',
       data
     );
@@ -161,7 +161,7 @@ export class ApiService {
 
   public orgSupplier(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/v1/organisation/supplier/add',
       data
     );
@@ -169,7 +169,7 @@ export class ApiService {
 
   public orgEmployee(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/v1/organisation/employee/add',
       data
     );
@@ -204,7 +204,7 @@ export class ApiService {
 
   public accountFullLoad() {
     const key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/user',
       { session_key : key },
     );
@@ -212,7 +212,7 @@ export class ApiService {
 
   public accountEditUpdate(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/user/account',
       data
     );
@@ -257,7 +257,7 @@ export class ApiService {
     type: string,
     page: number) {
     const key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/stats/leaderboard/paged',
       {
         session_key : key,
@@ -270,7 +270,7 @@ export class ApiService {
   // Initial Map Data
   public getMapData(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
     this.apiUrl + '/v1/supplier/location',
     data
     );
@@ -279,7 +279,7 @@ export class ApiService {
   // Basic Customer User stats API
   public basicStats() {
     const key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/stats',
       {
         session_key : key,
