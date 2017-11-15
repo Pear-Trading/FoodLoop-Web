@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/map';
@@ -15,7 +14,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: Http,
     private formBuilder: FormBuilder,
     private router: Router,
     private api: ApiService

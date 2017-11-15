@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+	import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/map';
@@ -11,7 +11,7 @@ export class ApiService {
   private apiUrl = environment.apiUrl;
   private sessionKey: string = null;
   constructor(
-    private http: Http,
+    private http: HttpClient,
   ) {
     if (localStorage.getItem('sessionKey') ) {
       this.sessionKey = localStorage.getItem('sessionKey');

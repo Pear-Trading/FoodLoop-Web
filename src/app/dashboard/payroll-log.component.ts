@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 // import { PaginatePipe } from 'ngx-pagination';
 import {PaginationInstance} from 'ngx-pagination';
@@ -27,7 +26,6 @@ export class PayrollLogComponent implements OnInit {
     };
 
   constructor(
-  private http: Http,
 	private api: ApiService,
 	) {
     this.myDate = moment().format('YYYY-MM-DD[T]HH:mm');

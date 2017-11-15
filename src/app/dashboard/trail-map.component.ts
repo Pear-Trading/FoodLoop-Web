@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import { AgmCoreModule } from '@agm/core';
 import 'rxjs/add/operator/map';
@@ -20,7 +19,6 @@ export class TrailMapComponent implements OnInit {
   map: any;
 
   constructor(
-    private http: Http,
     private api: ApiService,
   ) { }
 
