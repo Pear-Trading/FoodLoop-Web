@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { ApiService } from '../providers/api-service';
 import { AgmCoreModule } from '@agm/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -11,6 +13,8 @@ export class TrailMapComponent2 implements OnInit {
   lat: number = 54.0466;
   lng: number = -2.8007;
   zoom: number = 12;
+  public modalRef: BsModalRef;
+  clickedMarker: any;
 
   dataReceived: string = 'yes';
 
@@ -20,7 +24,8 @@ export class TrailMapComponent2 implements OnInit {
 
   constructor(
     private api: ApiService,
-  ) { }
+    private modalService: BsModalService,
+  ) {}
 
   ngOnInit(): void { }
 
@@ -28,8 +33,14 @@ export class TrailMapComponent2 implements OnInit {
     this.map = map;
   }
 
-  public onMarkerClick(clickedMarker) {
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  public onMarkerClick(clickedMarker, template: TemplateRef<any>) {
     console.log(clickedMarker);
+    this.clickedMarker = clickedMarker;
+    this.openModal(template);
   }
 
   public viewBoundsChanged() {
