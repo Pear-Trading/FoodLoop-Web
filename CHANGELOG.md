@@ -2,6 +2,8 @@
 
 # Next Release
 
+* Lancaster Independent Story markers added
+
 # v0.0.3
 
 * Customer Leaderboards added
