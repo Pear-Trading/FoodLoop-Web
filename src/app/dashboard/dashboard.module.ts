@@ -21,7 +21,6 @@ import { PayrollLogComponent } from './payroll-log.component';
 import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
 import { TrailMapComponent } from './trail-map.component';
-import { TrailMapComponent2 } from './trail-map-2.component';
 
 import { GraphWidget } from '../widgets/graph-widget.component';
 import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
@@ -69,7 +68,6 @@ import { environment } from '../../environments/environment';
     LeaderboardResultComponent,
     MapComponent,
     TrailMapComponent,
-    TrailMapComponent2,
     FeedbackComponent,
     GraphWidget,
     OrgBarSnippetComponent,
