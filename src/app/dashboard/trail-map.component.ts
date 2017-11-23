@@ -1,6 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { ApiService } from '../providers/api-service';
 import { AgmCoreModule } from '@agm/core';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -11,6 +13,8 @@ export class TrailMapComponent implements OnInit {
   lat: number = 54.0466;
   lng: number = -2.8007;
   zoom: number = 12;
+  public modalRef: BsModalRef;
+  clickedMarker: any;
 
   dataReceived: string = 'yes';
 
@@ -20,12 +24,23 @@ export class TrailMapComponent implements OnInit {
 
   constructor(
     private api: ApiService,
-  ) { }
+    private modalService: BsModalService,
+  ) {}
 
   ngOnInit(): void { }
 
   public onMapReady(map: any) {
     this.map = map;
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  public onMarkerClick(clickedMarker, template: TemplateRef<any>) {
+    console.log(clickedMarker);
+    this.clickedMarker = clickedMarker;
+    this.openModal(template);
   }
 
   public viewBoundsChanged() {
@@ -46,13 +61,13 @@ export class TrailMapComponent implements OnInit {
         longitude: resp.getSouthWest().lng()
       },
     }
-    this.api.getMapData(mapData).subscribe(
+    this.api.getLisData(mapData).subscribe(
       result => {
         this.dataReceived = 'yes';
-        this.markers = result.suppliers;
+        this.markers = result.locations;
       },
       error => {
-        // this.dataReceived = 'no';
+        this.dataReceived = 'no';
         console.log('Retrieval Error');
         console.log( error._body );
       }

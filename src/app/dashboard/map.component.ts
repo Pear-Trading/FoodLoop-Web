@@ -52,7 +52,7 @@ export class MapComponent implements OnInit {
         this.markers = result.suppliers;
       },
       error => {
-        // this.dataReceived = 'no';
+        this.dataReceived = 'no';
         console.log('Retrieval Error');
         console.log( error._body );
       }

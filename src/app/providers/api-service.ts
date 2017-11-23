@@ -276,6 +276,15 @@ export class ApiService {
     );
   }
 
+  // Load LIS Data
+  public getLisData(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post<any>(
+    this.apiUrl + '/v1/supplier/location/lis',
+    data
+    );
+  }
+
   // Basic Customer User stats API
   public basicStats() {
     const key = this.sessionKey;

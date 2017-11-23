@@ -27,18 +27,26 @@
                     *ngFor="let m of markers"
                     [iconUrl]="'/assets/img/map-pin-lis.png'"
                     [latitude]="m.latitude"
-                    [longitude]="m.longitude">
-                  <agm-snazzy-info-window
-                  [maxWidth]="500"
-                  [closeWhenOthersOpen]="true">
-                    <ng-template>
-                      <h4><strong>{{m.name}}</strong></h4>
-                      <img src="assets/img/avatars/default.png" class="img-avatar" alt="avatar-image">
-                    </ng-template>
-                  </agm-snazzy-info-window>
+                    [longitude]="m.longitude"
+                    [openInfoWindow]="false"
+                    (markerClick)="onMarkerClick(m, template)">
                 </agm-marker>
               </agm-marker-cluster>
             </agm-map>
+            <ng-template #template>
+              <div class="modal-header d-flex justify-content-between">
+                <img src="assets/img/lis_logo.png" class="w-15" alt="lis logo"><h4 class="modal-title">{{clickedMarker.name}}</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-right">
+                <h5>Located at:</h5>
+                <h6>{{clickedMarker.street_name}}</h6>
+                <h6>{{clickedMarker.town}}</h6>
+                <h6>{{clickedMarker.postcode}}</h6>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>
