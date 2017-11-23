@@ -3,6 +3,8 @@
 # Next Release
 
 * Lancaster Independent Story markers added
+* Code dependencies updated
+* Angular code updated to Angular 5 and made fixes to account for it
 
 # v0.0.3
 
