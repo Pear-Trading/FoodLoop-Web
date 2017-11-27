@@ -6,7 +6,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
-import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { CurrencyPipe } from '@angular/common';
@@ -47,7 +46,6 @@ import { environment } from '../../environments/environment';
       apiKey: environment.mapApiKey
     }),
     AgmJsMarkerClustererModule,
-    AgmSnazzyInfoWindowModule,
     BsDropdownModule,
     NgxPaginationModule,
     DashboardRoutingModule,

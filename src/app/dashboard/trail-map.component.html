@@ -6,49 +6,67 @@
           <strong>Purchase Map</strong>
           <small>Required Data marked in <strong>bold</strong>.</small>
         </div>
-        <div [ngSwitch]="dataReceived">
-          <div *ngSwitchCase="'no'"class="card-block">
-            <div class="alert alert-danger" role="alert">
-              No map data received, check your connection.
-            </div>
-          </div>
-          <div *ngSwitchCase="'yes'">
-            <!-- this creates a google map on the page with the given lat/lng from -->
-            <!-- the component as the initial center of the map: -->
-            <agm-map
-            (mapReady)="onMapReady($event)"
-              [latitude]="lat"
-              [longitude]="lng"
-              [zoom]="zoom"
-              [scaleControl]="true"
-              (idle)="viewBoundsChanged($event)">
-              <agm-marker-cluster maxZoom="13" imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
-                <agm-marker
-                    *ngFor="let m of markers"
-                    [iconUrl]="'/assets/img/map-pin-lis.png'"
-                    [latitude]="m.latitude"
-                    [longitude]="m.longitude"
-                    [openInfoWindow]="false"
-                    (markerClick)="onMarkerClick(m, template)">
-                </agm-marker>
-              </agm-marker-cluster>
-            </agm-map>
-            <ng-template #template>
-              <div class="modal-header d-flex justify-content-between">
-                <img src="assets/img/lis_logo.png" class="w-15" alt="lis logo"><h4 class="modal-title">{{clickedMarker.name}}</h4>
-                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <div class="modal fade" bsModal #statusModal="bs-modal" [config]="{backdrop: false, animated: false}"
+             tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm h-100 d-flex flex-column justify-content-center my-0">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title pull-left">Status</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="statusModal.hide()">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body text-right">
-                <h5>Located at:</h5>
-                <h6>{{clickedMarker.street_name}}</h6>
-                <h6>{{clickedMarker.town}}</h6>
-                <h6>{{clickedMarker.postcode}}</h6>
+              <div class="modal-body">
+                <div [ngSwitch]="dataReceived">
+                  <div *ngSwitchCase="'no'">
+                    <div class="alert alert-danger" role="alert">
+                      No map data received, check your connection.
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'loading'">
+                    <div class="alert alert-warning" role="alert">
+                      Map loading, please wait.
+                    </div>
+                  </div>
+                </div>
               </div>
-            </ng-template>
+            </div>
           </div>
         </div>
+        <!-- this creates a google map on the page with the given lat/lng from -->
+        <!-- the component as the initial center of the map: -->
+        <agm-map
+        (mapReady)="onMapReady($event)"
+          [latitude]="lat"
+          [longitude]="lng"
+          [zoom]="zoom"
+          [scaleControl]="true"
+          (idle)="viewBoundsChanged($event)">
+          <agm-marker-cluster maxZoom="13" imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
+            <agm-marker
+                *ngFor="let m of markers"
+                [iconUrl]="'/assets/img/map-pin-lis.png'"
+                [latitude]="m.latitude"
+                [longitude]="m.longitude"
+                [openInfoWindow]="false"
+                (markerClick)="onMarkerClick(m, template)">
+            </agm-marker>
+          </agm-marker-cluster>
+        </agm-map>
+        <ng-template #template>
+          <div class="modal-header d-flex justify-content-between">
+            <img src="assets/img/lis_logo.png" class="w-15" alt="lis logo"><h4 class="modal-title">{{clickedMarker.name}}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-right">
+            <h5>Located at:</h5>
+            <h6>{{clickedMarker.street_name}}</h6>
+            <h6>{{clickedMarker.town}}</h6>
+            <h6>{{clickedMarker.postcode}}</h6>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div><!--/.row-->

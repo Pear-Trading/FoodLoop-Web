@@ -1,18 +1,22 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
 import { ApiService } from '../providers/api-service';
 import { AgmCoreModule } from '@agm/core';
+import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: 'map.component.html',
 })
-export class MapComponent implements OnInit {
-
+export class MapComponent implements OnInit, AfterViewInit {
+  @ViewChild('statusModal') myStatusModal: ModalDirective;
   lat: number = 54.0466;
   lng: number = -2.8007;
   zoom: number = 12;
+  public modalRef: BsModalRef;
+  clickedMarker: any;
 
-  dataReceived: string = 'yes';
+  dataReceived: string = 'loading';
 
   markers: Array<{latitude: number, longitude: number, name: string}>;
 
@@ -20,12 +24,27 @@ export class MapComponent implements OnInit {
 
   constructor(
     private api: ApiService,
+    private modalService: BsModalService,
   ) { }
 
   ngOnInit(): void { }
 
+  ngAfterViewInit() {
+    this.myStatusModal.show();
+  }
+
   public onMapReady(map: any) {
     this.map = map;
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  public onMarkerClick(clickedMarker, template: TemplateRef<any>) {
+    console.log(clickedMarker);
+    this.clickedMarker = clickedMarker;
+    this.openModal(template);
   }
 
   public viewBoundsChanged() {
@@ -48,7 +67,7 @@ export class MapComponent implements OnInit {
     }
     this.api.getMapData(mapData).subscribe(
       result => {
-        this.dataReceived = 'yes';
+        this.myStatusModal.hide();
         this.markers = result.suppliers;
       },
       error => {

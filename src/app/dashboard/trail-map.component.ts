@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
 import { ApiService } from '../providers/api-service';
 import { AgmCoreModule } from '@agm/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -8,15 +8,15 @@ import 'rxjs/add/operator/map';
 @Component({
   templateUrl: 'trail-map.component.html',
 })
-export class TrailMapComponent implements OnInit {
-
+export class TrailMapComponent implements OnInit, AfterViewInit {
+  @ViewChild('statusModal') myStatusModal: ModalDirective;
   lat: number = 54.0466;
   lng: number = -2.8007;
   zoom: number = 12;
   public modalRef: BsModalRef;
   clickedMarker: any;
 
-  dataReceived: string = 'yes';
+  dataReceived: string = 'loading';
 
   markers: Array<{latitude: number, longitude: number, name: string}>;
 
@@ -28,6 +28,10 @@ export class TrailMapComponent implements OnInit {
   ) {}
 
   ngOnInit(): void { }
+
+  ngAfterViewInit() {
+    this.myStatusModal.show();
+  }
 
   public onMapReady(map: any) {
     this.map = map;
@@ -63,7 +67,7 @@ export class TrailMapComponent implements OnInit {
     }
     this.api.getLisData(mapData).subscribe(
       result => {
-        this.dataReceived = 'yes';
+        this.myStatusModal.hide();
         this.markers = result.locations;
       },
       error => {
