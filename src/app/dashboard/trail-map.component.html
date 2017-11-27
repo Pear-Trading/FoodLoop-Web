@@ -35,7 +35,8 @@
         </div>
         <!-- this creates a google map on the page with the given lat/lng from -->
         <!-- the component as the initial center of the map: -->
-        <agm-map (mapReady)="onMapReady($event)"
+        <agm-map
+        (mapReady)="onMapReady($event)"
           [latitude]="lat"
           [longitude]="lng"
           [zoom]="zoom"
@@ -44,9 +45,9 @@
           <agm-marker-cluster maxZoom="13" imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
             <agm-marker
                 *ngFor="let m of markers"
+                [iconUrl]="'/assets/img/map-pin-lis.png'"
                 [latitude]="m.latitude"
                 [longitude]="m.longitude"
-                [label]="m.name[0]"
                 [openInfoWindow]="false"
                 (markerClick)="onMarkerClick(m, template)">
             </agm-marker>
