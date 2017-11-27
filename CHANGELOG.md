@@ -2,6 +2,12 @@
 
 # Next Release
 
+* Info window on map replaced with modals
+* Loading modals added to maps
+* Lancaster Independent Story markers added
+* Code dependencies updated
+* Angular code updated to Angular 5 and made fixes to account for it
+
 # v0.0.3
 
 * Customer Leaderboards added
