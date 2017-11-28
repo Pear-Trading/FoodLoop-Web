@@ -35,7 +35,8 @@
         </div>
         <!-- this creates a google map on the page with the given lat/lng from -->
         <!-- the component as the initial center of the map: -->
-        <agm-map (mapReady)="onMapReady($event)"
+        <agm-map
+        (mapReady)="onMapReady($event)"
           [latitude]="lat"
           [longitude]="lng"
           [zoom]="zoom"
@@ -44,9 +45,9 @@
           <agm-marker-cluster maxZoom="13" imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
             <agm-marker
                 *ngFor="let m of markers"
+                [iconUrl]="'/assets/img/map-pin-lis.png'"
                 [latitude]="m.latitude"
                 [longitude]="m.longitude"
-                [label]="m.name[0]"
                 [openInfoWindow]="false"
                 (markerClick)="onMarkerClick(m, template)">
             </agm-marker>
@@ -54,7 +55,7 @@
         </agm-map>
         <ng-template #template>
           <div class="modal-header d-flex justify-content-between">
-            <img src="assets/img/logo.png" class="w-15" alt="lis logo"><h4 class="modal-title">{{clickedMarker.name}}</h4>
+            <img src="assets/img/lis_logo.png" class="w-15" alt="lis logo"><h4 class="modal-title">{{clickedMarker.name}}</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
               <span aria-hidden="true">&times;</span>
             </button>
