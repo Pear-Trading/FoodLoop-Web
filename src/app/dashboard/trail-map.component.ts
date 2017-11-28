@@ -6,9 +6,9 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import 'rxjs/add/operator/map';
 
 @Component({
-  templateUrl: 'map.component.html',
+  templateUrl: 'trail-map.component.html',
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class TrailMapComponent implements OnInit, AfterViewInit {
   @ViewChild('statusModal') myStatusModal: ModalDirective;
   lat: number = 54.0466;
   lng: number = -2.8007;
@@ -25,7 +25,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   constructor(
     private api: ApiService,
     private modalService: BsModalService,
-  ) { }
+  ) {}
 
   ngOnInit(): void { }
 
@@ -65,10 +65,10 @@ export class MapComponent implements OnInit, AfterViewInit {
         longitude: resp.getSouthWest().lng()
       },
     }
-    this.api.getMapData(mapData).subscribe(
+    this.api.getLisData(mapData).subscribe(
       result => {
         this.myStatusModal.hide();
-        this.markers = result.suppliers;
+        this.markers = result.locations;
       },
       error => {
         this.dataReceived = 'no';

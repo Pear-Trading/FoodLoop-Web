@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ValidationManager } from 'ng2-validation-manager';
-import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import {Router } from '@angular/router';
 import 'rxjs/add/operator/map';
@@ -19,7 +18,6 @@ export class RegisterComponent {
   registerStatusError = 'Error received, please try again.';
 
   constructor(
-  private http: Http,
   private formBuilder: FormBuilder,
   private router: Router,
   private api: ApiService,

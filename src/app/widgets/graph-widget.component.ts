@@ -137,7 +137,7 @@ export class GraphWidget implements OnInit {
   private tooltipLabelCallback(tooltipItem: any, data: any) {
     const value = tooltipItem.yLabel;
     if ( this.dataType === DataType.currency ) {
-      return this.currencyPipe.transform(value, 'GBP', true, '1.2-2');
+      return this.currencyPipe.transform(value, 'GBP', 'symbol', '1.2-2');
     }
     return value || '0';
   }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import 'rxjs/add/operator/map';
@@ -11,7 +11,7 @@ export class ApiService {
   private apiUrl = environment.apiUrl;
   private sessionKey: string = null;
   constructor(
-    private http: Http,
+    private http: HttpClient,
   ) {
     if (localStorage.getItem('sessionKey') ) {
       this.sessionKey = localStorage.getItem('sessionKey');
@@ -20,10 +20,10 @@ export class ApiService {
 
   public post(url: string, data: any = {}) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + url,
       data
-    ).map( response => response.json() );
+    );
   }
 
   // Login API
@@ -46,21 +46,21 @@ export class ApiService {
   }
 
   public register(data) {
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/register',
       data
-    ).map( response => response.json() );
+    );
   }
 
   public login(data) {
     return this.http
-      .post(
+      .post<any>(
         this.apiUrl + '/login',
         data
       )
       .map(
         result => {
-          const json = result.json();
+          const json = result;
           this.setSessionKey(json.session_key);
           this.setUserInfo(
           json.email,
@@ -76,7 +76,7 @@ export class ApiService {
     console.log(this.sessionKey);
     const key = this.sessionKey;
     return this.http
-      .post(
+      .post<any>(
         this.apiUrl + '/logout',
         { session_key : key },
       )
@@ -84,7 +84,7 @@ export class ApiService {
         response => {
           localStorage.clear();
           this.sessionKey = null;
-          return response.json();
+          return response;
         }
       );
   }
@@ -97,82 +97,82 @@ export class ApiService {
     data.version_code = 'dev';
     data.version_number = 'dev';
       console.log(data);
-      return this.http.post(
+      return this.http.post<any>(
         this.apiUrl + '/feedback',
         data
-      ).map( response => response.json() );
+      );
   }
 
   // gets transaction list for log
 
   public transList(data) {
     const key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
     this.apiUrl + '/outgoing-transactions',
     {
       session_key : key,
       page : data
     }
-    ).map( response => response.json() );
+    );
   }
 
   // Searches organisations used for transaction submission
 
   public search(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
     this.apiUrl + '/search',
     data
-    ).map( response => response.json() );
+    );
   }
 
   // Uploads a transaction
 
   public upload(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/upload',
       data
-    ).map( response => response.json() );
+    );
   }
 
   // gets payroll list for log
 
   public payrollList(data) {
     const key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
     this.apiUrl + '/v1/organisation/payroll',
     {
       session_key : key,
       page : data
     }
-    ).map( response => response.json() );
+    );
   }
 
   // handles Org data added
 
   public orgPayroll(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/v1/organisation/payroll/add',
       data
-    ).map( response => response.json() );
+    );
   }
 
   public orgSupplier(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/v1/organisation/supplier/add',
       data
-    ).map( response => response.json() );
+    );
   }
 
   public orgEmployee(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/v1/organisation/employee/add',
       data
-    ).map( response => response.json() );
+    );
   }
 
   // Handles user data interaction
@@ -204,18 +204,18 @@ export class ApiService {
 
   public accountFullLoad() {
     const key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/user',
       { session_key : key },
-    ).map( response => response.json() );
+    );
   }
 
   public accountEditUpdate(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/user/account',
       data
-    ).map( response => response.json() );
+    );
   }
 
   // Deletes account details on logout
@@ -257,33 +257,42 @@ export class ApiService {
     type: string,
     page: number) {
     const key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/stats/leaderboard/paged',
       {
         session_key : key,
         type : type,
         page: page,
     }
-    ).map( response => response.json() );
+    );
   }
 
   // Initial Map Data
   public getMapData(data) {
     data.session_key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
     this.apiUrl + '/v1/supplier/location',
     data
-    ).map( response => response.json() );
+    );
+  }
+
+  // Load LIS Data
+  public getLisData(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post<any>(
+    this.apiUrl + '/v1/supplier/location/lis',
+    data
+    );
   }
 
   // Basic Customer User stats API
   public basicStats() {
     const key = this.sessionKey;
-    return this.http.post(
+    return this.http.post<any>(
       this.apiUrl + '/stats',
       {
         session_key : key,
       }
-    ).map( response => response.json() );
+    );
   }
 }

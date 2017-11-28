@@ -1,5 +1,4 @@
 import { Directive, Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { ApiService } from '../providers/api-service';
 import { Router } from '@angular/router';
 import { GraphWidget } from '../widgets/graph-widget.component';
@@ -36,7 +35,6 @@ export class DashboardCustomerComponent implements OnInit {
   };
 
   constructor(
-  private http: Http,
   private api: ApiService,
   ) {
     this.api.basicStats().subscribe(

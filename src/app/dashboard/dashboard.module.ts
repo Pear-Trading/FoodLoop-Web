@@ -6,6 +6,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { CurrencyPipe } from '@angular/common';
 
@@ -18,6 +19,7 @@ import { TransactionLogComponent } from './transaction-log.component';
 import { PayrollLogComponent } from './payroll-log.component';
 import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
+import { TrailMapComponent } from './trail-map.component';
 
 import { GraphWidget } from '../widgets/graph-widget.component';
 import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
@@ -47,6 +49,7 @@ import { environment } from '../../environments/environment';
     BsDropdownModule,
     NgxPaginationModule,
     DashboardRoutingModule,
+    ModalModule.forRoot(),
   ],
   declarations: [
     DashboardComponent,
@@ -62,6 +65,7 @@ import { environment } from '../../environments/environment';
     LeaderboardComponent,
     LeaderboardResultComponent,
     MapComponent,
+    TrailMapComponent,
     FeedbackComponent,
     GraphWidget,
     OrgBarSnippetComponent,
