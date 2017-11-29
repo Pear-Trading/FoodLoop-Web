@@ -2,6 +2,10 @@
 
 # Next Release
 
+# v0.0.6
+
+* Fix typo in Map Titles
+
 # v0.0.5
 
 * Change page name from Story Trail to Lancaster Independent Story
