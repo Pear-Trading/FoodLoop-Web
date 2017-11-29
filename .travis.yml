@@ -4,12 +4,24 @@ language: node_js
 node_js:
   - 8
 before_install:
-  -  openssl aes-256-cbc -K $encrypted_9d2af3734b6c_key -iv $encrypted_9d2af3734b6c_iv -in src/environments/environment.ci.ts.enc -out src/environments/environment.ci.ts -d
+  - openssl aes-256-cbc -K $encrypted_9d2af3734b6c_key -iv $encrypted_9d2af3734b6c_iv -in src/environments/environments.tar.enc -out src/environments/environments.tar -d
+  - tar xf src/environments/environments.tar -C src/environments
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - npm config set spin false
 install:
-    - npm install
+  - npm install
 script:
-    - npm run ci
+  - npm run ci
+before_deploy:
+  - ./bin/build-releases
+deploy:
+  provider: releases
+  api_key:
+    secure: IZKEl1/LnzCN4/uMPKqUktURoNFjDmrybGKwrKbTPS27iXLrC9x4NwrQnOgipLF5h6Jeee4Qf1LhFCEpL/VTBTGMljQU2uOUFqn7TTGV5Ok7wxn2Z4CYeLDHMqDeGEECidAs8pB7I8lQvk5iUqmQT0NbuB0tDgavM9XCAecGUrFHh2tQaqPRGgZ1Q+1QB5d68EItSncMFKgRKja3Jq3u6ArF3uR3qY0dx9UKgcSUkKMnYbkBoEmiuCthdtwsH6WiIp4+K5GnVkGWxFa6KwdUJseHvUCuwS0Jp6lz47fP75xr4pHP45BxL7s549P60Iyr5AMRUge2+LPQV5QdbRH4guQV6qWI2L6Vw64fdC3lK00MhNFNO4M9p1T9eeldXhvUJwBDjzjoHlsrZysUMBy5G9CpQIVJtaPSVMWm/9yfPbu/B3k85cCHLb3fTos3altCWREIUScWIdDAHczJmmITUE9d5KljT8t2gLzCiCqB3BQ6ZzN8Ur68EIJ2ePuCO4644S+1shg5AXYDzXuUd30J57UGnuELQSMQkuZvMUQy8PmNO/iInIqpnuAwOwT4YD0MHgXrjD38a9+KszDjY+9HrIWcQE8P7AuN0iVf2voB5uLTOckkd4mXF9sskwoREVYJM+jz49HViggYyn1MHLsnlY5//vhMo5HNaf2DtT8fhk4=
+  file_glob: true
+  file: "../WebApp-Releases/*"
+  skip_cleanup: true
+  on:
+    tags: true
