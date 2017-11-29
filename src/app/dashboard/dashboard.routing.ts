@@ -66,7 +66,7 @@ const routes: Routes = [
       {
         path: 'story-trail',
         component: TrailMapComponent,
-        data: { title: 'Story Trail' },
+        data: { title: 'Lancaster Independent Story' },
       },
       {
         path: 'payroll-log',
