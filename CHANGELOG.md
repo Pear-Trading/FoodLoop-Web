@@ -2,6 +2,10 @@
 
 # Next Release
 
+# v0.0.5
+
+* Change page name from Story Trail to Lancaster Independent Story
+
 # v0.0.4
 
 * Info window on map replaced with modals
