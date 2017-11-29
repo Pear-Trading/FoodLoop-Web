@@ -2,6 +2,8 @@
 
 # Next Release
 
+# v0.0.4
+
 * Info window on map replaced with modals
 * Loading modals added to maps
 * Lancaster Independent Story markers added
