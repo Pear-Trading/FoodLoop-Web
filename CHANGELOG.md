@@ -2,6 +2,8 @@
 
 # Next Release
 
+# v0.0.7
+
 * Added ESTA to Story Trail
 * Reverted Story Trail naming to LIS
 * Changed Trail map code to make it flexible based on association
