@@ -15,6 +15,8 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
   zoom: number = 12;
   public modalRef: BsModalRef;
   clickedMarker: any;
+  assocMap = 'lis';
+  assocLogo: string;
 
   dataReceived: string = 'loading';
 
@@ -25,7 +27,9 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
   constructor(
     private api: ApiService,
     private modalService: BsModalService,
-  ) {}
+  ) {
+    this.assocLogo = 'assets/img/association/' + this.assocMap + '-logo.png';
+  }
 
   ngOnInit(): void { }
 
@@ -44,6 +48,7 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
   public onMarkerClick(clickedMarker, template: TemplateRef<any>) {
     console.log(clickedMarker);
     this.clickedMarker = clickedMarker;
+    this.assocLogo = 'assets/img/association/' + this.assocMap + '-logo.png';
     this.openModal(template);
   }
 
@@ -64,8 +69,9 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
         latitude:  resp.getSouthWest().lat(),
         longitude: resp.getSouthWest().lng()
       },
+      association: this.assocMap,
     }
-    this.api.getLisData(mapData).subscribe(
+    this.api.getAssocData(mapData).subscribe(
       result => {
         this.myStatusModal.hide();
         this.markers = result.locations;
