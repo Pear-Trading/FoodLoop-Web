@@ -4,10 +4,10 @@
       <div class="card">
         <div class="card-header">
           <strong>Story Trail</strong>
-          <small>Required Data marked in <strong>bold</strong>.</small>
+          <small>Click a marker to get location details.</small>
           <select type="text" [(ngModel)]="assocMap" (ngModelChange)="viewBoundsChanged()">
             <option value="lis" selected>Lancaster Independent Story</option>
-            <option value="esta">Esta</option>
+            <option value="esta">ESTA</option>
           </select>
         </div>
         <div class="modal fade" bsModal #statusModal="bs-modal" [config]="{backdrop: false, animated: false}"
