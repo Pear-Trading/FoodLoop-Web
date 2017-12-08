@@ -3,8 +3,12 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <strong>Lancaster Independent Story</strong>
-          <small>Required Data marked in <strong>bold</strong>.</small>
+          <strong>Story Trail</strong>
+          <small>Click a marker to get location details.</small>
+          <select type="text" [(ngModel)]="assocMap" (ngModelChange)="viewBoundsChanged()">
+            <option value="lis" selected>Lancaster Independent Story</option>
+            <option value="esta">ESTA</option>
+          </select>
         </div>
         <div class="modal fade" bsModal #statusModal="bs-modal" [config]="{backdrop: false, animated: false}"
              tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -45,7 +49,7 @@
           <agm-marker-cluster maxZoom="13" imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
             <agm-marker
                 *ngFor="let m of markers"
-                [iconUrl]="'/assets/img/map-pin-lis.png'"
+                [iconUrl]="'/assets/img/association/' + assocMap + '-map-pin.png'"
                 [latitude]="m.latitude"
                 [longitude]="m.longitude"
                 [openInfoWindow]="false"
@@ -55,7 +59,7 @@
         </agm-map>
         <ng-template #template>
           <div class="modal-header d-flex justify-content-between">
-            <img src="assets/img/lis_logo.png" class="w-15" alt="lis logo"><h4 class="modal-title">{{clickedMarker.name}}</h4>
+            <img src="{{assocLogo}}" class="w-15" alt="lis logo"><h4 class="modal-title">{{clickedMarker.name}}</h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
               <span aria-hidden="true">&times;</span>
             </button>

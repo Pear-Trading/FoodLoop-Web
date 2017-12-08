@@ -276,11 +276,11 @@ export class ApiService {
     );
   }
 
-  // Load LIS Data
-  public getLisData(data) {
+  // Load Association Data
+  public getAssocData(data) {
     data.session_key = this.sessionKey;
     return this.http.post<any>(
-    this.apiUrl + '/v1/supplier/location/lis',
+    this.apiUrl + '/v1/supplier/location/trail',
     data
     );
   }
