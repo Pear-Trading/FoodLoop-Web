@@ -14,6 +14,7 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
   lng: number = -2.8007;
   zoom: number = 12;
   public modalRef: BsModalRef;
+  public modalRef2: BsModalRef;
   clickedMarker: any;
   assocMap = 'lis';
   assocLogo: string;
@@ -43,6 +44,10 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+  }
+
+  openModalAssoc(templateAssoc: TemplateRef<any>) {
+    this.modalRef2 = this.modalService.show(templateAssoc);
   }
 
   public onMarkerClick(clickedMarker, template: TemplateRef<any>) {
