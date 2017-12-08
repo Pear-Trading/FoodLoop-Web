@@ -2,6 +2,8 @@
 
 # Next Release
 
+* Changed Story Trail choosing to modals
+
 # v0.0.7
 
 * Added ESTA to Story Trail
