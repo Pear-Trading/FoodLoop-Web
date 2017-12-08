@@ -4,11 +4,39 @@
       <div class="card">
         <div class="card-header">
           <strong>Story Trail</strong>
-          <small>Click a marker to get location details.</small>
-          <select type="text" [(ngModel)]="assocMap" (ngModelChange)="viewBoundsChanged()">
-            <option value="lis" selected>Lancaster Independent Story</option>
-            <option value="esta">ESTA</option>
-          </select>
+          <div class="row">
+
+            <div class="col-12 col-sm-6 mb-3">
+              <small>Select a Story Trail to see all the businesses in that story on the map.<br>
+              Click an icon on the map to get more information.</small>
+            </div>
+            <div class="col-12 col-sm-6 order-12">
+              <button type="button" class="btn btn-outline-info btn-lg float-right" (click)="openModalAssoc(templateAssoc)">Select Story Trail</button>
+            </div>
+          </div>
+          <ng-template #templateAssoc>
+            <div class="modal-header">
+              <h4 class="modal-title pull-left">Select View</h4>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef2.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-12 col-sm-6 text-center">
+                  <img src="assets/img/association/lis-logo.png" class="w-50" alt="lis logo"><br>
+                  <button type="button" class="btn btn-success mt-3" (click)="modalRef2.hide(); assocMap = 'lis'">Lancaster Independent Story</button>
+                </div>
+                <div class="col-12 col-sm-6 text-center">
+                  <img src="assets/img/association/esta-logo.png" class="w-50" alt="lis logo"><br>
+                  <button type="button" class="btn btn-success mt-3" (click)="modalRef2.hide(); assocMap = 'esta'">ESTA Association</button>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="modalRef2.hide()">Close</button>
+            </div>
+          </ng-template>
         </div>
         <div class="modal fade" bsModal #statusModal="bs-modal" [config]="{backdrop: false, animated: false}"
              tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
