@@ -28,7 +28,7 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
     private api: ApiService,
     private modalService: BsModalService,
   ) {
-    this.assocLogo = 'assets/img/association/' + this.assocMap + '_logo.png';
+    this.assocLogo = 'assets/img/association/' + this.assocMap + '-logo.png';
   }
 
   ngOnInit(): void { }
@@ -48,6 +48,7 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
   public onMarkerClick(clickedMarker, template: TemplateRef<any>) {
     console.log(clickedMarker);
     this.clickedMarker = clickedMarker;
+    this.assocLogo = 'assets/img/association/' + this.assocMap + '-logo.png';
     this.openModal(template);
   }
 
