@@ -21,7 +21,9 @@ import { CustomerGuard } from './_guards/customer.guard';
 import { ApiService } from './providers/api-service';
 
 import { OrgGraphsService } from './providers/org-graphs.service';
+import { CustGraphsService } from './providers/cust-graphs.service';
 import { OrgSnippetsService } from './providers/org-snippets.service';
+import { CustSnippetsService } from './providers/cust-snippets.service';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
@@ -65,6 +67,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
     ApiService,
     OrgGraphsService,
     OrgSnippetsService,
+    CustGraphsService,
+    CustSnippetsService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
