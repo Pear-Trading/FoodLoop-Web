@@ -3,24 +3,24 @@
     <ul>
       <li class="hidden-sm-down">
         <div class="text-muted">My Points</div>
-        <strong>{{ basicStats.user_sum / 10 | number:'1.0-0' }}</strong>
+        <strong>{{ userSum / 10 | number:'1.0-0' }}</strong>
       </li>
       <li class="hidden-sm-down">
         <div class="text-muted">My Rank</div>
-        <div *ngIf="basicStats.user_position == 0" class="statuscontent">
+        <div *ngIf="userPosition == 0" class="statuscontent">
           <strong>Unranked</strong>
         </div>
-        <div *ngIf="basicStats.user_position != 0" class="statuscontent">
-          <strong>{{ basicStats.user_position }}</strong>
+        <div *ngIf="userPosition != 0" class="statuscontent">
+          <strong>{{ userPosition }}</strong>
         </div>
       </li>
       <li class="hidden-sm-down">
         <div class="text-muted">My Total Spend</div>
-        <strong>{{ basicStats.user_sum | currency:'GBP':'symbol':'1.2-2' }}</strong>
+        <strong>{{ userSum | currency:'GBP':'symbol':'1.2-2' }}</strong>
       </li>
       <li class="hidden-sm-down">
         <div class="text-muted">Value to Local Economy</div>
-        <strong>{{ basicStats.user_sum * 2.3 | currency:'GBP':'symbol':'1.2-2' }}</strong>
+        <strong>{{ userSum * 2.3 | currency:'GBP':'symbol':'1.2-2' }}</strong>
       </li>
     </ul>
   </div>
