@@ -4,12 +4,12 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class CustSnippetsService {
-  private orgSnippetsUrl = '/v1/organisation/snippets';
+  private custSnippetsUrl = '/v1/customer/snippets';
 
   constructor(private api: ApiService) { }
 
   // This endpoint should mimic basicStats
   public getData(): Observable<any> {
-    return this.api.post(this.orgSnippetsUrl);
+    return this.api.post(this.custSnippetsUrl);
   }
 }

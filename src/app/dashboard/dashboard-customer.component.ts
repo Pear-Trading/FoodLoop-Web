@@ -3,16 +3,13 @@ import { ApiService } from '../providers/api-service';
 import { Router } from '@angular/router';
 import { GraphWidget } from '../widgets/graph-widget.component';
 import { CustBarSnippetComponent } from '../snippets/cust-snippet-bar.component';
+import { PiePanel } from '../panels/pie-panel.component';
 import { DataType } from '../shared/data-types.enum';
 
 @Component({
   templateUrl: 'dashboard-customer.component.html'
 })
 export class DashboardCustomerComponent implements OnInit {
-  customersThisMonth: any;
-  moneySpentThisMonth: any;
-  pointsTotal: any;
-  averageTransactionToday: any;
 
   /* Setting up dashboard's main variables*/
   name: any;
@@ -21,6 +18,12 @@ export class DashboardCustomerComponent implements OnInit {
   trends: any;
   myRank: any;
   username: any;
+
+  // PolarArea
+  public polarAreaChartLabels: string[] = ['Local', 'Not Local'];
+  public polarAreaChartData: number[] = [400, 100];
+  public polarAreaLegend = true;
+  public polarAreaChartType = 'polarArea';
 
   public widgetList = [
     {
