@@ -19,12 +19,19 @@ export class DashboardCustomerComponent implements OnInit {
   myRank: any;
   username: any;
 
-  // PolarArea
-  public polarAreaChartLabels: string[] = ['Local', 'Not Local'];
-  public polarAreaChartData: number[] = [400, 100];
-  public polarAreaLegend = true;
-  public polarAreaChartType = 'polarArea';
+  weekPurchaseList = {
+    week_0: 0,
+    week_1: 0,
+    week_2: 0,
+    week_3: 0,
+    week_4: 0,
+    week_5: 0,
+    week_6: 0,
+  };
 
+  sectorList: any;
+
+  // Graph widgets
   public widgetList = [
     {
       type: 'graph',
@@ -57,6 +64,35 @@ export class DashboardCustomerComponent implements OnInit {
   constructor(
   private api: ApiService,
   ) {
+    this.api.basicStats().subscribe(
+      result => {
+        this.setWeekPurchaseList(result.data);
+
+      },
+      error => {
+        console.log('Retrieval Error');
+        console.log( error._body );
+      }
+    );
+  }
+
+  public setWeekPurchaseList (data: any) {
+    this.weekPurchaseList = {
+      week_0: data.purchases[0],
+      week_1: data.purchases[1],
+      week_2: data.purchases[2],
+      week_3: data.purchases[3],
+      week_4: data.purchases[4],
+      week_5: data.purchases[5],
+      week_6: data.purchases[6],
+    };
+    //this.maxPurchase = Math.max(...this.weekPurchaseList);
+    this.maxPurchase = Object.values(this.weekPurchaseList).reduce((a,b) => {
+      if (! a) { a = 0 }
+      if (! b) { b = 0 }
+      return Math.max(a,b);
+    });
+    console.log(this.maxPurchase);
   }
 
   ngOnInit(): void {
