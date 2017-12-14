@@ -28,18 +28,6 @@ export class DashboardCustomerComponent implements OnInit {
   public widgetList = [
     {
       type: 'graph',
-      name: 'total_today',
-      title: 'Total Today',
-      dataType: DataType.currency,
-    },
-    {
-      type: 'graph',
-      name: 'avg_spend_today',
-      title: 'Avg. Spend Today',
-      dataType: DataType.currency,
-    },
-    {
-      type: 'graph',
       name: 'total_last_week',
       icon: 'icon-diamond',
       title: 'Last Week Total',
@@ -62,18 +50,6 @@ export class DashboardCustomerComponent implements OnInit {
       type: 'graph',
       name: 'avg_spend_last_month',
       title: 'Last Month Avg. Spend',
-      dataType: DataType.currency,
-    },
-    {
-      type: 'graph',
-      name: 'total_user',
-      title: 'User Total',
-      dataType: DataType.currency,
-    },
-    {
-      type: 'graph',
-      name: 'avg_spend_user',
-      title: 'User Avg. Spend',
       dataType: DataType.currency,
     },
   ];

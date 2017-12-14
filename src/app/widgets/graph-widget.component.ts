@@ -35,12 +35,21 @@ export class GraphWidget implements OnInit {
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
+        type: 'time',
+        time: {
+          unit: 'day',
+          displayFormats: {
+            day: 'MMM D',
+          },
+          tooltipFormat: 'MMM D',
+        },
         gridLines: {
           color: 'transparent',
           zeroLineColor: 'transparent'
         },
         ticks: {
           fontSize: 2,
+          source: 'data',
           fontColor: 'transparent',
         }
 
@@ -106,6 +115,12 @@ export class GraphWidget implements OnInit {
   private setData(data: any) {
     this.setChartData(data.data);
     this.setChartLabels(data.labels);
+    this.setChartBounds(data.bounds);
+  }
+
+  private setChartBounds(data) {
+    this.lineChartOptions.scales.xAxes[0].time.max = data.max;
+    this.lineChartOptions.scales.xAxes[0].time.min = data.min;
   }
 
   private setChartData(data: Array<number>) {

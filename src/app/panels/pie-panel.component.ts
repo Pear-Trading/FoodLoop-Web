@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { OrgGraphsService } from '../providers/org-graphs.service';
+import { CustPiesService } from '../providers/cust-pies.service';
 import { DataType } from '../shared/data-types.enum';
 import { ChartData } from '../_interfaces/chart-data';
-import * as moment from 'moment';
 
 @Component({
   selector: 'panel-pie',
@@ -10,57 +9,32 @@ import * as moment from 'moment';
 })
 export class PiePanel implements OnInit {
 
-  // Placeholder
-  public placeholderChartLabels: string[] = ['Local to Me', 'Local Store', 'Not Local'];
-  public placeholderChartData: number[] = [400, 100, 100];
-
-
   public chartType = 'doughnut';
   public chartLegend = true;
+  public doughnutChartLabels: string[] = [];
+  public doughnutChartData: number[] = [];
+
 
   //Old
-
-  public rawChartData: Array<number> = [];
-
-  public chartData: Array<ChartData> = [
-    {
-      data: [],
-      label: 'This Week'
-    },
-    {
-      data: [],
-      label: 'Last Week'
-    },
-    {
-      data: [],
-      label: 'Week Before Last'
-    }
-  ];
-
-  public rawChartLabels: Array<string> = [];
-  public chartLabels: Array<string> = [];
 
   // public mainChartElements = 7;
 
   constructor(
-    private graphService: OrgGraphsService,
+    private pieService: CustPiesService,
   ) { }
 
   public ngOnInit(): void {
-  //   const end = moment().startOf('day');
-  //   const start = end.clone().subtract(this.mainChartElements * 3, 'days');
-  //   this.graphService.getGraph('customers_range', {
-  //     start: start.format('YYYY-MM-DD'),
-  //     end: end.format('YYYY-MM-DD'),
-  //   }).subscribe( result => this.setData(result.graph) );
+    this.pieService.getPie()
+    .subscribe( result => this.setData(result.pie) );
   }
 
-  // private setData(data: any) {
-  //   this.chartLabels = data.labels.slice(this.mainChartElements * 2, this.mainChartElements * 3);
-  //   this.chartData[2].data = data.data.slice(0, this.mainChartElements);
-  //   this.chartData[1].data = data.data.slice(this.mainChartElements, this.mainChartElements * 2);
-  //   this.chartData[0].data = data.data.slice(this.mainChartElements * 2, this.mainChartElements * 3);
-  // }
+  private setData(data: any) {
+    this.doughnutChartData = Object.values(data);
+    console.log(this.chartData);
+    // setTimeout is currently a workaround for ng2-charts labels
+    setTimeout(() => this.doughnutChartLabels = Object.keys(data), 0);
+    console.log(this.chartLabels);
+  }
 
   // convert Hex to RGBA
   public convertHex(hex: string, opacity: number) {
