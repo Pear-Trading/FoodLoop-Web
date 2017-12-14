@@ -30,10 +30,8 @@ export class PiePanel implements OnInit {
 
   private setData(data: any) {
     this.doughnutChartData = Object.values(data);
-    console.log(this.chartData);
     // setTimeout is currently a workaround for ng2-charts labels
     setTimeout(() => this.doughnutChartLabels = Object.keys(data), 0);
-    console.log(this.chartLabels);
   }
 
   // convert Hex to RGBA
