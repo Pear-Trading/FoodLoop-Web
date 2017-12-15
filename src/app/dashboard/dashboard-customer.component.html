@@ -117,80 +117,80 @@
           <div class="chart-wrapper">
             <ul class="icons-list">
               <li>
-                <i class="icon-screen-desktop bg-primary"></i>
+                <i [ngClass]="sectorIcons [sectorLetters[0]] || 'icon-question'" class="bg-primary"></i>
                 <div class="desc">
-                  <div class="title">Sector A</div>
-                  <small>Lorem ipsum dolor sit amet</small>
+                  <div class="title">Sector {{ sectorLetters[0] || 'N/A' }}</div>
+                  <div><small>{{ sectorNames [sectorLetters[0]] }}</small></div>
                 </div>
                 <div class="value">
                   <div class="small text-muted">Bought from Sector</div>
-                  <strong>1.924</strong>
+                  <strong>{{ sectorPurchases[0] || 'N/A' }}</strong>
                 </div>
               </li>
               <li>
-                <i class="icon-screen-smartphone bg-info"></i>
+                <i [ngClass]="sectorIcons [sectorLetters[1]] || 'icon-question'" class="bg-info"></i>
                 <div class="desc">
-                  <div class="title">Sector B</div>
-                  <small>Lorem ipsum dolor sit amet</small>
+                  <div class="title">Sector {{ sectorLetters[1] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[1]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
                   <div class="small text-muted">Bought from Sector</div>
-                  <strong>1.224</strong>
+                  <strong>{{ sectorPurchases[1] || 'N/A' }}</strong>
                 </div>
               </li>
               <li>
-                <i class="icon-screen-smartphone bg-warning"></i>
+                <i [ngClass]="sectorIcons [sectorLetters[2]] || 'icon-question'" class="bg-warning"></i>
                 <div class="desc">
-                  <div class="title">Sector C</div>
-                  <small>Lorem ipsum dolor sit amet</small>
+                  <div class="title">Sector {{ sectorLetters[2] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[2]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
                   <div class="small text-muted">Bought from Sector</div>
-                  <strong>1.163</strong>
+                  <strong>{{ sectorPurchases[2] || 'N/A' }}</strong>
                 </div>
               </li>
               <li>
-                <i class="icon-user bg-danger"></i>
+                <i [ngClass]="sectorIcons [sectorLetters[3]] || 'icon-question'" class="bg-danger"></i>
                 <div class="desc">
-                  <div class="title">Sector D</div>
-                  <small>Lorem ipsum dolor sit amet</small>
+                  <div class="title">Sector {{ sectorLetters[3] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[3]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
                   <div class="small text-muted">Bought from Sector</div>
-                  <strong>928</strong>
+                  <strong>{{ sectorPurchases[3] || 'N/A' }}</strong>
                 </div>
               </li>
               <li>
-                <i class="icon-social-spotify bg-success"></i>
+                <i [ngClass]="sectorIcons [sectorLetters[4]] || 'icon-question'" class="bg-success"></i>
                 <div class="desc">
-                  <div class="title">Sector E</div>
-                  <small>Lorem ipsum dolor sit amet</small>
+                  <div class="title">Sector {{ sectorLetters[4] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[4]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
                   <div class="small text-muted">Bought from Sector</div>
-                  <strong>893</strong>
+                  <strong>{{ sectorPurchases[4] || 'N/A' }}</strong>
                 </div>
               </li>
               <li>
-                <i class="icon-cloud-download bg-danger"></i>
+                <i [ngClass]="sectorIcons [sectorLetters[5]] || 'icon-question'" class="bg-danger"></i>
                 <div class="desc">
-                  <div class="title">Sector F</div>
-                  <small>Lorem ipsum dolor sit amet</small>
+                  <div class="title">Sector {{ sectorLetters[5] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[5]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
                   <div class="small text-muted">Bought from Sector</div>
-                  <strong>121.924</strong>
+                  <strong>{{ sectorPurchases[5] || 'N/A' }}</strong>
                 </div>
               </li>
               <li>
-                <i class="icon-camera bg-warning"></i>
+                <i [ngClass]="sectorIcons [sectorLetters[6]] || 'icon-question'" class="bg-warning"></i>
                 <div class="desc">
-                  <div class="title">Sector G</div>
-                  <small>Lorem ipsum dolor sit amet</small>
+                  <div class="title">Sector {{ sectorLetters[6] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[6]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
                   <div class="small text-muted">Bought from Sector</div>
-                  <strong>12.125</strong>
+                  <strong>{{ sectorPurchases[6] || 'N/A' }}</strong>
                 </div>
               </li>
             </ul>
