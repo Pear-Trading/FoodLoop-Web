@@ -18,6 +18,7 @@ export class DashboardCustomerComponent implements OnInit {
   trends: any;
   myRank: any;
   username: any;
+  maxPurchase: number = 0;
 
   weekPurchaseList = {
     week_0: 0,
