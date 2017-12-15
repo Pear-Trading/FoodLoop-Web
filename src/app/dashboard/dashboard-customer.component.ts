@@ -29,6 +29,55 @@ export class DashboardCustomerComponent implements OnInit {
     week_6: 0,
   };
 
+  sectorNames = {
+    A: 'Agriculture, Forestry & Fishing',
+    B: 'Mining & Quarrying',
+    C: 'Manufacturing',
+    D: 'Electricity, Gas, Steam & Air Conditioning',
+    E: 'Water & Waste Management',
+    F: 'Construction',
+    G: 'Wholesale & Retail Trade',
+    H: 'Transportation & Storage',
+    I: 'Accomodation & Food Services',
+    J: 'Information & Communication',
+    K: 'Financial & Insurance Activities',
+    L: 'Real Estate',
+    M: 'Professional, Scientfic & Technical',
+    N: 'Administrative & Support Services',
+    O: 'Public Administration, Defence & Social Security',
+    P: 'Education',
+    Q: 'Human Health & Social Work',
+    R: 'Arts, Entertainment & Recreation',
+    S: 'Other Service Activities',
+    T: 'Household Domestic Business',
+  }
+
+  sectorIcons = {
+    A: 'icon-drop',
+    B: 'icon-diamond',
+    C: 'icon-settings',
+    D: 'icon-energy',
+    E: 'icon-trash',
+    F: 'icon-wrench',
+    G: 'icon-tag',
+    H: 'icon-speedometer',
+    I: 'icon-cup',
+    J: 'icon-globe',
+    K: 'icon-credit-card',
+    L: 'icon-graph',
+    M: 'icon-chemistry',
+    N: 'icon-drawer',
+    O: 'icon-pie-chart',
+    P: 'icon-graduation',
+    Q: 'icon-support',
+    R: 'icon-film',
+    S: 'icon-calendar',
+    T: 'icon-home',
+  }
+
+  sectorLetters: string[] = [];
+  sectorPurchases: number[] = [];
+
   sectorList: any;
 
   // Graph widgets
@@ -66,8 +115,8 @@ export class DashboardCustomerComponent implements OnInit {
   ) {
     this.api.basicStats().subscribe(
       result => {
-        this.setWeekPurchaseList(result.data);
-
+        this.setWeekPurchaseList(result.weeks);
+        this.setSectorList(result.sectors);
       },
       error => {
         console.log('Retrieval Error');
@@ -92,7 +141,11 @@ export class DashboardCustomerComponent implements OnInit {
       if (! b) { b = 0 }
       return Math.max(a,b);
     });
-    console.log(this.maxPurchase);
+  }
+
+  public setSectorList (data: any) {
+    this.sectorLetters = Object.values(data.sectors);
+    this.sectorPurchases = Object.values(data.purchases);
   }
 
   ngOnInit(): void {
