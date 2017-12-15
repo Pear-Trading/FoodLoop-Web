@@ -3,6 +3,10 @@
 # Next Release
 
 * Changed Story Trail choosing to modals
+* Revamped snippets and graph widgets on customer dashboard
+* Added local purchase pie chart for customer dashboard
+* Added week by week purchase list for customer dashboard
+* Added sector purchase amount list for customer dashboard
 
 # v0.0.7
 
