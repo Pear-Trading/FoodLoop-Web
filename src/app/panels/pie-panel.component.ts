@@ -29,7 +29,7 @@ export class PiePanel implements OnInit {
   }
 
   private setData(data: any) {
-    this.doughnutChartData = Object.values(data);
+    this.doughnutChartData = Object.keys(data).map(key => data[key]);
     // setTimeout is currently a workaround for ng2-charts labels
     setTimeout(() => this.doughnutChartLabels = Object.keys(data), 0);
   }

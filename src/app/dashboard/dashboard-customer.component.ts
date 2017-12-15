@@ -135,8 +135,7 @@ export class DashboardCustomerComponent implements OnInit {
       week_5: data.purchases[5],
       week_6: data.purchases[6],
     };
-    //this.maxPurchase = Math.max(...this.weekPurchaseList);
-    this.maxPurchase = Object.values(this.weekPurchaseList).reduce((a,b) => {
+    this.maxPurchase = Object.keys(this.weekPurchaseList).map(key => this.weekPurchaseList[key]).reduce((a,b) => {
       if (! a) { a = 0 }
       if (! b) { b = 0 }
       return Math.max(a,b);
@@ -144,8 +143,8 @@ export class DashboardCustomerComponent implements OnInit {
   }
 
   public setSectorList (data: any) {
-    this.sectorLetters = Object.values(data.sectors);
-    this.sectorPurchases = Object.values(data.purchases);
+    this.sectorLetters = Object.keys(data.sectors).map(key => data.sectors[key]);
+    this.sectorPurchases = Object.keys(data.purchases).map(key => data.purchases[key]);
   }
 
   ngOnInit(): void {
