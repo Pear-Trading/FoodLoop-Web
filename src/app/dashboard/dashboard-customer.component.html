@@ -1,129 +1,200 @@
 <div class="animated fadeIn">
-  <div class="card">
-    <div class="card-footer">
-      <ul>
-        <li>
-          <div class="text-muted">My Points</div>
-          <strong>{{ basicStats.user_sum / 10 | number:'1.0-0' }}</strong>
-        </li>
-        <li>
-          <div class="text-muted">My Rank</div>
-            <div *ngIf="basicStats.user_position == 0" class="statuscontent">
-              <strong>Unranked</strong>
-            </div>
-    				<div *ngIf="basicStats.user_position != 0" class="statuscontent">
-    					<strong>{{ basicStats.user_position }}</strong>
-    				</div>
-        </li>
-      </ul>
-      </div>
-      <div class="card-footer">
-        <ul>
-        <li>
-          <div class="text-muted">My Total Spend</div>
-          <strong>{{ basicStats.user_sum | currency:'GBP':'symbol':'1.2-2' }}</strong>
-        </li>
-        <li>
-          <div class="text-muted">Value to Local Economy</div>
-          <strong>{{ basicStats.user_sum * 2.3 | currency:'GBP':'symbol':'1.2-2' }}</strong>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <snippet-bar-cust></snippet-bar-cust>
   <div class="row">
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
+    <div *ngFor="let widget of widgetList" class="col-sm-6 col-lg-3">
+      <widget-graph *ngIf="widget.type == 'graph'"
+                    [graphName]="widget.name"
+                    [graphTitle]="widget.title"
+                    [graphIcon]="widget.icon"
+                    [dataType]="widget.dataType">
+      </widget-graph>
+    </div><!--/.col-->
+  </div><!--/.row-->
+  <div class=row>
+    <div class="col-xl-4 col-md-6">
+      <panel-pie></panel-pie>
+    </div><!--/.col-->
+    <div class="col-xl-4 col-md-6">
+      <div class="card">
         <div class="card-block">
-          <div class="h4 mb-0">{{ basicStats.today_sum | currency:'GBP':'symbol':'1.2-2' }}</div>
-          <div>Total Today</div>
-          <!-- <div class="progress progress-white progress-xs mt-3">
-            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title float-left mb-0">Purchases Per Week</h4>
+            </div><!--/.col-->
+          </div><!--/.row-->
+          <div class="chart-wrapper">
+            <ul class="horizontal-bars type-2">
+              <li>
+                <span class="title">This Week</span>
+                <span class="value">{{ (weekPurchaseList.week_0  || 0 ) }} <span
+                  class="text-muted small">({{ (weekPurchaseList.week_0 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(weekPurchaseList.week_0 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="title">Last Week</span>
+                <span class="value">{{ weekPurchaseList.week_1 || 0 }} <span
+                  class="text-muted small">({{ (weekPurchaseList.week_1 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(weekPurchaseList.week_1 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="title">2 Weeks Ago</span>
+                <span class="value">{{ weekPurchaseList.week_2 || 0 }} <span
+                  class="text-muted small">({{ (weekPurchaseList.week_2 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(weekPurchaseList.week_2 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="title">3 Weeks Ago</span>
+                <span class="value">{{ weekPurchaseList.week_3 || 0 }} <span
+                  class="text-muted small">({{ (weekPurchaseList.week_3 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(weekPurchaseList.week_3 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="title">4 Weeks Ago</span>
+                <span class="value">{{ weekPurchaseList.week_4 || 0 }} <span
+                  class="text-muted small">({{ (weekPurchaseList.week_4 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(weekPurchaseList.week_4 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="title">5 Weeks Ago</span>
+                <span class="value">{{ weekPurchaseList.week_5 || 0 }} <span
+                  class="text-muted small">({{ (weekPurchaseList.week_5 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(weekPurchaseList.week_5 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="title">6 Weeks Ago</span>
+                <span class="value">{{ weekPurchaseList.week_6 || 0 }} <span
+                  class="text-muted small">({{ (weekPurchaseList.week_6 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(weekPurchaseList.week_6 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
-          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
         </div>
       </div>
     </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
+    <div class="col-xl-4">
+      <div class="card">
         <div class="card-block">
-          <div class="h4 mb-0">{{ basicStats.today_sum / (basicStats.today_count ? basicStats.today_count : 1) | currency:'GBP':'symbol':'1.2-2' }}</div>
-          <div>Avg. Spend Today</div>
-          <!-- <div class="progress progress-white progress-xs mt-3">
-            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title float-left mb-0">Sector Purchase Amounts</h4>
+            </div><!--/.col-->
+          </div><!--/.row-->
+          <div class="chart-wrapper">
+            <ul class="icons-list">
+              <li>
+                <i [ngClass]="sectorIcons [sectorLetters[0]] || 'icon-question'" class="bg-primary"></i>
+                <div class="desc">
+                  <div class="title">Sector {{ sectorLetters[0] || 'N/A' }}</div>
+                  <div><small>{{ sectorNames [sectorLetters[0]] }}</small></div>
+                </div>
+                <div class="value">
+                  <div class="small text-muted">Bought from Sector</div>
+                  <strong>{{ sectorPurchases[0] || 'N/A' }}</strong>
+                </div>
+              </li>
+              <li>
+                <i [ngClass]="sectorIcons [sectorLetters[1]] || 'icon-question'" class="bg-info"></i>
+                <div class="desc">
+                  <div class="title">Sector {{ sectorLetters[1] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[1]] || 'N/A' }}</small>
+                </div>
+                <div class="value">
+                  <div class="small text-muted">Bought from Sector</div>
+                  <strong>{{ sectorPurchases[1] || 'N/A' }}</strong>
+                </div>
+              </li>
+              <li>
+                <i [ngClass]="sectorIcons [sectorLetters[2]] || 'icon-question'" class="bg-warning"></i>
+                <div class="desc">
+                  <div class="title">Sector {{ sectorLetters[2] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[2]] || 'N/A' }}</small>
+                </div>
+                <div class="value">
+                  <div class="small text-muted">Bought from Sector</div>
+                  <strong>{{ sectorPurchases[2] || 'N/A' }}</strong>
+                </div>
+              </li>
+              <li>
+                <i [ngClass]="sectorIcons [sectorLetters[3]] || 'icon-question'" class="bg-danger"></i>
+                <div class="desc">
+                  <div class="title">Sector {{ sectorLetters[3] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[3]] || 'N/A' }}</small>
+                </div>
+                <div class="value">
+                  <div class="small text-muted">Bought from Sector</div>
+                  <strong>{{ sectorPurchases[3] || 'N/A' }}</strong>
+                </div>
+              </li>
+              <li>
+                <i [ngClass]="sectorIcons [sectorLetters[4]] || 'icon-question'" class="bg-success"></i>
+                <div class="desc">
+                  <div class="title">Sector {{ sectorLetters[4] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[4]] || 'N/A' }}</small>
+                </div>
+                <div class="value">
+                  <div class="small text-muted">Bought from Sector</div>
+                  <strong>{{ sectorPurchases[4] || 'N/A' }}</strong>
+                </div>
+              </li>
+              <li>
+                <i [ngClass]="sectorIcons [sectorLetters[5]] || 'icon-question'" class="bg-danger"></i>
+                <div class="desc">
+                  <div class="title">Sector {{ sectorLetters[5] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[5]] || 'N/A' }}</small>
+                </div>
+                <div class="value">
+                  <div class="small text-muted">Bought from Sector</div>
+                  <strong>{{ sectorPurchases[5] || 'N/A' }}</strong>
+                </div>
+              </li>
+              <li>
+                <i [ngClass]="sectorIcons [sectorLetters[6]] || 'icon-question'" class="bg-warning"></i>
+                <div class="desc">
+                  <div class="title">Sector {{ sectorLetters[6] || 'N/A' }}</div>
+                  <small>{{ sectorNames [sectorLetters[6]] || 'N/A' }}</small>
+                </div>
+                <div class="value">
+                  <div class="small text-muted">Bought from Sector</div>
+                  <strong>{{ sectorPurchases[6] || 'N/A' }}</strong>
+                </div>
+              </li>
+            </ul>
           </div>
-          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
-        <div class="card-block">
-          <div class="h4 mb-0">{{ basicStats.week_sum | currency:'GBP':'symbol':'1.2-2' }}</div>
-          <div>Last Week Total</div>
-          <!-- <div class="progress progress-white progress-xs mt-3">
-            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
-        <div class="card-block">
-          <div class="h4 mb-0">{{ basicStats.week_sum / (basicStats.week_count ? basicStats.week_count : 1) | currency:'GBP':'symbol':'1.2-2' }}</div>
-          <div>Last Week Avg. Spend</div>
-          <!-- <div class="progress progress-white progress-xs mt-3">
-            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
-        <div class="card-block">
-          <div class="h4 mb-0">{{ basicStats.month_sum | currency:'GBP':'symbol':'1.2-2' }}</div>
-          <div>Last Month Total</div>
-          <!-- <div class="progress progress-white progress-xs mt-3">
-            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
-        <div class="card-block">
-          <div class="h4 mb-0">{{ basicStats.month_sum / (basicStats.month_count ? basicStats.month_count : 1) | currency:'GBP':'symbol':'1.2-2' }}</div>
-          <div>Last Month Avg. Spend</div>
-          <!-- <div class="progress progress-white progress-xs mt-3">
-            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
-        <div class="card-block">
-          <div class="h4 mb-0">{{ basicStats.user_sum | currency:'GBP':'symbol':'1.2-2' }}</div>
-          <div>User Total</div>
-          <!-- <div class="progress progress-white progress-xs mt-3">
-            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card card-inverse card-primary">
-        <div class="card-block">
-          <div class="h4 mb-0">{{ basicStats.user_sum / (basicStats.user_count ? basicStats.user_count : 1) | currency:'GBP':'symbol':'1.2-2' }}</div>
-          <div>User Avg. Spend</div>
-          <!-- <div class="progress progress-white progress-xs mt-3">
-            <div class="progress-bar" role="progressbar" style="width: 100%" attr.aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">Lorem ipsum dolor sit amet enim.</small> -->
         </div>
       </div>
     </div><!--/.col-->
