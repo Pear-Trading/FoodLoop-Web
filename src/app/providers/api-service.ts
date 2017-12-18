@@ -286,10 +286,10 @@ export class ApiService {
   }
 
   // Basic Customer User stats API
-  public basicStats() {
+  public customerStats() {
     const key = this.sessionKey;
     return this.http.post<any>(
-      this.apiUrl + '/stats',
+      this.apiUrl + '/stats/customer',
       {
         session_key : key,
       }
