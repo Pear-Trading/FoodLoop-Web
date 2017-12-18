@@ -116,14 +116,26 @@
           </div><!--/.row-->
           <div class="chart-wrapper">
             <ul class="icons-list">
-              <li>
-                <i [ngClass]="sectorIcons [sectorLetters[0]] || 'icon-question'" class="bg-primary"></i>
+              <!-- New loop  -->
+              <li *ngFor="let sector of sectorLetters; let i=index">
+                <i [ngClass]="sectorIcons [sector] || 'icon-question'" class="bg-primary"></i>
                 <div class="desc">
-                  <div class="title">Sector {{ sectorLetters[0] || 'N/A' }}</div>
-                  <div><small>{{ sectorNames [sectorLetters[0]] }}</small></div>
+                  <div class="title">{{ sectorNames [sector] || 'N/A' }}</div>
                 </div>
                 <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
+                  <div class="small text-muted">Bought</div>
+                  <strong>{{ sectorPurchases[i] || 'N/A' }}</strong>
+                </div>
+              </li>
+
+              <!-- Old code -->
+              <!-- <li>
+                <i [ngClass]="sectorIcons [sectorLetters[0]] || 'icon-question'" class="bg-primary"></i>
+                <div class="desc">
+                  <div class="title">{{ sectorNames [sectorLetters[0]] }}</div>
+                </div>
+                <div class="value">
+                  <div class="small text-muted">Bought</div>
                   <strong>{{ sectorPurchases[0] || 'N/A' }}</strong>
                 </div>
               </li>
@@ -134,7 +146,7 @@
                   <small>{{ sectorNames [sectorLetters[1]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
+                  <div class="small text-muted">Bought</div>
                   <strong>{{ sectorPurchases[1] || 'N/A' }}</strong>
                 </div>
               </li>
@@ -145,7 +157,7 @@
                   <small>{{ sectorNames [sectorLetters[2]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
+                  <div class="small text-muted">Bought</div>
                   <strong>{{ sectorPurchases[2] || 'N/A' }}</strong>
                 </div>
               </li>
@@ -156,7 +168,7 @@
                   <small>{{ sectorNames [sectorLetters[3]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
+                  <div class="small text-muted">Bought</div>
                   <strong>{{ sectorPurchases[3] || 'N/A' }}</strong>
                 </div>
               </li>
@@ -167,7 +179,7 @@
                   <small>{{ sectorNames [sectorLetters[4]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
+                  <div class="small text-muted">Bought</div>
                   <strong>{{ sectorPurchases[4] || 'N/A' }}</strong>
                 </div>
               </li>
@@ -178,7 +190,7 @@
                   <small>{{ sectorNames [sectorLetters[5]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
+                  <div class="small text-muted">Bought</div>
                   <strong>{{ sectorPurchases[5] || 'N/A' }}</strong>
                 </div>
               </li>
@@ -189,10 +201,10 @@
                   <small>{{ sectorNames [sectorLetters[6]] || 'N/A' }}</small>
                 </div>
                 <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
+                  <div class="small text-muted">Bought</div>
                   <strong>{{ sectorPurchases[6] || 'N/A' }}</strong>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
