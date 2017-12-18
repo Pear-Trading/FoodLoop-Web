@@ -114,7 +114,7 @@ export class DashboardCustomerComponent implements OnInit {
   constructor(
   private api: ApiService,
   ) {
-    this.api.basicStats().subscribe(
+    this.api.customerStats().subscribe(
       result => {
         this.setWeekPurchaseList(result.weeks);
         this.setSectorList(result.sectors);
