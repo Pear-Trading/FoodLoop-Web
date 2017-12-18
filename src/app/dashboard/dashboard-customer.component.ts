@@ -51,6 +51,7 @@ export class DashboardCustomerComponent implements OnInit {
     R: 'Arts, Entertainment & Recreation',
     S: 'Other Service Activities',
     T: 'Household Domestic Business',
+    U: 'Extraterritorial Organisations and Bodies'
   }
 
   sectorIcons = {
@@ -63,7 +64,7 @@ export class DashboardCustomerComponent implements OnInit {
     G: 'icon-tag',
     H: 'icon-speedometer',
     I: 'icon-cup',
-    J: 'icon-globe',
+    J: 'icon-feed',
     K: 'icon-credit-card',
     L: 'icon-graph',
     M: 'icon-chemistry',
@@ -74,6 +75,7 @@ export class DashboardCustomerComponent implements OnInit {
     R: 'icon-film',
     S: 'icon-calendar',
     T: 'icon-home',
+    U: 'cion-globe',
   }
 
   sectorLetters: string[] = [];
