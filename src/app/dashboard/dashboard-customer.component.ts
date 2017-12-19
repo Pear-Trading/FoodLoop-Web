@@ -20,14 +20,14 @@ export class DashboardCustomerComponent implements OnInit {
   username: any;
   maxPurchase: number = 0;
 
+  disableSectorButton: boolean = false;
+
   weekPurchaseList = {
-    week_0: 0,
-    week_1: 0,
-    week_2: 0,
-    week_3: 0,
-    week_4: 0,
-    week_5: 0,
-    week_6: 0,
+    first: 0,
+    second: 0,
+    max: 0,
+    sum: 0,
+    count: 0,
   };
 
   sectorNames = {
@@ -75,11 +75,12 @@ export class DashboardCustomerComponent implements OnInit {
     R: 'icon-film',
     S: 'icon-calendar',
     T: 'icon-home',
-    U: 'cion-globe',
+    U: 'icon-globe',
   }
 
   sectorLetters: string[] = [];
   sectorPurchases: number[] = [];
+  sectorLimit: number = 10;
 
   sectorList: any;
 
@@ -130,24 +131,22 @@ export class DashboardCustomerComponent implements OnInit {
 
   public setWeekPurchaseList (data: any) {
     this.weekPurchaseList = {
-      week_0: data.purchases[0],
-      week_1: data.purchases[1],
-      week_2: data.purchases[2],
-      week_3: data.purchases[3],
-      week_4: data.purchases[4],
-      week_5: data.purchases[5],
-      week_6: data.purchases[6],
+      first:  data.first,
+      second: data.second,
+      max:    data.max,
+      sum:    data.sum,
+      count:  data.count,
     };
-    this.maxPurchase = Object.keys(this.weekPurchaseList).map(key => this.weekPurchaseList[key]).reduce((a,b) => {
-      if (! a) { a = 0 }
-      if (! b) { b = 0 }
-      return Math.max(a,b);
-    });
   }
 
   public setSectorList (data: any) {
     this.sectorLetters = Object.keys(data.sectors).map(key => data.sectors[key]);
     this.sectorPurchases = Object.keys(data.purchases).map(key => data.purchases[key]);
+  }
+
+  public loadMore () {
+    this.disableSectorButton = true;
+    this.sectorLimit = 22;
   }
 
   ngOnInit(): void {
