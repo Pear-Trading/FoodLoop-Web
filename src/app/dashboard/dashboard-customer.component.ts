@@ -78,6 +78,30 @@ export class DashboardCustomerComponent implements OnInit {
     U: 'icon-globe',
   }
 
+  sectorClasses = {
+    A: 'bg-primary',
+    B: 'bg-success',
+    C: 'bg-danger',
+    D: 'bg-warning',
+    E: 'bg-info',
+    F: 'bg-primary',
+    G: 'bg-success',
+    H: 'bg-danger',
+    I: 'bg-warning',
+    J: 'bg-info',
+    K: 'bg-primary',
+    L: 'bg-success',
+    M: 'bg-danger',
+    N: 'bg-warning',
+    O: 'bg-info',
+    P: 'bg-primary',
+    Q: 'bg-success',
+    R: 'bg-danger',
+    S: 'bg-warning',
+    T: 'bg-info',
+    U: 'bg-primary',
+  }
+
   sectorLetters: string[] = [];
   sectorPurchases: number[] = [];
   sectorLimit: number = 10;

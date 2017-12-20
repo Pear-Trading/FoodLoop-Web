@@ -85,7 +85,7 @@
             <ul class="icons-list">
               <!-- New loop  -->
               <li *ngFor="let sector of sectorLetters | slice:0:sectorLimit; let i=index">
-                <i [ngClass]="sectorIcons [sector] || 'icon-question'" class="bg-primary"></i>
+                <i [ngClass]="[sectorIcons [sector] || 'icon-question', sectorClasses [sector] || 'bg-info']"></i>
                 <div class="desc">
                   <div class="title">{{ sectorNames [sector] || 'N/A' }}</div>
                 </div>
