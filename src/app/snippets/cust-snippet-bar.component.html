@@ -2,25 +2,25 @@
   <div class="card-footer">
     <ul>
       <li class="hidden-sm-down">
-        <div class="text-muted">My Points</div>
-        <strong>{{ userSum / 10 | number:'1.0-0' }}</strong>
+        <div>My Points</div>
+        <div class="number-circle mx-auto"><strong>{{ userSum / 10 | number:'1.0-0' }}</strong></div>
       </li>
       <li class="hidden-sm-down">
-        <div class="text-muted">My Rank</div>
+        <div class="">My Rank</div>
         <div *ngIf="userPosition == 0" class="statuscontent">
-          <strong>Unranked</strong>
+          <div class="number-circle mx-auto"><strong>Unranked</strong></div>
         </div>
         <div *ngIf="userPosition != 0" class="statuscontent">
-          <strong>{{ userPosition }}</strong>
+          <div class="number-circle mx-auto"><strong>{{ userPosition }}</strong></div>
         </div>
       </li>
       <li class="hidden-sm-down">
-        <div class="text-muted">My Total Spend</div>
-        <strong>{{ userSum | currency:'GBP':'symbol':'1.2-2' }}</strong>
+        <div class="">My Total Spend</div>
+        <div class="number-circle mx-auto"><strong>{{ userSum | currency:'GBP':'symbol':'1.2-2' }}</strong></div>
       </li>
       <li class="hidden-sm-down">
-        <div class="text-muted">Value to Local Economy</div>
-        <strong>{{ userSum * 2.3 | currency:'GBP':'symbol':'1.2-2' }}</strong>
+        <div class="">Value to Local Economy</div>
+        <div class="number-circle mx-auto"><strong>{{ userSum * 2.3 | currency:'GBP':'symbol':'1.2-2' }}</strong></div>
       </li>
     </ul>
   </div>

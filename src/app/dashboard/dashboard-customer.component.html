@@ -19,85 +19,52 @@
         <div class="card-block">
           <div class="row">
             <div class="col-12">
-              <h4 class="card-title float-left mb-0">Purchases Per Week</h4>
+              <h4 class="card-title float-left mb-0">Purchases by Week</h4>
             </div><!--/.col-->
           </div><!--/.row-->
           <div class="chart-wrapper">
             <ul class="horizontal-bars type-2">
               <li>
                 <span class="title">This Week</span>
-                <span class="value">{{ (weekPurchaseList.week_0  || 0 ) }} <span
-                  class="text-muted small">({{ (weekPurchaseList.week_0 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
+                <span class="value">{{ (weekPurchaseList.first  || 0 ) }} <span class="text-muted small">
+                  ({{ (weekPurchaseList.first || 0 ) / weekPurchaseList.max | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
-                    [style.width]="(weekPurchaseList.week_0 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                    [style.width]="(weekPurchaseList.first || 0 ) / weekPurchaseList.max | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </li>
               <li>
                 <span class="title">Last Week</span>
-                <span class="value">{{ weekPurchaseList.week_1 || 0 }} <span
-                  class="text-muted small">({{ (weekPurchaseList.week_1 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
+                <span class="value">{{ weekPurchaseList.second || 0 }} <span class="text-muted small">
+                  ({{ (weekPurchaseList.second || 0 ) / weekPurchaseList.max | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
-                    [style.width]="(weekPurchaseList.week_1 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                    [style.width]="(weekPurchaseList.second || 0 ) / weekPurchaseList.max | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </li>
               <li>
-                <span class="title">2 Weeks Ago</span>
-                <span class="value">{{ weekPurchaseList.week_2 || 0 }} <span
-                  class="text-muted small">({{ (weekPurchaseList.week_2 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
+                <span class="title">Week Maximum</span>
+                <span class="value">{{ weekPurchaseList.max || 0 }} <span class="text-muted small">
+                  (100%)</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
-                    [style.width]="(weekPurchaseList.week_2 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                    style="width: 100%" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </li>
               <li>
-                <span class="title">3 Weeks Ago</span>
-                <span class="value">{{ weekPurchaseList.week_3 || 0 }} <span
-                  class="text-muted small">({{ (weekPurchaseList.week_3 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
+                <span class="title">Weekly Average</span>
+                <span class="value">{{ (weekPurchaseList.sum / weekPurchaseList.count) || 0  | number:'1.0-0'}} <span class="text-muted small">
+                  ({{ ((weekPurchaseList.sum / weekPurchaseList.count) || 0) / weekPurchaseList.max | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
-                    [style.width]="(weekPurchaseList.week_3 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <span class="title">4 Weeks Ago</span>
-                <span class="value">{{ weekPurchaseList.week_4 || 0 }} <span
-                  class="text-muted small">({{ (weekPurchaseList.week_4 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
-                <div class="bars">
-                  <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-success" role="progressbar"
-                    [style.width]="(weekPurchaseList.week_4 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <span class="title">5 Weeks Ago</span>
-                <span class="value">{{ weekPurchaseList.week_5 || 0 }} <span
-                  class="text-muted small">({{ (weekPurchaseList.week_5 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
-                <div class="bars">
-                  <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-success" role="progressbar"
-                    [style.width]="(weekPurchaseList.week_5 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <span class="title">6 Weeks Ago</span>
-                <span class="value">{{ weekPurchaseList.week_6 || 0 }} <span
-                  class="text-muted small">({{ (weekPurchaseList.week_6 || 0 ) / maxPurchase | percent:'1.0-0' }})</span></span>
-                <div class="bars">
-                  <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-success" role="progressbar"
-                    [style.width]="(weekPurchaseList.week_6 || 0 ) / maxPurchase | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                    [style.width]="((weekPurchaseList.sum / weekPurchaseList.count) || 0) / weekPurchaseList.max | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
               </li>
@@ -116,82 +83,19 @@
           </div><!--/.row-->
           <div class="chart-wrapper">
             <ul class="icons-list">
-              <li>
-                <i [ngClass]="sectorIcons [sectorLetters[0]] || 'icon-question'" class="bg-primary"></i>
+              <!-- New loop  -->
+              <li *ngFor="let sector of sectorLetters | slice:0:sectorLimit; let i=index">
+                <i [ngClass]="sectorIcons [sector] || 'icon-question'" class="bg-primary"></i>
                 <div class="desc">
-                  <div class="title">Sector {{ sectorLetters[0] || 'N/A' }}</div>
-                  <div><small>{{ sectorNames [sectorLetters[0]] }}</small></div>
+                  <div class="title">{{ sectorNames [sector] || 'N/A' }}</div>
                 </div>
                 <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
-                  <strong>{{ sectorPurchases[0] || 'N/A' }}</strong>
+                  <div class="small text-muted">Bought</div>
+                  <strong>{{ sectorPurchases[i] || 'N/A' }}</strong>
                 </div>
               </li>
-              <li>
-                <i [ngClass]="sectorIcons [sectorLetters[1]] || 'icon-question'" class="bg-info"></i>
-                <div class="desc">
-                  <div class="title">Sector {{ sectorLetters[1] || 'N/A' }}</div>
-                  <small>{{ sectorNames [sectorLetters[1]] || 'N/A' }}</small>
-                </div>
-                <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
-                  <strong>{{ sectorPurchases[1] || 'N/A' }}</strong>
-                </div>
-              </li>
-              <li>
-                <i [ngClass]="sectorIcons [sectorLetters[2]] || 'icon-question'" class="bg-warning"></i>
-                <div class="desc">
-                  <div class="title">Sector {{ sectorLetters[2] || 'N/A' }}</div>
-                  <small>{{ sectorNames [sectorLetters[2]] || 'N/A' }}</small>
-                </div>
-                <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
-                  <strong>{{ sectorPurchases[2] || 'N/A' }}</strong>
-                </div>
-              </li>
-              <li>
-                <i [ngClass]="sectorIcons [sectorLetters[3]] || 'icon-question'" class="bg-danger"></i>
-                <div class="desc">
-                  <div class="title">Sector {{ sectorLetters[3] || 'N/A' }}</div>
-                  <small>{{ sectorNames [sectorLetters[3]] || 'N/A' }}</small>
-                </div>
-                <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
-                  <strong>{{ sectorPurchases[3] || 'N/A' }}</strong>
-                </div>
-              </li>
-              <li>
-                <i [ngClass]="sectorIcons [sectorLetters[4]] || 'icon-question'" class="bg-success"></i>
-                <div class="desc">
-                  <div class="title">Sector {{ sectorLetters[4] || 'N/A' }}</div>
-                  <small>{{ sectorNames [sectorLetters[4]] || 'N/A' }}</small>
-                </div>
-                <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
-                  <strong>{{ sectorPurchases[4] || 'N/A' }}</strong>
-                </div>
-              </li>
-              <li>
-                <i [ngClass]="sectorIcons [sectorLetters[5]] || 'icon-question'" class="bg-danger"></i>
-                <div class="desc">
-                  <div class="title">Sector {{ sectorLetters[5] || 'N/A' }}</div>
-                  <small>{{ sectorNames [sectorLetters[5]] || 'N/A' }}</small>
-                </div>
-                <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
-                  <strong>{{ sectorPurchases[5] || 'N/A' }}</strong>
-                </div>
-              </li>
-              <li>
-                <i [ngClass]="sectorIcons [sectorLetters[6]] || 'icon-question'" class="bg-warning"></i>
-                <div class="desc">
-                  <div class="title">Sector {{ sectorLetters[6] || 'N/A' }}</div>
-                  <small>{{ sectorNames [sectorLetters[6]] || 'N/A' }}</small>
-                </div>
-                <div class="value">
-                  <div class="small text-muted">Bought from Sector</div>
-                  <strong>{{ sectorPurchases[6] || 'N/A' }}</strong>
-                </div>
+              <li *ngIf="sectorLetters.length > 10 && disableSectorButton == false" class="divider text-center">
+                <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore()"><i class="icon-options"></i></button>
               </li>
             </ul>
           </div>
