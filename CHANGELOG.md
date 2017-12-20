@@ -8,6 +8,7 @@
 * Added week by week purchase list for customer dashboard
 * Added sector purchase amount list for customer dashboard
 * Added sector U to available ones
+* Fixed snippet layout
 
 # v0.0.7
 
