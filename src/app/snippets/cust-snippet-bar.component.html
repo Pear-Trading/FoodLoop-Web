@@ -1,27 +1,37 @@
-<div class="card">
-  <div class="card-footer">
-    <ul>
-      <li class="hidden-sm-down">
-        <div>My Points</div>
-        <div class="number-circle mx-auto"><strong>{{ userSum / 10 | number:'1.0-0' }}</strong></div>
-      </li>
-      <li class="hidden-sm-down">
-        <div class="">My Rank</div>
-        <div *ngIf="userPosition == 0" class="statuscontent">
-          <div class="number-circle mx-auto"><strong>Unranked</strong></div>
+<div class="card text-center">
+  <div class="card-block">
+    <ul style="list-style: none; padding-left: 0;">
+      <div class="row no-gutters">
+        <div class="col-12 col-sm-6 col-md-3 mx-auto">
+          <li class="hidden-sm-down">
+            <div>My Points</div>
+            <div class="number-circle mx-auto"><strong>{{ userSum / 10 | number:'1.0-0' }}</strong></div>
+          </li>
         </div>
-        <div *ngIf="userPosition != 0" class="statuscontent">
-          <div class="number-circle mx-auto"><strong>{{ userPosition }}</strong></div>
+        <div class="col-12 col-sm-6 col-md-3 mx-auto">
+          <li class="hidden-sm-down">
+            <div class="">My Rank</div>
+            <div *ngIf="userPosition == 0" class="statuscontent">
+              <div class="number-circle mx-auto"><strong>Unranked</strong></div>
+            </div>
+            <div *ngIf="userPosition != 0" class="statuscontent">
+              <div class="number-circle mx-auto"><strong>{{ userPosition }}</strong></div>
+            </div>
+          </li>
         </div>
-      </li>
-      <li class="hidden-sm-down">
-        <div class="">My Total Spend</div>
-        <div class="number-circle mx-auto"><strong>{{ userSum | currency:'GBP':'symbol':'1.2-2' }}</strong></div>
-      </li>
-      <li class="hidden-sm-down">
-        <div class="">Value to Local Economy</div>
-        <div class="number-circle mx-auto"><strong>{{ userSum * 2.3 | currency:'GBP':'symbol':'1.2-2' }}</strong></div>
-      </li>
+        <div class="col-12 col-sm-6 col-md-3 mx-auto">
+          <li class="hidden-sm-down">
+            <div class="">My Total Spend</div>
+            <div class="number-circle mx-auto"><strong>{{ userSum | currency:'GBP':'symbol':'1.2-2' }}</strong></div>
+          </li>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mx-auto">
+          <li class="hidden-sm-down">
+            <div class="">Value to Local Economy</div>
+            <div class="number-circle mx-auto"><strong>{{ userSum * 2.3 | currency:'GBP':'symbol':'1.2-2' }}</strong></div>
+          </li>
+        </div>
+      </div>
     </ul>
   </div>
 </div>
