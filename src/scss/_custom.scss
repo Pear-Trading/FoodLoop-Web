@@ -24,6 +24,20 @@ agm-map {
   width: 15%;
 }
 
+// circle for text
+// TODO: Make these resize based on inside content
+.number-circle {
+  height: 10rem;
+  border-radius:50%;
+  text-align:center;
+  width: 10rem;
+  padding: 5rem 5%;
+  line-height: 0;
+  position: relative;
+  background: #20a8d8;
+  color: white;
+  font-size: 0.875rem;
+}
 // white title font variant on type-2 as defined in _widgets.css
 .horizontal-bars {
   padding: 0;
