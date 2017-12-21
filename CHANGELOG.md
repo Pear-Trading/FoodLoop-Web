@@ -2,6 +2,8 @@
 
 # Next Release
 
+# v0.1.0
+
 * Changed Story Trail choosing to modals
 * Revamped snippets and graph widgets on customer dashboard
 * Added local purchase pie chart for customer dashboard
