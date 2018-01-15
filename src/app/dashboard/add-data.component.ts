@@ -37,6 +37,8 @@ export class AddDataComponent implements OnInit {
   transactionFormInvalid = true;
   myDate: any;
   minDate: any;
+  categoryIds: number[] = [];
+  categoryNames: string[] = [];
 
   constructor(
   private formBuilder: FormBuilder,
@@ -64,6 +66,16 @@ export class AddDataComponent implements OnInit {
     });
     this.myDate = moment().format('YYYY-MM-DD[T]HH:mm');
     // this.myDate = new Date().toISOString().slice(0, 16);
+    this.api.categoryList().subscribe(
+      result => {
+        this.categories = result;
+        console.log(this.categories);
+      },
+      error => {
+        console.log('Retrieval Error');
+        console.log( error._body );
+      }
+    );
   }
 
   ngOnInit(): void {
