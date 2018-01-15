@@ -30,6 +30,7 @@ export class AddDataComponent implements OnInit {
   organisationTown: string;
   organisationPostcode: string;
   amount: number;
+  categoryId: number;
   transactionAdditionType = 1;
   storeList = [];
   showAddStore = false;
@@ -37,8 +38,8 @@ export class AddDataComponent implements OnInit {
   transactionFormInvalid = true;
   myDate: any;
   minDate: any;
-  categoryIds: number[] = [];
-  categoryNames: string[] = [];
+  categoryIdList: number[] = [];
+  categoryNameList: string[] = [];
 
   constructor(
   private formBuilder: FormBuilder,
@@ -70,6 +71,7 @@ export class AddDataComponent implements OnInit {
       result => {
         this.categories = result;
         console.log(this.categories);
+        this.setCategoryList(result.categories);
       },
       error => {
         console.log('Retrieval Error');
@@ -81,6 +83,11 @@ export class AddDataComponent implements OnInit {
   ngOnInit(): void {
     this.getMinDate();
     this.accountType = localStorage.getItem('usertype');
+  }
+
+  private setCategoryList(data: any) {
+    this.categoryIdList = Object.keys(data.ids).map(key => data.ids[key]);
+    this.categoryNameList = Object.keys(data.names).map(key => data.names[key]);
   }
 
   getMinDate() {
@@ -182,6 +189,7 @@ export class AddDataComponent implements OnInit {
           transaction_value : this.amount,
           purchase_time     : purchaseTime,
           organisation_id   : this.organisationId,
+          category          : this.categoryId,
         };
         break;
       case 2:
@@ -190,6 +198,7 @@ export class AddDataComponent implements OnInit {
           transaction_value : this.amount,
           purchase_time     : purchaseTime,
           organisation_id   : this.organisationId,
+          category          : this.categoryId,
         };
         break;
       case 3:
@@ -201,6 +210,7 @@ export class AddDataComponent implements OnInit {
           street_name       : this.submitOrg.street_name,
           town              : this.submitOrg.town,
           postcode          : this.submitOrg.postcode,
+          category          : this.categoryId,
         };
         break;
     }
@@ -251,6 +261,7 @@ export class AddDataComponent implements OnInit {
     this.amount = null;
     this.transactionFormInvalid = true;
     this.showAddStore = false;
+    this.categoryId = null;
   }
 
   onSubmitPayroll() {

@@ -25,6 +25,20 @@
             </div>
           </div>
           <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="text-input">Category</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <select type="text" class="form-control" [(ngModel)]="categoryId">
+                  <option value="" disabled>Choose a category</option>
+                  <option *ngFor="let category of categoryIdList, let i=index" [ngValue]="category" >
+                    {{ categoryNameList[i] }}
+                  </option>
+                </select>
+              </div>
+              <span class="help-block"><strong>Optional:</strong> Choose the relevant Category for the purchase.</span>
+            </div>
+          </div>
+          <div class="form-group row">
             <label class="col-md-3 form-control-label" for="text-input"><strong>Organisation Name</strong></label>
             <div class="col-md-9">
               <input type="text" class="form-control" placeholder="Organisation Name" [(ngModel)]="submitOrg.name" (input)="organisationSearch($event)" (ngModelChange)="transactionFormValidate()">
