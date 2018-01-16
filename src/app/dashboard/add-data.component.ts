@@ -30,7 +30,8 @@ export class AddDataComponent implements OnInit {
   organisationTown: string;
   organisationPostcode: string;
   amount: number;
-  categoryId: number;
+  // Assumes Groceries is 1st category
+  categoryId: number = 1;
   transactionAdditionType = 1;
   storeList = [];
   showAddStore = false;
@@ -69,8 +70,6 @@ export class AddDataComponent implements OnInit {
     // this.myDate = new Date().toISOString().slice(0, 16);
     this.api.categoryList().subscribe(
       result => {
-        this.categories = result;
-        console.log(this.categories);
         this.setCategoryList(result.categories);
       },
       error => {
@@ -261,7 +260,6 @@ export class AddDataComponent implements OnInit {
     this.amount = null;
     this.transactionFormInvalid = true;
     this.showAddStore = false;
-    this.categoryId = null;
   }
 
   onSubmitPayroll() {

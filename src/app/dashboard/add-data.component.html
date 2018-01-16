@@ -29,7 +29,7 @@
             <div class="col-md-9">
               <div class="input-group">
                 <select type="text" class="form-control" [(ngModel)]="categoryId">
-                  <option value="" disabled>Choose a category</option>
+                  <option value="">Uncategorised</option>
                   <option *ngFor="let category of categoryIdList, let i=index" [ngValue]="category" >
                     {{ categoryNameList[i] }}
                   </option>
