@@ -1,0 +1,33 @@
+<div class="animated fadeIn">
+  <div class=row>
+    <div class="col-xl-4 col-md-6">
+      <div class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title float-left mb-0">Purchases this week</h4>
+            </div><!--/.col-->
+          </div><!--/.row-->
+          <div class="chart-wrapper">
+            <ul class="horizontal-bars type-2">
+              <li>
+                <span class="title">Placeholder Category</span>
+                <span class="value">{{ (weekPurchaseList.first  || 0 ) }} <span class="text-muted small">
+                  ({{ (weekPurchaseList.first || 0 ) / weekPurchaseList.max | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(weekPurchaseList.first || 0 ) / weekPurchaseList.first | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+              <li *ngIf="categoryList.length > 10 && disableCategoryButtonFirst == false" class="divider text-center">
+                <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore()"><i class="icon-options"></i></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+</div>
