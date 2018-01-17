@@ -2,6 +2,11 @@
 
 # Next Release
 
+# v0.1.1
+
+* Redid layout on circle customer view
+* Renamed customer dashboard headers
+
 # v0.1.0
 
 * Changed Story Trail choosing to modals

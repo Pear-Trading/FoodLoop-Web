@@ -116,6 +116,17 @@ export class ApiService {
     );
   }
 
+  // Basic Customer User stats API
+  public categoryList() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/search/category',
+      {
+        session_key : key,
+      }
+    );
+  }
+
   // Searches organisations used for transaction submission
 
   public search(data) {
