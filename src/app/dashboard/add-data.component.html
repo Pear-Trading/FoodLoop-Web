@@ -28,7 +28,7 @@
             <label class="col-md-3 form-control-label" for="text-input">Category</label>
             <div class="col-md-9">
               <div class="input-group">
-                <select type="text" class="form-control" [(ngModel)]="categoryId">
+                <select type="text" class="form-control" [(ngModel)]="categoryId" size="6">
                   <option value="">Uncategorised</option>
                   <option *ngFor="let category of categoryIdList, let i=index" [ngValue]="category" >
                     {{ categoryNameList[i] }}
