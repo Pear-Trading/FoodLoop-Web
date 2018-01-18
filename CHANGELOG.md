@@ -2,6 +2,10 @@
 
 # Next Release
 
+# v0.1.3
+
+* Made fix to Travis config
+
 # v0.1.2
 
 * Removed unused button
