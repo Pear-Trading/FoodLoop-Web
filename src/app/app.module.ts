@@ -1,5 +1,8 @@
+// Push Notifications
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -38,6 +41,8 @@ import { P500Component } from './pages/500.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -51,6 +56,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     AppRoutingModule,
   ],
   declarations: [
+    ServiceWorkerModule,
     AppComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,
@@ -75,6 +81,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     }
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   bootstrap: [ AppComponent ]
 })
