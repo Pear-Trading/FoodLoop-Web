@@ -15,3 +15,9 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+# ensures font files are loaded as binary not text
+*.ttf binary
+*.eot binary
+*.woff binary
+*.woff2 binary
