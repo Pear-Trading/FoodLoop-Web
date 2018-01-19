@@ -2,6 +2,16 @@
 
 # Next Release
 
+# v0.1.3
+
+* Made fix to Travis config
+
+# v0.1.2
+
+* Removed unused button
+* Added ability to choose category for transaction
+* Added version bump on Angular
+
 # v0.1.1
 
 * Redid layout on circle customer view
