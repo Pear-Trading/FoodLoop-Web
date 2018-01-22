@@ -168,7 +168,7 @@ export class DashboardCustomerComponent implements OnInit {
     this.sectorPurchases = Object.keys(data.purchases).map(key => data.purchases[key]);
   }
 
-  public loadMore () {
+  private loadMore () {
     this.disableSectorButton = true;
     this.sectorLimit = 22;
   }
