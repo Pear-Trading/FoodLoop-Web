@@ -62,7 +62,7 @@ const routes: Routes = [
       {
         path: 'category-month',
         component: CategoryMonthComponent,
-        data: { title: 'Month Category' },
+        data: { title: 'Budget' },
       },
       {
         path: 'map',

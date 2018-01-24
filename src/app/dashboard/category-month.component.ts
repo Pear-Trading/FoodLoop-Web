@@ -22,6 +22,10 @@ export class CategoryMonthComponent implements OnInit {
   weekList2 = [];
   weekList3 = [];
   weekList4 = [];
+  weekListValueMax1: number = 0;
+  weekListValueMax2: number = 0;
+  weekListValueMax3: number = 0;
+  weekListValueMax4: number = 0;
 
   categoryList: number[] = [];
   dayList: any[] = [];
@@ -32,7 +36,7 @@ export class CategoryMonthComponent implements OnInit {
   myWeek4: any;
   categoryIdList: number[] = [];
   categoryNameList: string[] = [];
-  categoryLimit1: number = 2;
+  categoryLimit1: number = 6;
   categoryLimit2: number = 6;
   categoryLimit3: number = 6;
   categoryLimit4: number = 6;
@@ -75,10 +79,6 @@ export class CategoryMonthComponent implements OnInit {
     this.myWeek2 = moment(this.myWeek1).subtract(1, 'weeks').format('YYYY-MM-DD');
     this.myWeek3 = moment(this.myWeek2).subtract(1, 'weeks').format('YYYY-MM-DD');
     this.myWeek4 = moment(this.myWeek3).subtract(1, 'weeks').format('YYYY-MM-DD');
-    console.log(this.myWeek1);
-    console.log(this.myWeek2);
-    console.log(this.myWeek3);
-    console.log(this.myWeek4);
   }
 
   private setData (data: any) {
@@ -89,10 +89,25 @@ export class CategoryMonthComponent implements OnInit {
     this.weekList2 = prop(data.data, this.myWeek2);
     this.weekList3 = prop(data.data, this.myWeek3);
     this.weekList4 = prop(data.data, this.myWeek4);
-    console.log(this.weekList1);
-    console.log(this.weekList2);
-    console.log(this.weekList3);
-    console.log(this.weekList4);
+    this.getMaxValue(this.weekList1, this.weekList2, this.weekList3, this.weekList4);
+  }
+
+  private getMaxValue (data1: any,
+    data2: any,
+    data3: any,
+    data4: any) {
+    if (data1) {
+      this.weekListValueMax1 = Math.max.apply(Math,data1.map(function(o){return o.value;}));
+    }
+    if (data2) {
+      this.weekListValueMax2 = Math.max.apply(Math,data2.map(function(o){return o.value;}));
+    }
+    if (data3) {
+      this.weekListValueMax3 = Math.max.apply(Math,data3.map(function(o){return o.value;}));
+    }
+    if (data4) {
+      this.weekListValueMax4 = Math.max.apply(Math,data4.map(function(o){return o.value;}));
+    }
   }
 
   private loadMore1 () {
