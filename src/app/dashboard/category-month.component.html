@@ -22,7 +22,7 @@
                 </div>
               </li>
               <div *ngIf="weekList1 !== undefined">
-                <li *ngIf="weekList1.length > 6 && disableCategoryButton1 == false" class="divider text-center">
+                <li *ngIf="weekList1.length > categoryLimit1 && disableCategoryButton1 == false" class="divider text-center">
                   <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore1()"><i class="icon-options"></i></button>
                 </li>
               </div>
@@ -53,7 +53,7 @@
                 </div>
               </li>
               <div *ngIf="!weekList2 == null">
-                <li *ngIf="weekList2.length > 6 && disableCategoryButtonFirst == false" class="divider text-center">
+                <li *ngIf="weekList2.length > categoryLimit2 && disableCategoryButtonFirst == false" class="divider text-center">
                   <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore2()"><i class="icon-options"></i></button>
                 </li>
               </div>
@@ -84,7 +84,7 @@
                 </div>
               </li>
               <div *ngIf="weekList3 !== undefined">
-                <li *ngIf="weekList3.length > 6 && disableCategoryButtonFirst == false" class="divider text-center">
+                <li *ngIf="weekList3.length > categoryLimit3 && disableCategoryButtonFirst == false" class="divider text-center">
                   <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore3()"><i class="icon-options"></i></button>
                 </li>
               </div>
@@ -115,7 +115,7 @@
                 </div>
               </li>
               <div *ngIf="!weekList4 == null">
-                <li *ngIf="weekList4.length > 6 && disableCategoryButtonFirst == false" class="divider text-center">
+                <li *ngIf="weekList4.length > categoryLimit4 && disableCategoryButtonFirst == false" class="divider text-center">
                   <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore4()"><i class="icon-options"></i></button>
                 </li>
               </div>

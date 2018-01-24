@@ -18,10 +18,10 @@ export class CategoryMonthComponent implements OnInit {
     first: 0,
   };
 
-  weekList1 = {};
-  weekList2 = {};
-  weekList3 = {};
-  weekList4 = {};
+  weekList1 = [];
+  weekList2 = [];
+  weekList3 = [];
+  weekList4 = [];
 
   categoryList: number[] = [];
   dayList: any[] = [];
@@ -32,7 +32,7 @@ export class CategoryMonthComponent implements OnInit {
   myWeek4: any;
   categoryIdList: number[] = [];
   categoryNameList: string[] = [];
-  categoryLimit1: number = 6;
+  categoryLimit1: number = 2;
   categoryLimit2: number = 6;
   categoryLimit3: number = 6;
   categoryLimit4: number = 6;
