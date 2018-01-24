@@ -1,6 +1,6 @@
 <div class="animated fadeIn">
   <div class=row>
-    <div class="col-xl-3 col-md-6">
+    <div class="col-md-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -10,10 +10,10 @@
           </div><!--/.row-->
           <div class="chart-wrapper">
             <ul class="horizontal-bars type-2">
-              <li>
-                <span class="title">Placeholder Category</span>
-                <span class="value">{{ (weekPurchaseList.first  || 0 ) }} <span class="text-muted small">
-                  ({{ (weekPurchaseList.first || 0 ) / weekPurchaseList.max | percent:'1.0-0' }})</span></span>
+              <li *ngFor="let categoryEntry of weekList1 | slice:0:categoryLimit1; let i=index;">
+                <span class="title">{{ categoryNameList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="value">{{ ( categoryEntry.value || 0 ) }} <span class="text-muted small">
+                  0</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
@@ -21,15 +21,17 @@
                   </div>
                 </div>
               </li>
-              <li *ngIf="categoryList.length > 10 && disableCategoryButtonFirst == false" class="divider text-center">
-                <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore()"><i class="icon-options"></i></button>
-              </li>
+              <div *ngIf="weekList1 !== undefined">
+                <li *ngIf="weekList1.length > 6 && disableCategoryButton1 == false" class="divider text-center">
+                  <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore1()"><i class="icon-options"></i></button>
+                </li>
+              </div>
             </ul>
           </div>
         </div>
       </div>
     </div><!--/.col-->
-    <div class="col-xl-3 col-md-6">
+    <div class="col-md-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -39,9 +41,9 @@
           </div><!--/.row-->
           <div class="chart-wrapper">
             <ul class="horizontal-bars type-2">
-              <li>
-                <span class="title">Placeholder Category</span>
-                <span class="value">{{ (weekPurchaseList.first  || 0 ) }} <span class="text-muted small">
+              <li *ngFor="let categoryEntry of weekList2 | slice:0:categoryLimit2; let i=index;">
+                <span class="title">{{ categoryNameList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="value">{{ ( categoryEntry.value || 0 ) }} <span class="text-muted small">
                   ({{ (weekPurchaseList.first || 0 ) / weekPurchaseList.max | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
@@ -50,15 +52,17 @@
                   </div>
                 </div>
               </li>
-              <li *ngIf="categoryList.length > 10 && disableCategoryButtonFirst == false" class="divider text-center">
-                <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore()"><i class="icon-options"></i></button>
-              </li>
+              <div *ngIf="!weekList2 == null">
+                <li *ngIf="weekList2.length > 6 && disableCategoryButtonFirst == false" class="divider text-center">
+                  <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore2()"><i class="icon-options"></i></button>
+                </li>
+              </div>
             </ul>
           </div>
         </div>
       </div>
     </div><!--/.col-->
-    <div class="col-xl-3 col-md-6">
+    <div class="col-md-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -68,9 +72,9 @@
           </div><!--/.row-->
           <div class="chart-wrapper">
             <ul class="horizontal-bars type-2">
-              <li>
-                <span class="title">Placeholder Category</span>
-                <span class="value">{{ (weekPurchaseList.first  || 0 ) }} <span class="text-muted small">
+              <li *ngFor="let categoryEntry of weekList3 | slice:0:categoryLimit3; let i=index;">
+                <span class="title">{{ categoryNameList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="value">{{ ( categoryEntry.value || 0 ) }} <span class="text-muted small">
                   ({{ (weekPurchaseList.first || 0 ) / weekPurchaseList.max | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
@@ -79,15 +83,17 @@
                   </div>
                 </div>
               </li>
-              <li *ngIf="categoryList.length > 10 && disableCategoryButtonFirst == false" class="divider text-center">
-                <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore()"><i class="icon-options"></i></button>
-              </li>
+              <div *ngIf="weekList3 !== undefined">
+                <li *ngIf="weekList3.length > 6 && disableCategoryButtonFirst == false" class="divider text-center">
+                  <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore3()"><i class="icon-options"></i></button>
+                </li>
+              </div>
             </ul>
           </div>
         </div>
       </div>
     </div><!--/.col-->
-    <div class="col-xl-3 col-md-6">
+    <div class="col-md-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -97,9 +103,9 @@
           </div><!--/.row-->
           <div class="chart-wrapper">
             <ul class="horizontal-bars type-2">
-              <li>
-                <span class="title">Placeholder Category</span>
-                <span class="value">{{ (weekPurchaseList.first  || 0 ) }} <span class="text-muted small">
+              <li *ngFor="let categoryEntry of weekList4 | slice:0:categoryLimit4; let i=index;">
+                <span class="title">{{ categoryNameList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="value">{{ ( categoryEntry.value || 0 ) }} <span class="text-muted small">
                   ({{ (weekPurchaseList.first || 0 ) / weekPurchaseList.max | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
@@ -108,9 +114,11 @@
                   </div>
                 </div>
               </li>
-              <li *ngIf="categoryList.length > 10 && disableCategoryButtonFirst == false" class="divider text-center">
-                <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore()"><i class="icon-options"></i></button>
-              </li>
+              <div *ngIf="!weekList4 == null">
+                <li *ngIf="weekList4.length > 6 && disableCategoryButtonFirst == false" class="divider text-center">
+                  <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore4()"><i class="icon-options"></i></button>
+                </li>
+              </div>
             </ul>
           </div>
         </div>
