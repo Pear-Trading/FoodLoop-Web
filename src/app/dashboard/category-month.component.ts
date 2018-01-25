@@ -56,7 +56,6 @@ export class CategoryMonthComponent implements OnInit {
     );
     this.api.categoryTransactionList().subscribe(
       result => {
-        console.log(result);
         this.setData(result);
       },
       error => {
