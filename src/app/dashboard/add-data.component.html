@@ -27,13 +27,11 @@
           <div class="form-group row">
             <label class="col-md-3 form-control-label" for="text-input">Category</label>
             <div class="col-md-9">
-              <div class="input-group">
-                <select type="text" class="form-control" [(ngModel)]="categoryId" size="10">
-                  <option value="">Uncategorised</option>
-                  <option *ngFor="let category of categoryIdList, let i=index" [ngValue]="category" >
-                    {{ categoryNameList[i] }}
-                  </option>
-                </select>
+              <div class="radio" *ngFor="let category of categoryIdList, let i=index">
+                <label>
+                  <input [value]="category" type="radio" name="radios" [(ngModel)]="categoryId">
+                  {{ categoryNameList[i] }}
+                </label>
               </div>
               <span class="help-block"><strong>Optional:</strong> Choose the relevant Category for the purchase.</span>
             </div>
