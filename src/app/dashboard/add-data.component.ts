@@ -39,7 +39,8 @@ export class AddDataComponent implements OnInit {
   transactionFormInvalid = true;
   myDate: any;
   minDate: any;
-  categoryIdList: number[] = [];
+  leftCategoryIdList: number[] = [];
+  rightCategoryIdList: number[] = [];
   categoryNameList: string[] = [];
 
   constructor(
@@ -85,8 +86,14 @@ export class AddDataComponent implements OnInit {
   }
 
   private setCategoryList(data: any) {
-    this.categoryIdList = Object.keys(data.ids).map(key => data.ids[key]);
+    let categoryIdList = Object.keys(data.ids).map(key => data.ids[key]);
     this.categoryNameList = Object.keys(data.names).map(key => data.names[key]);
+    console.log(categoryIdList);
+    let halfLength = Math.floor(categoryIdList.length / 2);
+    this.leftCategoryIdList = categoryIdList.splice(0, halfLength);
+    console.log(this.leftCategoryIdList);
+    this.rightCategoryIdList = categoryIdList;
+    console.log(this.rightCategoryIdList);
   }
 
   getMinDate() {

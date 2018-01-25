@@ -22,10 +22,10 @@ export class CategoryMonthComponent implements OnInit {
   weekList2 = [];
   weekList3 = [];
   weekList4 = [];
-  weekListValueMax1: number = 0;
-  weekListValueMax2: number = 0;
-  weekListValueMax3: number = 0;
-  weekListValueMax4: number = 0;
+  weekListValueSum1: number = 0;
+  weekListValueSum2: number = 0;
+  weekListValueSum3: number = 0;
+  weekListValueSum4: number = 0;
 
   categoryList: number[] = [];
   dayList: any[] = [];
@@ -56,7 +56,6 @@ export class CategoryMonthComponent implements OnInit {
     );
     this.api.categoryTransactionList().subscribe(
       result => {
-        console.log(result);
         this.setData(result);
       },
       error => {
@@ -97,16 +96,16 @@ export class CategoryMonthComponent implements OnInit {
     data3: any,
     data4: any) {
     if (data1) {
-      this.weekListValueMax1 = Math.max.apply(Math,data1.map(function(o){return o.value;}));
+      this.weekListValueSum1 = data1.reduce(function (s, a) {return s + a.value;}, 0);
     }
     if (data2) {
-      this.weekListValueMax2 = Math.max.apply(Math,data2.map(function(o){return o.value;}));
+      this.weekListValueSum2 = data2.reduce(function (s, a) {return s + a.value;}, 0);
     }
     if (data3) {
-      this.weekListValueMax3 = Math.max.apply(Math,data3.map(function(o){return o.value;}));
+      this.weekListValueSum3 = data3.reduce(function (s, a) {return s + a.value;}, 0);
     }
     if (data4) {
-      this.weekListValueMax4 = Math.max.apply(Math,data4.map(function(o){return o.value;}));
+      this.weekListValueSum4 = data4.reduce(function (s, a) {return s + a.value;}, 0);
     }
   }
 
