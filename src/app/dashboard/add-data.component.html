@@ -25,15 +25,33 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-3 form-control-label" for="text-input">Category</label>
+            <label class="col-md-3 form-control-label" for="text-input">Budget Type</label>
             <div class="col-md-9">
-              <div class="radio" *ngFor="let category of categoryIdList, let i=index">
-                <label>
-                  <input [value]="category" type="radio" name="radios" [(ngModel)]="categoryId">
-                  {{ categoryNameList[i] }}
-                </label>
+              <div class="row">
+                <div class="col-md-6">
+                  <div>
+                    <label>
+                      <input value="" type="radio" name="radios" [(ngModel)]="categoryId">
+                      Uncategorised
+                    </label>
+                  </div>
+                  <div class="radio" *ngFor="let category of leftCategoryIdList, let i=index">
+                    <label>
+                      <input [value]="category" type="radio" name="radios" [(ngModel)]="categoryId">
+                      {{ categoryNameList[i] }}
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="radio" *ngFor="let category2 of rightCategoryIdList, let i=index">
+                    <label>
+                      <input [value]="category2" type="radio" name="radios" [(ngModel)]="categoryId">
+                      {{ categoryNameList[category2 - 1] }}
+                    </label>
+                  </div>
+                </div>
               </div>
-              <span class="help-block"><strong>Optional:</strong> Choose the relevant Category for the purchase.</span>
+              <span class="help-block"><strong>Optional:</strong> Choose the Budget Type for the majority of the purchase.</span>
             </div>
           </div>
           <div class="form-group row">
