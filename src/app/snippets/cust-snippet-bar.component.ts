@@ -5,6 +5,7 @@ import { CustSnippetsService } from '../providers/cust-snippets.service';
   selector: 'snippet-bar-cust',
   templateUrl: 'cust-snippet-bar.component.html',
 })
+
 export class CustBarSnippetComponent implements OnInit {
 
   public userSum = 0;

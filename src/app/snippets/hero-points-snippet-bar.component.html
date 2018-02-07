@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-6 col-xl-3">
+    <div class="card text-center" style="background-color: transparent; border: none">
+      <div class="card-block">
+        <ul style="list-style: none; padding-left: 0;">
+          <li class="hidden-sm-down">
+            <div><h5 class="text-orange">My Hero Points</h5></div>
+            <div class="number-circle-hero mx-auto"><strong>{{ pointTotal | number:'1.0-0' }}</strong></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xl-3">
+    <div class="card text-center" style="background-color: transparent; border: none">
+      <div class="card-block">
+        <ul style="list-style: none; padding-left: 0;">
+          <li class="hidden-sm-down">
+            <div><h5 class="text-dark-green">Last Transaction Points</h5></div>
+            <div class="number-circle mx-auto"><strong>{{pointLast | number:'1.0-0' }}</strong></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xl-3">
+    <div class="card text-center" style="background-color: transparent; border: none">
+      <div class="card-block">
+        <ul style="list-style: none; padding-left: 0;">
+          <li class="hidden-sm-down">
+            <div><h5 class="text-dark-green">Total Transactions</h5></div>
+            <div class="number-circle mx-auto"><strong>{{ transCount | number:'1.0-0' }}</strong></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xl-3">
+    <div class="card text-center" style="background-color: transparent; border: none">
+      <div class="card-block">
+        <ul style="list-style: none; padding-left: 0;">
+          <li class="hidden-sm-down">
+            <div><h5 class="text-dark-green">Average Multiplier</h5></div>
+            <div class="number-circle mx-auto"><strong>{{ avgMulti | number:'1.0-0' }}</strong></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

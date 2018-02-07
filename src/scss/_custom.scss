@@ -6,14 +6,77 @@
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: #d2eef7;
 }
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #ffffff;
+}
+
 .table-hover tbody tr:hover td {
     background-color: $table-bg-hover;
+    color: #000000;
 }
 
 .table thead tr {
     background-color: #0f81a8;
     color: #e8ebed;
 }
+
+.header-fixed {
+    width: 100%;
+    table-layout:fixed;
+    display: table;
+}
+
+.header-fixed > thead,
+.header-fixed > tbody,
+.header-fixed > thead > tr,
+.header-fixed > tbody > tr,
+.header-fixed > thead > tr > th,
+.header-fixed > tbody > tr > td {
+    display: block;
+}
+
+.header-fixed > tbody > tr:after,
+.header-fixed > thead > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.header-fixed {
+
+  tbody {
+    overflow-y: auto;
+    height: 370px;
+  }
+}
+
+tr.collapse.in {
+  display:table-row;
+}
+
+.header-fixed > tbody > tr > td,
+.header-fixed > thead > tr > th,
+{
+    //width: 33.33%;
+    float: left;
+    overflow-wrap: break-word;
+
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
 
 // Map styling
 agm-map {
@@ -41,6 +104,23 @@ agm-map {
 
 .text-dark-green {
   color: #10602c;
+}
+
+.number-circle-hero {
+  height: 10rem;
+  border-radius:50%;
+  text-align:center;
+  width: 10rem;
+  padding: 5rem 5%;
+  line-height: 0;
+  position: relative;
+  background: #F39C12;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.text-orange {
+  color: #D35400;
 }
 
 // white title font variant on type-2 as defined in _widgets.css

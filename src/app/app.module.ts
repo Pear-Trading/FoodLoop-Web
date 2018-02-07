@@ -25,6 +25,9 @@ import { CustGraphsService } from './providers/cust-graphs.service';
 import { OrgSnippetsService } from './providers/org-snippets.service';
 import { CustSnippetsService } from './providers/cust-snippets.service';
 import { CustPiesService } from './providers/cust-pies.service';
+import { MedalsService } from './providers/medals.service';
+//import { HeroPointsSnippetsService } from './providers/hero-points-snippets.service';
+//import { HeroPointsStatsService } from './providers/hero-points-stats.service';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
@@ -38,11 +41,15 @@ import { P500Component } from './pages/500.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
+// Pipes
+import { NgPipesModule } from 'ngx-pipes';
+
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     NgxPaginationModule,
+    NgPipesModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     AuthModule,
@@ -70,11 +77,17 @@ import { DashboardModule } from './dashboard/dashboard.module';
     OrgSnippetsService,
     CustGraphsService,
     CustSnippetsService,
+    //HeroPointsSnippetsService,
+    //HeroPointsStatsService,
+    MedalsService,
     CustPiesService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     }
+  ],
+  exports: [
+    NgPipesModule,
   ],
   bootstrap: [ AppComponent ]
 })

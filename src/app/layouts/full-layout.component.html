@@ -89,6 +89,14 @@
             </div>
           </a>
         </li>
+        <li *ngIf="accountType == 'customer'" class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/hero-points']">
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-trophy"></i></div>
+              <div class="col-10">Hero Points</div>
+            </div>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

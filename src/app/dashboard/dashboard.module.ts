@@ -20,10 +20,12 @@ import { PayrollLogComponent } from './payroll-log.component';
 import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
 import { TrailMapComponent } from './trail-map.component';
+import { HeroPointsComponent } from './hero-points.component';
 
 import { GraphWidget } from '../widgets/graph-widget.component';
 import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
 import { CustBarSnippetComponent } from '../snippets/cust-snippet-bar.component';
+//import { HeroPointsSnippetBarComponent } from '../snippets/hero-points-snippet-bar.component';
 import { GraphPanel } from '../panels/graph-panel.component';
 import { PiePanel } from '../panels/pie-panel.component';
 
@@ -36,6 +38,9 @@ import { LeaderboardResultComponent } from '../shared/leaderboard-result.compone
 
 // API key env variable import
 import { environment } from '../../environments/environment';
+
+// Pipes
+import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
   imports: [
@@ -52,6 +57,7 @@ import { environment } from '../../environments/environment';
     NgxPaginationModule,
     DashboardRoutingModule,
     ModalModule.forRoot(),
+    NgPipesModule,
   ],
   declarations: [
     DashboardComponent,
@@ -72,8 +78,10 @@ import { environment } from '../../environments/environment';
     GraphWidget,
     OrgBarSnippetComponent,
     CustBarSnippetComponent,
+    //HeroPointsSnippetBarComponent,
     GraphPanel,
     PiePanel,
+    HeroPointsComponent,
   ],
   providers: [
     CurrencyPipe,

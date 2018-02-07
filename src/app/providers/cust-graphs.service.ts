@@ -9,6 +9,7 @@ export class CustGraphsService {
 
   public getGraph(name: string, data: any = {}) {
     data.graph = name;
+    //console.log(this.api.post(this.custGraphUrl, data));
     return this.api.post(this.custGraphUrl, data);
   }
 }
