@@ -1,0 +1,128 @@
+<div class="animated fadeIn">
+  <div class=row>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title float-left mb-0">Purchases Last Week</h4>
+            </div><!--/.col-->
+          </div><!--/.row-->
+          <div class="chart-wrapper">
+            <ul class="horizontal-bars type-2">
+              <li *ngFor="let categoryEntry of weekList1 | slice:0:categoryLimit1; let i=index;">
+                <span class="title">{{ categoryNameList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
+                  ({{ (categoryEntry.value || 0 ) / weekListValueSum1 | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(categoryEntry.value || 0 ) / weekListValueSum1 | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+              <div *ngIf="weekList1 !== undefined">
+                <li *ngIf="weekList1.length > categoryLimit1 && disableCategoryButton1 == false" class="divider text-center">
+                  <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore1()"><i class="icon-options"></i></button>
+                </li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title float-left mb-0">Purchases 1 Week Ago</h4>
+            </div><!--/.col-->
+          </div><!--/.row-->
+          <div class="chart-wrapper">
+            <ul class="horizontal-bars type-2">
+              <li *ngFor="let categoryEntry of weekList2 | slice:0:categoryLimit2; let i=index;">
+                <span class="title">{{ categoryNameList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
+                  ({{ (categoryEntry.value || 0 ) / weekListValueSum2 | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(categoryEntry.value || 0 ) / weekListValueSum2 | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+              <div *ngIf="!weekList2 == null">
+                <li *ngIf="weekList2.length > categoryLimit2 && disableCategoryButtonFirst == false" class="divider text-center">
+                  <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore2()"><i class="icon-options"></i></button>
+                </li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title float-left mb-0">Purchases 2 Weeks Ago</h4>
+            </div><!--/.col-->
+          </div><!--/.row-->
+          <div class="chart-wrapper">
+            <ul class="horizontal-bars type-2">
+              <li *ngFor="let categoryEntry of weekList3 | slice:0:categoryLimit3; let i=index;">
+                <span class="title">{{ categoryNameList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
+                  ({{ (categoryEntry.value || 0 ) / weekListValueSum3 | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(categoryEntry.value || 0 ) / weekListValueSum3 | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+              <div *ngIf="weekList3 !== undefined">
+                <li *ngIf="weekList3.length > categoryLimit3 && disableCategoryButtonFirst == false" class="divider text-center">
+                  <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore3()"><i class="icon-options"></i></button>
+                </li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title float-left mb-0">Purchases 3 Weeks Ago</h4>
+            </div><!--/.col-->
+          </div><!--/.row-->
+          <div class="chart-wrapper">
+            <ul class="horizontal-bars type-2">
+              <li *ngFor="let categoryEntry of weekList4 | slice:0:categoryLimit4; let i=index;">
+                <span class="title">{{ categoryNameList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
+                  ({{ (categoryEntry.value || 0 ) / weekListValueSum4 | percent:'1.0-0' }})</span></span>
+                <div class="bars">
+                  <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar"
+                    [style.width]="(categoryEntry.value || 0 ) / weekListValueSum4 | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </li>
+              <div *ngIf="!weekList4 == null">
+                <li *ngIf="weekList4.length > categoryLimit4 && disableCategoryButtonFirst == false" class="divider text-center">
+                  <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore4()"><i class="icon-options"></i></button>
+                </li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+</div>
