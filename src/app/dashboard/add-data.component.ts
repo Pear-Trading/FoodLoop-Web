@@ -32,6 +32,7 @@ export class AddDataComponent implements OnInit {
   amount: number;
   // Assumes Groceries is 1st category
   categoryId: number = 1;
+  essentialPurchase: any;
   transactionAdditionType = 1;
   storeList = [];
   showAddStore = false;
@@ -196,6 +197,7 @@ export class AddDataComponent implements OnInit {
           purchase_time     : purchaseTime,
           organisation_id   : this.organisationId,
           category          : this.categoryId,
+          essential         : this.essentialPurchase,
         };
         break;
       case 2:
@@ -204,7 +206,7 @@ export class AddDataComponent implements OnInit {
           transaction_value : this.amount,
           purchase_time     : purchaseTime,
           organisation_id   : this.organisationId,
-          category          : this.categoryId,
+          essential         : this.essentialPurchase,
         };
         break;
       case 3:
@@ -216,7 +218,7 @@ export class AddDataComponent implements OnInit {
           street_name       : this.submitOrg.street_name,
           town              : this.submitOrg.town,
           postcode          : this.submitOrg.postcode,
-          category          : this.categoryId,
+          essential         : this.essentialPurchase,
         };
         break;
     }
