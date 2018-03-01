@@ -32,7 +32,7 @@ export class AddDataComponent implements OnInit {
   amount: number;
   // Assumes Groceries is 1st category
   categoryId: number = 1;
-  essentialPurchase: any;
+  essentialPurchase = false;
   transactionAdditionType = 1;
   storeList = [];
   showAddStore = false;
@@ -89,12 +89,9 @@ export class AddDataComponent implements OnInit {
   private setCategoryList(data: any) {
     let categoryIdList = Object.keys(data.ids).map(key => data.ids[key]);
     this.categoryNameList = Object.keys(data.names).map(key => data.names[key]);
-    console.log(categoryIdList);
     let halfLength = Math.floor(categoryIdList.length / 2);
     this.leftCategoryIdList = categoryIdList.splice(0, halfLength);
-    console.log(this.leftCategoryIdList);
     this.rightCategoryIdList = categoryIdList;
-    console.log(this.rightCategoryIdList);
   }
 
   getMinDate() {
