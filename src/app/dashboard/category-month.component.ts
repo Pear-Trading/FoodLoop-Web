@@ -26,6 +26,10 @@ export class CategoryMonthComponent implements OnInit {
   weekListValueSum2: number = 0;
   weekListValueSum3: number = 0;
   weekListValueSum4: number = 0;
+  weekEssential1: number = 0;
+  weekEssential2: number = 0;
+  weekEssential3: number = 0;
+  weekEssential4: number = 0;
 
   categoryList: number[] = [];
   dayList: any[] = [];
@@ -84,11 +88,16 @@ export class CategoryMonthComponent implements OnInit {
     function prop<T, K extends keyof T>(obj: T, key: K) {
       return obj[key];
     }
-    this.weekList1 = prop(data.data, this.myWeek1);
-    this.weekList2 = prop(data.data, this.myWeek2);
-    this.weekList3 = prop(data.data, this.myWeek3);
-    this.weekList4 = prop(data.data, this.myWeek4);
+    this.weekList1 = prop(data.data.categories, this.myWeek1);
+    this.weekList2 = prop(data.data.categories, this.myWeek2);
+    this.weekList3 = prop(data.data.categories, this.myWeek3);
+    this.weekList4 = prop(data.data.categories, this.myWeek4);
     this.getMaxValue(this.weekList1, this.weekList2, this.weekList3, this.weekList4);
+    this.weekEssential1 = prop(data.data.essentials, this.myWeek1);
+    console.log(this.weekEssential1);
+    this.weekEssential2 = prop(data.data.essentials, this.myWeek2);
+    this.weekEssential3 = prop(data.data.essentials, this.myWeek3);
+    this.weekEssential4 = prop(data.data.essentials, this.myWeek4);
   }
 
   private getMaxValue (data1: any,
