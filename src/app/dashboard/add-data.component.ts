@@ -33,6 +33,8 @@ export class AddDataComponent implements OnInit {
   // Assumes Groceries is 1st category
   categoryId: number = 1;
   essentialPurchase = false;
+  recurringPurchase = false;
+  recurringType: string;
   transactionAdditionType = 1;
   storeList = [];
   showAddStore = false;
@@ -174,7 +176,9 @@ export class AddDataComponent implements OnInit {
   transactionFormValidate() {
     if (this.submitOrg.name.length === 0 ||
         this.submitOrg.town.length === 0 ||
-        this.amount === 0 ) {
+        this.amount === 0 ||
+        this.recurringPurchase &&
+        this.recurringType === 0) {
           this.transactionFormInvalid = true;
         } else {
           this.transactionFormInvalid = false;
@@ -195,6 +199,7 @@ export class AddDataComponent implements OnInit {
           organisation_id   : this.organisationId,
           category          : this.categoryId,
           essential         : this.essentialPurchase,
+          recurring         : this.recurringPurchase,
         };
         break;
       case 2:
@@ -204,6 +209,7 @@ export class AddDataComponent implements OnInit {
           purchase_time     : purchaseTime,
           organisation_id   : this.organisationId,
           essential         : this.essentialPurchase,
+          recurring         : this.recurringPurchase,
         };
         break;
       case 3:
@@ -216,6 +222,7 @@ export class AddDataComponent implements OnInit {
           town              : this.submitOrg.town,
           postcode          : this.submitOrg.postcode,
           essential         : this.essentialPurchase,
+          recurring         : this.recurringPurchase,
         };
         break;
     }
