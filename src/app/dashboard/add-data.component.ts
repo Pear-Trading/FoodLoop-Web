@@ -199,7 +199,7 @@ export class AddDataComponent implements OnInit {
           organisation_id   : this.organisationId,
           category          : this.categoryId,
           essential         : this.essentialPurchase,
-          recurring         : this.recurringPurchase,
+          recurring         : this.recurringType,
         };
         break;
       case 2:
@@ -209,7 +209,7 @@ export class AddDataComponent implements OnInit {
           purchase_time     : purchaseTime,
           organisation_id   : this.organisationId,
           essential         : this.essentialPurchase,
-          recurring         : this.recurringPurchase,
+          recurring         : this.recurringType,
         };
         break;
       case 3:
@@ -222,7 +222,7 @@ export class AddDataComponent implements OnInit {
           town              : this.submitOrg.town,
           postcode          : this.submitOrg.postcode,
           essential         : this.essentialPurchase,
-          recurring         : this.recurringPurchase,
+          recurring         : this.recurringType,
         };
         break;
     }
