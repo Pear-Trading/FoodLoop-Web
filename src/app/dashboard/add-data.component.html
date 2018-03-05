@@ -48,29 +48,29 @@
               <div class="row">
                 <div class="col-md-6">
                   <div>
-                    <input value="daily" type="radio" name="daily" [(ngModel)]="recurringType">
+                    <input value="daily" type="radio" name="daily" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">
                     <label>Daily</label>
                   </div>
                   <div>
-                    <input value="weekly" type="radio" name="weekly" [(ngModel)]="recurringType">
+                    <input value="weekly" type="radio" name="weekly" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">
                     <label>Weekly</label>
                   </div>
                   <div>
-                    <input value="fortnightly" type="radio" name="fortnightly" [(ngModel)]="recurringType">
+                    <input value="fortnightly" type="radio" name="fortnightly" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">
                     <label>Fortnightly</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                 <div>
-                    <input value="monthly" type="radio" name="monthly" [(ngModel)]="recurringType">
+                    <input value="monthly" type="radio" name="monthly" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">
                     <label>Monthly</label>
                   </div>
                   <div>
-                    <input value="monthly" type="radio" name="monthly" [(ngModel)]="recurringType">
+                    <input value="monthly" type="radio" name="monthly" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">
                     <label>Monthly</label>
                   </div>
                   <div>
-                    <input value="quarterly" type="radio" name="quarterly" [(ngModel)]="recurringType">
+                    <input value="quarterly" type="radio" name="quarterly" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">
                     <label>Quarterly</label>
                   </div>
                 </div>
