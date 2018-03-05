@@ -178,7 +178,7 @@ export class AddDataComponent implements OnInit {
         this.submitOrg.town.length === 0 ||
         this.amount === 0 ||
         this.recurringPurchase &&
-        this.recurringType === 0) {
+        !this.recurringType) {
           this.transactionFormInvalid = true;
         } else {
           this.transactionFormInvalid = false;
