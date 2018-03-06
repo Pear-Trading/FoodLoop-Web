@@ -273,6 +273,9 @@ export class AddDataComponent implements OnInit {
     this.amount = null;
     this.transactionFormInvalid = true;
     this.showAddStore = false;
+    this.essentialPurchase = false;
+    this.recurringPurchase = false;
+    this.recurringType = null;
   }
 
   onSubmitPayroll() {
