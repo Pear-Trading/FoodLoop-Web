@@ -1,6 +1,14 @@
-// Push Notifications
-import { ServiceWorkerModule } from '@angular/service-worker';
 
+import { ConfigService } from './config.service';
+import { PushService } from './push.service';
+import { PushComponent } from './push/push.component';
+import { HttpModule } from '@angular/http';
+
+
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -45,19 +53,22 @@ import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
+    HttpModule,
     NgxPaginationModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     AuthModule,
     DashboardModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     // Loaded last to allow for 404 catchall
     AppRoutingModule,
   ],
   declarations: [
-    ServiceWorkerModule,
     AppComponent,
+    PushComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,
     NAV_DROPDOWN_DIRECTIVES,
@@ -68,6 +79,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
     P500Component,
   ],
   providers: [
+    ConfigService,
+    PushService,
     AuthGuard,
     OrgGuard,
     CustomerGuard,

@@ -28,7 +28,8 @@
         "prod": "environments/environment.prod.ts",
         "local": "environments/environment.local.ts",
         "ci": "environments/environment.ci.ts"
-      }
+      },
+        "serviceWorker": true
     }
   ],
   "e2e": {
