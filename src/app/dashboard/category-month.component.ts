@@ -94,7 +94,6 @@ export class CategoryMonthComponent implements OnInit {
     this.weekList4 = prop(data.data.categories, this.myWeek4);
     this.getMaxValue(this.weekList1, this.weekList2, this.weekList3, this.weekList4);
     this.weekEssential1 = prop(data.data.essentials, this.myWeek1);
-    console.log(this.weekEssential1);
     this.weekEssential2 = prop(data.data.essentials, this.myWeek2);
     this.weekEssential3 = prop(data.data.essentials, this.myWeek3);
     this.weekEssential4 = prop(data.data.essentials, this.myWeek4);
