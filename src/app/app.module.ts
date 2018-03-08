@@ -26,8 +26,8 @@ import { OrgSnippetsService } from './providers/org-snippets.service';
 import { CustSnippetsService } from './providers/cust-snippets.service';
 import { CustPiesService } from './providers/cust-pies.service';
 import { MedalsService } from './providers/medals.service';
-//import { HeroPointsSnippetsService } from './providers/hero-points-snippets.service';
-//import { HeroPointsStatsService } from './providers/hero-points-stats.service';
+import { HeroPointsSnippetsService } from './providers/hero-points-snippets.service';
+import { HeroPointsGraphService } from './providers/hero-points-graph.service';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
@@ -77,10 +77,10 @@ import { NgPipesModule } from 'ngx-pipes';
     OrgSnippetsService,
     CustGraphsService,
     CustSnippetsService,
-    //HeroPointsSnippetsService,
-    //HeroPointsStatsService,
+    HeroPointsSnippetsService,
     MedalsService,
     CustPiesService,
+    HeroPointsGraphService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

@@ -8,24 +8,27 @@ import { HeroPointsSnippetsService } from '../providers/hero-points-snippets.ser
 
 export class HeroPointsSnippetBarComponent implements OnInit {
 
-  public pointTotal = 0;
-  public pointLast = 0;
-  public transCount = 0;
-  public avgMulti = 0;
+  // Hero Points snippets
+  public heroPointsSnippets = {
+    avg_multi: 0,
+    point_last: 0,
+    points_total: 0,
+    trans_count: 0,
+  };
 
   constructor(
-    private snippetsService: HeroPointsSnippetsService,
+    private heroPointsSnippetsService: HeroPointsSnippetsService,
   ) { }
 
   public ngOnInit(): void {
-    this.snippetsService.getPointsData()
+    this.heroPointsSnippetsService.getHeroPointsSnippets()
       .subscribe(
         result => {
-          this.pointTotal = result.snippets.point_total;
-          this.pointLast = result.snippets.point_last;
-          this.transCount = result.snippets.trans_count;
-          this.avgMulti = result.snippets.avg_multi;
+          this.heroPointsSnippets.avg_multi = result.snippets.avg_multi;
+          this.heroPointsSnippets.point_last = result.snippets.point_last;
+          this.heroPointsSnippets.points_total = result.snippets.points_total;
+          this.heroPointsSnippets.trans_count = result.snippets.trans_count;
         }
-      );
+      )
   }
 }

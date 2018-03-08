@@ -26,7 +26,8 @@ import { HeroPointsComponent } from './hero-points.component';
 import { GraphWidget } from '../widgets/graph-widget.component';
 import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
 import { CustBarSnippetComponent } from '../snippets/cust-snippet-bar.component';
-//import { HeroPointsSnippetBarComponent } from '../snippets/hero-points-snippet-bar.component';
+import { HeroPointsSnippetBarComponent } from '../snippets/hero-points-snippet-bar.component';
+import { HeroPointsGraphWidget } from '../widgets/hero-points-graph-widget.component';
 import { GraphPanel } from '../panels/graph-panel.component';
 import { PiePanel } from '../panels/pie-panel.component';
 
@@ -80,7 +81,8 @@ import { NgPipesModule } from 'ngx-pipes';
     GraphWidget,
     OrgBarSnippetComponent,
     CustBarSnippetComponent,
-    //HeroPointsSnippetBarComponent,
+    HeroPointsSnippetBarComponent,
+    HeroPointsGraphWidget,
     GraphPanel,
     PiePanel,
     HeroPointsComponent,

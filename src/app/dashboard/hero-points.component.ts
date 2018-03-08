@@ -13,64 +13,44 @@ import 'rxjs/add/operator/map';
 // import Services
 import { CustSnippetsService } from '../providers/cust-snippets.service';
 import { MedalsService } from '../providers/medals.service';
-//import { HeroPointsStatsService } from '../providers/hero-points-stats.service';
+import { HeroPointsSnippetsService } from '../providers/hero-points-snippets.service';
+
+// Pipes
+import { KeysPipe } from 'ngx-pipes';
+import { FilterByPipe} from 'ngx-pipes';
+import { ValuesPipe } from 'ngx-pipes';
+import { PluckPipe } from 'ngx-pipes';
 
 @Component({
   templateUrl: './hero-points.component.html',
+
+  //ngx Pipes
+  providers: [
+    KeysPipe,
+    FilterByPipe,
+    ValuesPipe,
+    PluckPipe,
+    HeroPointsSnippetsService,
+  ]
 })
+
+
 
 export class HeroPointsComponent implements OnInit {
 
   order: string = 'heroPoints';
 
-  public testList = [
-    {
-      group_name: [{
-        5: {
-          awarded: true,
-          awarded_at: null,
-          points: 0,
-          threshold: 5,
-        },
-        10: {
-          awarded: true,
-          awarded_at: null,
-          points: 0,
-          threshold: 10,
-        },
-        25: {
-          awarded: false,
-          awarded_at: null,
-          points: 0,
-          threshold: 25,
-        },
-        total: 11,
-      }],
-      group_name2: [{
-        10: {
-          awarded: false,
-          awarded_at: null,
-          points: 0,
-          threshold: 10,
-        },
-        total: 3,
-      }],
-    }
-  ]
-
-  public globalMedalList = [
-    {
-      group_name: [{
-        threshold: {
-          awarded: false,
-          awarded_at: null,
-          points: 0,
-          threshold: 0,
-        },
-        total: 0,
-      }],
-    }
-  ]
+  public globalMedalList = [{
+    group_name: [{
+      threshold: {
+        awarded: false,
+        awarded_at: null,
+        points: 0,
+        threshold: 0,
+      },
+      total: 0,
+    }],
+  }];
 
   public organisationMedalList = [{
     org_id: [{
@@ -84,45 +64,20 @@ export class HeroPointsComponent implements OnInit {
         total: 0,
       }],
       name: '',
+      count: null,
+      threshold: null,
     }],
-  }]
-
-  public medals = {
-    global: {
-      group_name: {
-        threshold: {
-          awarded: false,
-          awarded_at: "2017-01-01-T00:00:00Z",
-          points: 0,
-          threshold: 0,
-        },
-        total: 0,
-      },
-    },
-
-    organisation: {
-      org_id: {
-        group_name: {
-          threshold: {
-            awarded: false,
-            awarded_at: "2017-01-01-T00:00:00Z",
-            multiplier: 0,
-            points: 0,
-            threshold: 0,
-          },
-          total: 0,
-        },
-        name: "Placeholder",
-      }
-    }
-  };
+  }];
 
   // Hero points stats
-  public statsThisWeek = 0;
-  public statsLastWeek = 0;
-  public statsMax = 0;
-  public statsSum = 0;
-  public statsCount = 0;
+  public heroPointsStats = {
+    this_week: 0,
+    last_week: 0,
+    max: 0,
+    sum: 0,
+    count: 0,
+    avg: 0,
+  };
 
   // Gets list of transactions
   public paginateConfig: PaginationInstance = {
@@ -145,7 +100,11 @@ export class HeroPointsComponent implements OnInit {
   constructor(
     private api: ApiService,
     private medalsService: MedalsService,
-    //private heroPointsStatsService: HeroPointsStatsService,
+    private keysPipe: KeysPipe,
+    private filterByPipe: FilterByPipe,
+    private valuesPipe: ValuesPipe,
+    private pluckPipe: PluckPipe,
+    private heroPointsSnippetsService: HeroPointsSnippetsService,
   ) {
     this.api.customerStats().subscribe(
       result => {
@@ -173,19 +132,19 @@ export class HeroPointsComponent implements OnInit {
           this.setGlobalMedalList(result.global),
           this.setOrganisationMedalList(result.organisation)
         }
-      )
-    /*
-    this.heroPointsStatsService.getHeroPointsStats()
+      );
+
+    this.heroPointsSnippetsService.getHeroPointsSnippets()
       .subscribe(
         result => {
-          this.statsThisWeek = result.points.stats.this_week;
-          this.statsLastWeek = result.points.stats.last_week;
-          this.statsMax = result.points.stats.max;
-          this.statsSum = result.points.stats.sum;
-          this.statsCount = result.points.stats.count;
+          this.heroPointsStats.this_week = result.widget_progress.this_week;
+          this.heroPointsStats.last_week = result.widget_progress.last_week;
+          this.heroPointsStats.max = result.widget_progress.max;
+          this.heroPointsStats.sum = result.widget_progress.sum;
+          this.heroPointsStats.count = result.widget_progress.count;
+          this.heroPointsStats.avg = result.widget_progress.sum / result.widget_progress.count;
         }
-      )
-    */
+      );
   };
 
   public setGlobalMedalList( data:any ){
@@ -216,6 +175,8 @@ export class HeroPointsComponent implements OnInit {
           total: data.org_id.group_name.total,
         }],
         name: data.org_id.name,
+        count: (this.pluckPipe.transform(this.filterByPipe.transform(this.valuesPipe.transform(data.org_id.group_name), ['awarded'], true), 'awarded')).length,
+        threshold: (this.filterByPipe.transform(this.valuesPipe.transform(data.org_id.group_name), ['awarded'], true)).length,
       }],
     }]
   };

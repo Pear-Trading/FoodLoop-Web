@@ -1,0 +1,21 @@
+<div class="card card-inverse card-primary">
+  <div class="card-block pb-0">
+    <button type="button" class="btn btn-transparent p-0 float-right">
+      <i [ngClass]="graphIcon"></i>
+    </button>
+    <h4 *ngIf="dataType == availableDataTypes.number" class="mb-0">{{ graphSum }}</h4>
+    <p>{{ graphTitle }}</p>
+  </div>
+  <div class="chart-wrapper px-3" style="height:70px;">
+    <canvas baseChart
+            class="chart"
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColours"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+</div>

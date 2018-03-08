@@ -10,6 +10,7 @@ export class MedalsService {
 
   public getMedals(): Observable<any> {
     return this.api.post(this.medalsUrl);
+    //return Observable.of()
 
   }
 }

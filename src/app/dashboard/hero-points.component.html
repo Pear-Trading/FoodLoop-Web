@@ -1,14 +1,14 @@
 <div class="animated fadeIn">
-  <!--<snippet-bar-hero-points></snippet-bar-hero-points>--><!-- Snippet for hero points (four circles) -->
+  <snippet-bar-hero-points></snippet-bar-hero-points><!-- Snippet for hero points (four circles) -->
   <div class="row"> <!-- second row -->
     <div class="col-md-6 col-xl-3"> <!-- Hero points gain charts -->
       <div *ngFor="let widget of widgetList"> <!-- Points gain line graph -->
-        <!--<widget-graph *ngIf="widget.type == 'graph'"
+        <hero-points-widget-graph *ngIf="widget.type == 'graph'"
           [graphName]="widget.name"
           [graphTitle]="widget.title"
           [graphIcon]="widget.icon"
           [dataType]="widget.dataType">
-        </widget-graph>-->
+        </hero-points-widget-graph>
       </div> <!-- let widget of widgetList -->
       <div class="card"> <!-- Points gain by week charts -->
         <div class="card-block">
@@ -21,41 +21,41 @@
             <ul class="horizontal-bars type-2">
               <li> <!-- This Week -->
                 <span class="title">This Week</span>
-                <span class="value">{{ transactionListWeek | filterBy: ['weekId']: (transactionListWeek | pluck: 'weekId' | max) | pluck: 'pointsEarned' }}<span class="text-muted small"> ({{( transactionListWeek | filterBy: ['weekId']: (transactionListWeek | pluck: 'weekId' | max) | pluck: 'pointsEarned' ) / ( transactionListWeek | pluck: 'pointsEarned' | max ) | percent:'1.0-0' }})</span></span>
+                <span class="value">{{ heroPointsStats.this_week }}<span class="text-muted small"> ({{ heroPointsStats.this_week / heroPointsStats.max | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
-                    style="width: 39%" aria-valuemin="0" aria-valuemax="100"></div>
+                    [style.width]="heroPointsStats.this_week / heroPointsStats.max | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
                   </div> <!-- progress -->
                 </div> <!-- bars -->
               </li>
               <li> <!-- Last Week -->
                 <span class="title">Last Week</span>
-                <span class="value">{{ transactionListWeek | filterBy: ['weekId']: (transactionListWeek | pluck: 'weekId' | max) - 1 | pluck: 'pointsEarned' }}<span class="text-muted small"> ({{( transactionListWeek | filterBy: ['weekId']: (transactionListWeek | pluck: 'weekId' | max) - 1 | pluck: 'pointsEarned' ) / ( transactionListWeek | pluck: 'pointsEarned' | max ) | percent:'1.0-0' }})</span></span>
+                <span class="value">{{ heroPointsStats.last_week }}<span class="text-muted small"> ({{ heroPointsStats.last_week / heroPointsStats.max | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
-                    style="width: 100%" aria-valuemin="0" aria-valuemax="100"></div>
+                    [style.width]="heroPointsStats.last_week / heroPointsStats.max | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
                   </div> <!-- progress -->
                 </div> <!-- bars -->
               </li>
               <li> <!-- Week Maximum -->
                 <span class="title">Week Maximum</span>
-                <span class="value">{{ transactionListWeek | pluck: 'pointsEarned' | max }}<span class="text-muted small"> (100%)</span></span>
+                <span class="value">{{ heroPointsStats.max }}<span class="text-muted small"> ({{ heroPointsStats.max / heroPointsStats.max | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
-                    style="width: 100%" aria-valuemin="0" aria-valuemax="100"></div>
+                    [style.width]="heroPointsStats.max / heroPointsStats.max | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
                   </div> <!-- progress -->
                 </div> <!-- bars -->
               </li>
               <li> <!-- Weekly Average -->
                 <span class="title">Weekly Average</span>
-                <span class="value">{{ ((transactionListWeek | pluck: 'pointsEarned' | sum) / (transactionListWeek.length)) | round }}<span class="text-muted small"> ({{ (((transactionListWeek | pluck: 'pointsEarned' | sum) / (transactionListWeek.length)) | round ) / ( transactionListWeek | pluck: 'pointsEarned' | max ) | percent:'1.0-0' }})</span></span>
+                <span class="value">{{ heroPointsStats.avg }}<span class="text-muted small"> ({{ heroPointsStats.avg / heroPointsStats.max | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
-                    style="width: 51%" aria-valuemin="0" aria-valuemax="100"></div>
+                    [style.width]="heroPointsStats.avg / heroPointsStats.max | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
                   </div> <!-- progess -->
                 </div> <!-- bars -->
               </li>
@@ -106,7 +106,7 @@
       </div> <!-- if noUserList -->
     </div>
     <div class="col-md-6 col-xl-6"> <!-- Medal Table -->
-      <div *ngIf="!noMedalList">
+      <div *ngIf="!noGlobalMedalList && !noOrganisationMedalList">
         <table class="table header-fixed">
           <thead>
             <tr>
@@ -115,110 +115,140 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let groupNo of medalList | unique: 'medalGroupId'; let i = index"> <!-- ngFor each group of medals (global) -->
-              <ng-container *ngIf="(medalList | filterBy: ['title']: groupNo.title: search: true).length > 1"> <!-- if the group is longer than 1 -->
-                <!-- *ngIf 'global' medal and is/isn't expanded (headers)-->
-                <tr *ngIf="groupNo.expanded && groupNo.medalType == 'global'" (click)="groupNo.expanded = false" [ngStyle]="{'background-color': '#20A8D8', 'color': '#ffffff' }">
-                  <td class="col-3">{{groupNo.title}}</td>
-                  <td class="col-6">Click to collapse</td>
-                  <td class="col-1">-</td>
-                  <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{ ((medalList | filterBy: ['medalType']: 'global' | filterBy: ['title']: groupNo.title: search: true) | filterBy: ['unlocked']: true).length }}/{{ (medalList | filterBy: ['medalType']: 'global'| filterBy: ['title']: groupNo.title: search: true).length }}</td>
-                </tr>
-                <tr *ngIf="!groupNo.expanded && groupNo.medalType == 'global'" (click)="groupNo.expanded = true" [ngStyle]="{'background-color': '#20A8D8', 'color': '#ffffff' }">
-                  <td class="col-3">{{groupNo.title}}</td>
-                  <td class="col-6">Click to expand</td>
-                  <td class="col-1">+</td>
-                  <td class="col-2" [ngStyle]="{'text-align': 'right'}"> {{ ((medalList | filterBy: ['medalType']: 'global' | filterBy: ['title']: groupNo.title: search: true) | filterBy: ['unlocked']: true).length }}/{{ (medalList | filterBy: ['medalType']: 'global'| filterBy: ['title']: groupNo.title: search: true).length }}</td>
-                </tr>
-                <!-- display actual medals -->
-                <ng-container *ngFor="let medal of medalList | orderBy: ['+medalGroupId', '+reward']"> <!-- list each medal in each group, ordered by rewards, ascending order -->
-                  <tr *ngIf="groupNo.expanded && medal.medalGroupId == i && groupNo.medalType == 'global'" [ngStyle]="{'background-color':medal.unlocked === true ? '#89DD73' : '#F25F5F', 'color': '#ffffff' }">
-                    <td class="col-3">{{ medal.title }}</td>
-                    <td class="col-7">{{ medal.description }}</td>
-                    <td class="col-2" [ngStyle]="{'text-align': 'right'}">0/{{ medal.valueRequired }}</td> <!-- progress -->
+            <ng-container *ngFor="let medals of globalMedalList"> <!-- ngFor each group of medals (global) -->
+              <ng-container *ngFor="let group of medals | values; let groupIndex = index">
+                <ng-container *ngIf="(group[0] | values).length - 1 > 1"> <!-- if the group is longer than 1 -->
+                  <!-- *ngIf 'global' medal and is/isn't expanded (headers)-->
+                  <tr *ngIf="group.expanded" (click)="group.expanded = false" [ngStyle]="{'background-color':(group[0] | values | filterBy: ['awarded']: 'true' | pluck: 'awarded').length === (group[0] | values | filterBy: ['awarded']).length ? '#5FBC47' : '#20A8D8', 'color': '#ffffff' }">
+                    <td class="col-3">{{(medals | keys)[groupIndex]}}</td>
+                    <td class="col-6">Click to collapse</td>
+                    <td class="col-1">-</td>
+                    <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{(group[0] | values | filterBy: ['awarded']: 'true' | pluck: 'awarded').length}}/{{(group[0] | values | filterBy: ['awarded']).length}}</td>
                   </tr>
+                  <tr *ngIf="!group.expanded" (click)="group.expanded = true" [ngStyle]="{'background-color':(group[0] | values | filterBy: ['awarded']: 'true' | pluck: 'awarded').length === (group[0] | values | filterBy: ['awarded']).length ? '#5FBC47' : '#20A8D8', 'color': '#ffffff' }">
+                    <td class="col-3">{{(medals | keys)[groupIndex]}}</td>
+                    <td class="col-6">Click to expand</td>
+                    <td class="col-1">+</td>
+                    <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{(group[0] | values | filterBy: ['awarded']: 'true' | pluck: 'awarded').length}}/{{(group[0] | values | filterBy: ['awarded']).length}}</td>
+                  </tr>
+                  <!-- display actual medals -->
+                  <ng-container *ngFor="let threshold of group[0] | values | orderBy: '+threshold'; let thresholdIndex = index"> <!-- list each medal in each group, ordered by threshold, ascending order -->
+                    <ng-container *ngIf="threshold | isObject">
+                        <ng-container *ngIf="threshold.awarded">
+                          <tr *ngIf="group.expanded" [ngStyle]="{'background-color': '#5FBC47', 'color': '#ffffff' }">
+                            <ng-container *ngIf="">
+                            </ng-container>
+                            <td class="col-3">{{(medals | keys)[groupIndex]}} {{thresholdIndex + 1}}</td>
+                            <td class="col-7">DESCRIPTION</td>
+                            <ng-container *ngIf="thresholdIndex + 1 != (group[0] | values | orderBy: '+threshold').length - 1">
+                              <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{threshold.threshold}}/{{threshold.threshold}}</td> <!-- progress -->
+                            </ng-container>
+                            <ng-container *ngIf="thresholdIndex + 1 == (group[0] | values | orderBy: '+threshold').length - 1">
+                              <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{group[0].total}}/{{threshold.threshold}}</td> <!-- progress -->
+                            </ng-container>
+                          </tr>
+                        </ng-container>
+                        <ng-container *ngIf="!threshold.awarded">
+                          <tr *ngIf="group.expanded" [ngStyle]="{'background-color': '#F25F5F', 'color': '#ffffff' }">
+                            <td class="col-3">{{(medals | keys)[groupIndex]}} {{thresholdIndex + 1}}</td>
+                            <td class="col-7">DESCRIPTION</td>
+                            <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{group[0].total}}/{{threshold.threshold}}</td> <!-- progress -->
+                          </tr>
+                        </ng-container>
+                    </ng-container>
+                  </ng-container>
                 </ng-container>
-              </ng-container>
-              <ng-container *ngIf="(medalList | filterBy: ['title']: groupNo.title: search: true).length == 1"> <!-- if there is only one medal in the group, just display medal, no header -->
-                <ng-container *ngFor="let medal of medalList | orderBy: ['+medalGroupId', '+reward']"> <!-- Unnecessary loop because there is only one medal in each group -->
-                  <tr *ngIf="medal.medalGroupId == i && groupNo.medalType == 'global'" [ngStyle]="{'background-color':medal.unlocked === true ? '#89DD73' : '#F25F5F', 'color': '#ffffff' }">
-                    <td class="col-3">{{ medal.title }}</td> <!-- medal name -->
-                    <td class="col-7">{{ medal.description }}</td> <!-- medal description -->
-                    <td class="col-2" [ngStyle]="{'text-align': 'right'}">0/{{ medal.valueRequired }}</td> <!-- progress -->
-                  </tr>
+                <ng-container *ngIf="(group[0] | values).length - 1 == 1"> <!-- if there is only one medal in the group, just display medal, no header -->
+                  <ng-container *ngFor="let threshold of group[0] | values | orderBy: '+threshold'; let thresholdIndex = index">
+                    <ng-container *ngIf="threshold | isObject">
+                      <tr [ngStyle]="{'background-color':threshold.awarded === true ? '#5FBC47' : '#F25F5F', 'color': '#ffffff' }">
+                        <td class="col-3">{{(medals | keys)[groupIndex]}}</td>
+                        <td class="col-7">DESCRIPTION</td>
+                        <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{group[0].total}}/{{threshold.threshold}}</td> <!-- progress -->
+                      </tr>
+                    </ng-container>
+                  </ng-container>
                 </ng-container>
               </ng-container>
             </ng-container> <!-- ngFor each group of medals (global) -->
-            <ng-container *ngFor="let organisation of organisationList | orderBy: '+name'; let orgI = index"> <!-- ngFor organisation of organisationList -->
-              <!-- ngIf organisation is/isn't expanded display correct header -->
-              <tr *ngIf="organisation.expanded" (click)="organisation.expanded = false" [ngStyle]="{'background-color': '#F39C12', 'color': '#ffffff' }">
-                <td class="col-3">{{organisation.name}}</td>
-                <td class="col-6">Click to collapse</td>
-                <td class="col-1">-</td>
-                <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{ (medalList | filterBy: ['medalType']: 'organisation' | filterBy: ['unlocked']: true).length }}/{{ (medalList | filterBy: ['medalType']: 'organisation').length }}</td>
-              </tr>
-              <tr *ngIf="!organisation.expanded" (click)="organisation.expanded = true" [ngStyle]="{'background-color': '#F39C12', 'color': '#ffffff' }">
-                <td class="col-3">{{organisation.name}}</td>
-                <td class="col-6">Click to expand</td>
-                <td class="col-1">+</td>
-                <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{ (medalList | filterBy: ['medalType']: 'organisation' | filterBy: ['unlocked']: true).length }}/{{ (medalList | filterBy: ['medalType']: 'organisation').length }}</td>
-              </tr>
-              <ng-container *ngFor="let groupNo of medalList | unique: 'medalGroupId'; let i = index"> <!-- ngFor each group of medals (organisation) -->
-                <ng-container *ngIf="(medalList | filterBy: ['title']: groupNo.title: search: true).length > 1"> <!-- ngIf length of group is more than 1 -->
-                  <!-- ngIf organisation is/isn't expanded -->
-                  <tr *ngIf="organisation.expanded && groupNo.expanded && groupNo.medalType == 'organisation'" (click)="groupNo.expanded = false" [ngStyle]="{'background-color': '#20A8D8', 'color': '#ffffff' }">
-                    <td class="col-3">{{groupNo.title}}</td>
+            <ng-container *ngFor="let medals of organisationMedalList">
+              <ng-container *ngFor="let orgs of medals | values">
+                <ng-container *ngFor="let org of orgs; let orgIndex = index">
+                  <tr *ngIf="org.expanded" (click)="org.expanded = false" [ngStyle]="{'background-color': '#F39C12', 'color': '#ffffff' }">
+                    <td class="col-3">{{org.name}}</td>
                     <td class="col-6">Click to collapse</td>
                     <td class="col-1">-</td>
-                    <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{ ((medalList | filterBy: ['medalType']: 'organisation' | filterBy: ['title']: groupNo.title: search: true) | filterBy: ['unlocked']: true).length }}/{{ (medalList | filterBy: ['medalType']: 'organisation'| filterBy: ['title']: groupNo.title: search: true).length }}</td>
+                    <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{org.count}}/{{org.threshold}}</td>
                   </tr>
-                  <tr *ngIf="organisation.expanded && !groupNo.expanded && groupNo.medalType == 'organisation'" (click)="groupNo.expanded = true" [ngStyle]="{'background-color': '#20A8D8', 'color': '#ffffff' }">
-                    <td class="col-3">{{groupNo.title}}</td>
+                  <tr *ngIf="!org.expanded" (click)="org.expanded = true" [ngStyle]="{'background-color': '#F39C12', 'color': '#ffffff' }">
+                    <td class="col-3">{{org.name}}</td>
                     <td class="col-6">Click to expand</td>
                     <td class="col-1">+</td>
-                    <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{ ((medalList | filterBy: ['medalType']: 'organisation' | filterBy: ['title']: groupNo.title: search: true) | filterBy: ['unlocked']: true).length }}/{{ (medalList | filterBy: ['medalType']: 'organisation'| filterBy: ['title']: groupNo.title: search: true).length }}</td>
+                    <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{org.count}}/{{org.threshold}}</td>
                   </tr>
-                  <ng-container *ngFor="let medal of medalList | orderBy: ['+medalGroupId', '+reward']">
-                    <tr *ngIf="organisation.expanded && groupNo.expanded && medal.medalGroupId == i && groupNo.medalType == 'organisation'" [ngStyle]="{'background-color':medal.unlocked === true ? '#89DD73' : '#F25F5F', 'color': '#ffffff' }">
-                      <td class="col-3">{{ medal.title }}</td>
-                      <td class="col-7">{{ medal.description }}</td>
-                      <td class="col-2" [ngStyle]="{'text-align': 'right'}">0/{{ medal.valueRequired }}</td>
-                    </tr>
+                  <ng-container *ngFor="let group of org | values; let groupIndex = index">
+                    <ng-container *ngIf="group | isObject">
+                      <ng-container *ngIf="(group[0] | keys).length - 1 > 1">
+                        <tr *ngIf="group.expanded && org.expanded" (click)="group.expanded = false" [ngStyle]="{'background-color': '#20A8D8', 'color': '#ffffff' }">
+                          <td class="col-3">{{(org | keys)[groupIndex]}}</td>
+                          <td class="col-6">Click to collapse</td>
+                          <td class="col-1">-</td>
+                          <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{(group[0] | values | filterBy: ['awarded']: 'true' | pluck: 'awarded').length}}/{{(group[0] | values | filterBy: ['awarded']).length}}</td>
+                        </tr>
+                        <tr *ngIf="!group.expanded && org.expanded" (click)="group.expanded = true" [ngStyle]="{'background-color': '#20A8D8', 'color': '#ffffff' }">
+                          <td class="col-3">{{(org | keys)[groupIndex]}}</td>
+                          <td class="col-6">Click to expand</td>
+                          <td class="col-1">+</td>
+                          <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{(group[0] | values | filterBy: ['awarded']: 'true' | pluck: 'awarded').length}}/{{(group[0] | values | filterBy: ['awarded']).length}}</td>
+                        </tr>
+                        <ng-container *ngFor="let threshold of group[0] | values | orderBy: '+threshold'; let thresholdIndex = index">
+                          <ng-container *ngIf="threshold | isObject">
+                            <ng-container *ngIf="threshold.awarded">
+                              <tr *ngIf="group.expanded && org.expanded" [ngStyle]="{'background-color': '#5FBC47', 'color': '#ffffff' }">
+                                <td class="col-3">{{(org | keys)[groupIndex]}} {{thresholdIndex + 1}}</td>
+                                <td class="col-7">DESCRIPTION</td>
+                                <ng-container *ngIf="thresholdIndex + 1 != (group[0] | values | orderBy: '+threshold').length - 1">
+                                  <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{threshold.threshold}}/{{threshold.threshold}}</td>
+                                </ng-container>
+                                <ng-container *ngIf="thresholdIndex + 1 == (group[0] | values | orderBy: '+threshold').length - 1">
+                                  <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{group[0].total}}/{{threshold.threshold}}</td>
+                                </ng-container>
+                              </tr>
+                            </ng-container>
+                            <ng-container *ngIf="!threshold.awarded">
+                              <tr *ngIf="group.expanded && org.expanded" [ngStyle]="{'background-color': '#F25F5F', 'color': '#ffffff' }">
+                                <td class="col-3">{{(org | keys)[groupIndex]}} {{thresholdIndex + 1}}</td>
+                                <td class="col-7">DESCRIPTION</td>
+                                <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{group[0].total}}/{{threshold.threshold}}</td>
+                              </tr>
+                            </ng-container>
+                          </ng-container>
+                        </ng-container>
+                      </ng-container>
+                      <ng-container *ngIf="(group[0] | keys).length - 1 == 1">
+                        <ng-container *ngFor="let threshold of group[0] | values | orderBy: '+threshold'; let thresholdIndex = index">
+                          <ng-container *ngIf="threshold | isObject">
+                            <ng-container *ngIf="org.expanded">
+                              <tr [ngStyle]="{'background-color':threshold.awarded === true ? '#5FBC47' : '#F25F5F', 'color': '#ffffff' }">
+                                <td class="col-3">{{(org | keys)[groupIndex]}}</td>
+                                <td class="col-7">DESCRIPTION</td>
+                                <td class="col-2" [ngStyle]="{'text-align': 'right'}">{{group[0].total}}/{{threshold.threshold}}</td>
+                              </tr>
+                            </ng-container>
+                          </ng-container>
+                        </ng-container>
+                      </ng-container>
+                    </ng-container>
                   </ng-container>
                 </ng-container>
-                <ng-container *ngIf="(medalList | filterBy: ['title']: groupNo.title: search: true).length <= 1"> <!-- ngIf length or group is <= 1 -->
-                  <ng-container *ngFor="let medal of medalList | orderBy: ['+medalGroupId', '+reward']">
-                    <tr *ngIf="organisation.expanded && medal.medalGroupId == i && groupNo.medalType == 'organisation'" [ngStyle]="{'background-color':medal.unlocked === true ? '#89DD73' : '#F25F5F', 'color': '#ffffff' }">
-                      <td class="col-3">{{ medal.title }}</td>
-                      <td class="col-7">{{ medal.description }}</td>
-                      <td class="col-2" [ngStyle]="{'text-align': 'right'}">0/{{ medal.valueRequired }}</td>
-                    </tr>
-                  </ng-container>
-                </ng-container>
-              </ng-container> <!-- ngFor each group of medals (organisation) -->
-            </ng-container> <!-- ngFor organisation of organisationList -->
+              </ng-container>
+            </ng-container>
           </tbody>
         </table>
       </div> <!-- if !noMedalList -->
-      <div *ngIf="noMedalList" class="card-block">
+      <div *ngIf="noGlobalMedalList && noOrganisationMedalList" class="card-block">
           No Leaderboard available.
       </div> <!-- if noMedalList -->
-    </div>
-  </div><!-- Row -->
-  <div *ngFor="let group of globalMedalList">
-    <div *ngFor="let threshold of group.group_name | pluck: 'threshold'">
-    </div>
-  </div>
-  <div *ngFor="let medals of testList">
-    <div *ngFor="let group of medals | values; let groupIndex = index">
-      <div>threshold length - total      {{(group[0] | values).length - 1}}</div>
-      <div>group_title      {{(medals | keys)[groupIndex]}}</div>
-      <div>All awarded values for group {{group[0] | values | filterBy: ['awarded']: 'true' | pluck: 'awarded' | json}}</div>
-      <div *ngFor="let thresholds of group[0] | values">
-        <div *ngIf="thresholds | isObject">
-          <div>9 {{thresholds | json}}</div>
-        </div>
-      </div>
-    </div>
+    </div><!-- Row -->
   </div>
 </div>

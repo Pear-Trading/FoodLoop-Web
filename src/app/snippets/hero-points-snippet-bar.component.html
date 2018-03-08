@@ -5,7 +5,7 @@
         <ul style="list-style: none; padding-left: 0;">
           <li class="hidden-sm-down">
             <div><h5 class="text-orange">My Hero Points</h5></div>
-            <div class="number-circle-hero mx-auto"><strong>{{ pointTotal | number:'1.0-0' }}</strong></div>
+            <div class="number-circle-hero mx-auto"><strong>{{ heroPointsSnippets.points_total | number:'1.0-0' }}</strong></div>
           </li>
         </ul>
       </div>
@@ -17,7 +17,7 @@
         <ul style="list-style: none; padding-left: 0;">
           <li class="hidden-sm-down">
             <div><h5 class="text-dark-green">Last Transaction Points</h5></div>
-            <div class="number-circle mx-auto"><strong>{{pointLast | number:'1.0-0' }}</strong></div>
+            <div class="number-circle mx-auto"><strong>{{ heroPointsSnippets.point_last | number:'1.0-0' }}</strong></div>
           </li>
         </ul>
       </div>
@@ -29,7 +29,7 @@
         <ul style="list-style: none; padding-left: 0;">
           <li class="hidden-sm-down">
             <div><h5 class="text-dark-green">Total Transactions</h5></div>
-            <div class="number-circle mx-auto"><strong>{{ transCount | number:'1.0-0' }}</strong></div>
+            <div class="number-circle mx-auto"><strong>{{ heroPointsSnippets.trans_count | number:'1.0-0' }}</strong></div>
           </li>
         </ul>
       </div>
@@ -41,7 +41,7 @@
         <ul style="list-style: none; padding-left: 0;">
           <li class="hidden-sm-down">
             <div><h5 class="text-dark-green">Average Multiplier</h5></div>
-            <div class="number-circle mx-auto"><strong>{{ avgMulti | number:'1.0-0' }}</strong></div>
+            <div class="number-circle mx-auto"><strong>{{ heroPointsSnippets.avg_multi | number:'1.0-0' }}</strong></div>
           </li>
         </ul>
       </div>

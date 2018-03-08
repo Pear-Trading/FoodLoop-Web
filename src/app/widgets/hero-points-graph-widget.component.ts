@@ -1,0 +1,154 @@
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { OrgGraphsService } from '../providers/org-graphs.service';
+import { DataType } from '../shared/data-types.enum';
+
+interface ChartData {
+  data: Array<number>;
+  label: string;
+}
+
+@Component({
+  selector: 'hero-points-widget-graph',
+  templateUrl: 'hero-points-graph-widget.component.html',
+})
+export class HeroPointsGraphWidget implements OnInit {
+  @Input() public graphName: string;
+  @Input() public graphTitle = 'Graph';
+  @Input() public graphIcon = 'icon-graph';
+  @Input() public dataType: DataType = DataType.number;
+
+  @Output() public graphHover = new EventEmitter();
+  @Output() public graphClick = new EventEmitter();
+
+  public graphSum: Number = 0;
+  public availableDataTypes = DataType;
+
+  public lineChartData: Array<ChartData> = [
+    {
+      data: [],
+      label: 'Series A'
+    }
+  ];
+  public lineChartLabels: Array<string>;
+  public lineChartOptions: any = {
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        type: 'time',
+        time: {
+          unit: 'day',
+          displayFormats: {
+            day: 'MMM D',
+          },
+          tooltipFormat: 'MMM D',
+        },
+        gridLines: {
+          color: 'transparent',
+          zeroLineColor: 'transparent'
+        },
+        ticks: {
+          fontSize: 2,
+          source: 'data',
+          fontColor: 'transparent',
+        }
+
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          display: false,
+        }
+      }],
+    },
+    elements: {
+      line: {
+        borderWidth: 1
+      },
+      point: {
+        radius: 4,
+        hitRadius: 10,
+        hoverRadius: 4,
+      },
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      callbacks: {
+        label: (tooltip, data) => {
+          return this.tooltipLabelCallback(tooltip, data);
+        },
+      },
+    },
+  };
+  public lineChartColours: Array<any> = [
+    {
+      backgroundColor: '#20a8d8',
+      borderColor: 'rgba(255,255,255,.55)'
+    }
+  ];
+  public lineChartLegend = false;
+  public lineChartType = 'line';
+
+
+  constructor(
+    private graphService: OrgGraphsService,
+  ) { }
+
+  ngOnInit(): void {
+    if ( this.graphName == null ) {
+      throw new Error('Attribute \'graphName\' is required on component \'widget-graph\'');
+    }
+    if ( this.dataType === undefined ) {
+      // Need to do this as it may be passed in a loop with an undefined value
+      this.dataType = DataType.number;
+    }
+    if ( !( this.dataType in DataType ) ) {
+      console.warn('Unknown DataType for graph \'' + this.graphName + '\' - defaulting to number');
+    }
+    this.graphService.getGraph(this.graphName)
+      .subscribe( result => this.setData(result.graph) );
+  }
+
+  private setData(data: any) {
+    this.setChartData(data.data);
+    this.setChartLabels(data.labels);
+    this.setChartBounds(data.bounds);
+  }
+
+  private setChartBounds(data) {
+    this.lineChartOptions.scales.xAxes[0].time.max = data.max;
+    this.lineChartOptions.scales.xAxes[0].time.min = data.min;
+  }
+
+  private setChartData(data: Array<number>) {
+    this.lineChartData[0].data = data;
+    this.graphSum = data.reduce((a, b) => a + b, 0);
+    // Set point size based on data
+    if ( data.length < 15 ) {
+      this.lineChartOptions.elements.point.radius = 4;
+      this.lineChartOptions.elements.line.borderWidth = 1;
+    } else {
+      this.lineChartOptions.elements.point.radius = 2;
+      this.lineChartOptions.elements.line.borderWidth = 2;
+    }
+  }
+
+  private setChartLabels(data: Array<string>) {
+    this.lineChartLabels = data;
+  }
+
+  // events
+  public chartClicked(e: any): void {
+    console.log(e);
+  }
+
+  public chartHovered(e: any): void {
+    console.log(e);
+  }
+
+  private tooltipLabelCallback(tooltipItem: any, data: any) {
+    const value = tooltipItem.yLabel;
+    return value || '0';
+  }
+}
