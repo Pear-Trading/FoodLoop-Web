@@ -208,6 +208,7 @@ export class AddDataComponent implements OnInit {
           transaction_value : this.amount,
           purchase_time     : purchaseTime,
           organisation_id   : this.organisationId,
+          category          : this.categoryId,
           essential         : this.essentialPurchase,
           recurring         : this.recurringType,
         };
@@ -221,6 +222,7 @@ export class AddDataComponent implements OnInit {
           street_name       : this.submitOrg.street_name,
           town              : this.submitOrg.town,
           postcode          : this.submitOrg.postcode,
+          category          : this.categoryId,
           essential         : this.essentialPurchase,
           recurring         : this.recurringType,
         };
