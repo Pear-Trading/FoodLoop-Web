@@ -2,6 +2,8 @@
 
 # Next Release
 
+# v0.1.4
+
 * Amended category list on transaction submission
 * Added budget view for weekly breakdown of spend by category
 * Added flag to make purchases essential
