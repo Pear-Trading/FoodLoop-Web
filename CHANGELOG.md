@@ -4,6 +4,11 @@
 
 * Amended category list on transaction submission
 * Added budget view for weekly breakdown of spend by category
+* Added flag to make purchases essential
+* Fixed budget view issues and amended it to show essential purchases that week
+* Added ability to make purchases recurring
+* Updated Moment dependency due to security issue
+* Fixed category uploading in upload
 
 # v0.1.3
 
