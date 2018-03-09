@@ -12,6 +12,7 @@ import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
+import { CategoryMonthComponent } from './category-month.component';
 import { PayrollLogComponent } from './payroll-log.component';
 import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
@@ -57,6 +58,11 @@ const routes: Routes = [
         path: 'transaction-log',
         component: TransactionLogComponent,
         data: { title: 'Transaction Log' },
+      },
+      {
+        path: 'category-month',
+        component: CategoryMonthComponent,
+        data: { title: 'Budget' },
       },
       {
         path: 'map',
