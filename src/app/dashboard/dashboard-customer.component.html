@@ -94,7 +94,7 @@
                   <strong>{{ sectorPurchases[i] || 'N/A' }}</strong>
                 </div>
               </li>
-              <li *ngIf="sectorLetters.length > 10 && disableSectorButton == false" class="divider text-center">
+              <li *ngIf="sectorLetters.length > sectorLimit && disableSectorButton == false" class="divider text-center">
                 <button type="button" class="btn btn-sm btn-link text-muted" (click)="loadMore()"><i class="icon-options"></i></button>
               </li>
             </ul>
