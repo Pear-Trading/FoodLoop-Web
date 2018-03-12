@@ -15,6 +15,7 @@ export class TransactionLogComponent implements OnInit {
 
   transactionList;
   noTransactionList = true;
+  noRecurringList = true;
   myDate: any;
   minDate: any;
   public p: any;
