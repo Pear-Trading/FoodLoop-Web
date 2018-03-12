@@ -44,7 +44,8 @@ export class AddDataComponent implements OnInit {
   minDate: any;
   leftCategoryIdList: number[] = [];
   rightCategoryIdList: number[] = [];
-  categoryNameList: string[] = [];
+  leftCategoryNameList: number[] = [];
+  rightCategoryNameList: number[] = [];
 
   constructor(
   private formBuilder: FormBuilder,
@@ -90,10 +91,12 @@ export class AddDataComponent implements OnInit {
 
   private setCategoryList(data: any) {
     let categoryIdList = Object.keys(data.ids).map(key => data.ids[key]);
-    this.categoryNameList = Object.keys(data.names).map(key => data.names[key]);
+    let categoryNameList = Object.keys(data.names).map(key => data.names[key]);
     let halfLength = Math.floor(categoryIdList.length / 2);
     this.leftCategoryIdList = categoryIdList.splice(0, halfLength);
+    this.leftCategoryNameList = categoryNameList.splice(0, halfLength);
     this.rightCategoryIdList = categoryIdList;
+    this.rightCategoryNameList = categoryNameList;
   }
 
   getMinDate() {
