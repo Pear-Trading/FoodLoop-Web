@@ -35,7 +35,7 @@
     "moment": "^2.21.0",
     "ng2-charts": "1.6.0",
     "ng2-validation-manager": "0.5.3",
-    "ngx-bootstrap": "2.0.0-beta.8",
+    "ngx-bootstrap": "2.0.0-rc.1",
     "ngx-pagination": "3.0.3",
     "rxjs": "5.5.6",
     "ts-helpers": "1.1.2",
