@@ -2,6 +2,10 @@
 
 # Next Release
 
+# v0.1.5
+
+* Fixed category viewing on purchase
+
 # v0.1.4
 
 * Amended category list on transaction submission
