@@ -53,7 +53,6 @@ export class TransactionLogComponent implements OnInit {
   }
 
   loadTransactions(logPage: number) {
-    console.log(logPage);
     this.api.transList(logPage).subscribe(
       result => {
         if (result.transactions.length > 0) {
