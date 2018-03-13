@@ -33,6 +33,8 @@ export class AddDataComponent implements OnInit {
   // Assumes Groceries is 1st category
   categoryId: number = 1;
   essentialPurchase = false;
+  recurringPurchase = false;
+  recurringType: string;
   transactionAdditionType = 1;
   storeList = [];
   showAddStore = false;
@@ -42,7 +44,8 @@ export class AddDataComponent implements OnInit {
   minDate: any;
   leftCategoryIdList: number[] = [];
   rightCategoryIdList: number[] = [];
-  categoryNameList: string[] = [];
+  leftCategoryNameList: number[] = [];
+  rightCategoryNameList: number[] = [];
 
   constructor(
   private formBuilder: FormBuilder,
@@ -88,10 +91,12 @@ export class AddDataComponent implements OnInit {
 
   private setCategoryList(data: any) {
     let categoryIdList = Object.keys(data.ids).map(key => data.ids[key]);
-    this.categoryNameList = Object.keys(data.names).map(key => data.names[key]);
+    let categoryNameList = Object.keys(data.names).map(key => data.names[key]);
     let halfLength = Math.floor(categoryIdList.length / 2);
     this.leftCategoryIdList = categoryIdList.splice(0, halfLength);
+    this.leftCategoryNameList = categoryNameList.splice(0, halfLength);
     this.rightCategoryIdList = categoryIdList;
+    this.rightCategoryNameList = categoryNameList;
   }
 
   getMinDate() {
@@ -174,7 +179,9 @@ export class AddDataComponent implements OnInit {
   transactionFormValidate() {
     if (this.submitOrg.name.length === 0 ||
         this.submitOrg.town.length === 0 ||
-        this.amount === 0 ) {
+        this.amount === 0 ||
+        this.recurringPurchase &&
+        !this.recurringType) {
           this.transactionFormInvalid = true;
         } else {
           this.transactionFormInvalid = false;
@@ -195,6 +202,7 @@ export class AddDataComponent implements OnInit {
           organisation_id   : this.organisationId,
           category          : this.categoryId,
           essential         : this.essentialPurchase,
+          recurring         : this.recurringType,
         };
         break;
       case 2:
@@ -203,7 +211,9 @@ export class AddDataComponent implements OnInit {
           transaction_value : this.amount,
           purchase_time     : purchaseTime,
           organisation_id   : this.organisationId,
+          category          : this.categoryId,
           essential         : this.essentialPurchase,
+          recurring         : this.recurringType,
         };
         break;
       case 3:
@@ -215,7 +225,9 @@ export class AddDataComponent implements OnInit {
           street_name       : this.submitOrg.street_name,
           town              : this.submitOrg.town,
           postcode          : this.submitOrg.postcode,
+          category          : this.categoryId,
           essential         : this.essentialPurchase,
+          recurring         : this.recurringType,
         };
         break;
     }
@@ -266,6 +278,9 @@ export class AddDataComponent implements OnInit {
     this.amount = null;
     this.transactionFormInvalid = true;
     this.showAddStore = false;
+    this.essentialPurchase = false;
+    this.recurringPurchase = false;
+    this.recurringType = null;
   }
 
   onSubmitPayroll() {
