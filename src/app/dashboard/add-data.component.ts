@@ -177,14 +177,15 @@ export class AddDataComponent implements OnInit {
   }
 
   transactionFormValidate() {
-    if (this.submitOrg.name.length === 0 ||
-        this.submitOrg.town.length === 0 ||
-        this.amount === 0 ||
-        this.recurringPurchase &&
-        !this.recurringType) {
-          this.transactionFormInvalid = true;
-        } else {
+    if (this.submitOrg.name.length &&
+        this.amount &&
+        (this.recurringPurchase &&
+        this.recurringType ||
+        !this.recurringPurchase &&
+        !this.recurringType)) {
           this.transactionFormInvalid = false;
+        } else {
+          this.transactionFormInvalid = true;
         }
   }
 
