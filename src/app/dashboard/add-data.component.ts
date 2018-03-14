@@ -239,31 +239,23 @@ export class AddDataComponent implements OnInit {
     .subscribe(
       result => {
         if ( result.success === true ) {
-          console.log('Successful Upload');
-          console.log(result);
           this.transactionFormStatus = 'success';
-          console.log(this.transactionFormStatus);
           this.resetForm();
         } else {
-          console.log('Upload Error');
           this.transactionFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
           this.transactionFormStatus = 'send_failed';
-          console.log(this.transactionFormStatus);
         }
       },
       error => {
-        console.log('Upload Error');
         console.log(error);
         try {
           console.log(error.error);
           const jsonError = error.json();
-          console.log('boop');
           this.transactionFormStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
         } catch (e) {
           this.transactionFormStatusError = 'There was a server error, please try again later.';
         }
         this.transactionFormStatus = 'send_failed';
-        console.log(this.transactionFormStatus);
       }
     );
   }
@@ -291,14 +283,11 @@ export class AddDataComponent implements OnInit {
       .orgPayroll(this.payrollForm.value)
       .subscribe(
         result => {
-          console.log('data submitted!');
           this.payrollFormStatus = 'success';
-          console.log(this.payrollFormStatus);
         },
         error => {
           console.log( error._body );
           this.payrollFormStatus = 'send_failed';
-          console.log(this.payrollFormStatus);
         }
       );
   }
@@ -310,14 +299,10 @@ export class AddDataComponent implements OnInit {
       .orgSupplier(this.singleSupplierForm.value)
       .subscribe(
         result => {
-          console.log('data submitted!');
           this.singleSupplierFormStatus = 'success';
-          console.log(this.singleSupplierFormStatus);
         },
         error => {
-          console.log( error._body );
           this.singleSupplierFormStatus = 'send_failed';
-          console.log(this.singleSupplierFormStatus);
         }
       );
   }
@@ -329,14 +314,10 @@ export class AddDataComponent implements OnInit {
       .orgEmployee(this.employeeForm.value)
       .subscribe(
         result => {
-          console.log('data submitted!');
           this.employeeFormStatus = 'success';
-          console.log(this.employeeFormStatus);
         },
         error => {
-          console.log( error._body );
           this.employeeFormStatus = 'send_failed';
-          console.log(this.employeeFormStatus);
         }
       );
   }
