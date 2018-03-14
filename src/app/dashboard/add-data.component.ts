@@ -30,8 +30,6 @@ export class AddDataComponent implements OnInit {
   organisationTown: string;
   organisationPostcode: string;
   amount: number;
-  // Assumes Groceries is 1st category
-  categoryId: number = 1;
   essentialPurchase = false;
   recurringPurchase = false;
   recurringType: string;
@@ -44,8 +42,9 @@ export class AddDataComponent implements OnInit {
   minDate: any;
   leftCategoryIdList: number[] = [];
   rightCategoryIdList: number[] = [];
-  leftCategoryNameList: number[] = [];
-  rightCategoryNameList: number[] = [];
+  leftCategoryNameList: string[] = [];
+  rightCategoryNameList: string[] = [];
+  categoryList: any;
 
   constructor(
   private formBuilder: FormBuilder,
@@ -90,13 +89,9 @@ export class AddDataComponent implements OnInit {
   }
 
   private setCategoryList(data: any) {
-    let categoryIdList = Object.keys(data.ids).map(key => data.ids[key]);
-    let categoryNameList = Object.keys(data.names).map(key => data.names[key]);
-    let halfLength = Math.floor(categoryIdList.length / 2);
-    this.leftCategoryIdList = categoryIdList.splice(0, halfLength);
-    this.leftCategoryNameList = categoryNameList.splice(0, halfLength);
-    this.rightCategoryIdList = categoryIdList;
-    this.rightCategoryNameList = categoryNameList;
+    let halfLength = Math.floor(data.length / 2);
+    this.leftCategoryList = data.splice(0, halfLength);
+    this.rightCategoryList = data;
   }
 
   getMinDate() {

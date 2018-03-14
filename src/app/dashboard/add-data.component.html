@@ -48,19 +48,19 @@
               <div class="row">
                 <div class="col-md-6 btn-group-vertical">
                   <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'daily'">
-                    <input value="daily" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId" (ngModelChange)="transactionFormValidate()">Daily
+                    <input value="daily" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Daily
                   </label>
                   <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'weekly'">
-                    <input value="weekly" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId" (ngModelChange)="transactionFormValidate()">Weekly
+                    <input value="weekly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Weekly
                   </label>
                   <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'fortnightly'">
-                    <input value="fortnightly" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId" (ngModelChange)="transactionFormValidate()">Fortnightly
+                    <input value="fortnightly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Fortnightly
                   </label>
                   <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'monthly'">
-                    <input value="monthly" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId" (ngModelChange)="transactionFormValidate()">Monthly
+                    <input value="monthly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Monthly
                   </label>
                   <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'quarterly'">
-                    <input value="quarterly" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId" (ngModelChange)="transactionFormValidate()">Quarterly
+                    <input value="quarterly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Quarterly
                   </label>
                 </div>
               </div>
@@ -75,13 +75,13 @@
                   <label class="btn btn-secondary mb-0" [class.active]="categoryId == ''">
                     <input value="" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">Uncategorised
                   </label>
-                  <label *ngFor="let category of leftCategoryIdList, let i=index" class="btn btn-secondary mb-0" [class.active]="categoryId == category">
-                    <input [value]="category" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ leftCategoryNameList[i] }}
+                  <label *ngFor="let category of leftCategoryList" class="btn btn-secondary mb-0" [class.active]="categoryId == category.id">
+                    <input [value]="category.id" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ category.name }}
                   </label>
                 </div>
                 <div class="col-md-6 btn-group-vertical">
-                  <label *ngFor="let category2 of rightCategoryIdList, let i=index" class="btn btn-secondary mb-0" [class.active]=" categoryId == category2">
-                    <input [value]="category2" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ rightCategoryNameList[i] }}
+                  <label *ngFor="let category2 of rightCategoryList" class="btn btn-secondary mb-0" [class.active]=" categoryId == category2.id">
+                    <input [value]="category2.id" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ category2.name }}
                   </label>
                 </div>
               </div>
