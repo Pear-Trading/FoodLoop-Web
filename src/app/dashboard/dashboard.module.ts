@@ -31,6 +31,8 @@ import { PiePanel } from '../panels/pie-panel.component';
 import { DashboardRoutingModule } from './dashboard.routing';
 import { OrgResultComponent } from '../shared/org-result.component';
 import { OrgTableComponent } from '../shared/org-table.component';
+import { RecurResultComponent } from '../shared/recur-result.component';
+import { RecurTableComponent } from '../shared/recur-table.component';
 import { TransactionResultComponent } from '../shared/transaction-result.component';
 import { PayrollResultComponent } from '../shared/payroll-result.component';
 import { LeaderboardResultComponent } from '../shared/leaderboard-result.component';
@@ -61,6 +63,8 @@ import { environment } from '../../environments/environment';
     AddDataComponent,
     OrgResultComponent,
     OrgTableComponent,
+    RecurResultComponent,
+    RecurTableComponent,
     TransactionLogComponent,
     CategoryMonthComponent,
     TransactionResultComponent,
