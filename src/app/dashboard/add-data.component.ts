@@ -40,6 +40,8 @@ export class AddDataComponent implements OnInit {
   transactionFormInvalid = true;
   myDate: any;
   minDate: any;
+  categoryList: any;
+  categoryIdList: any;
   leftCategoryList: number[] = [];
   rightCategoryList: string[] = [];
   categoryId: number;
@@ -72,7 +74,9 @@ export class AddDataComponent implements OnInit {
     // this.myDate = new Date().toISOString().slice(0, 16);
     this.api.categoryList().subscribe(
       result => {
-        this.setCategoryList(result.categories);
+        this.categoryList = result.categories;
+        this.categoryIdList = Object.keys(this.categoryList);
+        this.setCategoryList(this.categoryIdList);
       },
       error => {
         console.log('Retrieval Error');

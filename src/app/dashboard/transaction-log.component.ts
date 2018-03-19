@@ -23,6 +23,7 @@ export class TransactionLogComponent implements OnInit {
   public updatedDate: string;
   public startTime: string;
   categoryIdList: number[] = [];
+  categoryList: any;
   categoryNameList: string[] = [];
 
   public paginateConfig: PaginationInstance = {
@@ -39,8 +40,8 @@ export class TransactionLogComponent implements OnInit {
     this.myDate = moment().format('YYYY-MM-DD[T]HH:mm');
     this.api.categoryList().subscribe(
       result => {
-        //this.setCategoryList(result.categories);
-        this.categoryIdList = result.categories;
+        this.categoryList = result.categories;
+        this.categoryIdList = Object.keys(this.categoryList);
       },
       error => {
         console.log('Retrieval Error');
@@ -52,11 +53,6 @@ export class TransactionLogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTransactions(1);
-  }
-
-  private setCategoryList(data: any) {
-    this.categoryIdList = Object.keys(data.ids).map(key => data.ids[key]);
-    this.categoryNameList = Object.keys(data.names).map(key => data.names[key]);
   }
 
   byId(c1: ItemModel, c2: ItemModel) {

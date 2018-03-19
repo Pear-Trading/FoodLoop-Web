@@ -75,13 +75,13 @@
                   <label class="btn btn-secondary mb-0" [class.active]="categoryId == ''">
                     <input value="" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">Uncategorised
                   </label>
-                  <label *ngFor="let category of leftCategoryList" class="btn btn-secondary mb-0" [class.active]="categoryId == category.id">
-                    <input [value]="category.id" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ category.name }}
+                  <label *ngFor="let category of leftCategoryList" class="btn btn-secondary mb-0" [class.active]="categoryId == category">
+                    <input [value]="category" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ categoryList[category] }}
                   </label>
                 </div>
                 <div class="col-md-6 btn-group-vertical">
-                  <label *ngFor="let category2 of rightCategoryList" class="btn btn-secondary mb-0" [class.active]=" categoryId == category2.id">
-                    <input [value]="category2.id" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ category2.name }}
+                  <label *ngFor="let category2 of rightCategoryList" class="btn btn-secondary mb-0" [class.active]=" categoryId == category2">
+                    <input [value]="category2" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ categoryList[category2] }}
                   </label>
                 </div>
               </div>

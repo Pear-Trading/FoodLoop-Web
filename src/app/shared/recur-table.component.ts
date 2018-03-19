@@ -20,6 +20,8 @@ interface RecurData {
 export class RecurTableComponent {
   @Input() public recurList: Array<RecurData>;
   @Output() public onClick = new EventEmitter();
+  @Input() public categories: any;
+
 
   public recurClick(event: any): void {
     this.onClick.emit( event );
