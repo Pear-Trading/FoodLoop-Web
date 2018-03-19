@@ -40,11 +40,9 @@ export class AddDataComponent implements OnInit {
   transactionFormInvalid = true;
   myDate: any;
   minDate: any;
-  leftCategoryIdList: number[] = [];
-  rightCategoryIdList: number[] = [];
-  leftCategoryNameList: string[] = [];
-  rightCategoryNameList: string[] = [];
-  categoryList: any;
+  leftCategoryList: number[] = [];
+  rightCategoryList: string[] = [];
+  categoryId: number;
 
   constructor(
   private formBuilder: FormBuilder,

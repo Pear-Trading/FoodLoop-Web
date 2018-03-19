@@ -124,30 +124,12 @@ export class TransactionLogComponent implements OnInit {
       result => {
         if ( result.success === true ) {
           console.log('Successful Upload');
-          console.log(result);
-          this.transactionFormStatus = 'success';
-          console.log(this.transactionFormStatus);
-          this.resetForm();
         } else {
           console.log('Upload Error');
-          this.transactionFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
-          this.transactionFormStatus = 'send_failed';
-          console.log(this.transactionFormStatus);
         }
       },
       error => {
         console.log('Upload Error');
-        console.log(error);
-        try {
-          console.log(error.error);
-          const jsonError = error.json();
-          console.log('boop');
-          this.transactionFormStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
-        } catch (e) {
-          this.transactionFormStatusError = 'There was a server error, please try again later.';
-        }
-        this.transactionFormStatus = 'send_failed';
-        console.log(this.transactionFormStatus);
       }
     );
   }
