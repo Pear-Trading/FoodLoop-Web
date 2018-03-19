@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 
 interface RecurData {
-  category: string;
+  category: number;
   essential: number;
   id: number;
   last_updated: string;
@@ -20,6 +20,7 @@ interface RecurData {
 export class RecurResultComponent {
   @Input() public recur: RecurData;
   @Output() public onClick = new EventEmitter();
+  @Input() public categories: any;
   public updatedDate: string;
 
   ngOnInit(): void {

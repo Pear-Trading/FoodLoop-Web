@@ -50,7 +50,7 @@
           <small>Select a Recurring Transaction below to edit it.</small>
         </div>
         <div *ngIf="!noRecurringList" class="card-block">
-          <recur-table [recurList]="recurringTransactionList" (onClick)="recurringTransactionDetails($event, template)"></recur-table>
+          <recur-table [recurList]="recurringTransactionList" [categories]="categoryList" (onClick)="recurringTransactionDetails($event, template)"></recur-table>
           <ng-template #template>
             <div class="modal-header d-flex justify-content-between">
               <h4 class="modal-title">Edit Recurring Transaction</h4>
@@ -105,9 +105,9 @@
                 <div class="col-md-9">
                     <div class="input-group">
                     <select type="text" class="form-control" [compareWith]="byId" [(ngModel)]="clickedRecur.category">
-                      <option value="Uncategorised">Uncategorised</option>
-                      <option *ngFor="let category of categoryIdList, let i=index" [ngValue]="category">
-                        {{ category.name }}
+                      <option value="0">Uncategorised</option>
+                      <option *ngFor="let category of categoryIdList" [ngValue]="category">
+                        {{ categoryList[category] }}
                       </option>
                     </select>
                   </div>

@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr recur-result *ngFor="let recur of recurList" [recur]="recur" (onClick)="recurClick($event, template)"></tr>
+      <tr recur-result *ngFor="let recur of recurList" [categories]="categories" [recur]="recur" (onClick)="recurClick($event, template)"></tr>
     </tbody>
   </table>
 </div>

@@ -1,5 +1,5 @@
 <td (click)="recurClick()">{{recur.seller}}</td>
-<td (click)="recurClick()">{{recur.category}}</td>
+<td (click)="recurClick()">{{categories[recur.category] || 'Uncategorised'}}</td>
 <td (click)="recurClick()">{{recur.essential}}</td>
 <td (click)="recurClick()">{{updatedDate}}</td>
 <td (click)="recurClick()">{{recur.recurring_period}}</td>
