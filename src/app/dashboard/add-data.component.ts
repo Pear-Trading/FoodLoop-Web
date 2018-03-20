@@ -30,8 +30,6 @@ export class AddDataComponent implements OnInit {
   organisationTown: string;
   organisationPostcode: string;
   amount: number;
-  // Assumes Groceries is 1st category
-  categoryId: number = 1;
   essentialPurchase = false;
   recurringPurchase = false;
   recurringType: string;
@@ -42,10 +40,11 @@ export class AddDataComponent implements OnInit {
   transactionFormInvalid = true;
   myDate: any;
   minDate: any;
-  leftCategoryIdList: number[] = [];
-  rightCategoryIdList: number[] = [];
-  leftCategoryNameList: number[] = [];
-  rightCategoryNameList: number[] = [];
+  categoryList: any;
+  categoryIdList: any;
+  leftCategoryList: number[] = [];
+  rightCategoryList: string[] = [];
+  categoryId: number;
 
   constructor(
   private formBuilder: FormBuilder,
@@ -75,7 +74,9 @@ export class AddDataComponent implements OnInit {
     // this.myDate = new Date().toISOString().slice(0, 16);
     this.api.categoryList().subscribe(
       result => {
-        this.setCategoryList(result.categories);
+        this.categoryList = result.categories;
+        this.categoryIdList = Object.keys(this.categoryList);
+        this.setCategoryList(this.categoryIdList);
       },
       error => {
         console.log('Retrieval Error');
@@ -90,13 +91,9 @@ export class AddDataComponent implements OnInit {
   }
 
   private setCategoryList(data: any) {
-    let categoryIdList = Object.keys(data.ids).map(key => data.ids[key]);
-    let categoryNameList = Object.keys(data.names).map(key => data.names[key]);
-    let halfLength = Math.floor(categoryIdList.length / 2);
-    this.leftCategoryIdList = categoryIdList.splice(0, halfLength);
-    this.leftCategoryNameList = categoryNameList.splice(0, halfLength);
-    this.rightCategoryIdList = categoryIdList;
-    this.rightCategoryNameList = categoryNameList;
+    let halfLength = Math.floor(data.length / 2);
+    this.leftCategoryList = data.splice(0, halfLength);
+    this.rightCategoryList = data;
   }
 
   getMinDate() {
@@ -177,14 +174,15 @@ export class AddDataComponent implements OnInit {
   }
 
   transactionFormValidate() {
-    if (this.submitOrg.name.length === 0 ||
-        this.submitOrg.town.length === 0 ||
-        this.amount === 0 ||
-        this.recurringPurchase &&
-        !this.recurringType) {
-          this.transactionFormInvalid = true;
-        } else {
+    if (this.submitOrg.name.length &&
+        this.amount &&
+        (this.recurringPurchase &&
+        this.recurringType ||
+        !this.recurringPurchase &&
+        !this.recurringType)) {
           this.transactionFormInvalid = false;
+        } else {
+          this.transactionFormInvalid = true;
         }
   }
 
@@ -238,31 +236,22 @@ export class AddDataComponent implements OnInit {
     .subscribe(
       result => {
         if ( result.success === true ) {
-          console.log('Successful Upload');
-          console.log(result);
           this.transactionFormStatus = 'success';
-          console.log(this.transactionFormStatus);
           this.resetForm();
         } else {
-          console.log('Upload Error');
           this.transactionFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
           this.transactionFormStatus = 'send_failed';
-          console.log(this.transactionFormStatus);
         }
       },
       error => {
-        console.log('Upload Error');
         console.log(error);
         try {
           console.log(error.error);
-          const jsonError = error.json();
-          console.log('boop');
-          this.transactionFormStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
+          this.transactionFormStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
         } catch (e) {
           this.transactionFormStatusError = 'There was a server error, please try again later.';
         }
         this.transactionFormStatus = 'send_failed';
-        console.log(this.transactionFormStatus);
       }
     );
   }
@@ -290,14 +279,11 @@ export class AddDataComponent implements OnInit {
       .orgPayroll(this.payrollForm.value)
       .subscribe(
         result => {
-          console.log('data submitted!');
           this.payrollFormStatus = 'success';
-          console.log(this.payrollFormStatus);
         },
         error => {
           console.log( error._body );
           this.payrollFormStatus = 'send_failed';
-          console.log(this.payrollFormStatus);
         }
       );
   }
@@ -309,14 +295,10 @@ export class AddDataComponent implements OnInit {
       .orgSupplier(this.singleSupplierForm.value)
       .subscribe(
         result => {
-          console.log('data submitted!');
           this.singleSupplierFormStatus = 'success';
-          console.log(this.singleSupplierFormStatus);
         },
         error => {
-          console.log( error._body );
           this.singleSupplierFormStatus = 'send_failed';
-          console.log(this.singleSupplierFormStatus);
         }
       );
   }
@@ -328,14 +310,10 @@ export class AddDataComponent implements OnInit {
       .orgEmployee(this.employeeForm.value)
       .subscribe(
         result => {
-          console.log('data submitted!');
           this.employeeFormStatus = 'success';
-          console.log(this.employeeFormStatus);
         },
         error => {
-          console.log( error._body );
           this.employeeFormStatus = 'send_failed';
-          console.log(this.employeeFormStatus);
         }
       );
   }

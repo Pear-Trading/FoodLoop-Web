@@ -55,9 +55,7 @@ export class FeedbackComponent implements OnInit {
         result => {
           if ( result.success === true ) {
             console.log('Successful Upload');
-            console.log(result);
             this.feedbackFormStatus = 'success';
-            console.log(this.feedbackFormStatus);
             this.feedbackForm.patchValue({
               feedbacktext: '',
             });
@@ -65,22 +63,16 @@ export class FeedbackComponent implements OnInit {
             console.log('Upload Error');
             this.feedbackFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
             this.feedbackFormStatus = 'send_failed';
-            console.log(this.feedbackFormStatus);
           }
         },
         error => {
           console.log('Upload Error');
-          console.log(error);
           try {
-            console.log(error.error);
-            const jsonError = error.json();
-            console.log('boop');
-            this.feedbackFormStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
+            this.feedbackFormStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
           } catch (e) {
             this.feedbackFormStatusError = 'There was a server error, please try again later.';
           }
           this.feedbackFormStatus = 'send_failed';
-          console.log(this.feedbackFormStatus);
         }
       );
   }
