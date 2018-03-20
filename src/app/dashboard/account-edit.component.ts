@@ -105,23 +105,17 @@ export class AccountEditComponent implements OnInit {
     .accountEditUpdate(submitData)
     .subscribe(
       result => {
-        console.log('data submitted!');
         this.submitStatus = 'success';
-        console.log(this.submitStatus);
       },
       error => {
         console.log('Edit Error');
         console.log(error);
         try {
-          console.log(error.error);
-          const jsonError = error.json();
-          console.log('boop');
-          this.submitStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
+          this.submitStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
         } catch (e) {
           this.submitStatusError = 'There was a server error, please try again later.';
         }
         this.submitStatus = 'send_failed';
-        console.log(this.submitStatus);
       }
     );
   }
@@ -131,7 +125,6 @@ export class AccountEditComponent implements OnInit {
   if (!this.settingForm.valid && !this.settingCustomerForm.valid) {
     console.log('Not Valid!');
     this.submitStatus = 'validation_failed';
-    console.log(this.submitStatus);
     return;
   }
 

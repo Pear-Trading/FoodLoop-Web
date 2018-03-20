@@ -247,8 +247,7 @@ export class AddDataComponent implements OnInit {
         console.log(error);
         try {
           console.log(error.error);
-          const jsonError = error.json();
-          this.transactionFormStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
+          this.transactionFormStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
         } catch (e) {
           this.transactionFormStatusError = 'There was a server error, please try again later.';
         }
