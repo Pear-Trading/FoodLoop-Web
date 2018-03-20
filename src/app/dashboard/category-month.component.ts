@@ -31,15 +31,13 @@ export class CategoryMonthComponent implements OnInit {
   weekEssential3: number = 0;
   weekEssential4: number = 0;
 
-  categoryList: number[] = [];
+  categoryList: any;
   dayList: any[] = [];
   valueList: number[] = [];
   myWeek1: any;
   myWeek2: any;
   myWeek3: any;
   myWeek4: any;
-  categoryIdList: number[] = [];
-  categoryNameList: string[] = [];
   categoryLimit1: number = 6;
   categoryLimit2: number = 6;
   categoryLimit3: number = 6;
@@ -51,7 +49,8 @@ export class CategoryMonthComponent implements OnInit {
     this.setDate();
     this.api.categoryList().subscribe(
       result => {
-        this.setCategoryList(result.categories);
+        this.categoryList = result.categories;
+        console.log('Category List received');
       },
       error => {
         console.log('Retrieval Error');
@@ -70,11 +69,6 @@ export class CategoryMonthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  private setCategoryList(data: any) {
-    this.categoryIdList = Object.keys(data.ids).map(key => data.ids[key]);
-    this.categoryNameList = Object.keys(data.names).map(key => data.names[key]);
   }
 
   private setDate () {

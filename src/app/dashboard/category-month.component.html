@@ -12,8 +12,8 @@
             <ul *ngIf="weekList1" class="horizontal-bars type-2">
               <li *ngIf="weekEssential1">
                 <span class="title">Essential Purchases</span>
-                <span class="value">{{ ( weekEssential1.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
-                  ({{ (weekEssential1.value || 0 ) / weekListValueSum1 | percent:'1.0-0' }})</span></span>
+                <span class="value">{{ (  weekEssential1 ? weekEssential1.value : 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
+                  ({{ ( weekEssential1 ? weekEssential1.value : 0 ) / weekListValueSum1 | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
@@ -22,7 +22,7 @@
                 </div>
               </li>
               <li *ngFor="let categoryEntry of weekList1 | slice:0:categoryLimit1; let i=index;">
-                <span class="title">{{ categoryNameList[categoryEntry.category - 1] || 'Uncategorised' }}</span>
+                <span class="title">{{ categoryList[categoryEntry.category] || 'Uncategorised' }}</span>
                 <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
                   ({{ (categoryEntry.value || 0 ) / weekListValueSum1 | percent:'1.0-0' }})</span></span>
                 <div class="bars">
@@ -54,8 +54,8 @@
             <ul *ngIf="weekList2" class="horizontal-bars type-2">
               <li *ngIf="weekEssential2">
                 <span class="title">Essential Purchases</span>
-                <span class="value">{{ ( weekEssential2.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
-                  ({{ (weekEssential2.value || 0 ) / weekListValueSum2 | percent:'1.0-0' }})</span></span>
+                <span class="value">{{ ( weekEssential2 ? weekEssential2.value : 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
+                  ({{ ( weekEssential2 ? weekEssential2.value : 0 ) / weekListValueSum2 | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
@@ -64,7 +64,7 @@
                 </div>
               </li>
               <li *ngFor="let categoryEntry of weekList2 | slice:0:categoryLimit2; let i=index;">
-                <span class="title">{{ categoryNameList[categoryEntry.category - 1] || 'Uncategorised' }}</span>
+                <span class="title">{{ categoryList[categoryEntry.category] || 'Uncategorised' }}</span>
                 <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
                   ({{ (categoryEntry.value || 0 ) / weekListValueSum2 | percent:'1.0-0' }})</span></span>
                 <div class="bars">
@@ -96,8 +96,8 @@
             <ul *ngIf="weekList3" class="horizontal-bars type-2">
               <li *ngIf="weekEssential3">
                 <span class="title">Essential Purchases</span>
-                <span class="value">{{ ( weekEssential1.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
-                  ({{ (weekEssential3.value || 0 ) / weekListValueSum3 | percent:'1.0-0' }})</span></span>
+                <span class="value">{{ (  weekEssential3 ? weekEssential3.value : 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
+                  ({{ ( weekEssential3 ? weekEssential3.value : 0 ) / weekListValueSum3 | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
@@ -106,7 +106,7 @@
                 </div>
               </li>
               <li *ngFor="let categoryEntry of weekList3 | slice:0:categoryLimit3; let i=index;">
-                <span class="title">{{ categoryNameList[categoryEntry.category - 1] || 'Uncategorised' }}</span>
+                <span class="title">{{ categoryList[categoryEntry.category] || 'Uncategorised' }}</span>
                 <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
                   ({{ (categoryEntry.value || 0 ) / weekListValueSum3 | percent:'1.0-0' }})</span></span>
                 <div class="bars">
@@ -138,8 +138,8 @@
             <ul *ngIf="weekList4" class="horizontal-bars type-2">
               <li *ngIf="weekEssential4">
                 <span class="title">Essential Purchases</span>
-                <span class="value">{{ ( weekEssential4.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
-                  ({{ (weekEssential4.value || 0 ) / weekListValueSum4 | percent:'1.0-0' }})</span></span>
+                <span class="value">{{ (  weekEssential4 ? weekEssential4.value : 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
+                  ({{ ( weekEssential4 ? weekEssential4.value : 0 ) / weekListValueSum4 | percent:'1.0-0' }})</span></span>
                 <div class="bars">
                   <div class="progress" style="height: 6px;">
                     <div class="progress-bar bg-success" role="progressbar"
@@ -148,7 +148,7 @@
                 </div>
               </li>
               <li *ngFor="let categoryEntry of weekList4 | slice:0:categoryLimit4; let i=index;">
-                <span class="title">{{ categoryNameList[categoryEntry.category - 1] || 'Uncategorised' }}</span>
+                <span class="title">{{ categoryList[categoryEntry.category] || 'Uncategorised' }}</span>
                 <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
                   ({{ (categoryEntry.value || 0 ) / weekListValueSum4 | percent:'1.0-0' }})</span></span>
                 <div class="bars">

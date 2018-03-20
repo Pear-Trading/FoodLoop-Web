@@ -46,29 +46,22 @@
             <label class="col-md-3 form-control-label" for="text-input"><strong>Recurring Period</strong></label>
             <div class="col-md-9">
               <div class="row">
-                <div class="col-md-6">
-                  <div>
-                    <input value="daily" type="radio" name="daily" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">
-                    <label>Daily</label>
-                  </div>
-                  <div>
-                    <input value="weekly" type="radio" name="weekly" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">
-                    <label>Weekly</label>
-                  </div>
-                  <div>
-                    <input value="fortnightly" type="radio" name="fortnightly" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">
-                    <label>Fortnightly</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                <div>
-                    <input value="monthly" type="radio" name="monthly" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">
-                    <label>Monthly</label>
-                  </div>
-                  <div>
-                    <input value="quarterly" type="radio" name="quarterly" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">
-                    <label>Quarterly</label>
-                  </div>
+                <div class="col-md-6 btn-group-vertical">
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'daily'">
+                    <input value="daily" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Daily
+                  </label>
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'weekly'">
+                    <input value="weekly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Weekly
+                  </label>
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'fortnightly'">
+                    <input value="fortnightly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Fortnightly
+                  </label>
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'monthly'">
+                    <input value="monthly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Monthly
+                  </label>
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'quarterly'">
+                    <input value="quarterly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Quarterly
+                  </label>
                 </div>
               </div>
               <span class="help-block">Please give the period of time the purchase will recur from "Time of Transaction".</span>
@@ -78,21 +71,18 @@
             <label class="col-md-3 form-control-label" for="text-input">Budget Type</label>
             <div class="col-md-9">
               <div class="row">
-                <div class="col-md-6">
-                  <div>
-                    <input value="" type="radio" name="radios" [(ngModel)]="categoryId">
-                    <label>Uncategorised</label>
-                  </div>
-                  <div class="radio" *ngFor="let category of leftCategoryIdList, let i=index">
-                    <input [value]="category" type="radio" name="radios" [(ngModel)]="categoryId">
-                    <label>{{ leftCategoryNameList[i] }}</label>
-                  </div>
+                <div class="col-md-6 btn-group-vertical">
+                  <label class="btn btn-secondary mb-0" [class.active]="categoryId == ''">
+                    <input value="" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">Uncategorised
+                  </label>
+                  <label *ngFor="let category of leftCategoryList" class="btn btn-secondary mb-0" [class.active]="categoryId == category">
+                    <input [value]="category" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ categoryList[category] }}
+                  </label>
                 </div>
-                <div class="col-md-6">
-                  <div class="radio" *ngFor="let category2 of rightCategoryIdList, let i=index">
-                    <input [value]="category2" type="radio" name="radios" [(ngModel)]="categoryId">
-                    <label>{{ rightCategoryNameList[i] }}</label>
-                  </div>
+                <div class="col-md-6 btn-group-vertical">
+                  <label *ngFor="let category2 of rightCategoryList" class="btn btn-secondary mb-0" [class.active]=" categoryId == category2">
+                    <input [value]="category2" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ categoryList[category2] }}
+                  </label>
                 </div>
               </div>
               <span class="help-block"><strong>Optional:</strong> Choose the Budget Type for the majority of the purchase.</span>
@@ -108,21 +98,21 @@
           <org-table *ngIf="storeList.length > 0" [orgList]="storeList" (onClick)="addStore($event)"></org-table>
           <div *ngIf="showAddStore">
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Organisation Street Name</strong></label>
+              <label class="col-md-3 form-control-label" for="text-input">Organisation Street Name</label>
               <div class="col-md-9">
                 <input type="text" class="form-control" placeholder="Which Street?" [(ngModel)]="submitOrg.street_name" (ngModelChange)="transactionFormValidate()">
                 <span class="help-block">Enter the street name where the organisation is located at.</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Organisation Town</strong></label>
+              <label class="col-md-3 form-control-label" for="text-input">Organisation Town</label>
               <div class="col-md-9">
                 <input type="text" class="form-control" placeholder="Which Town?" [(ngModel)]="submitOrg.town" (ngModelChange)="transactionFormValidate()">
                 <span class="help-block">Enter the name of the town where the organisation is located at.</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Organisation Postcode</strong></label>
+              <label class="col-md-3 form-control-label" for="text-input">Organisation Postcode</label>
               <div class="col-md-9">
                 <input type="text" class="form-control" placeholder="Postcode if known" [(ngModel)]="submitOrg.postcode" (ngModelChange)="transactionFormValidate()">
                 <span class="help-block">Enter the postcode where the organisation is located at.</span>

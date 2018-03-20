@@ -2,6 +2,13 @@
 
 # Next Release
 
+# v0.1.5
+
+* Fixed category viewing on purchase
+* Changed category view from radio buttons to full label buttons
+* Amended local validation of submit
+* Changed recurring purchase selection view
+
 # v0.1.4
 
 * Amended category list on transaction submission

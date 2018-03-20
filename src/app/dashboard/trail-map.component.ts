@@ -51,7 +51,6 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
   }
 
   public onMarkerClick(clickedMarker, template: TemplateRef<any>) {
-    console.log(clickedMarker);
     this.clickedMarker = clickedMarker;
     this.assocLogo = 'assets/img/association/' + this.assocMap + '-logo.png';
     this.openModal(template);
