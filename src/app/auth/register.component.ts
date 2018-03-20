@@ -124,7 +124,7 @@ export class RegisterComponent {
           this.registerStatus = 'success';
         this.router.navigate(['/dashboard']);
         },
-        error =>
+        error => {
           console.log(error);
           try {
             this.registerStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
