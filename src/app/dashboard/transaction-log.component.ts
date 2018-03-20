@@ -22,12 +22,13 @@ export class TransactionLogComponent implements OnInit {
   clickedRecur: any;
   public updatedDate: string;
   public startTime: string;
-  categoryIdList: number[] = [];
+  categoryIdList: any;
   categoryList: any;
   categoryNameList: string[] = [];
   transactionFormStatus: string;
   transactionFormStatusSuccess: string;
   transactionFormStatusError = 'Error received, please try again.';
+  updatedTime: string;
 
   public paginateConfig: PaginationInstance = {
         id: 'transpaginate',
