@@ -26,6 +26,7 @@ export class TransactionLogComponent implements OnInit {
   categoryList: any;
   categoryNameList: string[] = [];
   transactionFormStatus: string;
+  transactionFormStatusSuccess: string;
   transactionFormStatusError = 'Error received, please try again.';
 
   public paginateConfig: PaginationInstance = {
@@ -137,7 +138,32 @@ export class TransactionLogComponent implements OnInit {
   }
 
   deleteRecurringTransaction() {
-
+    let myParams = {
+      id: this.clickedRecur.id,
+    };
+    this.api
+    .recurDelete(myParams)
+    .subscribe(
+      result => {
+        if ( result.success === true ) {
+          this.transactionFormStatus = 'success';
+          this.transactionFormStatusSuccess = 'Delete Succeeded.';
+        } else {
+          this.transactionFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
+          this.transactionFormStatus = 'send_failed';
+        }
+      },
+      error => {
+        console.log(error);
+        try {
+          console.log(error.error);
+          this.transactionFormStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
+        } catch (e) {
+          this.transactionFormStatusError = 'There was a server error, please try again later.';
+        }
+        this.transactionFormStatus = 'send_failed';
+      }
+    );
   }
 
 }
