@@ -2,6 +2,13 @@
 
 # Next Release
 
+# v0.1.6
+
+* Changed layout of category choosing on upload
+* Added ability to edit and remove recurring transactions
+* Fixed HttpClient error log viewing
+* Made transaction validation more lenient
+
 # v0.1.5
 
 * Fixed category viewing on purchase
