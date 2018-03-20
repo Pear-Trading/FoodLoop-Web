@@ -58,10 +58,6 @@ export class TransactionLogComponent implements OnInit {
     this.loadTransactions(1);
   }
 
-  byId(c1: ItemModel, c2: ItemModel) {
-    return c1 && c2 ? c1.id === c2.id : c1 === c2;
-  }
-
   loadTransactions(logPage: number) {
     this.api.transList(logPage).subscribe(
       result => {
@@ -104,7 +100,7 @@ export class TransactionLogComponent implements OnInit {
     let updatedTimeSubmit = moment(this.updatedTime, 'YYYY-MM-DD[T]HH:mm').local().format('YYYY-MM-DD[T]HH:mm:ss.SSSZ');
     this.clickedRecur.display_time = moment(this.updatedTime).format('llll');
     let myParams = {
-      category: 111,
+      category: (this.clickedRecur.category == 0 ? undefined : this.clickedRecur.category),
       essential: this.clickedRecur.essential,
       id: this.clickedRecur.id,
       apply_time: updatedTimeSubmit,
@@ -118,7 +114,7 @@ export class TransactionLogComponent implements OnInit {
       result => {
         if ( result.success === true ) {
           this.transactionFormStatus = 'success';
-          this.resetForm();
+          this.transactionFormStatusSuccess = 'Edit Succeeded.';
         } else {
           this.transactionFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
           this.transactionFormStatus = 'send_failed';

@@ -104,7 +104,7 @@
                 <label class="col-md-3 form-control-label" for="text-input">Budget Type</label>
                 <div class="col-md-9">
                     <div class="input-group">
-                    <select type="text" class="form-control" [compareWith]="byId" [(ngModel)]="clickedRecur.category">
+                    <select type="text" class="form-control" [(ngModel)]="clickedRecur.category">
                       <option value="0">Uncategorised</option>
                       <option *ngFor="let category of categoryIdList" [ngValue]="category">
                         {{ categoryList[category] }}
