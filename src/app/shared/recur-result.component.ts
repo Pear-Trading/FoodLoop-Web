@@ -10,6 +10,7 @@ interface RecurData {
   seller: string;
   start_time: string;
   value: number;
+  display_time: any;
 }
 
 @Component({
@@ -25,9 +26,9 @@ export class RecurResultComponent {
 
   ngOnInit(): void {
     if (this.recur.last_updated) {
-      this.updatedDate = moment(this.recur.last_updated).format('llll');
+      this.recur.display_time = moment(this.recur.last_updated).format('llll');
     } else {
-      this.updatedDate = moment(this.recur.start_time).format('llll');
+      this.recur.display_time = moment(this.recur.start_time).format('llll');
     }
   }
 
