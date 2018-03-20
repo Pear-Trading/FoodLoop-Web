@@ -123,7 +123,6 @@ export class TransactionLogComponent implements OnInit {
       error => {
         console.log(error);
         try {
-          console.log(error.error);
           this.transactionFormStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
         } catch (e) {
           this.transactionFormStatusError = 'There was a server error, please try again later.';
@@ -152,7 +151,6 @@ export class TransactionLogComponent implements OnInit {
       error => {
         console.log(error);
         try {
-          console.log(error.error);
           this.transactionFormStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
         } catch (e) {
           this.transactionFormStatusError = 'There was a server error, please try again later.';
