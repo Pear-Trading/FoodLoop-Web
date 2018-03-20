@@ -158,6 +158,16 @@ export class ApiService {
     );
   }
 
+  // Uploads a transaction
+
+  public recurUpdate(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/recurring-transactions',
+      data
+    );
+  }
+
   // gets payroll list for log
 
   public payrollList(data) {

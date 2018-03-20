@@ -10,6 +10,7 @@ interface RecurData {
   seller: string;
   start_time: string;
   value: number;
+  display_time: any;
 }
 
 @Component({

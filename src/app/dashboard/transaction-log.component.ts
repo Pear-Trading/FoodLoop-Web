@@ -25,6 +25,8 @@ export class TransactionLogComponent implements OnInit {
   categoryIdList: number[] = [];
   categoryList: any;
   categoryNameList: string[] = [];
+  transactionFormStatus: string;
+  transactionFormStatusError = 'Error received, please try again.';
 
   public paginateConfig: PaginationInstance = {
         id: 'transpaginate',
@@ -89,9 +91,7 @@ export class TransactionLogComponent implements OnInit {
 
   recurringTransactionDetails(clicked, template: TemplateRef<any>) {
     this.clickedRecur = clicked;
-    console.log(this.clickedRecur);
-    this.updatedTime = moment(this.clickedRecur.last_updated).format('YYYY-MM-DD[T]HH:mm');
-    this.startTime = moment(this.clickedRecur.start_time).format('YYYY-MM-DD[T]HH:mm');
+    this.updatedTime = moment(this.clickedRecur.display_time, 'llll').format('YYYY-MM-DD[T]HH:mm');
     this.openModal(template);
   }
 
@@ -100,34 +100,44 @@ export class TransactionLogComponent implements OnInit {
   }
 
   editRecurringTransaction() {
-    let updatedDateSubmit = moment(this.updatedTime, 'YYYY-MM-DD[T]HH:mm').local().format('YYYY-MM-DD[T]HH:mm:ss.SSSZ');
-    let startTimeSubmit = moment(this.startTime, 'YYYY-MM-DD[T]HH:mm').local().format('YYYY-MM-DD[T]HH:mm:ss.SSSZ');
+    let updatedTimeSubmit = moment(this.updatedTime, 'YYYY-MM-DD[T]HH:mm').local().format('YYYY-MM-DD[T]HH:mm:ss.SSSZ');
+    this.clickedRecur.display_time = moment(this.updatedTime).format('llll');
     let myParams = {
-      category: this.clickedRecur.category,
+      category: 111,
       essential: this.clickedRecur.essential,
       id: this.clickedRecur.id,
-      last_updated: this.updatedDate,
-      recurring_period: this.updatedDateSubmit,
+      apply_time: updatedTimeSubmit,
+      recurring_period: this.clickedRecur.recurring_period,
       seller: this.clickedRecur.seller,
-      start_time: this.startTimeSubmit,
       value: this.clickedRecur.value,
     };
-    /******************************/
-
     this.api
-    .upload(myParams)
+    .recurUpdate(myParams)
     .subscribe(
       result => {
         if ( result.success === true ) {
-          console.log('Successful Upload');
+          this.transactionFormStatus = 'success';
+          this.resetForm();
         } else {
-          console.log('Upload Error');
+          this.transactionFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
+          this.transactionFormStatus = 'send_failed';
         }
       },
       error => {
-        console.log('Upload Error');
+        console.log(error);
+        try {
+          console.log(error.error);
+          this.transactionFormStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
+        } catch (e) {
+          this.transactionFormStatusError = 'There was a server error, please try again later.';
+        }
+        this.transactionFormStatus = 'send_failed';
       }
     );
+  }
+
+  deleteRecurringTransaction() {
+
   }
 
 }
