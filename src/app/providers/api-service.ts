@@ -158,6 +158,26 @@ export class ApiService {
     );
   }
 
+  // Edits a recurring transaction
+
+  public recurUpdate(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/recurring-transactions',
+      data
+    );
+  }
+
+  // Edits a recurring transaction
+
+  public recurDelete(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/recurring-transactions/delete',
+      data
+    );
+  }
+
   // gets payroll list for log
 
   public payrollList(data) {
