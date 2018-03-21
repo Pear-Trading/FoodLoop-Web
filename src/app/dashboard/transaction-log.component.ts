@@ -1,10 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, TemplateRef } from '@angular/core';
 import { ApiService } from '../providers/api-service';
-// import { PaginatePipe } from 'ngx-pagination';
-import {PaginationInstance} from 'ngx-pagination';
-// import { PaginationControlsComponent } from 'ngx-pagination';
-// import { PaginationControlsDirective } from 'ngx-pagination';
-// import { TransactionResultComponent } from '../shared/transaction-result.component';
+import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { PaginationInstance } from 'ngx-pagination';
 import * as moment from 'moment';
 import 'rxjs/add/operator/map';
 
@@ -13,11 +11,24 @@ import 'rxjs/add/operator/map';
 })
 export class TransactionLogComponent implements OnInit {
 
-  transactionList;
+  transactionList: any;
+  recurringTransactionList: any;
   noTransactionList = true;
+  noRecurringList = true;
   myDate: any;
   minDate: any;
   public p: any;
+  public modalRef: BsModalRef;
+  clickedRecur: any;
+  public updatedDate: string;
+  public startTime: string;
+  categoryIdList: any;
+  categoryList: any;
+  categoryNameList: string[] = [];
+  transactionFormStatus: string;
+  transactionFormStatusSuccess: string;
+  transactionFormStatusError = 'Error received, please try again.';
+  updatedTime: string;
 
   public paginateConfig: PaginationInstance = {
         id: 'transpaginate',
@@ -28,31 +39,27 @@ export class TransactionLogComponent implements OnInit {
 
   constructor(
   private api: ApiService,
+  private modalService: BsModalService,
   ) {
     this.myDate = moment().format('YYYY-MM-DD[T]HH:mm');
+    this.api.categoryList().subscribe(
+      result => {
+        this.categoryList = result.categories;
+        this.categoryIdList = Object.keys(this.categoryList);
+      },
+      error => {
+        console.log('Retrieval Error');
+        console.log( error._body );
+      }
+    );
     // this.myDate = new Date().toISOString().slice(0, 16);
   }
 
   ngOnInit(): void {
-    this.getMinDate();
     this.loadTransactions(1);
   }
 
-  getMinDate() {
-    // gets the April 1st date of the current year
-    const aprilDate = moment().month(3).date(1);
-    const now = moment();
-    // Checks if current time is before April 1st, if so returns true
-    const beforeApril = now.isBefore(aprilDate);
-    if ( beforeApril === true ) {
-      this.minDate = aprilDate.subtract(2, 'years').format('YYYY-MM-DD');
-    } else {
-      this.minDate = aprilDate.subtract(1, 'years').format('YYYY-MM-DD');
-    }
-  }
-
   loadTransactions(logPage: number) {
-    console.log(logPage);
     this.api.transList(logPage).subscribe(
       result => {
         if (result.transactions.length > 0) {
@@ -66,9 +73,90 @@ export class TransactionLogComponent implements OnInit {
           this.transactionList = null;
           this.noTransactionList = true;
         }
+        if (result.recurring_transactions) {
+          this.recurringTransactionList = result.recurring_transactions;
+          this.noRecurringList = false;
+        } else {
+          this.recurringTransactionList = null;
+          this.noRecurringList = true;
+        }
       },
       error => {
         console.log(error);
+      }
+    );
+  }
+
+  recurringTransactionDetails(clicked, template: TemplateRef<any>) {
+    this.clickedRecur = clicked;
+    this.updatedTime = moment(this.clickedRecur.display_time, 'llll').format('YYYY-MM-DD[T]HH:mm');
+    this.openModal(template);
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  editRecurringTransaction() {
+    let updatedTimeSubmit = moment(this.updatedTime, 'YYYY-MM-DD[T]HH:mm').local().format('YYYY-MM-DD[T]HH:mm:ss.SSSZ');
+    this.clickedRecur.display_time = moment(this.updatedTime).format('llll');
+    let myParams = {
+      category: (this.clickedRecur.category == 0 ? undefined : this.clickedRecur.category),
+      essential: this.clickedRecur.essential,
+      id: this.clickedRecur.id,
+      apply_time: updatedTimeSubmit,
+      recurring_period: this.clickedRecur.recurring_period,
+      seller: this.clickedRecur.seller,
+      value: this.clickedRecur.value,
+    };
+    this.api
+    .recurUpdate(myParams)
+    .subscribe(
+      result => {
+        if ( result.success === true ) {
+          this.transactionFormStatus = 'success';
+          this.transactionFormStatusSuccess = 'Edit Succeeded.';
+        } else {
+          this.transactionFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
+          this.transactionFormStatus = 'send_failed';
+        }
+      },
+      error => {
+        console.log(error);
+        try {
+          this.transactionFormStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
+        } catch (e) {
+          this.transactionFormStatusError = 'There was a server error, please try again later.';
+        }
+        this.transactionFormStatus = 'send_failed';
+      }
+    );
+  }
+
+  deleteRecurringTransaction() {
+    let myParams = {
+      id: this.clickedRecur.id,
+    };
+    this.api
+    .recurDelete(myParams)
+    .subscribe(
+      result => {
+        if ( result.success === true ) {
+          this.transactionFormStatus = 'success';
+          this.transactionFormStatusSuccess = 'Delete Succeeded.';
+        } else {
+          this.transactionFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
+          this.transactionFormStatus = 'send_failed';
+        }
+      },
+      error => {
+        console.log(error);
+        try {
+          this.transactionFormStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
+        } catch (e) {
+          this.transactionFormStatusError = 'There was a server error, please try again later.';
+        }
+        this.transactionFormStatus = 'send_failed';
       }
     );
   }
