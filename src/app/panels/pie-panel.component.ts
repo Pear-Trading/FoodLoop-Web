@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ApiService } from '../providers/api-service';
 import { CustPiesService } from '../providers/cust-pies.service';
 import { DataType } from '../shared/data-types.enum';
 import { ChartData } from '../_interfaces/chart-data';
+import * as moment from 'moment';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'panel-pie',
@@ -11,27 +14,73 @@ export class PiePanel implements OnInit {
 
   public chartType = 'doughnut';
   public chartLegend = true;
-  public doughnutChartLabels: string[] = [];
-  public doughnutChartData: number[] = [];
+  public doughnutChartDataLocal: number[] = [];
+  public doughnutChartLabelsLocal: string[] = [];
+  public doughnutChartDataCategory: number[] = [];
+  public doughnutChartLabelsCategory: string[] = [];
 
+  dayList: any[] = [];
+  valueList: number[] = [];
+  myWeek1: any;
+  myWeek2: any;
+  myWeek3: any;
+  myWeek4: any;
 
   //Old
 
   // public mainChartElements = 7;
 
   constructor(
+    private api: ApiService,
     private pieService: CustPiesService,
-  ) { }
-
-  public ngOnInit(): void {
-    this.pieService.getPie()
-    .subscribe( result => this.setData(result.pie) );
+  ) {
+    this.setDate();
+    this.pieService.getPie().subscribe(
+      result => {
+        this.setWeekData(result);
+        this.setChartData(result.data.local_all);
+      },
+      error => {
+        console.log('Retrieval Error');
+        console.log( error._body );
+      }
+    );
   }
 
-  private setData(data: any) {
-    this.doughnutChartData = Object.keys(data).map(key => data[key]);
+  public ngOnInit(): void {
+
+  }
+
+  private setChartData(data1: any) {
+    this.doughnutChartDataLocal = Object.keys(data1).map(key => data1[key]);
+    this.doughnutChartDataCategory = this.weekList1.value||0).map(key => this.weekList1.value[key]);
     // setTimeout is currently a workaround for ng2-charts labels
-    setTimeout(() => this.doughnutChartLabels = Object.keys(data), 0);
+    setTimeout(() => this.doughnutChartLabelsLocal = Object.keys(data1), 0);
+    setTimeout(() => this.doughnutChartLabelsCategory = Object.keys(this.weekList1.category), 0);
+    console.log(this.doughnutChartDataCategory);
+    console.log(this.doughnutChartLabelsCategory);
+  }
+
+  private setDate () {
+    this.myWeek1 = moment().startOf('isoWeek').format('YYYY-MM-DD');
+    this.myWeek2 = moment(this.myWeek1).subtract(1, 'weeks').format('YYYY-MM-DD');
+    this.myWeek3 = moment(this.myWeek2).subtract(1, 'weeks').format('YYYY-MM-DD');
+    this.myWeek4 = moment(this.myWeek3).subtract(1, 'weeks').format('YYYY-MM-DD');
+    console.log(this.myWeek1, this.myWeek2, this.myWeek3, this.myWeek4)
+  }
+
+  private setWeekData (data: any) {
+    function prop<T, K extends keyof T>(obj: T, key: K) {
+      return obj[key];
+    }
+    this.weekList1 = prop(data.data.categories, this.myWeek1);
+    this.weekList2 = prop(data.data.categories, this.myWeek2);
+    this.weekList3 = prop(data.data.categories, this.myWeek3);
+    this.weekList4 = prop(data.data.categories, this.myWeek4);
+    this.weekEssential1 = prop(data.data.essentials, this.myWeek1);
+    this.weekEssential2 = prop(data.data.essentials, this.myWeek2);
+    this.weekEssential3 = prop(data.data.essentials, this.myWeek3);
+    this.weekEssential4 = prop(data.data.essentials, this.myWeek4);
   }
 
   // convert Hex to RGBA
