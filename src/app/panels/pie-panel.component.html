@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-sm-8">
         <h4 class="card-title mb-0">All Purchases</h4>
-      </div><!--/.col-->
-    </div><!--/.row-->
+      </div>
+    </div>
     <div class="chart-wrapper">
       <canvas baseChart class="chart"
       [data]="doughnutChartDataLocal"
@@ -21,14 +21,32 @@
     <div class="row">
       <div class="col-sm-8">
         <h4 class="card-title mb-0">Weekly Spend</h4>
-      </div><!--/.col-->
-    </div><!--/.row-->
+      </div>
+    </div>
     <div class="chart-wrapper">
       <canvas baseChart class="chart"
       [data]="doughnutChartDataCategory"
       [labels]="doughnutChartLabelsCategory"
       [legend]="chartLegend"
       [chartType]="chartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+</div>
+<div *ngIf="showEssentialChart" class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-sm-8">
+        <h4 class="card-title mb-0">Essential Purchases</h4>
+      </div><!--/.col-->
+    </div><!--/.row-->
+    <div class="chart-wrapper">
+      <canvas baseChart
+      [datasets]="barChartDataEssential"
+      [labels]="barChartLabelsEssential"
+      [options]="barChartOptionsEssential"
+      [chartType]="barChartTypeEssential"
       (chartHover)="chartHovered($event)"
       (chartClick)="chartClicked($event)"></canvas>
     </div>
