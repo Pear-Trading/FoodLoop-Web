@@ -26,6 +26,30 @@ export class PiePanel implements OnInit {
   myWeek3: any;
   myWeek4: any;
 
+  public purchaseNotEssential: number;
+  public purchaseEssential: number;
+  public showEssentialChart = false;
+
+  public barChartDataEssential:any[]=[
+    {data: 0, label: 'Essential', stack: '1'},
+    {data: 0, label: 'Non-Essential', stack: '1'},
+  ];
+
+  public barChartLabelsEssential:string[] = ['All Purchases'];
+
+  public barChartOptionsEssential:any = {
+      responsive: true,
+      scales:{
+          xAxes:[{
+              stacked:true
+          }],
+          yAxes:[{
+              stacked:true
+          }]
+      }
+    };
+  public barChartTypeEssential:string = 'horizontalBar';
+
   //Old
 
   // public mainChartElements = 7;
@@ -39,6 +63,13 @@ export class PiePanel implements OnInit {
       result => {
         this.setWeekData(result);
         this.setChartData(result.data.local_all);
+        this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
+        this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
+        this.barChartDataEssential = [
+          {data: [this.purchaseEssential], label: 'Essential', stack: '1'},
+          {data: [this.purchaseNotEssential], label: 'Non-Essential', stack: '1'},
+        ];
+        this.showEssentialChart = true;
       },
       error => {
         console.log('Retrieval Error');
@@ -53,12 +84,12 @@ export class PiePanel implements OnInit {
 
   private setChartData(data1: any) {
     this.doughnutChartDataLocal = Object.keys(data1).map(key => data1[key]);
-    this.doughnutChartDataCategory = this.weekList1.value||0).map(key => this.weekList1.value[key]);
+    //this.doughnutChartDataCategory = (this.weekList1.value).map(key => this.weekList1.value[key]);
     // setTimeout is currently a workaround for ng2-charts labels
     setTimeout(() => this.doughnutChartLabelsLocal = Object.keys(data1), 0);
-    setTimeout(() => this.doughnutChartLabelsCategory = Object.keys(this.weekList1.category), 0);
-    console.log(this.doughnutChartDataCategory);
-    console.log(this.doughnutChartLabelsCategory);
+    //setTimeout(() => this.doughnutChartLabelsCategory = Object.keys(this.weekList1.category), 0);
+    // console.log(this.doughnutChartDataCategory);
+    // console.log(this.doughnutChartLabelsCategory);
   }
 
   private setDate () {
@@ -74,6 +105,7 @@ export class PiePanel implements OnInit {
       return obj[key];
     }
     this.weekList1 = prop(data.data.categories, this.myWeek1);
+    console.log(this.weekList1);
     this.weekList2 = prop(data.data.categories, this.myWeek2);
     this.weekList3 = prop(data.data.categories, this.myWeek3);
     this.weekList4 = prop(data.data.categories, this.myWeek4);
