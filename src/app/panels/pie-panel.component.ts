@@ -58,7 +58,7 @@ export class PiePanel implements OnInit {
   public barChartTypeCategory:string = 'bar';
   public barChartLegendCategory:boolean = false;
   public barChartDataCategory:any[]=[
-    {data: 0, label: 'Series A'},
+    {data: [], label: 'Series A'},
   ];
   public barChartLabelsCategory:string[] = [];
 
@@ -99,13 +99,16 @@ export class PiePanel implements OnInit {
     console.log(dataLocal, dataCat);
     this.doughnutChartDataLocal = Object.keys(dataLocal).map(key => dataLocal[key]);
     this.barChartLabelsCategory = Object.keys(dataCat);
-    this.barChartDataCategory = Object.keys(dataCat).map(key => dataCat[key]);
+    let barChartDataCategoryInitial = Object.keys(dataCat).map(key => dataCat[key]);
+    this.barChartDataCategory = [
+      {data: barChartDataCategoryInitial, label: 'Series A'},
+    ];
     this.doughnutChartDataCategory = this.weekList1.map(function(a) {return a.value;});
     // setTimeout is currently a workaround for ng2-charts labels
     setTimeout(() => this.doughnutChartLabelsLocal = Object.keys(dataLocal), 0);
     setTimeout(() => this.doughnutChartLabelsCategory = this.weekList1.map(function(a) {return a.category;}), 0);
     console.log(this.barChartDataCategory);
-    console.log(this.barChartLabelsCategory);
+    console.log(barChartDataCategoryInitial);
     this.showCategoryBarChart = true;
   }
 
