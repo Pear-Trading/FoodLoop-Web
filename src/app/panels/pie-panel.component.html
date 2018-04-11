@@ -34,19 +34,38 @@
     </div>
   </div>
 </div>
-<div *ngIf="showEssentialChart" class="card">
+<div *ngIf="showEssentialBarChart" class="card">
   <div class="card-block">
     <div class="row">
       <div class="col-sm-8">
         <h4 class="card-title mb-0">Essential Purchases</h4>
-      </div><!--/.col-->
-    </div><!--/.row-->
+      </div>
+    </div>
     <div class="chart-wrapper">
-      <canvas baseChart
+      <canvas baseChart class="chart"
       [datasets]="barChartDataEssential"
       [labels]="barChartLabelsEssential"
       [options]="barChartOptionsEssential"
       [chartType]="barChartTypeEssential"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+</div>
+<div *ngIf="showCategoryBarChart" class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-sm-8">
+        <h4 class="card-title mb-0">Month Purchases by Category</h4>
+      </div>
+    </div>
+    <div class="chart-wrapper">
+      <canvas baseChart
+      [datasets]="barChartDataCategory"
+      [labels]="barChartLabelsCategory"
+      [options]="barChartOptionsCategory"
+      [legend]="barChartLegendCategory"
+      [chartType]="barChartTypeCategory"
       (chartHover)="chartHovered($event)"
       (chartClick)="chartClicked($event)"></canvas>
     </div>
