@@ -26,17 +26,18 @@ export class PiePanel implements OnInit {
   myWeek3: any;
   myWeek4: any;
 
+  weekList1 = [];
+
   public purchaseNotEssential: number;
   public purchaseEssential: number;
-  public showEssentialChart = false;
+  public showEssentialBarChart = false;
+  public showCategoryBarChart = false;
 
   public barChartDataEssential:any[]=[
     {data: 0, label: 'Essential', stack: '1'},
     {data: 0, label: 'Non-Essential', stack: '1'},
   ];
-
   public barChartLabelsEssential:string[] = ['All Purchases'];
-
   public barChartOptionsEssential:any = {
       responsive: true,
       scales:{
@@ -50,6 +51,17 @@ export class PiePanel implements OnInit {
     };
   public barChartTypeEssential:string = 'horizontalBar';
 
+  public barChartOptionsCategory:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartTypeCategory:string = 'bar';
+  public barChartLegendCategory:boolean = false;
+  public barChartDataCategory:any[]=[
+    {data: 0, label: 'Series A'},
+  ];
+  public barChartLabelsCategory:string[] = [];
+
   //Old
 
   // public mainChartElements = 7;
@@ -62,14 +74,15 @@ export class PiePanel implements OnInit {
     this.pieService.getPie().subscribe(
       result => {
         this.setWeekData(result);
-        this.setChartData(result.data.local_all);
+        this.setChartData(result.data.local_all, result.data.cat_total);
         this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
         this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
         this.barChartDataEssential = [
           {data: [this.purchaseEssential], label: 'Essential', stack: '1'},
           {data: [this.purchaseNotEssential], label: 'Non-Essential', stack: '1'},
         ];
-        this.showEssentialChart = true;
+        this.showEssentialBarChart = true;
+
       },
       error => {
         console.log('Retrieval Error');
@@ -82,14 +95,18 @@ export class PiePanel implements OnInit {
 
   }
 
-  private setChartData(data1: any) {
-    this.doughnutChartDataLocal = Object.keys(data1).map(key => data1[key]);
-    //this.doughnutChartDataCategory = (this.weekList1.value).map(key => this.weekList1.value[key]);
+  private setChartData(dataLocal: any, dataCat: any) {
+    console.log(dataLocal, dataCat);
+    this.doughnutChartDataLocal = Object.keys(dataLocal).map(key => dataLocal[key]);
+    this.barChartLabelsCategory = Object.keys(dataCat);
+    this.barChartDataCategory = Object.keys(dataCat).map(key => dataCat[key]);
+    this.doughnutChartDataCategory = this.weekList1.map(function(a) {return a.value;});
     // setTimeout is currently a workaround for ng2-charts labels
-    setTimeout(() => this.doughnutChartLabelsLocal = Object.keys(data1), 0);
-    //setTimeout(() => this.doughnutChartLabelsCategory = Object.keys(this.weekList1.category), 0);
-    // console.log(this.doughnutChartDataCategory);
-    // console.log(this.doughnutChartLabelsCategory);
+    setTimeout(() => this.doughnutChartLabelsLocal = Object.keys(dataLocal), 0);
+    setTimeout(() => this.doughnutChartLabelsCategory = this.weekList1.map(function(a) {return a.category;}), 0);
+    console.log(this.barChartDataCategory);
+    console.log(this.barChartLabelsCategory);
+    this.showCategoryBarChart = true;
   }
 
   private setDate () {
@@ -105,14 +122,6 @@ export class PiePanel implements OnInit {
       return obj[key];
     }
     this.weekList1 = prop(data.data.categories, this.myWeek1);
-    console.log(this.weekList1);
-    this.weekList2 = prop(data.data.categories, this.myWeek2);
-    this.weekList3 = prop(data.data.categories, this.myWeek3);
-    this.weekList4 = prop(data.data.categories, this.myWeek4);
-    this.weekEssential1 = prop(data.data.essentials, this.myWeek1);
-    this.weekEssential2 = prop(data.data.essentials, this.myWeek2);
-    this.weekEssential3 = prop(data.data.essentials, this.myWeek3);
-    this.weekEssential4 = prop(data.data.essentials, this.myWeek4);
   }
 
   // convert Hex to RGBA
@@ -133,6 +142,10 @@ export class PiePanel implements OnInit {
 
   public chartHovered(e: any): void {
     console.log(e);
+  }
+
+  private prop<T, K extends keyof T>(obj: T, key: K) {
+    return obj[key];
   }
 
 }
