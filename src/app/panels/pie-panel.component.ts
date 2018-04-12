@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 import { ApiService } from '../providers/api-service';
 import { CustPiesService } from '../providers/cust-pies.service';
 import { DataType } from '../shared/data-types.enum';
@@ -19,6 +20,16 @@ export class PiePanel implements OnInit {
   public doughnutChartDataCategory: number[] = [];
   public doughnutChartLabelsCategory: string[] = [];
 
+  public doughtnutChartOptionsCategory:any = {
+    tooltips: {
+      callbacks: {
+        label: (tooltip, data) => {
+          return this.tooltipLabelCallback(tooltip, data);
+        },
+      },
+    },
+  }
+
   dayList: any[] = [];
   valueList: number[] = [];
   myWeek1: any;
@@ -32,6 +43,7 @@ export class PiePanel implements OnInit {
   public purchaseEssential: number;
   public showEssentialBarChart = false;
   public showCategoryBarChart = false;
+  public showCategoryDoughnutChart = false;
 
   public barChartDataEssential:any[]=[
     {data: 0, label: 'Essential', stack: '1'},
@@ -53,7 +65,22 @@ export class PiePanel implements OnInit {
 
   public barChartOptionsCategory:any = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          callback: label => `£${label}`
+        }
+      }]
+    },
+    tooltips: {
+      callbacks: {
+        label: (tooltip, data) => {
+          return this.tooltipLabelCallback(tooltip, data);
+        },
+      },
+    },
   };
   public barChartTypeCategory:string = 'bar';
   public barChartLegendCategory:boolean = false;
@@ -69,6 +96,7 @@ export class PiePanel implements OnInit {
   constructor(
     private api: ApiService,
     private pieService: CustPiesService,
+    private currencyPipe: CurrencyPipe,
   ) {
     this.setDate();
     this.pieService.getPie().subscribe(
@@ -96,28 +124,25 @@ export class PiePanel implements OnInit {
   }
 
   private setChartData(dataLocal: any, dataCat: any) {
-    console.log(dataLocal, dataCat);
     this.doughnutChartDataLocal = Object.keys(dataLocal).map(key => dataLocal[key]);
     this.barChartLabelsCategory = Object.keys(dataCat);
     let barChartDataCategoryInitial = Object.keys(dataCat).map(key => dataCat[key]);
     this.barChartDataCategory = [
       {data: barChartDataCategoryInitial, label: 'Series A'},
     ];
-    this.doughnutChartDataCategory = this.weekList1.map(function(a) {return a.value;});
+    let doughnutChartDataCategoryInitial = this.weekList1.map(function(a) {return a.value;});
+    this.doughnutChartDataCategory = [
+      {data: doughnutChartDataCategoryInitial, label: 'Series A'},
+    ];
     // setTimeout is currently a workaround for ng2-charts labels
     setTimeout(() => this.doughnutChartLabelsLocal = Object.keys(dataLocal), 0);
     setTimeout(() => this.doughnutChartLabelsCategory = this.weekList1.map(function(a) {return a.category;}), 0);
-    console.log(this.barChartDataCategory);
-    console.log(barChartDataCategoryInitial);
+    this.showCategoryDoughnutChart = true;
     this.showCategoryBarChart = true;
   }
 
   private setDate () {
     this.myWeek1 = moment().startOf('isoWeek').format('YYYY-MM-DD');
-    this.myWeek2 = moment(this.myWeek1).subtract(1, 'weeks').format('YYYY-MM-DD');
-    this.myWeek3 = moment(this.myWeek2).subtract(1, 'weeks').format('YYYY-MM-DD');
-    this.myWeek4 = moment(this.myWeek3).subtract(1, 'weeks').format('YYYY-MM-DD');
-    console.log(this.myWeek1, this.myWeek2, this.myWeek3, this.myWeek4)
   }
 
   private setWeekData (data: any) {
@@ -149,6 +174,13 @@ export class PiePanel implements OnInit {
 
   private prop<T, K extends keyof T>(obj: T, key: K) {
     return obj[key];
+  }
+
+  private tooltipLabelCallback(tooltipItem: any, data: any) {
+    var dataset = data.datasets[tooltipItem.datasetIndex];
+    var value = dataset.data[tooltipItem.index];
+    return this.currencyPipe.transform(value, 'GBP', 'symbol', '1.2-2');
+    return value || '0';
   }
 
 }
