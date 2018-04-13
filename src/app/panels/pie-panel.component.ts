@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
 import { ApiService } from '../providers/api-service';
 import { CustPiesService } from '../providers/cust-pies.service';
 import { DataType } from '../shared/data-types.enum';
@@ -17,100 +16,14 @@ export class PiePanel implements OnInit {
   public chartLegend = true;
   public doughnutChartDataLocal: number[] = [];
   public doughnutChartLabelsLocal: string[] = [];
-  public doughnutChartDataCategory: number[] = [];
-  public doughnutChartLabelsCategory: string[] = [];
-
-  public doughtnutChartOptionsCategory:any = {
-    tooltips: {
-      callbacks: {
-        label: (tooltip, data) => {
-          return this.tooltipLabelCallback(tooltip, data);
-        },
-      },
-    },
-  }
-
-  dayList: any[] = [];
-  valueList: number[] = [];
-  myWeek1: any;
-  myWeek2: any;
-  myWeek3: any;
-  myWeek4: any;
-
-  weekList1 = [];
-
-  public purchaseNotEssential: number;
-  public purchaseEssential: number;
-  public showEssentialBarChart = false;
-  public showCategoryBarChart = false;
-  public showCategoryDoughnutChart = false;
-
-  public barChartDataEssential:any[]=[
-    {data: 0, label: 'Essential', stack: '1'},
-    {data: 0, label: 'Non-Essential', stack: '1'},
-  ];
-  public barChartLabelsEssential:string[] = ['All Purchases'];
-  public barChartOptionsEssential:any = {
-      responsive: true,
-      scales:{
-          xAxes:[{
-              stacked:true
-          }],
-          yAxes:[{
-              stacked:true
-          }]
-      }
-    };
-  public barChartTypeEssential:string = 'horizontalBar';
-
-  public barChartOptionsCategory:any = {
-    scaleShowVerticalLines: false,
-    responsive: true,
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true,
-          callback: label => `£${label}`
-        }
-      }]
-    },
-    tooltips: {
-      callbacks: {
-        label: (tooltip, data) => {
-          return this.tooltipLabelCallback(tooltip, data);
-        },
-      },
-    },
-  };
-  public barChartTypeCategory:string = 'bar';
-  public barChartLegendCategory:boolean = false;
-  public barChartDataCategory:any[]=[
-    {data: [], label: 'Series A'},
-  ];
-  public barChartLabelsCategory:string[] = [];
-
-  //Old
-
-  // public mainChartElements = 7;
 
   constructor(
     private api: ApiService,
     private pieService: CustPiesService,
-    private currencyPipe: CurrencyPipe,
   ) {
-    this.setDate();
     this.pieService.getPie().subscribe(
       result => {
-        this.setWeekData(result);
-        this.setChartData(result.data.local_all, result.data.cat_total);
-        this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
-        this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
-        this.barChartDataEssential = [
-          {data: [this.purchaseEssential], label: 'Essential', stack: '1'},
-          {data: [this.purchaseNotEssential], label: 'Non-Essential', stack: '1'},
-        ];
-        this.showEssentialBarChart = true;
-
+        this.setChartData(result.local_all);
       },
       error => {
         console.log('Retrieval Error');
@@ -123,33 +36,10 @@ export class PiePanel implements OnInit {
 
   }
 
-  private setChartData(dataLocal: any, dataCat: any) {
+  private setChartData(dataLocal: any) {
     this.doughnutChartDataLocal = Object.keys(dataLocal).map(key => dataLocal[key]);
-    this.barChartLabelsCategory = Object.keys(dataCat);
-    let barChartDataCategoryInitial = Object.keys(dataCat).map(key => dataCat[key]);
-    this.barChartDataCategory = [
-      {data: barChartDataCategoryInitial, label: 'Series A'},
-    ];
-    let doughnutChartDataCategoryInitial = this.weekList1.map(function(a) {return a.value;});
-    this.doughnutChartDataCategory = [
-      {data: doughnutChartDataCategoryInitial, label: 'Series A'},
-    ];
     // setTimeout is currently a workaround for ng2-charts labels
     setTimeout(() => this.doughnutChartLabelsLocal = Object.keys(dataLocal), 0);
-    setTimeout(() => this.doughnutChartLabelsCategory = this.weekList1.map(function(a) {return a.category;}), 0);
-    this.showCategoryDoughnutChart = true;
-    this.showCategoryBarChart = true;
-  }
-
-  private setDate () {
-    this.myWeek1 = moment().startOf('isoWeek').format('YYYY-MM-DD');
-  }
-
-  private setWeekData (data: any) {
-    function prop<T, K extends keyof T>(obj: T, key: K) {
-      return obj[key];
-    }
-    this.weekList1 = prop(data.data.categories, this.myWeek1);
   }
 
   // convert Hex to RGBA
@@ -161,26 +51,6 @@ export class PiePanel implements OnInit {
 
     const rgba = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + opacity / 100 + ')';
     return rgba;
-  }
-
-  // events
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
-
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
-
-  private prop<T, K extends keyof T>(obj: T, key: K) {
-    return obj[key];
-  }
-
-  private tooltipLabelCallback(tooltipItem: any, data: any) {
-    var dataset = data.datasets[tooltipItem.datasetIndex];
-    var value = dataset.data[tooltipItem.index];
-    return this.currencyPipe.transform(value, 'GBP', 'symbol', '1.2-2');
-    return value || '0';
   }
 
 }
