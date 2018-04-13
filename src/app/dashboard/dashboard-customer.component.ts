@@ -6,6 +6,8 @@ import { GraphWidget } from '../widgets/graph-widget.component';
 import { CustBarSnippetComponent } from '../snippets/cust-snippet-bar.component';
 import { PiePanel } from '../panels/pie-panel.component';
 import { DataType } from '../shared/data-types.enum';
+import * as moment from 'moment';
+import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: 'dashboard-customer.component.html'
@@ -25,7 +27,7 @@ export class DashboardCustomerComponent implements OnInit {
 
   public chartType = 'doughnut';
   public chartLegend = true;
-  public doughnutChartDataCategory: number[] = [];
+  public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
 
   public doughtnutChartOptionsCategory:any = {
@@ -293,7 +295,6 @@ export class DashboardCustomerComponent implements OnInit {
     var dataset = data.datasets[tooltipItem.datasetIndex];
     var value = dataset.data[tooltipItem.index];
     return this.currencyPipe.transform(value, 'GBP', 'symbol', '1.2-2');
-    return value || '0';
   }
 
   // events
