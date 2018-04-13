@@ -15,11 +15,73 @@
       <panel-pie></panel-pie>
     </div><!--/.col-->
     <div class="col-xl-4 col-md-6">
+      <div *ngIf="showCategoryDoughnutChart" class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-12">
+        <h4 class="card-title mb-0">Weekly Spending by Category</h4>
+      </div>
+    </div>
+    <div class="chart-wrapper">
+      <canvas baseChart class="chart"
+      [datasets]="doughnutChartDataCategory"
+      [labels]="doughnutChartLabelsCategory"
+      [options]="doughtnutChartOptionsCategory"
+      [legend]="chartLegend"
+      [chartType]="chartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+</div>
+    </div><!--/.col-->
+    <div class="col-xl-4 col-md-6">
+      <div *ngIf="showEssentialBarChart" class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title mb-0">No. of Essential Purchases</h4>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+            [datasets]="barChartDataEssential"
+            [labels]="barChartLabelsEssential"
+            [options]="barChartOptionsEssential"
+            [chartType]="barChartTypeEssential"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-xl-4 col-md-6">
+      <div *ngIf="showCategoryBarChart" class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title mb-0">Monthly Spending by Category</h4>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas baseChart
+            [datasets]="barChartDataCategory"
+            [labels]="barChartLabelsCategory"
+            [options]="barChartOptionsCategory"
+            [legend]="barChartLegendCategory"
+            [chartType]="barChartTypeCategory"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-xl-4 col-md-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
             <div class="col-12">
-              <h4 class="card-title float-left mb-0">Purchases by Week</h4>
+              <h4 class="card-title float-left mb-0">Weekly Purchase No.</h4>
             </div><!--/.col-->
           </div><!--/.row-->
           <div class="chart-wrapper">
