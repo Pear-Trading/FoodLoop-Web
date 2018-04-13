@@ -31,7 +31,6 @@ export class CategoryMonthComponent implements OnInit {
   weekEssential3: number = 0;
   weekEssential4: number = 0;
 
-  categoryList: any;
   dayList: any[] = [];
   valueList: number[] = [];
   myWeek1: any;
@@ -47,16 +46,6 @@ export class CategoryMonthComponent implements OnInit {
   private api: ApiService,
   ) {
     this.setDate();
-    this.api.categoryList().subscribe(
-      result => {
-        this.categoryList = result.categories;
-        console.log('Category List received');
-      },
-      error => {
-        console.log('Retrieval Error');
-        console.log( error._body );
-      }
-    );
     this.api.categoryTransactionList().subscribe(
       result => {
         this.setData(result);

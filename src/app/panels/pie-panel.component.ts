@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ApiService } from '../providers/api-service';
 import { CustPiesService } from '../providers/cust-pies.service';
 import { DataType } from '../shared/data-types.enum';
 import { ChartData } from '../_interfaces/chart-data';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'panel-pie',
@@ -11,27 +13,32 @@ export class PiePanel implements OnInit {
 
   public chartType = 'doughnut';
   public chartLegend = true;
-  public doughnutChartLabels: string[] = [];
-  public doughnutChartData: number[] = [];
-
-
-  //Old
-
-  // public mainChartElements = 7;
+  public doughnutChartDataLocal: number[] = [];
+  public doughnutChartLabelsLocal: string[] = [];
 
   constructor(
+    private api: ApiService,
     private pieService: CustPiesService,
-  ) { }
-
-  public ngOnInit(): void {
-    this.pieService.getPie()
-    .subscribe( result => this.setData(result.pie) );
+  ) {
+    this.pieService.getPie().subscribe(
+      result => {
+        this.setChartData(result.local_all);
+      },
+      error => {
+        console.log('Retrieval Error');
+        console.log( error._body );
+      }
+    );
   }
 
-  private setData(data: any) {
-    this.doughnutChartData = Object.keys(data).map(key => data[key]);
+  public ngOnInit(): void {
+
+  }
+
+  private setChartData(dataLocal: any) {
+    this.doughnutChartDataLocal = Object.keys(dataLocal).map(key => dataLocal[key]);
     // setTimeout is currently a workaround for ng2-charts labels
-    setTimeout(() => this.doughnutChartLabels = Object.keys(data), 0);
+    setTimeout(() => this.doughnutChartLabelsLocal = Object.keys(dataLocal), 0);
   }
 
   // convert Hex to RGBA
@@ -43,15 +50,6 @@ export class PiePanel implements OnInit {
 
     const rgba = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + opacity / 100 + ')';
     return rgba;
-  }
-
-  // events
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
-
-  public chartHovered(e: any): void {
-    console.log(e);
   }
 
 }

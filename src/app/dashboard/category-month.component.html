@@ -22,7 +22,7 @@
                 </div>
               </li>
               <li *ngFor="let categoryEntry of weekList1 | slice:0:categoryLimit1; let i=index;">
-                <span class="title">{{ categoryList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="title">{{ categoryEntry.category || 'Uncategorised' }}</span>
                 <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
                   ({{ (categoryEntry.value || 0 ) / weekListValueSum1 | percent:'1.0-0' }})</span></span>
                 <div class="bars">
@@ -64,7 +64,7 @@
                 </div>
               </li>
               <li *ngFor="let categoryEntry of weekList2 | slice:0:categoryLimit2; let i=index;">
-                <span class="title">{{ categoryList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="title">{{ categoryEntry.category || 'Uncategorised' }}</span>
                 <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
                   ({{ (categoryEntry.value || 0 ) / weekListValueSum2 | percent:'1.0-0' }})</span></span>
                 <div class="bars">
@@ -106,7 +106,7 @@
                 </div>
               </li>
               <li *ngFor="let categoryEntry of weekList3 | slice:0:categoryLimit3; let i=index;">
-                <span class="title">{{ categoryList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="title">{{ categoryEntry.category || 'Uncategorised' }}</span>
                 <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
                   ({{ (categoryEntry.value || 0 ) / weekListValueSum3 | percent:'1.0-0' }})</span></span>
                 <div class="bars">
@@ -148,7 +148,7 @@
                 </div>
               </li>
               <li *ngFor="let categoryEntry of weekList4 | slice:0:categoryLimit4; let i=index;">
-                <span class="title">{{ categoryList[categoryEntry.category] || 'Uncategorised' }}</span>
+                <span class="title">{{ categoryEntry.category || 'Uncategorised' }}</span>
                 <span class="value">{{ ( categoryEntry.value || 0 ) | currency:'GBP':'symbol':'1.2-2' }} <span class="text-muted small">
                   ({{ (categoryEntry.value || 0 ) / weekListValueSum4 | percent:'1.0-0' }})</span></span>
                 <div class="bars">

@@ -2,6 +2,10 @@
 
 # Next Release
 
+# v0.1.7
+
+* Fixed category on upload highlighting
+
 # v0.1.6
 
 * Changed layout of category choosing on upload
