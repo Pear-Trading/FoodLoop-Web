@@ -2,6 +2,14 @@
 
 # Next Release
 
+# 0.1.8
+
+* Amended how category is pulled from server
+* Added chart on essential purchase numbers as a whole
+* Added bar chart of category purchases in the month
+* Added pie chart of purchases by category in the week
+* Added hint for closing the burger menu while in mobile view
+
 # v0.1.7
 
 * Fixed category on upload highlighting
