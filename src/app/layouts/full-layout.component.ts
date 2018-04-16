@@ -39,7 +39,6 @@ export class FullLayoutComponent implements OnInit {
     .logout()
     .subscribe(
       result => {
-        console.log('Logged out!');
         localStorage.clear();
         this.router.navigate(['/login']);
       }
