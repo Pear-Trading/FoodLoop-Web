@@ -240,14 +240,16 @@ export class DashboardCustomerComponent implements OnInit {
     this.barChartDataCategory = [
       {data: barChartDataCategoryInitial, label: 'Series A'},
     ];
-    let doughnutChartDataCategoryInitial = this.weekList1.map(function(a) {return a.value;});
-    this.doughnutChartDataCategory = [
-      {data: doughnutChartDataCategoryInitial, label: 'Series A'},
-    ];
-    // setTimeout is currently a workaround for ng2-charts labels
-    setTimeout(() => this.doughnutChartLabelsCategory = this.weekList1.map(function(a) {return a.category;}), 0);
-    this.showCategoryDoughnutChart = true;
     this.showCategoryBarChart = true;
+    if (this.weekList1) {
+      let doughnutChartDataCategoryInitial = this.weekList1.map(function(a) {return a.value;});
+      this.doughnutChartDataCategory = [
+        {data: doughnutChartDataCategoryInitial, label: 'Series A'},
+      ];
+      // setTimeout is currently a workaround for ng2-charts labels
+      setTimeout(() => this.doughnutChartLabelsCategory = this.weekList1.map(function(a) {return a.category;}), 0);
+      this.showCategoryDoughnutChart = true;
+    }
   }
 
   private setDate () {
