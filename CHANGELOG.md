@@ -2,6 +2,11 @@
 
 # Next Release
 
+# 0.1.9
+
+* Made layout change to make it neater when chart doesn't show
+* Made hotfix
+
 # 0.1.8
 
 * Amended how category is pulled from server

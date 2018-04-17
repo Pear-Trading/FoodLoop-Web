@@ -52,4 +52,11 @@ export class PiePanel implements OnInit {
     return rgba;
   }
 
+  // events
+  public chartClicked(e: any): void {
+  }
+
+  public chartHovered(e: any): void {
+  }
+
 }
