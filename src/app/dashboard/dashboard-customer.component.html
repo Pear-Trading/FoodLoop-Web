@@ -14,29 +14,29 @@
     <div class="col-xl-4 col-md-6">
       <panel-pie></panel-pie>
     </div><!--/.col-->
-    <div class="col-xl-4 col-md-6">
-      <div *ngIf="showCategoryDoughnutChart" class="card">
-  <div class="card-block">
-    <div class="row">
-      <div class="col-12">
-        <h4 class="card-title mb-0">Weekly Spending by Category</h4>
+    <div *ngIf="showCategoryDoughnutChart" class="col-xl-4 col-md-6">
+      <div class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title mb-0">Weekly Spending by Category</h4>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+            [datasets]="doughnutChartDataCategory"
+            [labels]="doughnutChartLabelsCategory"
+            [options]="doughtnutChartOptionsCategory"
+            [legend]="chartLegend"
+            [chartType]="chartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="chart-wrapper">
-      <canvas baseChart class="chart"
-      [datasets]="doughnutChartDataCategory"
-      [labels]="doughnutChartLabelsCategory"
-      [options]="doughtnutChartOptionsCategory"
-      [legend]="chartLegend"
-      [chartType]="chartType"
-      (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)"></canvas>
-    </div>
-  </div>
-</div>
     </div><!--/.col-->
-    <div class="col-xl-4 col-md-6">
-      <div *ngIf="showEssentialBarChart" class="card">
+    <div *ngIf="showEssentialBarChart" class="col-xl-4 col-md-6">
+      <div class="card">
         <div class="card-block">
           <div class="row">
             <div class="col-12">
@@ -55,8 +55,8 @@
         </div>
       </div>
     </div><!--/.col-->
-    <div class="col-xl-4 col-md-6">
-      <div *ngIf="showCategoryBarChart" class="card">
+    <div *ngIf="showCategoryBarChart" class="col-xl-4 col-md-6">
+      <div class="card">
         <div class="card-block">
           <div class="row">
             <div class="col-12">
