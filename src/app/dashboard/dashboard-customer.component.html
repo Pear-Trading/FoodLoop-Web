@@ -11,10 +11,10 @@
     </div><!--/.col-->
   </div><!--/.row-->
   <div class=row>
-    <div class="col-xl-4 col-md-6">
+    <div class="col-xl-6">
       <panel-pie></panel-pie>
     </div><!--/.col-->
-    <div *ngIf="showCategoryDoughnutChart" class="col-xl-4 col-md-6">
+    <div *ngIf="showCategoryDoughnutChart" class="col-xl-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -26,7 +26,7 @@
             <canvas baseChart class="chart"
             [datasets]="doughnutChartDataCategory"
             [labels]="doughnutChartLabelsCategory"
-            [options]="doughtnutChartOptionsCategory"
+            [options]="doughnutChartOptionsCategory"
             [legend]="chartLegend"
             [chartType]="chartType"
             (chartHover)="chartHovered($event)"
@@ -35,7 +35,7 @@
         </div>
       </div>
     </div><!--/.col-->
-    <div *ngIf="showEssentialBarChart" class="col-xl-4 col-md-6">
+    <div *ngIf="showEssentialBarChart" class="col-xl-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -55,7 +55,7 @@
         </div>
       </div>
     </div><!--/.col-->
-    <div *ngIf="showCategoryBarChart" class="col-xl-4 col-md-6">
+    <div *ngIf="showCategoryBarChart" class="col-xl-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -76,7 +76,7 @@
         </div>
       </div>
     </div><!--/.col-->
-    <div class="col-xl-4 col-md-6">
+    <div class="col-xl-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -135,7 +135,7 @@
         </div>
       </div>
     </div><!--/.col-->
-    <div class="col-xl-4">
+    <div class="col-xl-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
