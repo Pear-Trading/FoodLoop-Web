@@ -30,7 +30,7 @@ export class DashboardCustomerComponent implements OnInit {
   public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
 
-  public doughtnutChartOptionsCategory:any = {
+  public doughnutChartOptionsCategory:any = {
     tooltips: {
       callbacks: {
         label: (tooltip, data) => {
