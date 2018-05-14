@@ -18,6 +18,8 @@ import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
 import { CategoryMonthComponent } from './category-month.component';
 import { PayrollLogComponent } from './payroll-log.component';
+import { OrgPushComponent } from './org-push.component';
+
 import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
 import { TrailMapComponent } from './trail-map.component';
@@ -35,6 +37,10 @@ import { TransactionResultComponent } from '../shared/transaction-result.compone
 import { PayrollResultComponent } from '../shared/payroll-result.component';
 import { LeaderboardResultComponent } from '../shared/leaderboard-result.component';
 
+import { MatButtonModule } from '@angular/material/button';
+import { ConfigService } from '../config.service';
+import { PushComponent } from '../push/push.component';
+
 // API key env variable import
 import { environment } from '../../environments/environment';
 
@@ -42,6 +48,7 @@ import { environment } from '../../environments/environment';
   imports: [
     // Angular imports
     CommonModule,
+    MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
@@ -56,6 +63,7 @@ import { environment } from '../../environments/environment';
   ],
   declarations: [
     DashboardComponent,
+    PushComponent,
     DashboardCustomerComponent,
     AccountEditComponent,
     AddDataComponent,
@@ -66,6 +74,7 @@ import { environment } from '../../environments/environment';
     TransactionResultComponent,
     PayrollLogComponent,
     PayrollResultComponent,
+    OrgPushComponent,
     LeaderboardComponent,
     LeaderboardResultComponent,
     MapComponent,
@@ -80,6 +89,7 @@ import { environment } from '../../environments/environment';
   providers: [
     CurrencyPipe,
     GoogleMapsAPIWrapper,
+    ConfigService
   ],
 })
 export class DashboardModule { }

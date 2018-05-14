@@ -19,7 +19,6 @@
       </div>
     </li>
   </ul>
-  <app-push>HELLO</app-push>
 </header>
 <div class="app-body">
   <div class="sidebar">
@@ -94,6 +93,14 @@
             <div class="row no-gutters align-items-center">
               <div class="col-2"><i class="icon-basket"></i></div>
               <div class="col-10">Payroll Log</div>
+            </div>
+          </a>
+        </li>
+        <li  *ngIf="accountType == 'organisation'" class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/org-push']">
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-envelope-letter"></i></div>
+              <div class="col-10">Push Notifications</div>
             </div>
           </a>
         </li>

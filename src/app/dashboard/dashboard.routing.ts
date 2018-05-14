@@ -14,6 +14,7 @@ import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
 import { CategoryMonthComponent } from './category-month.component';
 import { PayrollLogComponent } from './payroll-log.component';
+import { OrgPushComponent } from './org-push.component';
 import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
 import { TrailMapComponent } from './trail-map.component';
@@ -78,6 +79,12 @@ const routes: Routes = [
         path: 'payroll-log',
         component: PayrollLogComponent,
         data: { title: 'Payroll Log' },
+        canActivate: [OrgGuard],
+      },
+      {
+        path: 'org-push',
+        component: OrgPushComponent,
+        data: { title: 'Push Notifications' },
         canActivate: [OrgGuard],
       },
       {

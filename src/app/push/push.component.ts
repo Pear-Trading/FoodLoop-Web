@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './../config.service';
-import { PushService } from './../push.service';
 import { SwPush } from '@angular/service-worker';
+import { ApiService } from '../providers/api-service';
 import "rxjs/Rx";
 
 
@@ -12,13 +12,15 @@ import "rxjs/Rx";
 })
 export class PushComponent implements OnInit {
 
+  subscribeButton = false;
+  unsubscribeButton = true;
+
   private VAPID_PUBLIC_KEY: string;
 
   tweets = []
-  target = ''
 
 
-  constructor(private pushService: PushService, private configService: ConfigService, private swPush: SwPush) {
+  constructor(private api: ApiService, private configService: ConfigService, private swPush: SwPush) {
   }
 
   ngOnInit() {
@@ -36,51 +38,39 @@ export class PushComponent implements OnInit {
 
           // Passing subscription object to our backend
           console.log(pushSubscription.endpoint)
-          this.target = JSON.stringify(pushSubscription);
           console.log(pushSubscription.getKey)
-          this.pushService.addSubscriber(pushSubscription)
+          this.api.addSubscriber(pushSubscription)
             .subscribe(
-
             res => {
               console.log('[App] Add subscriber request answer', res)
+              this.subscribeButton = true;
+              this.unsubscribeButton = false;
             },
             err => {
               console.log('[App] Add subscriber request failed', err)
             }
-
             )
         })
         .catch(err => {
           console.error(err);
         })
-
     }
-
-  showNotification(){
-      this.swPush.messages.subscribe(message => {
-          console.log('[App] Push message received', message)
-      })
-  }
 
   unsubscribeFromPush(){
 
+    this.subscribeButton = false;
+    this.unsubscribeButton = true;
     // Get active subscription
-
     this.swPush.subscription
       .take(1)
       .subscribe(pushSubscription => {
-
         console.log('[App] pushSubscription', pushSubscription)
-
         // Delete the subscription from the backend
-
-        this.pushService.deleteSubscriber(pushSubscription)
+        this.api.deleteSubscriber(pushSubscription)
           .subscribe(
-
           res => {
             console.log('[App] Delete subscriber request answer', res)
             // Unsubscribe current client (browser)
-
             pushSubscription.unsubscribe()
               .then(success => {
                 console.log('[App] Unsubscription successful', success)

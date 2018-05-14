@@ -10,14 +10,12 @@ const options = {
 }
 
 // NgPushRegistration-Object from the browser
-const pushSubscription =  {"endpoint":"https://fcm.googleapis.com/fcm/send/dQn-7TOL3dM:APA91bHLuAR3G-XLxsSsjvo_P5UIEwrPS85Ho-fUZOFMpuuubEFgU6_dfgMZJvgvIOLCpSbRjPc_iWCdjgFz9snS3Rtg5H3H14RDeKt051CQp441PqqXrKHwR5ICpEyLV3x3jcEmGF8Q","expirationTime":null,"keys":{"p256dh":"BBq-RpOiUXSucWCUj8RrFy5jwKRZ6Rv9y7AHYqbE-0vIestbyRt8oxAC2yrbkwuKgPRYAElC32Sbs_Wo2mXNpJU=","auth":"sbIdhYisA6_Kc3_hDYJdog=="}};
+const pushSubscription =  {"endpoint":"https://updates.push.services.mozilla.com/wpush/v2/gAAAAABanrgBKoC1etG5UeixhypVGQhGJoV5VtY72jIxx7rp0Bh3O4LZ4OmeYvGQgl0RxYD0ENNIzzMYTe0pgaynEOysvkyo4ybM6mHu_xFYrc9imf2F7lIuBCILCEjANG1gDoAWVRmBEMk0ZlYE4mq0KcoBjxwQDKTZsM4gITPmJdFxaCWRSls","keys":{"auth":"0uFlXtWtJH4arEGej3L_dQ","p256dh":"BMi13v5aFEgFgTwlSVDBv4uaxLOAdZ50U_-ITaP_-Brt6X3WN9gsl4G4oxhxTIj25zECdLARItXTJZ-Sof-O5bU"}};
 
 const payload = JSON.stringify({
  notification: {
-   title: 'Info',
-   body: 'Hallo Welt!',
-   icon: './assets/angular.png',
-   data: 'additional data'
+   title: '*TITLE*',
+   body: '*BODY*',
  }
 });
 

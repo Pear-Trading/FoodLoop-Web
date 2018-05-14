@@ -1,10 +1,4 @@
-
-import { ConfigService } from './config.service';
-import { PushService } from './push.service';
-import { PushComponent } from './push/push.component';
 import { HttpModule } from '@angular/http';
-
-
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
@@ -68,7 +62,6 @@ import { DashboardModule } from './dashboard/dashboard.module';
   ],
   declarations: [
     AppComponent,
-    PushComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,
     NAV_DROPDOWN_DIRECTIVES,
@@ -79,8 +72,6 @@ import { DashboardModule } from './dashboard/dashboard.module';
     P500Component,
   ],
   providers: [
-    ConfigService,
-    PushService,
     AuthGuard,
     OrgGuard,
     CustomerGuard,
@@ -100,4 +91,10 @@ import { DashboardModule } from './dashboard/dashboard.module';
   ],
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+  constructor () {
+    if (environment.enableAnalytics) {
+      (<any>window).ga('create', environment.analyticsKey, 'auto');
+    }
+  }
+}

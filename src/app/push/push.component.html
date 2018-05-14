@@ -1,3 +1,2 @@
-<button (click)="subscribeToPush()">Subscribe To Push</button>
-<button (click)="unsubscribeFromPush()">Unsubscribe From Push</button>
-{{target}}
+<button mat-raised-button (click)="subscribeToPush()"  [disabled]=subscribeButton>Subscribe To Pushs</button>
+<button mat-raised-button (click)="unsubscribeFromPush()" [disabled]=unsubscribeButton>Unsubscribe From Push</button>

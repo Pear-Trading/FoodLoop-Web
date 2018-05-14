@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {Router, NavigationEnd} from "@angular/router";
 import { GraphWidget } from '../widgets/graph-widget.component';
 import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
 import { GraphPanel } from '../panels/graph-panel.component';
 import { DataType } from '../shared/data-types.enum';
+import { environment } from '../../environments/environment';
 
 @Component({
   templateUrl: 'dashboard.component.html'
@@ -50,6 +51,14 @@ export class DashboardComponent {
       dataType: DataType.currency,
     },
   ];
-
-  constructor() { }
+  constructor(private router: Router) {
+    if (environment.enableAnalytics) {
+       this.router.events.subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          (<any>window).ga('set', 'page', event.urlAfterRedirects);
+          (<any>window).ga('send', 'pageview');
+        }
+      });
+    }
+  }
 }

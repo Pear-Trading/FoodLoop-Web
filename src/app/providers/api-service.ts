@@ -240,6 +240,14 @@ export class ApiService {
     );
   }
 
+  public sendNotification(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/push/org_send_notification',
+      data
+    );
+  }
+
   // Deletes account details on logout
 
   public removeUserInfo() {
@@ -271,6 +279,32 @@ export class ApiService {
   public getEmail() {
     console.log('get email');
     localStorage.getItem('email');
+  }
+
+  //Push Api
+
+  public addSubscriber(data) {
+      const key = this.sessionKey;
+      console.log(data)
+      return this.http.post<any>(
+        this.apiUrl + '/subscription/add',
+        {
+          session_key : key,
+          data : data
+        }
+      );
+  }
+
+  public deleteSubscriber(data) {
+    const key = this.sessionKey;
+    console.log(data)
+    return this.http.post<any>(
+      this.apiUrl + '/subscription/delete',
+      {
+        session_key : key,
+        data : data
+      }
+    );
   }
 
   // Leaderboard Api

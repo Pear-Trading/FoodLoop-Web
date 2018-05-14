@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <strong>Push Notifcations</strong>
+        <small>Here you can send push notifications about sales to users</small>
+      </div>
+      <form class="form-horizontal" [formGroup]="pushForm" (ngSubmit)="onSubmit()">
+        <div class="card-block">
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="text-input"><strong>Title</strong></label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="title">
+            </div>
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="text-input"><strong>Body</strong></label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="body">
+            </div>
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="text-input"><strong>Icon</strong></label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="icon">
+              <span class="help-block">Enter URL to Icon you would like to use.</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label" for="text-input"><strong>Personalise Notifcations</strong></label>
+          <div class="col-md-9">
+            <input type="checkbox" class="form-control" formControlName="personalised" (change)="toggleEditable($event)" >
+            <span class="help-block">Tick if you want to personalise notifications adding the users name.</span>
+          </div>
+        </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
