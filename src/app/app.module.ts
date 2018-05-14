@@ -1,3 +1,5 @@
+import { environment } from '../environments/environment';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -37,6 +39,8 @@ import { P500Component } from './pages/500.component';
 // Submodules
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+
+
 
 @NgModule({
   imports: [
@@ -78,4 +82,10 @@ import { DashboardModule } from './dashboard/dashboard.module';
   ],
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+  constructor () {
+    if (environment.enableAnalytics) {
+      (<any>window).ga('create', environment.analyticsKey, 'auto');
+    }
+  }
+}
