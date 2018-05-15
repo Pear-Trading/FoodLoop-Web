@@ -62,6 +62,9 @@
                   <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'quarterly'">
                     <input value="quarterly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Quarterly
                   </label>
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'yearly'">
+                    <input value="yearly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Yearly
+                  </label>
                 </div>
               </div>
               <span class="help-block">Please give the period of time the purchase will recur from "Time of Transaction".</span>
