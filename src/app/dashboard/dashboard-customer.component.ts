@@ -23,7 +23,6 @@ export class DashboardCustomerComponent implements OnInit {
   username: any;
   maxPurchase: number = 0;
 
-  disableSectorButton: boolean = false;
   disableCategoryButton: boolean = false;
 
   public chartType = 'doughnut';
@@ -173,12 +172,9 @@ export class DashboardCustomerComponent implements OnInit {
     U: 'bg-primary',
   }
 
-  sectorLetters: string[] = [];
-  sectorPurchases: number[] = [];
-  sectorLimit: number = 10;
+  showTotalCategoryList: boolean = false;
   totalCategoryLimit: number = 10;
   totalCategoryList: any;
-  sectorList: any;
 
   // Graph widgets
   public widgetList = [
@@ -218,11 +214,10 @@ export class DashboardCustomerComponent implements OnInit {
     this.api.customerStats().subscribe(
       result => {
         this.setWeekPurchaseList(result.weeks);
-        this.setSectorList(result.sectors);
         this.setWeekData(result);
         this.setChartData(result.data.cat_total);
         this.totalCategoryList = result.data.cat_list;
-        console.log(this.totalCategoryList);
+        this.showTotalCategoryList = true;
         this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
         this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
         this.barChartDataEssential = [
@@ -275,16 +270,6 @@ export class DashboardCustomerComponent implements OnInit {
       sum:    data.sum,
       count:  data.count,
     };
-  }
-
-  public setSectorList (data: any) {
-    this.sectorLetters = Object.keys(data.sectors).map(key => data.sectors[key]);
-    this.sectorPurchases = Object.keys(data.purchases).map(key => data.purchases[key]);
-  }
-
-  private sectorLoadMore () {
-    this.disableSectorButton = true;
-    this.sectorLimit = 22;
   }
 
   private categoryLoadMore () {
