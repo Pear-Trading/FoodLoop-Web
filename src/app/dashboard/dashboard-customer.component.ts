@@ -24,6 +24,7 @@ export class DashboardCustomerComponent implements OnInit {
   maxPurchase: number = 0;
 
   disableSectorButton: boolean = false;
+  disableCategoryButton: boolean = false;
 
   public chartType = 'doughnut';
   public chartLegend = true;
@@ -175,7 +176,8 @@ export class DashboardCustomerComponent implements OnInit {
   sectorLetters: string[] = [];
   sectorPurchases: number[] = [];
   sectorLimit: number = 10;
-
+  totalCategoryLimit: number = 10;
+  totalCategoryList: any;
   sectorList: any;
 
   // Graph widgets
@@ -219,6 +221,8 @@ export class DashboardCustomerComponent implements OnInit {
         this.setSectorList(result.sectors);
         this.setWeekData(result);
         this.setChartData(result.data.cat_total);
+        this.totalCategoryList = result.data.cat_list;
+        console.log(this.totalCategoryList);
         this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
         this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
         this.barChartDataEssential = [
@@ -278,9 +282,14 @@ export class DashboardCustomerComponent implements OnInit {
     this.sectorPurchases = Object.keys(data.purchases).map(key => data.purchases[key]);
   }
 
-  private loadMore () {
+  private sectorLoadMore () {
     this.disableSectorButton = true;
     this.sectorLimit = 22;
+  }
+
+  private categoryLoadMore () {
+    this.disableCategoryButton = true;
+    this.totalCategoryLimit = 30;
   }
 
   public convertHex(hex: string, opacity: number) {
