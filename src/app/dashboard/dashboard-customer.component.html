@@ -147,7 +147,7 @@
             <ul class="icons-list">
               <!-- New loop  -->
               <li *ngFor="let category of totalCategoryList | slice:0:totalCategoryLimit; let i=index">
-                <i [ngClass]="[sectorIcons [category.name] || 'icon-question', sectorClasses [category.name] || 'bg-info']"></i>
+                <i [ngClass]="[ 'icon-question', 'bg-info']"></i>
                 <div class="desc">
                   <div class="title">{{ category.category || 'N/A' }}</div>
                 </div>
