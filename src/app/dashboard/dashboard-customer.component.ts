@@ -102,7 +102,7 @@ export class DashboardCustomerComponent implements OnInit {
 
   showTotalCategoryList: boolean = false;
   totalCategoryLimit: number = 10;
-  totalCategoryList: any;
+  totalCategoryList: any[]=[];
 
   // Graph widgets
   public widgetList = [
