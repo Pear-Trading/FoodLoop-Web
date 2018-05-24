@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://dev.peartrade.org/api',
+  apiUrl: 'https://dev.peartrade.org/api',
   mapApiKey: 'CHANGEME',
   enableAnalytics: false,
   analyticsKey: 'CHANGEME'
