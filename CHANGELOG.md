@@ -2,6 +2,11 @@
 
 # Next Release
 
+# 0.1.10
+
+* Allowed for creation of yearly recurring transactions
+* Added google analytics
+
 # 0.1.9
 
 * Made layout change to make it neater when chart doesn't show
