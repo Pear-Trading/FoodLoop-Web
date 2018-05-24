@@ -8,5 +8,5 @@ export const environment = {
   apiUrl: 'https://dev.peartrade.org/api',
   mapApiKey: 'CHANGEME',
   enableAnalytics: false,
-  analyticsKey: 'CHANGEME'
+  analyticsKey: 'CHANGEME',
 };
