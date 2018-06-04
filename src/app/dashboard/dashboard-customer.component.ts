@@ -23,14 +23,14 @@ export class DashboardCustomerComponent implements OnInit {
   username: any;
   maxPurchase: number = 0;
 
-  disableSectorButton: boolean = false;
+  disableCategoryButton: boolean = false;
 
   public chartType = 'doughnut';
   public chartLegend = true;
   public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
 
-  public doughtnutChartOptionsCategory:any = {
+  public doughnutChartOptionsCategory:any = {
     tooltips: {
       callbacks: {
         label: (tooltip, data) => {
@@ -100,83 +100,9 @@ export class DashboardCustomerComponent implements OnInit {
     count: 0,
   };
 
-  sectorNames = {
-    A: 'Agriculture, Forestry & Fishing',
-    B: 'Mining & Quarrying',
-    C: 'Manufacturing',
-    D: 'Electricity, Gas, Steam & Air Conditioning',
-    E: 'Water & Waste Management',
-    F: 'Construction',
-    G: 'Wholesale & Retail Trade',
-    H: 'Transportation & Storage',
-    I: 'Accomodation & Food Services',
-    J: 'Information & Communication',
-    K: 'Financial & Insurance Activities',
-    L: 'Real Estate',
-    M: 'Professional, Scientfic & Technical',
-    N: 'Administrative & Support Services',
-    O: 'Public Administration, Defence & Social Security',
-    P: 'Education',
-    Q: 'Human Health & Social Work',
-    R: 'Arts, Entertainment & Recreation',
-    S: 'Other Service Activities',
-    T: 'Household Domestic Business',
-    U: 'Extraterritorial Organisations and Bodies'
-  }
-
-  sectorIcons = {
-    A: 'icon-drop',
-    B: 'icon-diamond',
-    C: 'icon-settings',
-    D: 'icon-energy',
-    E: 'icon-trash',
-    F: 'icon-wrench',
-    G: 'icon-tag',
-    H: 'icon-speedometer',
-    I: 'icon-cup',
-    J: 'icon-feed',
-    K: 'icon-credit-card',
-    L: 'icon-graph',
-    M: 'icon-chemistry',
-    N: 'icon-drawer',
-    O: 'icon-pie-chart',
-    P: 'icon-graduation',
-    Q: 'icon-support',
-    R: 'icon-film',
-    S: 'icon-calendar',
-    T: 'icon-home',
-    U: 'icon-globe',
-  }
-
-  sectorClasses = {
-    A: 'bg-primary',
-    B: 'bg-success',
-    C: 'bg-danger',
-    D: 'bg-warning',
-    E: 'bg-info',
-    F: 'bg-primary',
-    G: 'bg-success',
-    H: 'bg-danger',
-    I: 'bg-warning',
-    J: 'bg-info',
-    K: 'bg-primary',
-    L: 'bg-success',
-    M: 'bg-danger',
-    N: 'bg-warning',
-    O: 'bg-info',
-    P: 'bg-primary',
-    Q: 'bg-success',
-    R: 'bg-danger',
-    S: 'bg-warning',
-    T: 'bg-info',
-    U: 'bg-primary',
-  }
-
-  sectorLetters: string[] = [];
-  sectorPurchases: number[] = [];
-  sectorLimit: number = 10;
-
-  sectorList: any;
+  showTotalCategoryList: boolean = false;
+  totalCategoryLimit: number = 10;
+  totalCategoryList: any[]=[];
 
   // Graph widgets
   public widgetList = [
@@ -216,9 +142,10 @@ export class DashboardCustomerComponent implements OnInit {
     this.api.customerStats().subscribe(
       result => {
         this.setWeekPurchaseList(result.weeks);
-        this.setSectorList(result.sectors);
         this.setWeekData(result);
         this.setChartData(result.data.cat_total);
+        this.totalCategoryList = result.data.cat_list;
+        this.showTotalCategoryList = true;
         this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
         this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
         this.barChartDataEssential = [
@@ -273,14 +200,9 @@ export class DashboardCustomerComponent implements OnInit {
     };
   }
 
-  public setSectorList (data: any) {
-    this.sectorLetters = Object.keys(data.sectors).map(key => data.sectors[key]);
-    this.sectorPurchases = Object.keys(data.purchases).map(key => data.purchases[key]);
-  }
-
-  private loadMore () {
-    this.disableSectorButton = true;
-    this.sectorLimit = 22;
+  private categoryLoadMore () {
+    this.disableCategoryButton = true;
+    this.totalCategoryLimit = 30;
   }
 
   public convertHex(hex: string, opacity: number) {

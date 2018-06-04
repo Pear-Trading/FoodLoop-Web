@@ -174,6 +174,7 @@ export class AddDataComponent implements OnInit {
   }
 
   transactionFormValidate() {
+    this.transactionFormStatus = null;
     if (this.submitOrg.name.length &&
         this.amount &&
         (this.recurringPurchase &&
