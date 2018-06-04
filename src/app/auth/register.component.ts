@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ValidationManager } from 'ng2-validation-manager';
 import { ApiService } from '../providers/api-service';
 import {Router } from '@angular/router';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'register.component.html',

@@ -7,7 +7,7 @@ import { CustBarSnippetComponent } from '../snippets/cust-snippet-bar.component'
 import { PiePanel } from '../panels/pie-panel.component';
 import { DataType } from '../shared/data-types.enum';
 import * as moment from 'moment';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'dashboard-customer.component.html'
