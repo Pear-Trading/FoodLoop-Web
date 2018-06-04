@@ -1,8 +1,9 @@
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
-import 'rxjs/add/operator/map';
+
 
 /* this provider handles the interaction between server and client */
 
@@ -57,8 +58,8 @@ export class ApiService {
       .post<any>(
         this.apiUrl + '/login',
         data
-      )
-      .map(
+      ).pipe(
+      map(
         result => {
           const json = result;
           this.setSessionKey(json.session_key);
@@ -69,7 +70,7 @@ export class ApiService {
         this.setUserType(json.user_type);
         return json;
         }
-      );
+      ));
   }
 
   public logout() {
@@ -79,14 +80,14 @@ export class ApiService {
       .post<any>(
         this.apiUrl + '/logout',
         { session_key : key },
-      )
-      .map(
+      ).pipe(
+      map(
         response => {
           localStorage.clear();
           this.sessionKey = null;
           return response;
         }
-      );
+      ));
   }
 
   // Submits feedback
