@@ -5,7 +5,7 @@ import {PaginationInstance} from 'ngx-pagination';
 // import { PaginationControlsComponent } from 'ngx-pagination';
 // import { PaginationControlsDirective } from 'ngx-pagination';
 // import { TransactionResultComponent } from '../shared/transaction-result.component';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'leaderboard.component.html',
