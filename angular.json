@@ -154,6 +154,16 @@
           "options": {
             "protractorConfig": "./protractor.conf.js",
             "devServerTarget": "coreui-angular:serve"
+          },
+          "configurations": {
+            "local": {
+              "devServerTarget": "coreui-angular:serve:local"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "coreui-angular:serve:ci"
+            }
           }
         },
         "lint": {
