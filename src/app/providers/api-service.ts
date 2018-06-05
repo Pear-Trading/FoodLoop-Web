@@ -1,7 +1,6 @@
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 
 
