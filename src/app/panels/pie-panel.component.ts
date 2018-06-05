@@ -3,7 +3,7 @@ import { ApiService } from '../providers/api-service';
 import { CustPiesService } from '../providers/cust-pies.service';
 import { DataType } from '../shared/data-types.enum';
 import { ChartData } from '../_interfaces/chart-data';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'panel-pie',

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from '../providers/api-service';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'account-edit.component.html',
