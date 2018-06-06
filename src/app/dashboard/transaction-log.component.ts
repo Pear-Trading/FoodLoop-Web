@@ -4,7 +4,7 @@ import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { PaginationInstance } from 'ngx-pagination';
 import * as moment from 'moment';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'transaction-log.component.html',
