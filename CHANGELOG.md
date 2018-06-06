@@ -2,6 +2,17 @@
 
 # Next Release
 
+# 0.1.12
+
+* Fixed accidentally added app-root
+
+# 0.1.11
+
+* Bumped Angular to version 6 and upgraded packages to match
+* Converted RxJS 5 syntax to RxJS 6
+* Removed extraneous console logs
+* Changed dashboard sector list to category all time list & tweaked layout
+
 # 0.1.10
 
 * Allowed for creation of yearly recurring transactions
