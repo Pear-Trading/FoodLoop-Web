@@ -2,6 +2,10 @@
 
 # Next Release
 
+# 0.1.12
+
+* Fixed accidentally added app-root
+
 # 0.1.11
 
 * Bumped Angular to version 6 and upgraded packages to match
