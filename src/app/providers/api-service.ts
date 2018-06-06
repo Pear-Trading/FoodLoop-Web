@@ -1,8 +1,8 @@
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
-import 'rxjs/add/operator/map';
+
 
 /* this provider handles the interaction between server and client */
 
@@ -29,18 +29,15 @@ export class ApiService {
   // Login API
 
   public getSessionKey() {
-    console.log('get key');
     return this.sessionKey;
   }
 
   public setSessionKey(key) {
-    console.log('set key');
     this.sessionKey = key;
     localStorage.setItem('sessionKey', this.sessionKey);
   }
 
   public removeSessionKey() {
-    console.log('remove key');
     this.sessionKey = null;
     localStorage.removeItem('sessionKey');
   }
@@ -57,8 +54,8 @@ export class ApiService {
       .post<any>(
         this.apiUrl + '/login',
         data
-      )
-      .map(
+      ).pipe(
+      map(
         result => {
           const json = result;
           this.setSessionKey(json.session_key);
@@ -69,24 +66,23 @@ export class ApiService {
         this.setUserType(json.user_type);
         return json;
         }
-      );
+      ));
   }
 
   public logout() {
-    console.log(this.sessionKey);
     const key = this.sessionKey;
     return this.http
       .post<any>(
         this.apiUrl + '/logout',
         { session_key : key },
-      )
-      .map(
+      ).pipe(
+      map(
         response => {
           localStorage.clear();
           this.sessionKey = null;
           return response;
         }
-      );
+      ));
   }
 
   // Submits feedback
@@ -96,7 +92,6 @@ export class ApiService {
     data.package_name = 'Foodloop Web';
     data.version_code = 'dev';
     data.version_number = 'dev';
-      console.log(data);
       return this.http.post<any>(
         this.apiUrl + '/feedback',
         data
@@ -230,7 +225,6 @@ export class ApiService {
   public setUserInfo(
     email: string,
     display_name: string) {
-    console.log('set UserInfo');
     localStorage.setItem('email', email);
     localStorage.setItem('displayname', display_name);
   }
@@ -238,7 +232,6 @@ export class ApiService {
   // Sets usertype
 
   public setUserType(user_type: string) {
-    console.log('set UserType');
     localStorage.setItem('usertype', user_type);
   }
 
@@ -263,33 +256,27 @@ export class ApiService {
   // Deletes account details on logout
 
   public removeUserInfo() {
-    console.log('remove UserInfo');
     localStorage.removeItem('email');
     localStorage.removeItem('displayname');
   }
 
   public getFullName() {
-    console.log('get Full Name');
     localStorage.getItem('fullname');
   }
 
   public getDisplayName() {
-    console.log('get Display Name');
     localStorage.getItem('displayname');
   }
 
   public getPostcode() {
-    console.log('get Postcode');
     localStorage.getItem('postcode');
   }
 
   public getYearOfBirth() {
-    console.log('get Year of Birth');
     localStorage.getItem('yearofbirth');
   }
 
   public getEmail() {
-    console.log('get email');
     localStorage.getItem('email');
   }
 

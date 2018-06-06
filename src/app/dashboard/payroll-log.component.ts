@@ -6,7 +6,7 @@ import {PaginationInstance} from 'ngx-pagination';
 // import { PaginationControlsDirective } from 'ngx-pagination';
 // import { TransactionResultComponent } from '../shared/transaction-result.component';
 import * as moment from 'moment';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'payroll-log.component.html',

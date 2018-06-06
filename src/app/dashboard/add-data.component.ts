@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from '../providers/api-service';
 import { OrgTableComponent } from '../shared/org-table.component';
 import * as moment from 'moment';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'add-data.component.html',
@@ -174,6 +174,7 @@ export class AddDataComponent implements OnInit {
   }
 
   transactionFormValidate() {
+    this.transactionFormStatus = null;
     if (this.submitOrg.name.length &&
         this.amount &&
         (this.recurringPurchase &&

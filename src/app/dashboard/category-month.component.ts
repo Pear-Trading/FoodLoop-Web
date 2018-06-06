@@ -2,7 +2,7 @@ import { Directive, Component, OnInit } from '@angular/core';
 import { ApiService } from '../providers/api-service';
 import { DataType } from '../shared/data-types.enum';
 import * as moment from 'moment';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'category-month.component.html'

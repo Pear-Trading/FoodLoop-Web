@@ -3,7 +3,7 @@ import { ApiService } from '../providers/api-service';
 import { AgmCoreModule } from '@agm/core';
 import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'trail-map.component.html',

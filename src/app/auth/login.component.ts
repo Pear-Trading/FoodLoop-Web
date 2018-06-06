@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from '../providers/api-service';
 import { Router, ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'login.component.html',
