@@ -25,6 +25,9 @@ export class DashboardCustomerComponent implements OnInit {
 
   disableCategoryButton: boolean = false;
 
+  public bootstrapColours: string[] = ['bg-primary', 'bg-secondary', 'bg-success',
+'bg-danger', 'bg-warning', 'bg-info'];
+
   public chartType = 'doughnut';
   public chartLegend = true;
   public doughnutChartDataCategory: any[] = [];
@@ -203,6 +206,10 @@ export class DashboardCustomerComponent implements OnInit {
   private categoryLoadMore () {
     this.disableCategoryButton = true;
     this.totalCategoryLimit = 30;
+  }
+
+  public getBootstrapColour(index: number) {
+    return this.bootstrapColours[index % this.bootstrapColours.length];
   }
 
   public convertHex(hex: string, opacity: number) {
