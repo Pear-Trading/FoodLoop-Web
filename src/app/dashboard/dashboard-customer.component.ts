@@ -148,7 +148,9 @@ export class DashboardCustomerComponent implements OnInit {
         this.setWeekData(result);
         this.setChartData(result.data.cat_total);
         this.totalCategoryList = result.data.cat_list;
-        this.showTotalCategoryList = true;
+        if (this.totalCategoryList) {
+          this.showTotalCategoryList = true;
+        }
         this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
         this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
         this.barChartDataEssential = [
