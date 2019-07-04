@@ -40,12 +40,17 @@ import { P500Component } from './pages/500.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
+import { DxChartModule } from 'devextreme-angular';
+import { StackedBarChartComponent } from './panels/stacked-bar.component';
+import { NewSectionComponent } from './dashboard/new-section.component';
+
 
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
+    DxChartModule,
     NgxPaginationModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
@@ -56,12 +61,14 @@ import { DashboardModule } from './dashboard/dashboard.module';
   ],
   declarations: [
     AppComponent,
+    StackedBarChartComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,
     NAV_DROPDOWN_DIRECTIVES,
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
+    NewSectionComponent,
     P404Component,
     P500Component,
   ],

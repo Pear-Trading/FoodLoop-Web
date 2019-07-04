@@ -7,6 +7,8 @@ import { CustBarSnippetComponent } from '../snippets/cust-snippet-bar.component'
 import { PiePanel } from '../panels/pie-panel.component';
 import { DataType } from '../shared/data-types.enum';
 import * as moment from 'moment';
+import { NewSectionComponent } from '../dashboard/new-section.component';
+import { StackedBarChartComponent } from '../panels/stacked-bar.component';
 
 
 @Component({
@@ -28,7 +30,7 @@ export class DashboardCustomerComponent implements OnInit {
   public bootstrapColours: string[] = ['bg-primary', 'bg-secondary', 'bg-success',
 'bg-danger', 'bg-warning', 'bg-info'];
 
-  public chartType = 'doughnut';
+  public chartType = 'polarArea';
   public chartLegend = true;
   public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
@@ -148,9 +150,7 @@ export class DashboardCustomerComponent implements OnInit {
         this.setWeekData(result);
         this.setChartData(result.data.cat_total);
         this.totalCategoryList = result.data.cat_list;
-        if (this.totalCategoryList) {
-          this.showTotalCategoryList = true;
-        }
+        this.showTotalCategoryList = true;
         this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
         this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
         this.barChartDataEssential = [

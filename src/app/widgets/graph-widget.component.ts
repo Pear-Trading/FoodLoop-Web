@@ -12,6 +12,7 @@ interface ChartData {
   selector: 'widget-graph',
   templateUrl: 'graph-widget.component.html',
 })
+
 export class GraphWidget implements OnInit {
   @Input() public graphName: string;
   @Input() public graphTitle = 'Graph';
@@ -63,7 +64,7 @@ export class GraphWidget implements OnInit {
     },
     elements: {
       line: {
-        borderWidth: 1
+        borderWidth: 2
       },
       point: {
         radius: 4,
