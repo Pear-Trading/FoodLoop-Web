@@ -42,7 +42,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 
 import { DxChartModule } from 'devextreme-angular';
 import { StackedBarChartComponent } from './panels/stacked-bar.component';
-import { NewSectionComponent } from './dashboard/new-section.component';
+import { SuppliersComponent } from './dashboard/suppliers.component';
 
 
 
@@ -68,7 +68,7 @@ import { NewSectionComponent } from './dashboard/new-section.component';
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
-    NewSectionComponent,
+    SuppliersComponent,
     P404Component,
     P500Component,
   ],
