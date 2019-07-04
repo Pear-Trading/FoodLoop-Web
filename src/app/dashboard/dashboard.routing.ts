@@ -17,7 +17,7 @@ import { PayrollLogComponent } from './payroll-log.component';
 import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
 import { TrailMapComponent } from './trail-map.component';
-import { NewSectionComponent } from './new-section.component';
+import { SuppliersComponent } from './suppliers.component';
 
 // Using child path to allow for FullLayout theming
 const routes: Routes = [
@@ -87,9 +87,9 @@ const routes: Routes = [
         data: { title: 'Give Feedback' },
       },
       {
-        path: 'new-section',
-        component: NewSectionComponent,
-        data: { title: 'New Section' }
+        path: 'suppliers',
+        component: SuppliersComponent,
+        data: { title: 'Suppliers' }
       }
     ],
   }

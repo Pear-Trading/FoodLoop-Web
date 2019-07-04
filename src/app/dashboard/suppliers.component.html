@@ -10,8 +10,8 @@
       </thead>
       <tbody>
         <!-- table body - name, postcode and spend data should be presented here in cost descending order -->
-        <!-- <tr recur-result *ngFor="let recur of recurList" [categories]="categories" [recur]="recur" (onClick)="recurClick($event, template)"></tr> -->
-        <tr>
+        <tr recur-result *ngFor="let recur of recurList" tr.names="name" tr.recur="recur" (onClick)="recurClick($event, template)"></tr>
+        <!-- <tr>
           <td>Supplier's Name</td>
           <td>Supplier's Postcode</td>
           <td>Supplier's Spend</td>
@@ -26,7 +26,7 @@
               <td>Supplier 3's Postcode</td>
               <td>Supplier 3's Spend</td>
             </tr>
-      </tbody>
+      </tbody> -->
     </table>
   </div>
 </div>
