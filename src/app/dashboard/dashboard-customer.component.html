@@ -12,28 +12,33 @@
   </div><!--/.row-->
   <div class=row>
     <div class="col-xl-6">
-      <panel-pie></panel-pie>
-    </div><!--/.col-->
-    <div *ngIf="showCategoryDoughnutChart" class="col-xl-6">
-      <div class="card">
-        <div class="card-block">
-          <div class="row">
-            <div class="col-12">
-              <h4 class="card-title mb-0">Weekly Spending by Category</h4>
+      <!--<panel-pie></panel-pie> --><!--All Purchases-->
+      <div class="demo-container" ng-app="stacked-bar" ng-controller="stacked-bar">
+          <div id="stacked-bar" dx-chart="chartOptions"></div>
+      </div>    </div><!--/.col-->
+      <div *ngIf="showCategoryDoughnutChart" class="col-xl-6">
+        <div class="card">
+          <!-- <body style="background-color:rgb(0,0,0);"> -->
+            <div class="card-block">
+              <div class="row">
+                <div class="col-12">
+                  <h4 class="card-title mb-0">Weekly Spending by Category</h4>
+                </div>
+              </div>
+              <div class="chart-wrapper">
+                <canvas baseChart class="chart"
+                [datasets]="doughnutChartDataCategory"
+                [labels]="doughnutChartLabelsCategory"
+                [options]="doughnutChartOptionsCategory"
+                [legend]="chartLegend"
+                [chartType]="chartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+              </canvas>
+              </div>
             </div>
-          </div>
-          <div class="chart-wrapper">
-            <canvas baseChart class="chart"
-            [datasets]="doughnutChartDataCategory"
-            [labels]="doughnutChartLabelsCategory"
-            [options]="doughnutChartOptionsCategory"
-            [legend]="chartLegend"
-            [chartType]="chartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
-          </div>
+          <!-- </body> -->
         </div>
-      </div>
     </div><!--/.col-->
     <div *ngIf="showEssentialBarChart" class="col-xl-6">
       <div class="card">

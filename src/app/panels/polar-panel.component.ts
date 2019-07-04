@@ -1,21 +1,29 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { SingleDataSet, Label } from 'ng2-charts';
+import { ChartType } from 'chart.js';
 import { ApiService } from '../providers/api-service';
 import { CustPiesService } from '../providers/cust-pies.service';
 import { DataType } from '../shared/data-types.enum';
 import { ChartData } from '../_interfaces/chart-data';
 
-
 @Component({
-  selector: 'panel-pie',
-  templateUrl: 'pie-panel.component.html',
+  selector: 'polar-area',
+  templateUrl: 'polar-panel.component.html',
 })
 
-export class PiePanel implements OnInit {
+export class PolarAreaChartComponent implements OnInit {
+  // PolarArea
 
-  public chartType = 'panel-pie';
-  public chartLegend = true;
-  public doughnutChartDataLocal: number[] = [];
-  public doughnutChartLabelsLocal: string[] = [];
+  public chartType : 'polar-area';
+  public polarAreaChartLabels: Label[];
+  public polarAreaChartData: SingleDataSet;
+  public chartLegend : Boolean;
+  public polarAreaLegend : Boolean;
+
+  public polarChartLabelsLocal: string[] = [];
+  public polarChartDataLocal: number[] = [];
+
+  public polarAreaChartType: ChartType = 'polarArea';
 
   constructor(
     private api: ApiService,
@@ -32,17 +40,17 @@ export class PiePanel implements OnInit {
     );
   }
 
-  public ngOnInit(): void {
-
+  ngOnInit() {
+    this.polarAreaLegend = this.chartLegend;
+    this.polarAreaLegend = true;
   }
 
   private setChartData(dataLocal: any) {
-    this.doughnutChartDataLocal = Object.keys(dataLocal).map(key => dataLocal[key]);
+    this.polarChartDataLocal = Object.keys(dataLocal).map(key => dataLocal[key]);
     // setTimeout is currently a workaround for ng2-charts labels
-    setTimeout(() => this.doughnutChartLabelsLocal = Object.keys(dataLocal), 0);
+    setTimeout(() => this.polarChartLabelsLocal = Object.keys(dataLocal), 0);
   }
 
-  // convert Hex to RGBA
   public convertHex(hex: string, opacity: number) {
     hex = hex.replace('#', '');
     const r = parseInt(hex.substring(0, 2), 16);
@@ -54,10 +62,11 @@ export class PiePanel implements OnInit {
   }
 
   // events
-  public chartClicked(e: any): void {
+  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
   }
 
-  public chartHovered(e: any): void {
+  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
   }
-
 }
