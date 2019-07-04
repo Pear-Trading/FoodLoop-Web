@@ -1,16 +1,33 @@
 <div class="animated fadeIn">
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Postcode</th>
-        <th>Spend</th>
-        <th>Cost</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr></tr>
-    </tbody>
-  </table>
-      </div>
+  <div class="form-group row">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Postcode</th>
+          <th>Spend</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- table body - name, postcode and spend data should be presented here in cost descending order -->
+        <!-- <tr recur-result *ngFor="let recur of recurList" [categories]="categories" [recur]="recur" (onClick)="recurClick($event, template)"></tr> -->
+        <tr>
+          <td>Supplier's Name</td>
+          <td>Supplier's Postcode</td>
+          <td>Supplier's Spend</td>
+        </tr>
+        <tr>
+            <td>Supplier 2's Name</td>
+            <td>Supplier 2's Postcode</td>
+            <td>Supplier 2's Spend</td>
+          </tr>
+          <tr>
+              <td>Supplier 3's Name</td>
+              <td>Supplier 3's Postcode</td>
+              <td>Supplier 3's Spend</td>
+            </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
       
