@@ -12,13 +12,13 @@
   </div><!--/.row-->
   <div class=row>
     <div class="col-xl-6">
-      <panel-pie></panel-pie> --><!--All Purchases -->
+      <panel-pie></panel-pie><!--All Purchases -->
       <!-- <div class="demo-container" ng-app="stacked-bar" ng-controller="stacked-bar">
           <div id="stacked-bar" dx-chart="chartOptions"></div>
       </div> -->
     </div><!--/.col-->
-      <div *ngIf="showCategoryDoughnutChart" class="col-xl-6">
-        <div class="card">
+    <div *ngIf="showCategoryDoughnutChart" class="col-xl-6">
+      <div class="card">
           <!-- <body style="background-color:rgb(0,0,0);"> -->
             <div class="card-block">
               <div class="row">
@@ -34,8 +34,7 @@
                 [legend]="chartLegend"
                 [chartType]="chartType"
                 (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)">
-              </canvas>
+                (chartClick)="chartClicked($event)"></canvas>
               </div>
             </div>
           <!-- </body> -->
@@ -149,6 +148,16 @@
               <h4 class="card-title float-left mb-0">All Purchases by Category</h4>
             </div><!--/.col-->
           </div><!--/.row-->
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+            [datasets]="barChartDataCategory"
+            [labels]="barChartLabelsCategory"
+            [options]="barChartOptionsCategory"
+            [legend]="barChartLegendCategory"
+            [chartType]="barChartTypeCategory"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
           <div *ngIf="showTotalCategoryList" class="chart-wrapper">
             <ul class="icons-list">
               <!-- New loop  -->

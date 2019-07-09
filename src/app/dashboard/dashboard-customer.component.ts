@@ -30,7 +30,7 @@ export class DashboardCustomerComponent implements OnInit {
   public bootstrapColours: string[] = ['bg-primary', 'bg-secondary', 'bg-success',
 'bg-danger', 'bg-warning', 'bg-info'];
 
-  public chartType = 'polarArea';
+  public chartType = 'doughnut';
   public chartLegend = true;
   public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
@@ -150,7 +150,9 @@ export class DashboardCustomerComponent implements OnInit {
         this.setWeekData(result);
         this.setChartData(result.data.cat_total);
         this.totalCategoryList = result.data.cat_list;
-        this.showTotalCategoryList = true;
+        if (this.totalCategoryList) {
+          this.showTotalCategoryList = true;
+        }
         this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
         this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
         this.barChartDataEssential = [
