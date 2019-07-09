@@ -12,7 +12,7 @@ import { ChartData } from '../_interfaces/chart-data';
 
 export class PiePanel implements OnInit {
 
-  public chartType = 'panel-pie';
+  public chartType = 'doughnut';
   public chartLegend = true;
   public doughnutChartDataLocal: number[] = [];
   public doughnutChartLabelsLocal: string[] = [];
