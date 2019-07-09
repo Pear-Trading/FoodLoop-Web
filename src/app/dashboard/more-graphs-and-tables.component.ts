@@ -9,9 +9,9 @@ interface RecurSupplierData {
 }
 
 @Component({
-  templateUrl: 'suppliers.component.html',
+  templateUrl: 'more-graphs-and-tables.component.html',
 })
-export class SuppliersComponent implements OnInit, AfterViewInit {
+export class MoreStuffComponent implements OnInit, AfterViewInit {
   @Input() public recurList: Array<RecurSupplierData>;
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
