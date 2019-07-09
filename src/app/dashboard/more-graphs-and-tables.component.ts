@@ -11,7 +11,7 @@ interface RecurSupplierData {
 @Component({
   templateUrl: 'more-graphs-and-tables.component.html',
 })
-export class MoreStuffComponent implements OnInit, AfterViewInit {
+export class MoreStuffComponent implements OnInit, AfterViewInit {  // if you wanna rename this, replace in all files 'MoreStuffComponent' with desired name and 'more-graphs-and-tables.component' with another desired name
   @Input() public recurList: Array<RecurSupplierData>;
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
