@@ -40,9 +40,10 @@ import { P500Component } from './pages/500.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
-import { DxChartModule } from 'devextreme-angular';
-import { StackedBarChartComponent } from './panels/stacked-bar.component';
+import { ChartsModule } from 'ng2-charts';
+// import { StackedBarChartComponent } from './panels/stacked-bar.component';
 import { SuppliersComponent } from './dashboard/suppliers.component';
+import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component';
 
 
 
@@ -50,18 +51,18 @@ import { SuppliersComponent } from './dashboard/suppliers.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    DxChartModule,
     NgxPaginationModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     AuthModule,
+    ChartsModule,
     DashboardModule,
     // Loaded last to allow for 404 catchall
     AppRoutingModule,
   ],
   declarations: [
     AppComponent,
-    StackedBarChartComponent,
+    // StackedBarChartComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,
     NAV_DROPDOWN_DIRECTIVES,
@@ -69,6 +70,7 @@ import { SuppliersComponent } from './dashboard/suppliers.component';
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     SuppliersComponent,
+    MoreStuffComponent,
     P404Component,
     P500Component,
   ],
