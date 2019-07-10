@@ -26,7 +26,7 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-
+    
   }
 
   ngAfterViewInit() {
