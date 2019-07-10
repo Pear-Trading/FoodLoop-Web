@@ -2,6 +2,9 @@ import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChil
 import { ApiService } from '../providers/api-service';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Color } from 'ng2-charts';
+import { CurrencyPipe } from '@angular/common';
+import { DataType } from '../shared/data-types.enum';
+import * as moment from 'moment';
 import { BubbleChartComponent } from '../panels/bubble-panel';
 import { AgmCoreModule } from '@agm/core';
 import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
@@ -19,8 +22,55 @@ export class MoreStuffComponent implements OnInit {  // if you wanna rename this
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
 
-  // chart data
-  public bubbleChartOptions: ChartOptions = {
+  public recurClick(event: any): void {
+    this.onClick.emit( event );
+  }
+
+  constructor(
+    private api: ApiService,
+    private currencyPipe: CurrencyPipe,
+  ) { }
+
+  ngOnInit(): void {
+  }
+
+  // main vars
+
+  public bootstrapColours: string[] = ['bg-primary', 'bg-secondary', 'bg-success',
+  'bg-danger', 'bg-warning', 'bg-info'];
+
+  // REAL chart data
+
+  public chartType = 'bubble';
+  public chartLegend = true;
+  public bubbleChartDataCategory: any[] = [];
+  public bubbleChartLabelsCategory: string[] = [];
+
+  public bubbleChartOptionsCategory:any = {
+    tooltips: {
+      callbacks: {
+        label: (tooltip, data) => {
+          return this.tooltipLabelCallback(tooltip, data);
+        },
+      },
+    },
+  }
+
+  private setChartData(dataCat: any) {
+    // now we just need some data and it will display!
+  }
+
+  // functions
+
+  private tooltipLabelCallback(tooltipItem: any, data: any) {
+    var dataset = data.datasets[tooltipItem.datasetIndex];
+    var value = dataset.data[tooltipItem.index];
+    return this.currencyPipe.transform(value, 'GBP', 'symbol', '1.2-2');
+  }
+
+  // SAMPLE chart data
+  
+  public sampleBubbleChartOptions: ChartOptions = {
     responsive: true,
     scales: {
       xAxes: [
@@ -41,10 +91,10 @@ export class MoreStuffComponent implements OnInit {  // if you wanna rename this
       ]
     }
   };
-  public bubbleChartType: ChartType = 'bubble';
-  public bubbleChartLegend = true;
+  public sampleBubbleChartType: ChartType = 'bubble';
+  public sampleBubbleChartLegend = true;
 
-  public bubbleChartData: ChartDataSets[] = [
+  public sampleBubbleChartData: ChartDataSets[] = [
     {
       data: [
         { x: 10, y: 10, r: 10 },
@@ -60,7 +110,7 @@ export class MoreStuffComponent implements OnInit {  // if you wanna rename this
     },
   ];
 
-  public bubbleChartColors: Color[] = [
+  public sampleBubbleChartColors: Color[] = [
     {
       backgroundColor: [
         'red',
@@ -76,21 +126,5 @@ export class MoreStuffComponent implements OnInit {  // if you wanna rename this
       ]
     }
   ];
-
-  public recurClick(event: any): void {
-    this.onClick.emit( event );
-  }
-
-  constructor(
-    private api: ApiService,
-  ) { }
-
-  ngOnInit(): void {
-    
-  }
-
-  private setChartData(dataCat: any) {
-    
-  }
 }
 
