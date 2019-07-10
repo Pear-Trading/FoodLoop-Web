@@ -1,3 +1,4 @@
+<script src="node_modules/chart.js/src/chart.js"></script>
 <div class="animated fadeIn">
   <div class="form-group row">
     <div class="card-block">
@@ -6,9 +7,15 @@
             <h4 class="card-title mb-0">Weekly Spending by Category</h4>
           </div>
         </div>
-        <div class="chart-wrapper">
-          <canvas baseChart class="chart"></canvas>
-        </div>
+        <div style="display: block">
+            <canvas baseChart
+              [datasets]="bubbleChartData"
+              [options]="bubbleChartOptions"
+              [colors]="bubbleChartColors"
+              [legend]="bubbleChartLegend"
+              [chartType]="bubbleChartType">
+            </canvas>
+          </div>
       </div>
   </div>
 </div>

@@ -55,6 +55,7 @@ import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     AuthModule,
+    ChartsModule,
     DashboardModule,
     // Loaded last to allow for 404 catchall
     AppRoutingModule,
