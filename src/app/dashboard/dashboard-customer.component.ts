@@ -9,8 +9,11 @@ import { DataType } from '../shared/data-types.enum';
 import * as moment from 'moment';
 import { SuppliersComponent } from '../dashboard/suppliers.component';
 import { MoreStuffComponent } from '../dashboard/more-graphs-and-tables.component';
-import { StackedBarChartComponent } from '../panels/stacked-bar.component';
+// import { StackedBarChartComponent } from '../panels/stacked-bar.component';
 
+interface RecurSupplierData {
+  name : string;
+}
 
 @Component({
   templateUrl: 'dashboard-customer.component.html'
