@@ -40,8 +40,8 @@ import { P500Component } from './pages/500.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
-import { DxChartModule } from 'devextreme-angular';
-import { StackedBarChartComponent } from './panels/stacked-bar.component';
+import { ChartsModule } from 'ng2-charts';
+// import { StackedBarChartComponent } from './panels/stacked-bar.component';
 import { SuppliersComponent } from './dashboard/suppliers.component';
 import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component';
 
@@ -51,7 +51,6 @@ import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component
   imports: [
     BrowserModule,
     HttpClientModule,
-    DxChartModule,
     NgxPaginationModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
@@ -62,7 +61,7 @@ import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component
   ],
   declarations: [
     AppComponent,
-    StackedBarChartComponent,
+    // StackedBarChartComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,
     NAV_DROPDOWN_DIRECTIVES,

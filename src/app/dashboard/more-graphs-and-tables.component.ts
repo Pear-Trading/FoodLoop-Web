@@ -4,18 +4,17 @@ import { AgmCoreModule } from '@agm/core';
 import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
-interface RecurSupplierData {
-  name : string;
-}
+// interface RecurSupplierData {
+//   name : string;
+// }
 
 @Component({
   templateUrl: 'more-graphs-and-tables.component.html',
 })
-export class MoreStuffComponent implements OnInit, AfterViewInit {  // if you wanna rename this, replace in all files 'MoreStuffComponent' with desired name and 'more-graphs-and-tables.component' with another desired name
-  @Input() public recurList: Array<RecurSupplierData>;
+export class MoreStuffComponent implements OnInit {  // if you wanna rename this, replace in all files 'MoreStuffComponent' with desired name and 'more-graphs-and-tables.component' with another desired name
+  // @Input() public recurList: Array<RecurSupplierData>;
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
-
 
   public recurClick(event: any): void {
     this.onClick.emit( event );
@@ -28,8 +27,4 @@ export class MoreStuffComponent implements OnInit, AfterViewInit {  // if you wa
   ngOnInit(): void {
     
   }
-
-  ngAfterViewInit() {
-  }
-
 }
