@@ -3,6 +3,7 @@ import {Router, NavigationEnd} from "@angular/router";
 import { GraphWidget } from '../widgets/graph-widget.component';
 import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
 import { GraphPanel } from '../panels/graph-panel.component';
+import { PiePanel } from '../panels/pie-panel.component';
 import { DataType } from '../shared/data-types.enum';
 import { environment } from '../../environments/environment';
 
@@ -61,4 +62,5 @@ export class DashboardComponent {
       });
     }
   }
+
 }
