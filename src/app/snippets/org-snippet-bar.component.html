@@ -2,7 +2,15 @@
   <div class="card-footer">
     <ul>
       <li class="hidden-sm-down">
-        <div class="text-muted">Customers This Month</div>
+        <div class="text-muted">Sales Total</div>
+        <strong>{{ allSalesCount }}</strong>
+      </li>
+      <li class="hidden-sm-down">
+        <div class="text-muted">Money Spent Total</div>
+        <strong>{{ allPurchasesTotal | currency:'GBP':'symbol':'1.2-2'}}</strong>
+      </li>
+      <li class="hidden-sm-down">
+        <div class="text-muted">Sales This Month</div>
         <strong>{{ thisMonthSalesCount }}</strong>
       </li>
       <li class="hidden-sm-down">
@@ -10,7 +18,7 @@
         <strong>{{ thisMonthPurchasesTotal | currency:'GBP':'symbol':'1.2-2'}}</strong>
       </li>
       <li class="hidden-sm-down">
-        <div class="text-muted">Customers Today</div>
+        <div class="text-muted">Sales Today</div>
         <strong>{{ todaySalesCount }}</strong>
       </li>
       <li class="hidden-sm-down">
