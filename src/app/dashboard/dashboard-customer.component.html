@@ -179,5 +179,44 @@
         </div>
       </div>
     </div><!--/.col-->
+    <div class="col-xl-6">
+      <div class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title float-left mb-0">Spend by company and industrial sector</h4>
+            </div><!--/.col-->
+          </div><!--/.row-->
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+            [datasets]="barChartDataCategory"
+            [labels]="barChartLabelsCategory"
+            [options]="barChartOptionsCategory"
+            [legend]="barChartLegendCategory"
+            [chartType]="barChartTypeCategory"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+          <div *ngIf="showTotalCategoryList" class="chart-wrapper">
+            <ul class="icons-list">
+              <!-- New loop  -->
+              <li *ngFor="let category of totalCategoryList | slice:0:totalCategoryLimit; let i=index">
+                <i [ngClass]="['icon-' + category.icon, getBootstrapColour(i)]"></i>
+                <div class="desc">
+                  <div class="title">{{ category.category || 'N/A' }}</div>
+                </div>
+                <div class="value">
+                  <div class="small text-muted">Bought</div>
+                  <strong>{{ category.value || 'N/A' }}</strong>
+                </div>
+              </li>
+              <li *ngIf="totalCategoryList.length > totalCategoryLimit && disableCategoryButton == false" class="divider text-center">
+                <button type="button" class="btn btn-sm btn-link text-muted" (click)="categoryLoadMore()"><i class="icon-options"></i></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
   </div><!--/.row-->
 </div>

@@ -87,6 +87,7 @@ export class TransactionLogComponent implements OnInit {
     );
   }
 
+
   recurringTransactionDetails(clicked, template: TemplateRef<any>) {
     this.clickedRecur = clicked;
     this.updatedTime = moment(this.clickedRecur.display_time, 'llll').format('YYYY-MM-DD[T]HH:mm');
