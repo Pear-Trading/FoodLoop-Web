@@ -18,7 +18,7 @@
           <h4 class="card-title float-left mb-0">Spend by company and Industrial sector</h4>
         </div><!--/.col-->
       </div><!--/.row-->
-      <div class="chart-wrapper">
+      <!-- <div class="chart-wrapper">
         <canvas baseChart class="chart"
         [datasets]="lineChartData"
         [labels]="lineChartLabels"
@@ -27,7 +27,7 @@
         [chartType]="lineChartType"
         (chartHover)="chartHovered($event)"
         (chartClick)="chartClicked($event)"></canvas>
-      </div>
+      </div> -->
     </div>
 </div>
 <div class=row>
@@ -94,6 +94,6 @@
       </div>
   </div>
     <div class="col-xl-6">
-      <panel-pie></panel-pie>
+      <org-pie-panel></org-pie-panel>
     </div>
 </div>

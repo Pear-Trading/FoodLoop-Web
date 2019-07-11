@@ -345,4 +345,15 @@ export class ApiService {
       }
     );
   }
+
+  // Basic Customer User stats API
+  public orgStats() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/stats/organisation',
+      {
+        session_key : key,
+      }
+    );
+  }
 }

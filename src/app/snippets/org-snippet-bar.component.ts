@@ -7,6 +7,8 @@ import { OrgSnippetsService } from '../providers/org-snippets.service';
 })
 export class OrgBarSnippetComponent implements OnInit {
 
+  public allSalesCount = 0;
+  public allSalesTotal = 0;
   public thisMonthSalesCount = 0;
   public thisMonthSalesTotal = 0;
   public thisWeekSalesCount = 0;
@@ -14,6 +16,8 @@ export class OrgBarSnippetComponent implements OnInit {
   public todaySalesCount = 0;
   public todaySalesTotal = 0;
 
+  public allPurchasesCount = 0;
+  public allPurchasesTotal = 0;
   public thisMonthPurchasesCount = 0;
   public thisMonthPurchasesTotal = 0;
   public thisWeekPurchasesCount = 0;
@@ -29,6 +33,8 @@ export class OrgBarSnippetComponent implements OnInit {
     this.snippetsService.getData()
       .subscribe(
         result => {
+          this.allSalesCount       = result.snippets.all_sales_count;
+          this.allSalesTotal       = result.snippets.all_sales_total;
           this.thisMonthSalesCount = result.snippets.this_month_sales_count;
           this.thisMonthSalesTotal = result.snippets.this_month_sales_total;
           this.thisWeekSalesCount  = result.snippets.this_week_sales_count;
@@ -36,6 +42,8 @@ export class OrgBarSnippetComponent implements OnInit {
           this.todaySalesCount     = result.snippets.today_sales_count;
           this.todaySalesTotal     = result.snippets.today_sales_total;
 
+          this.allPurchasesCount       = result.snippets.all_purchases_count;
+          this.allPurchasesTotal       = result.snippets.all_purchases_total;
           this.thisMonthPurchasesCount = result.snippets.this_week_purchases_count;
           this.thisMonthPurchasesTotal = result.snippets.this_week_purchases_total;
           this.thisWeekPurchasesCount  = result.snippets.this_month_purchases_count;

@@ -25,7 +25,7 @@ export class GraphWidget implements OnInit {
   public graphSum: Number = 0;
   public availableDataTypes = DataType;
 
-  public lineChartData: Array<ChartData> = [
+  public lineGraphChartData: Array<ChartData> = [
     {
       data: [],
       label: 'Series A'
@@ -125,7 +125,7 @@ export class GraphWidget implements OnInit {
   }
 
   private setChartData(data: Array<number>) {
-    this.lineChartData[0].data = data;
+    this.lineGraphChartData[0].data = data;
     this.graphSum = data.reduce((a, b) => a + b, 0);
     // Set point size based on data
     if ( data.length < 15 ) {

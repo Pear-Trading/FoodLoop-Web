@@ -27,6 +27,7 @@ import { CustGraphsService } from './providers/cust-graphs.service';
 import { OrgSnippetsService } from './providers/org-snippets.service';
 import { CustSnippetsService } from './providers/cust-snippets.service';
 import { CustPiesService } from './providers/cust-pies.service';
+import { OrgPiesService } from './providers/org-pies.service';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
@@ -84,6 +85,7 @@ import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component
     CustGraphsService,
     CustSnippetsService,
     CustPiesService,
+    OrgPiesService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
