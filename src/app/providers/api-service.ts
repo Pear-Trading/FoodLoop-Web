@@ -133,6 +133,27 @@ export class ApiService {
     );
   }
 
+  // LCC data
+  public externalTransactions() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/v1/organisation/external/transactions',
+      {
+        session_key : key,
+      }
+    );
+  }
+
+  public externalSuppliers() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/organisation/external/suppliers',
+      {
+        session_key : key,
+      }
+    );
+  }
+
   // Searches organisations used for transaction submission
 
   public search(data) {

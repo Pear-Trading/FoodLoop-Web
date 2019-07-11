@@ -101,6 +101,8 @@ export class DashboardCustomerComponent implements OnInit {
   public barChartDataCategory:any[]=[];
   public barChartLabelsCategory:string[] = [];
 
+
+
   weekPurchaseList = {
     first: 0,
     second: 0,

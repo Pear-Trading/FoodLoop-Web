@@ -46,7 +46,6 @@ import { SuppliersComponent } from './dashboard/suppliers.component';
 import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component';
 
 
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -73,6 +72,7 @@ import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component
     MoreStuffComponent,
     P404Component,
     P500Component,
+
   ],
   providers: [
     AuthGuard,
