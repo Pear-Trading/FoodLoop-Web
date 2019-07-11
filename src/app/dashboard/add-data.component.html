@@ -29,8 +29,8 @@
             <div class="col-md-9">
               <div class="input-group">
                 <input type="checkbox" class="mr-auto" [(ngModel)]="essentialPurchase" (ngModelChange)="transactionFormValidate()">
+                <span class="help-block">Tick if the purchase is deemed an essential purchase for budgeting purposes.</span>
               </div>
-              <span class="help-block">Tick if the purchase is deemed an essential purchase for budgeting purposes.</span>
             </div>
           </div>
           <div class="form-group row">
@@ -38,8 +38,8 @@
             <div class="col-md-9">
               <div class="input-group">
                 <input type="checkbox" class="mr-auto" [(ngModel)]="recurringPurchase" (ngModelChange)="transactionFormValidate()">
+                <span class="help-block">Tick if the purchase frequently recurs, such as monthly.</span>
               </div>
-              <span class="help-block">Tick if the purchase frequently recurs, such as monthly.</span>
             </div>
           </div>
           <div *ngIf="recurringPurchase" class="form-group row">

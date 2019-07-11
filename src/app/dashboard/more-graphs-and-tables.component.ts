@@ -17,8 +17,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 @Component({
   templateUrl: 'more-graphs-and-tables.component.html',
 })
-export class MoreStuffComponent implements OnInit {  // if you wanna rename this, replace in all files 'MoreStuffComponent' with desired name and 'more-graphs-and-tables.component' with another desired name
-  // @Input() public recurList: Array<RecurSupplierData>;
+export class MoreStuffComponent implements OnInit {
+// @Input() public recurList: Array<RecurSupplierData>;
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
 
@@ -43,10 +43,55 @@ export class MoreStuffComponent implements OnInit {  // if you wanna rename this
 
   public chartType = 'bubble';
   public chartLegend = true;
-  public bubbleChartDataCategory: any[] = [];
+  public bubbleChartDataCategory: any[] = [
+    {
+  data: [
+    { x: 10, y: 10, r: 10 },
+    { x: 15, y: 5, r: 15 },
+    { x: 26, y: 12, r: 23 },
+    { x: 7, y: 8, r: 8 },
+  ],
+  label: ["Series A"],
+  backgroundColor: 'green',
+  borderColor: 'blue',
+  hoverBackgroundColor: 'purple',
+  hoverBorderColor: 'red',
+},
+{
+data: [
+  { x: 10, y: 2, r: 10 },
+  { x: 15, y: 1, r: 15 },
+  { x: 26, y: 7, r: 23 },
+  { x: 5, y: 8, r: 8 },
+  ],
+  label: ["Series B"],
+  backgroundColor: 'green',
+  borderColor: 'blue',
+  hoverBackgroundColor: 'purple',
+  hoverBorderColor: 'red',
+},
+
+  ];
   public bubbleChartLabelsCategory: string[] = [];
 
   public bubbleChartOptionsCategory:any = {
+    responsive: true,
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            min: 0,
+      }
+    }
+  ],
+  yAxes: [
+    {
+      ticks: {
+        min: 0,
+      }
+    }
+  ]
+},
     tooltips: {
       callbacks: {
         label: (tooltip, data) => {
@@ -59,7 +104,13 @@ export class MoreStuffComponent implements OnInit {  // if you wanna rename this
   private setChartData(dataCat: any) {
     // now we just need some data and it will display!
   }
+  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
 
+  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
   // functions
 
   private tooltipLabelCallback(tooltipItem: any, data: any) {
@@ -69,46 +120,6 @@ export class MoreStuffComponent implements OnInit {  // if you wanna rename this
   }
 
   // SAMPLE chart data
-  
-  public sampleBubbleChartOptions: ChartOptions = {
-    responsive: true,
-    scales: {
-      xAxes: [
-        {
-          ticks: {
-            min: 0,
-            max: 30,
-          }
-        }
-      ],
-      yAxes: [
-        {
-          ticks: {
-            min: 0,
-            max: 30,
-          }
-        }
-      ]
-    }
-  };
-  public sampleBubbleChartType: ChartType = 'bubble';
-  public sampleBubbleChartLegend = true;
-
-  public sampleBubbleChartData: ChartDataSets[] = [
-    {
-      data: [
-        { x: 10, y: 10, r: 10 },
-        { x: 15, y: 5, r: 15 },
-        { x: 26, y: 12, r: 23 },
-        { x: 7, y: 8, r: 8 },
-      ],
-      label: 'Series A',
-      backgroundColor: 'green',
-      borderColor: 'blue',
-      hoverBackgroundColor: 'purple',
-      hoverBorderColor: 'red',
-    },
-  ];
 
   public sampleBubbleChartColors: Color[] = [
     {
@@ -127,4 +138,3 @@ export class MoreStuffComponent implements OnInit {  // if you wanna rename this
     }
   ];
 }
-
