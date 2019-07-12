@@ -128,7 +128,63 @@ export class DashboardComponent {
   public barChartDataCategory:any[]=[];
   public barChartLabelsCategory:string[] = [];
 
-
+  public lineChartDataSector: ChartDataSets[] = [
+    { data: [], label: '' },
+  ];
+  public lineChartLabelsSector: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'];
+  public lineChartOptionsSector: (ChartOptions & { annotation: any }) = {
+    responsive: true,
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      xAxes: [{}],
+      yAxes: [{}]
+    },
+    annotation: {
+      annotations: [
+        {
+          type: 'line',
+          mode: 'vertical',
+          scaleID: 'x-axis-0',
+          value: 'March',
+          borderColor: 'orange',
+          borderWidth: 2,
+          label: {
+            enabled: true,
+            fontColor: 'orange',
+            content: 'LineAnno'
+          }
+        },
+      ],
+    },
+  };
+  public lineChartColorsSector: Color[] = [
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    },
+    { // dark grey
+      backgroundColor: 'rgba(77,83,96,0.2)',
+      borderColor: 'rgba(77,83,96,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
+    },
+    { // red
+      backgroundColor: 'rgba(255,0,0,0.3)',
+      borderColor: 'red',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];
+  public lineChartLegendSector = true;
+  public lineChartTypeSector = 'line';
 
   weekPurchaseList = {
     first: 0,
@@ -160,7 +216,7 @@ export class DashboardComponent {
       result => {
         this.setWeekPurchaseList(result.weeks);
         this.setWeekData(result);
-        this.setChartData(result.data.cat_total);
+        this.setChartDataCat(result.data.cat_total);
         this.totalCategoryList = result.data.cat_list;
         if (this.totalCategoryList) {
           this.showTotalCategoryList = true;
@@ -180,10 +236,28 @@ export class DashboardComponent {
     );
   }
 
-  private setChartData(dataCat: any) {
+  private setChartDataCat(dataCat: any) {
     this.barChartLabelsCategory = Object.keys(dataCat);
     let barChartDataCategoryInitial = Object.keys(dataCat).map(key => dataCat[key]);
     this.barChartDataCategory = [
+      {data: barChartDataCategoryInitial, label: 'Series A'},
+    ];
+    this.showCategoryBarChart = true;
+    if (this.weekList1) {
+      let doughnutChartDataCategoryInitial = this.weekList1.map(function(a) {return a.value;});
+      this.doughnutChartDataCategory = [
+        {data: doughnutChartDataCategoryInitial, label: 'Series A'},
+      ];
+      // setTimeout is currently a workaround for ng2-charts labels
+      setTimeout(() => this.doughnutChartLabelsCategory = this.weekList1.map(function(a) {return a.category;}), 0);
+      this.showCategoryDoughnutChart = true;
+    }
+  }
+
+  private setChartDataSector(dataSec: any) {
+    this.barChartLabelsCategory = Object.keys(dataSec);
+    let lineChartDataSectorInitial = Object.keys(dataSec).map(key => dataSec[key]);
+    this.lineChartDataSector = [
       {data: barChartDataCategoryInitial, label: 'Series A'},
     ];
     this.showCategoryBarChart = true;
