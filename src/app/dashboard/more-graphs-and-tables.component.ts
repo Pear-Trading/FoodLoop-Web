@@ -5,7 +5,7 @@ import { Color } from 'ng2-charts';
 import { CurrencyPipe } from '@angular/common';
 import { DataType } from '../shared/data-types.enum';
 import * as moment from 'moment';
-import { BubbleChartComponent } from '../panels/bubble-panel';
+import { BubbleChartComponent } from '../panels/bubble-panel.component';
 import { AgmCoreModule } from '@agm/core';
 import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';

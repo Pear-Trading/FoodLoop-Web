@@ -26,6 +26,7 @@ import { GraphWidget } from '../widgets/graph-widget.component';
 import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
 import { CustBarSnippetComponent } from '../snippets/cust-snippet-bar.component';
 import { GraphPanel } from '../panels/graph-panel.component';
+import { BubbleChartComponent } from '../panels/bubble-panel.component';
 import { PiePanel } from '../panels/pie-panel.component';
 import { OrgPiePanel } from '../panels/org-pie-panel.component';
 
@@ -82,6 +83,7 @@ import { environment } from '../../environments/environment';
     GraphPanel,
     PiePanel,
     OrgPiePanel,
+    BubbleChartComponent,
   ],
   providers: [
     CurrencyPipe,

@@ -226,8 +226,8 @@ export class DashboardComponent {
         this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
         this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
         this.barChartDataEssential = [
-          {data: [this.purchaseEssential], label: 'Essential', stack: '1'},
-          {data: [this.purchaseNotEssential], label: 'Non-Essential', stack: '1'},
+          {data: this.purchaseEssential, label: 'Essential', stack: '1'},
+          {data: this.purchaseNotEssential, label: 'Non-Essential', stack: '1'},
         ];
         this.showEssentialBarChart = true;
       },
@@ -257,21 +257,7 @@ export class DashboardComponent {
   }
 
   private setChartDataSector(dataSec: any) {
-    this.barChartLabelsCategory = Object.keys(dataSec);
-    let lineChartDataSectorInitial = Object.keys(dataSec).map(key => dataSec[key]);
-    this.lineChartDataSector = [
-      {data: lineChartDataSectorInitial, label: 'Series A'},
-    ];
-    this.showCategoryBarChart = true;
-    if (this.weekList1) {
-      let doughnutChartDataCategoryInitial = this.weekList1.map(function(a) {return a.value;});
-      this.doughnutChartDataCategory = [
-        {data: doughnutChartDataCategoryInitial, label: 'Series A'},
-      ];
-      // setTimeout is currently a workaround for ng2-charts labels
-      setTimeout(() => this.doughnutChartLabelsCategory = this.weekList1.map(function(a) {return a.category;}), 0);
-      this.showCategoryDoughnutChart = true;
-    }
+
   }
 
   private setDate () {
