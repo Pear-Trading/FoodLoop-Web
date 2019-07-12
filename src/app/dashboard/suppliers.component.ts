@@ -18,6 +18,8 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
 
   supplierList: any;
   supplierListAvailable = false;
+  sortBy = 'name';
+  sortDir = 'asc';
 
   public paginateConfig: PaginationInstance = {
     id: 'transpaginate',
@@ -39,7 +41,7 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
   }
 
   loadSuppliers(logPage: number) {
-    this.api.externalSuppliers(logPage).subscribe(
+    this.api.externalSuppliers(logPage, this.sortBy, this.sortDir).subscribe(
       result => {
         this.supplierList = result.suppliers;
         this.paginateConfig.totalItems = result.page_no;
@@ -51,6 +53,17 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
         console.log( error._body );
       }
     );
+  }
+
+
+  sortName() { this.sortByColumn('name'); }
+  sortPostcode() { this.sortByColumn('postcode'); }
+  sortSpend() { this.sortByColumn('spend'); }
+  
+  sortByColumn(name) {
+      this.sortBy = name;
+      this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
+      this.loadSuppliers(1);
   }
 
   ngAfterViewInit() {

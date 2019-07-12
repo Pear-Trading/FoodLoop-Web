@@ -4,9 +4,18 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Postcode</th>
-          <th>Spend</th>
+          <th (click)="sortName()">Name <span class="fa-stack">
+            <i *ngIf="sortBy !== 'name' || sortDir == 'asc'" class="fa fa-sort-up fa-stack-1x"></i>
+            <i *ngIf="sortBy !== 'name' || sortDir == 'desc'" class="fa fa-sort-down fa-stack-1x"></i>
+          </span></th>
+          <th (click)="sortPostcode()">Postcode <span class="fa-stack">
+            <i *ngIf="sortBy !== 'postcode' || sortDir == 'asc'" class="fa fa-sort-up fa-stack-1x"></i>
+            <i *ngIf="sortBy !== 'postcode' || sortDir == 'desc'" class="fa fa-sort-down fa-stack-1x"></i>
+          </span></th>
+          <th (click)="sortSpend()">Spend <span class="fa-stack">
+            <i *ngIf="sortBy !== 'spend' || sortDir == 'asc'" class="fa fa-sort-up fa-stack-1x"></i>
+            <i *ngIf="sortBy !== 'spend' || sortDir == 'desc'" class="fa fa-sort-down fa-stack-1x"></i>
+          </span></th>
         </tr>
       </thead>
       <tbody>
