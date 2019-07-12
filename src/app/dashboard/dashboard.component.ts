@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from "@angular/router";
 import { CurrencyPipe } from '@angular/common';
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
 import { GraphWidget } from '../widgets/graph-widget.component';
 import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
 import { GraphPanel } from '../panels/graph-panel.component';
@@ -258,7 +260,7 @@ export class DashboardComponent {
     this.barChartLabelsCategory = Object.keys(dataSec);
     let lineChartDataSectorInitial = Object.keys(dataSec).map(key => dataSec[key]);
     this.lineChartDataSector = [
-      {data: barChartDataCategoryInitial, label: 'Series A'},
+      {data: lineChartDataSectorInitial, label: 'Series A'},
     ];
     this.showCategoryBarChart = true;
     if (this.weekList1) {
