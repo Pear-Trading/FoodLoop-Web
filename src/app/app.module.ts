@@ -43,7 +43,6 @@ import { DashboardModule } from './dashboard/dashboard.module';
 
 import { ChartsModule } from 'ng2-charts';
 // import { StackedBarChartComponent } from './panels/stacked-bar.component';
-import { SuppliersComponent } from './dashboard/suppliers.component';
 import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component';
 
 
@@ -69,7 +68,6 @@ import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
-    SuppliersComponent,
     MoreStuffComponent,
     P404Component,
     P500Component,
