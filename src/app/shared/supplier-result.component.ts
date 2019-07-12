@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 interface SupplierData {
   name: string;
   postcode: string;
-  spend: number = 0;
+  spend: number;
 }
 
 @Component({
