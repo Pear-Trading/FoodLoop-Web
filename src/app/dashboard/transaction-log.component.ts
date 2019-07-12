@@ -29,6 +29,7 @@ export class TransactionLogComponent implements OnInit {
   transactionFormStatusSuccess: string;
   transactionFormStatusError = 'Error received, please try again.';
   updatedTime: string;
+  showMeta = false;
 
   public paginateConfig: PaginationInstance = {
     id: 'transpaginate',
@@ -162,4 +163,7 @@ export class TransactionLogComponent implements OnInit {
     );
   }
 
+  toggleShowMeta() {
+    this.showMeta = !this.showMeta;
+  }
 }
