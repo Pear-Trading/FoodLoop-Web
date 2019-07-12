@@ -31,11 +31,11 @@ export class TransactionLogComponent implements OnInit {
   updatedTime: string;
 
   public paginateConfig: PaginationInstance = {
-        id: 'transpaginate',
-        itemsPerPage: 10,
-        currentPage: 1,
-        totalItems: 0
-    };
+    id: 'transpaginate',
+    itemsPerPage: 10,
+    currentPage: 1,
+    totalItems: 0
+  };
 
   constructor(
   private api: ApiService,

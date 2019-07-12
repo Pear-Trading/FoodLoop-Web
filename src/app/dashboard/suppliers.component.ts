@@ -16,6 +16,15 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
 
+  supplierList: any;
+  supplierListAvailable = false;
+
+  public paginateConfig: PaginationInstance = {
+    id: 'transpaginate',
+    itemsPerPage: 10,
+    currentPage: 1,
+    totalItems: 0
+  };
 
   public recurClick(event: any): void {
     this.onClick.emit( event );
@@ -26,7 +35,22 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
+    this.loadSuppliers(1);
+  }
 
+  loadSuppliers(logPage: number) {
+    this.api.externalSuppliers(logPage).subscribe(
+      result => {
+        this.supplierList = result.suppliers;
+        this.paginateConfig.totalItems = result.page_no;
+        this.paginateConfig.currentPage = logPage;
+        this.noTransactionList = false;
+      },
+      error => {
+        console.log('Retrieval Error');
+        console.log( error._body );
+      }
+    );
   }
 
   ngAfterViewInit() {
