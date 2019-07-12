@@ -18,6 +18,7 @@ import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
 import { CategoryMonthComponent } from './category-month.component';
 import { PayrollLogComponent } from './payroll-log.component';
+import { SuppliersComponent } from './suppliers.component';
 import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
 import { TrailMapComponent } from './trail-map.component';
@@ -84,6 +85,7 @@ import { environment } from '../../environments/environment';
     PiePanel,
     OrgPiePanel,
     BubbleChartComponent,
+    SuppliersComponent,
   ],
   providers: [
     CurrencyPipe,

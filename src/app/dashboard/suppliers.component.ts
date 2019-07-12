@@ -4,7 +4,7 @@ import { AgmCoreModule } from '@agm/core';
 import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
-interface RecurSupplierData {
+interface SuppliersComponent {
   name : string;
 }
 
@@ -26,7 +26,7 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    
+
   }
 
   ngAfterViewInit() {

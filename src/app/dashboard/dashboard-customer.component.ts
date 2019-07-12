@@ -13,7 +13,7 @@ import { SuppliersComponent } from '../dashboard/suppliers.component';
 import { MoreStuffComponent } from '../dashboard/more-graphs-and-tables.component';
 // import { StackedBarChartComponent } from '../panels/stacked-bar.component';
 
-interface RecurSupplierData {
+interface SuppliersComponent {
   name : string;
 }
 
