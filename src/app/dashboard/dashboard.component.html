@@ -165,11 +165,11 @@
                   </div><!--/.row-->
                   <div class="chart-wrapper">
                     <canvas baseChart class="chart"
-                    [datasets]="barChartDataCategory"
-                    [labels]="barChartLabelsCategory"
-                    [options]="barChartOptionsCategory"
-                    [legend]="barChartLegendCategory"
-                    [chartType]="barChartTypeCategory"
+                    [datasets]="barChartDataCategoryAll"
+                    [labels]="barChartLabelsCategoryAll"
+                    [options]="barChartOptionsCategoryAll"
+                    [legend]="barChartLegendCategoryAll"
+                    [chartType]="barChartTypeCategoryAll"
                     (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)"></canvas>
                   </div>

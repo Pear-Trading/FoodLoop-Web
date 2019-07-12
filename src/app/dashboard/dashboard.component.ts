@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from "@angular/router";
 import { CurrencyPipe } from '@angular/common';
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Color, Label } from 'ng2-charts';
 import { GraphWidget } from '../widgets/graph-widget.component';
 import { OrgBarSnippetComponent } from '../snippets/org-snippet-bar.component';
 import { GraphPanel } from '../panels/graph-panel.component';
@@ -68,6 +66,7 @@ export class DashboardComponent {
   public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
 
+
   public doughnutChartOptionsCategory:any = {
     tooltips: {
       callbacks: {
@@ -129,6 +128,11 @@ export class DashboardComponent {
   public barChartLegendCategory:boolean = false;
   public barChartDataCategory:any[]=[];
   public barChartLabelsCategory:string[] = [];
+
+  public barChartDataCategoryAll:string = 'bar'
+  public barChartLegendCategoryAll:boolean = false;
+  public barChartDataCategoryAll:any[]=[];
+  public barChartLabelsCategoryAll:string[] = [];
 
 
   public lineChartDataSector: ChartDataSets[] = [
@@ -239,6 +243,23 @@ export class DashboardComponent {
     );
   }
 
+    private setChartDataCat(dataCat: any) {
+      this.barChartLabelsCategoryAll = Object.keys(dataCat);
+      let barChartDataCategoryInitial = Object.keys(dataCat).map(key => dataCat[key]);
+      this.barChartDataCategoryAll = [
+        {data: barChartDataCategoryInitial, label: 'Series A'},
+      ];
+      this.showCategoryBarChart = true;
+      if (this.weekList1) {
+        let n = this.weekList1.map(function(a) {return a.value;});
+        this.doughnutChartDataCategory = [
+          {data: doughnutChartDataCategoryInitial, label: 'Series A'},
+        ];
+        // setTimeout is currently a workaround for ng2-charts labels
+        setTimeout(() => this.doughnutChartLabelsCategory = this.weekList1.map(function(a) {return a.category;}), 0);
+        this.showCategoryDoughnutChart = true;
+      }
+    }
   private setChartDataCat(dataCat: any) {
     this.barChartLabelsCategory = Object.keys(dataCat);
     let barChartDataCategoryInitial = Object.keys(dataCat).map(key => dataCat[key]);
@@ -247,7 +268,7 @@ export class DashboardComponent {
     ];
     this.showCategoryBarChart = true;
     if (this.weekList1) {
-      let doughnutChartDataCategoryInitial = this.weekList1.map(function(a) {return a.value;});
+      let n = this.weekList1.map(function(a) {return a.value;});
       this.doughnutChartDataCategory = [
         {data: doughnutChartDataCategoryInitial, label: 'Series A'},
       ];
@@ -261,7 +282,7 @@ export class DashboardComponent {
     this.barChartLabelsCategory = Object.keys(dataSec);
     let lineChartDataSectorInitial = Object.keys(dataSec).map(key => dataSec[key]);
     this.lineChartDataSector = [
-      {data: lineChartDataSectorInitial, label: 'Series A'},
+      {data: barChartDataCategoryInitial, label: 'Series A'},
     ];
     this.showCategoryBarChart = true;
     if (this.weekList1) {
