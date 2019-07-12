@@ -144,13 +144,15 @@ export class ApiService {
     );
   }
 
-  public externalSuppliers(data) {
+  public externalSuppliers(data, sortBy, sortDir) {
     const key = this.sessionKey;
     return this.http.post<any>(
       this.apiUrl + '/v1/organisation/external/suppliers',
       {
         session_key : key,
-        page : data
+        page : data,
+        sort_by : sortBy,
+        sort_dir : sortDir
       }
     );
   }
