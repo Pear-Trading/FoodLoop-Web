@@ -100,6 +100,7 @@ export class DashboardCustomerComponent implements OnInit {
   public barChartLegendCategory:boolean = false;
   public barChartDataCategory:any[]=[];
   public barChartLabelsCategory:string[] = [];
+  public barChartDataCategoryAll:any[]=[];
 
 
 

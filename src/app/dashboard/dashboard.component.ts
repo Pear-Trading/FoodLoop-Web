@@ -130,6 +130,7 @@ export class DashboardComponent {
   public barChartDataCategory:any[]=[];
   public barChartLabelsCategory:string[] = [];
 
+
   public lineChartDataSector: ChartDataSets[] = [
     { data: [], label: '' },
   ];
