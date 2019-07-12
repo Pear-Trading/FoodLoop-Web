@@ -4,8 +4,7 @@ import { Color } from 'ng2-charts';
 
 @Component({
   selector: 'app-bubble-chart',
-  templateUrl: './bubble-chart.component.html',
-  styleUrls: ['./bubble-chart.component.scss']
+  templateUrl: './bubble-panel.component.html',
 })
 export class BubbleChartComponent implements OnInit {
   public bubbleChartOptions: ChartOptions = {
