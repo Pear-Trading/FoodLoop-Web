@@ -48,6 +48,13 @@
             </li>
           </ul>
           </pagination-template>
+          <select (change)="loadSuppliers(1)" [(ngModel)]="perPage">
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+            <option>200</option>
+          </select>
         </div>
         <div *ngIf="!supplierListAvailable" class="card-block">
           No Suppliers available.

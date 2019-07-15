@@ -1,7 +1,8 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
 import {ApiService} from '../providers/api-service';
-import {Color} from 'ng2-charts';
+import {BaseChartDirective, Color} from 'ng2-charts';
 import {CurrencyPipe} from '@angular/common';
+import {ChartType} from "chart.js";
 
 @Component({
   templateUrl: 'more-graphs-and-tables.component.html',
@@ -17,6 +18,9 @@ export class MoreStuffComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadYearSpend();
+    this.loadSupplierBubble();
+    this.loadSupplierHistory();
   }
 
   public showLegend = true;
@@ -41,18 +45,33 @@ export class MoreStuffComponent implements OnInit {
   /*
    * Supplier Bubble Chart Setup
    */
-  public supplierBubbleChartType = 'bubble';
+
+  private loadSupplierBubble() {
+    this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
+      result => {
+        console.log(result.data);
+        let graph_data = [];
+        result.data.map(item => {
+          graph_data.push({
+            t: item.date,
+            r: (item.value / 100000) + 5,
+            supplier: item.seller,
+            y: item.count,
+            value: item.value,
+            count: item.count,
+          });
+        });
+        console.log(graph_data);
+        this.supplierBubbleChartData[0].data = graph_data;
+      }
+    )
+  }
+
+  public supplierBubbleChartType: ChartType = 'bubble';
   public supplierBubbleChartData: any[] = [
     {
-      data: [
-        {t: '20180123', y: 54.34, r: 32, supplier: 'Tims', count: 4},
-        {t: '20180101', y: 123.34, r: 123, supplier: 'Daves', count: 12},
-        {t: '20180314', y: 11.345, r: 33, supplier: 'erry', count: 13},
-        {t: '20180615', y: 112.6, r: 22, supplier: 'qwert', count: 124},
-        {t: '20180714', y: 91234.5, r: 8, supplier: 'Bobs', count: 1234},
-        {t: '20181230', y: 23.12, r: 67, supplier: 'Ben Bobs', count: 4},
-      ],
-      label: ["Series A"],
+      data: [],
+      label: ["Spend"],
       backgroundColor: 'green',
       borderColor: 'blue',
       hoverBackgroundColor: 'purple',
@@ -66,17 +85,10 @@ export class MoreStuffComponent implements OnInit {
       xAxes: [{
         type: 'time',
         time: {
-          parser: 'YYYYMMDD',
           unit: 'month'
         }
       }],
-      yAxes: [
-        {
-          ticks: {
-            min: 0,
-          }
-        }
-      ]
+      yAxes: []
     },
     tooltips: {
       callbacks: {
@@ -90,18 +102,38 @@ export class MoreStuffComponent implements OnInit {
   private bubbleTooltipCallback(tooltipItem: any, data: any) {
     let dataset = data.datasets[tooltipItem.datasetIndex];
     let value = dataset.data[tooltipItem.index];
-    return `${value.supplier}: ${this.currencyPipe.transform(value.y, 'GBP', 'symbol', '1.2-2')} over ${value.count} purchases`;
+    return `${value.supplier}: ${this.currencyPipe.transform(value.value, 'GBP', 'symbol', '1.2-2')} over ${value.count} purchases`;
+  }
+
+
+  private loadYearSpend() {
+    this.api.loadMiscUrl('organisation/external/year_spend').subscribe(
+      result => {
+        let value_data = [];
+        let count_data = [];
+
+        console.log(result.data);
+        result.data.map(item => {
+          value_data.push({
+            t: item.date,
+            y: item.value,
+          });
+
+          count_data.push({
+            t: item.date,
+            y: item.count,
+          });
+        });
+
+        this.yearSpendChartData[0].data = value_data;
+        this.yearSpendChartData[1].data = count_data;
+      }
+    )
   }
 
   public yearSpendChartData: any[] = [
     {
-      data: [
-        {t: '20180101', y: 123.34},
-        {t: '20180314', y: 11.345},
-        {t: '20180615', y: 112.6},
-        {t: '20180714', y: 91234.5},
-        {t: '20181230', y: 23.12},
-      ],
+      data: [],
       label: ["Value"],
       fill: false,
       borderColor: 'red',
@@ -110,13 +142,7 @@ export class MoreStuffComponent implements OnInit {
       yAxisID: 'y-value',
     },
     {
-      data: [
-        {t: '20180101', y: 12},
-        {t: '20180314', y: 11},
-        {t: '20180615', y: 1},
-        {t: '20180714', y: 9},
-        {t: '20181230', y: 23},
-      ],
+      data: [],
       label: ["Count"],
       fill: false,
       borderColor: 'blue',
@@ -131,7 +157,6 @@ export class MoreStuffComponent implements OnInit {
       xAxes: [{
         type: 'time',
         time: {
-          parser: 'YYYYMMDD',
           unit: 'month'
         }
       }],
@@ -158,24 +183,38 @@ export class MoreStuffComponent implements OnInit {
     }
   ];
   public yearSpendChartLabels: string[] = [];
-  public yearSpendChartType = 'line';
+  public yearSpendChartType: ChartType = 'line';
 
   randomData() {
     return Math.random();
   }
 
+  @ViewChild('supplierChart', {read: BaseChartDirective, static: false}) supplierChart: BaseChartDirective;
+
+  private loadSupplierHistory() {
+    this.api.loadMiscUrl('organisation/external/supplier_history').subscribe(
+      result => {
+        let labels = [];
+        let year = [];
+        let half = [];
+        let quarter = [];
+        result.data.map(item => {
+          labels.push(item.name);
+          year.push(item.year_total);
+          half.push(item.half_total);
+          quarter.push(item.quarter_total);
+        });
+        this.supplierMonthChartData[0].data = quarter.slice(0,10);
+        this.supplierMonthChartData[1].data = half.slice(0,10);
+        this.supplierMonthChartData[2].data = year.slice(0,10);
+        this.supplierMonthChartLabels = labels.slice(0,10);
+      }
+    )
+  }
+
   public supplierMonthChartData: any[] = [
     {
-      data: [
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-      ],
+      data: [],
       label: ["3 Month"],
       fill: false,
       borderColor: 'red',
@@ -183,16 +222,7 @@ export class MoreStuffComponent implements OnInit {
       hoverBackgroundColor: 'red',
     },
     {
-      data: [
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-      ],
+      data: [],
       label: ["6 Month"],
       fill: false,
       borderColor: 'red',
@@ -200,16 +230,7 @@ export class MoreStuffComponent implements OnInit {
       hoverBackgroundColor: 'red',
     },
     {
-      data: [
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-        this.randomData(),
-      ],
+      data: [],
       label: ["12 Month"],
       fill: false,
       borderColor: 'red',
@@ -218,30 +239,13 @@ export class MoreStuffComponent implements OnInit {
     },
   ];
   public supplierMonthChartOptions: any = {
+    //maintainAspectRatio: false,
     responsive: true,
     scales: {
       xAxes: [],
       yAxes: []
     },
   };
-  public supplierMonthChartLabels: string[] = [
-    'some name',
-    'another name',
-    'more names',
-    'again',
-    'some',
-    'random',
-    'names'
-  ];
-  public supplierMonthChartType = 'horizontalBar';
-
-  private setChartData(dataCat: any) {
-    // now we just need some data and it will display!
-  }
-
-  // functions
-
-
-  // SAMPLE chart data
-
+  public supplierMonthChartLabels: string[] = [];
+  public supplierMonthChartType: ChartType = 'horizontalBar';
 }

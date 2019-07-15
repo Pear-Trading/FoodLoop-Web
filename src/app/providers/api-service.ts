@@ -144,7 +144,17 @@ export class ApiService {
     );
   }
 
-  public externalSuppliers(data, sortBy, sortDir) {
+  public loadMiscUrl(extra_url) {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/v1/' + extra_url,
+      {
+        session_key : key,
+      }
+    );
+  }
+
+  public externalSuppliers(data, sortBy, sortDir, perPage) {
     const key = this.sessionKey;
     return this.http.post<any>(
       this.apiUrl + '/v1/organisation/external/suppliers',
@@ -152,7 +162,8 @@ export class ApiService {
         session_key : key,
         page : data,
         sort_by : sortBy,
-        sort_dir : sortDir
+        sort_dir : sortDir,
+        per_page : perPage
       }
     );
   }

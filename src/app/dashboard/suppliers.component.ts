@@ -11,6 +11,7 @@ import { PaginationInstance } from 'ngx-pagination';
 export class SuppliersComponent implements OnInit, AfterViewInit {
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
+  public perPage: number = 10;
 
   supplierList: any;
   supplierListAvailable = false;
@@ -19,7 +20,7 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
 
   public paginateConfig: PaginationInstance = {
     id: 'transpaginate',
-    itemsPerPage: 10,
+    itemsPerPage: this.perPage,
     currentPage: 1,
     totalItems: 0
   };
@@ -37,7 +38,7 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
   }
 
   loadSuppliers(logPage: number) {
-    this.api.externalSuppliers(logPage, this.sortBy, this.sortDir).subscribe(
+    this.api.externalSuppliers(logPage, this.sortBy, this.sortDir, this.perPage).subscribe(
       result => {
         this.supplierList = result.suppliers;
         if (this.supplierList) {
