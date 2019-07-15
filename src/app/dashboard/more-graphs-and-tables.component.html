@@ -1,28 +1,59 @@
-<script src="node_modules/chart.js/src/chart.js"></script>
 <div class="animated fadeIn">
-  <!-- <div class="form-group row"> -->
-    <div class="card">
-      <div class="card-block">
-          <div class="row">
-            <div class="col-12">
-              <h4 class="card-title mb-0">Spend by Company Type</h4>
-              </div>
-            </div>
-            <div style="display: block">
-                <canvas baseChart
-                  [datasets]="bubbleChartDataCategory"
-                  [options]="bubbleChartOptionsCategory"
-                  [colors]="sampleBubbleChartColors"
-                  [labels]="bubbleChartLabelsCategory"
-                  [legend]="chartLegend"
-                  [chartType]="chartType"
-                  (chartHover)="chartHovered($event)"
-                  (chartClick)="chartClicked($event)">
-
-                   <!--bootstrapColours-->
-                </canvas>
-          </div>
+  <div class="card">
+    <div class="card-block">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="card-title mb-0">Spend by Company Type</h4>
         </div>
+      </div>
+      <div>
+        <canvas baseChart
+                [datasets]="supplierBubbleChartData"
+                [options]="supplierBubbleChartOptions"
+                [colors]="sampleColours"
+                [labels]="supplierBubbleChartLabels"
+                [legend]="showLegend"
+                [chartType]="supplierBubbleChartType">
+        </canvas>
+      </div>
     </div>
-  <!-- </div> -->
+  </div>
+  <div class="card">
+    <div class="card-block">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="card-title mb-0">Last 12 months</h4>
+        </div>
+      </div>
+      <div>
+        <canvas baseChart
+                [datasets]="yearSpendChartData"
+                [options]="yearSpendChartOptions"
+                [colors]="yearSpendChartColors"
+                [labels]="yearSpendChartLabels"
+                [legend]="showLegend"
+                [chartType]="yearSpendChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-block">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="card-title mb-0">Supplier Spend History</h4>
+        </div>
+      </div>
+      <div>
+        <canvas baseChart
+                [datasets]="supplierMonthChartData"
+                [options]="supplierMonthChartOptions"
+                [colors]="sampleColours"
+                [labels]="supplierMonthChartLabels"
+                [legend]="showLegend"
+                [chartType]="supplierMonthChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
 </div>

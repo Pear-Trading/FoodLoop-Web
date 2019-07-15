@@ -1,127 +1,26 @@
-import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
-import { ApiService } from '../providers/api-service';
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Color } from 'ng2-charts';
-import { CurrencyPipe } from '@angular/common';
-import { DataType } from '../shared/data-types.enum';
-import * as moment from 'moment';
-import { BubbleChartComponent } from '../panels/bubble-panel.component';
-import { AgmCoreModule } from '@agm/core';
-import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-
-// interface RecurSupplierData {
-//   name : string;
-// }
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {ApiService} from '../providers/api-service';
+import {Color} from 'ng2-charts';
+import {CurrencyPipe} from '@angular/common';
 
 @Component({
   templateUrl: 'more-graphs-and-tables.component.html',
 })
 export class MoreStuffComponent implements OnInit {
-// @Input() public recurList: Array<RecurSupplierData>;
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
-
-  public recurClick(event: any): void {
-    this.onClick.emit( event );
-  }
 
   constructor(
     private api: ApiService,
     private currencyPipe: CurrencyPipe,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }
 
-  // main vars
-
-  public bootstrapColours: string[] = ['bg-primary', 'bg-secondary', 'bg-success',
-  'bg-danger', 'bg-warning', 'bg-info'];
-
-  // REAL chart data
-
-  public chartType = 'bubble';
-  public chartLegend = true;
-  public bubbleChartDataCategory: any[] = [
-    {
-  data: [
-    { x: 10, y: 10, r: 10 },
-    { x: 15, y: 5, r: 15 },
-    { x: 26, y: 12, r: 23 },
-    { x: 7, y: 8, r: 8 },
-  ],
-  label: ["Series A"],
-  backgroundColor: 'green',
-  borderColor: 'blue',
-  hoverBackgroundColor: 'purple',
-  hoverBorderColor: 'red',
-},
-{
-data: [
-  { x: 10, y: 2, r: 10 },
-  { x: 15, y: 1, r: 15 },
-  { x: 26, y: 7, r: 23 },
-  { x: 5, y: 8, r: 8 },
-  ],
-  label: ["Series B"],
-  backgroundColor: 'green',
-  borderColor: 'blue',
-  hoverBackgroundColor: 'purple',
-  hoverBorderColor: 'red',
-},
-
-  ];
-  public bubbleChartLabelsCategory: string[] = [];
-
-  public bubbleChartOptionsCategory:any = {
-    responsive: true,
-    scales: {
-      xAxes: [
-        {
-          ticks: {
-            min: 0,
-      }
-    }
-  ],
-  yAxes: [
-    {
-      ticks: {
-        min: 0,
-      }
-    }
-  ]
-},
-    tooltips: {
-      callbacks: {
-        label: (tooltip, data) => {
-          return this.tooltipLabelCallback(tooltip, data);
-        },
-      },
-    },
-  }
-
-  private setChartData(dataCat: any) {
-    // now we just need some data and it will display!
-  }
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-  // functions
-
-  private tooltipLabelCallback(tooltipItem: any, data: any) {
-    var dataset = data.datasets[tooltipItem.datasetIndex];
-    var value = dataset.data[tooltipItem.index];
-    return this.currencyPipe.transform(value, 'GBP', 'symbol', '1.2-2');
-  }
-
-  // SAMPLE chart data
-
-  public sampleBubbleChartColors: Color[] = [
+  public showLegend = true;
+  public sampleColours: Color[] = [
     {
       backgroundColor: [
         'red',
@@ -137,4 +36,212 @@ data: [
       ]
     }
   ];
+
+
+  /*
+   * Supplier Bubble Chart Setup
+   */
+  public supplierBubbleChartType = 'bubble';
+  public supplierBubbleChartData: any[] = [
+    {
+      data: [
+        {t: '20180123', y: 54.34, r: 32, supplier: 'Tims', count: 4},
+        {t: '20180101', y: 123.34, r: 123, supplier: 'Daves', count: 12},
+        {t: '20180314', y: 11.345, r: 33, supplier: 'erry', count: 13},
+        {t: '20180615', y: 112.6, r: 22, supplier: 'qwert', count: 124},
+        {t: '20180714', y: 91234.5, r: 8, supplier: 'Bobs', count: 1234},
+        {t: '20181230', y: 23.12, r: 67, supplier: 'Ben Bobs', count: 4},
+      ],
+      label: ["Series A"],
+      backgroundColor: 'green',
+      borderColor: 'blue',
+      hoverBackgroundColor: 'purple',
+      hoverBorderColor: 'red',
+    },
+  ];
+  public supplierBubbleChartLabels: string[] = [];
+  public supplierBubbleChartOptions: any = {
+    responsive: true,
+    scales: {
+      xAxes: [{
+        type: 'time',
+        time: {
+          parser: 'YYYYMMDD',
+          unit: 'month'
+        }
+      }],
+      yAxes: [
+        {
+          ticks: {
+            min: 0,
+          }
+        }
+      ]
+    },
+    tooltips: {
+      callbacks: {
+        label: (tooltip, data) => {
+          return this.bubbleTooltipCallback(tooltip, data);
+        },
+      },
+    },
+  };
+
+  private bubbleTooltipCallback(tooltipItem: any, data: any) {
+    let dataset = data.datasets[tooltipItem.datasetIndex];
+    let value = dataset.data[tooltipItem.index];
+    return `${value.supplier}: ${this.currencyPipe.transform(value.y, 'GBP', 'symbol', '1.2-2')} over ${value.count} purchases`;
+  }
+
+  public yearSpendChartData: any[] = [
+    {
+      data: [
+        {t: '20180101', y: 123.34},
+        {t: '20180314', y: 11.345},
+        {t: '20180615', y: 112.6},
+        {t: '20180714', y: 91234.5},
+        {t: '20181230', y: 23.12},
+      ],
+      label: ["Value"],
+      fill: false,
+      borderColor: 'red',
+      hoverBorderColor: 'red',
+      hoverBackgroundColor: 'red',
+      yAxisID: 'y-value',
+    },
+    {
+      data: [
+        {t: '20180101', y: 12},
+        {t: '20180314', y: 11},
+        {t: '20180615', y: 1},
+        {t: '20180714', y: 9},
+        {t: '20181230', y: 23},
+      ],
+      label: ["Count"],
+      fill: false,
+      borderColor: 'blue',
+      hoverBackgroundColor: 'blue',
+      hoverBorderColor: 'blue',
+      yAxisID: 'y-count',
+    },
+  ];
+  public yearSpendChartOptions: any = {
+    responsive: true,
+    scales: {
+      xAxes: [{
+        type: 'time',
+        time: {
+          parser: 'YYYYMMDD',
+          unit: 'month'
+        }
+      }],
+      yAxes: [
+        {id: 'y-value', position: 'left', beginAtZero: true},
+        {id: 'y-count', position: 'right', beginAtZero: true},
+      ]
+    },
+  };
+  public yearSpendChartColors: Color[] = [
+    {
+      backgroundColor: [
+        'red',
+        'green',
+        'blue',
+        'purple',
+        'yellow',
+        'brown',
+        'magenta',
+        'cyan',
+        'orange',
+        'pink'
+      ]
+    }
+  ];
+  public yearSpendChartLabels: string[] = [];
+  public yearSpendChartType = 'line';
+
+  randomData() {
+    return Math.random();
+  }
+
+  public supplierMonthChartData: any[] = [
+    {
+      data: [
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+      ],
+      label: ["3 Month"],
+      fill: false,
+      borderColor: 'red',
+      hoverBorderColor: 'red',
+      hoverBackgroundColor: 'red',
+    },
+    {
+      data: [
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+      ],
+      label: ["6 Month"],
+      fill: false,
+      borderColor: 'red',
+      hoverBorderColor: 'red',
+      hoverBackgroundColor: 'red',
+    },
+    {
+      data: [
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+        this.randomData(),
+      ],
+      label: ["12 Month"],
+      fill: false,
+      borderColor: 'red',
+      hoverBorderColor: 'red',
+      hoverBackgroundColor: 'red',
+    },
+  ];
+  public supplierMonthChartOptions: any = {
+    responsive: true,
+    scales: {
+      xAxes: [],
+      yAxes: []
+    },
+  };
+  public supplierMonthChartLabels: string[] = [
+    'some name',
+    'another name',
+    'more names',
+    'again',
+    'some',
+    'random',
+    'names'
+  ];
+  public supplierMonthChartType = 'horizontalBar';
+
+  private setChartData(dataCat: any) {
+    // now we just need some data and it will display!
+  }
+
+  // functions
+
+
+  // SAMPLE chart data
+
 }
