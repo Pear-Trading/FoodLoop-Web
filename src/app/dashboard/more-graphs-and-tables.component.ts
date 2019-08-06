@@ -72,10 +72,9 @@ export class MoreStuffComponent implements OnInit {
     {
       data: [],
       label: ["Spend"],
-      backgroundColor: 'green',
       borderColor: 'blue',
-      hoverBackgroundColor: 'purple',
-      hoverBorderColor: 'red',
+      hoverBackgroundColor: 'blue',
+      hoverBorderColor: 'blue',
     },
   ];
   public supplierBubbleChartLabels: string[] = [];
@@ -137,8 +136,8 @@ export class MoreStuffComponent implements OnInit {
       label: ["Value"],
       fill: false,
       borderColor: 'red',
+      hoverBackgroundColor: '#ffa1b5',
       hoverBorderColor: 'red',
-      hoverBackgroundColor: 'red',
       yAxisID: 'y-value',
     },
     {
@@ -146,7 +145,7 @@ export class MoreStuffComponent implements OnInit {
       label: ["Count"],
       fill: false,
       borderColor: 'blue',
-      hoverBackgroundColor: 'blue',
+      hoverBackgroundColor: '#52afed',
       hoverBorderColor: 'blue',
       yAxisID: 'y-count',
     },
@@ -169,16 +168,8 @@ export class MoreStuffComponent implements OnInit {
   public yearSpendChartColors: Color[] = [
     {
       backgroundColor: [
-        'red',
-        'green',
-        'blue',
-        'purple',
-        'yellow',
-        'brown',
-        'magenta',
-        'cyan',
-        'orange',
-        'pink'
+        '#ffa1b5',
+        '#52afed'
       ]
     }
   ];
@@ -204,14 +195,19 @@ export class MoreStuffComponent implements OnInit {
           half.push(item.half_total);
           quarter.push(item.quarter_total);
         });
-        this.supplierMonthChartData[0].data = quarter.slice(0,10);
-        this.supplierMonthChartData[1].data = half.slice(0,10);
-        this.supplierMonthChartData[2].data = year.slice(0,10);
-        this.supplierMonthChartLabels = labels.slice(0,10);
+        this.supplierMonthChartData[0].data = quarter.slice(0,15);
+        this.supplierMonthChartData[1].data = half.slice(0,15);
+        this.supplierMonthChartData[2].data = year.slice(0,15);
+        this.supplierMonthChartLabels = labels.slice(0,15);
       }
     )
   }
-
+  public newGroup() {
+        this.supplierMonthChartData[0].data = quarter.slice(0,15);
+        this.supplierMonthChartData[1].data = half.slice(0,15);
+        this.supplierMonthChartData[2].data = year.slice(0,15);
+        this.supplierMonthChartLabels = labels.slice(0,15);
+      }
   public supplierMonthChartData: any[] = [
     {
       data: [],
@@ -225,17 +221,17 @@ export class MoreStuffComponent implements OnInit {
       data: [],
       label: ["6 Month"],
       fill: false,
-      borderColor: 'red',
-      hoverBorderColor: 'red',
-      hoverBackgroundColor: 'red',
+      borderColor: 'blue',
+      hoverBorderColor: 'blue',
+      hoverBackgroundColor: 'blue',
     },
     {
       data: [],
       label: ["12 Month"],
       fill: false,
-      borderColor: 'red',
-      hoverBorderColor: 'red',
-      hoverBackgroundColor: 'red',
+      borderColor: 'orange',
+      hoverBorderColor: 'orange',
+      hoverBackgroundColor: 'orange',
     },
   ];
   public supplierMonthChartOptions: any = {

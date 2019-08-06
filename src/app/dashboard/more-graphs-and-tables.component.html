@@ -10,7 +10,6 @@
         <canvas baseChart
                 [datasets]="supplierBubbleChartData"
                 [options]="supplierBubbleChartOptions"
-                [colors]="sampleColours"
                 [labels]="supplierBubbleChartLabels"
                 [legend]="showLegend"
                 [chartType]="supplierBubbleChartType">
@@ -22,14 +21,13 @@
     <div class="card-block">
       <div class="row">
         <div class="col-12">
-          <h4 class="card-title mb-0">Last 12 months</h4>
+          <h4 class="card-title mb-0">Spend amount and number of organisations</h4>
         </div>
       </div>
       <div>
         <canvas baseChart
                 [datasets]="yearSpendChartData"
                 [options]="yearSpendChartOptions"
-                [colors]="yearSpendChartColors"
                 [labels]="yearSpendChartLabels"
                 [legend]="showLegend"
                 [chartType]="yearSpendChartType">
@@ -40,15 +38,23 @@
   <div class="card">
     <div class="card-block">
       <div class="row">
-        <div class="col-12">
+        <div class="col-sm-5">
           <h4 class="card-title mb-0">Supplier Spend History</h4>
+        </div>
+        <div class="col-sm-7 hidden-sm-down">
+          <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
+              <button class="btn btn-outline-secondary active" onclick="newGroup()"> New Group
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <div>
         <canvas baseChart #supplierChart
                 [datasets]="supplierMonthChartData"
                 [options]="supplierMonthChartOptions"
-                [colors]="sampleColours"
+                [colors]="supplierMonthChartColours"
                 [labels]="supplierMonthChartLabels"
                 [legend]="showLegend"
                 [chartType]="supplierMonthChartType">
