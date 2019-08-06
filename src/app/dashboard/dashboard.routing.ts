@@ -95,7 +95,7 @@ const routes: Routes = [
       {
         path: 'more-graphs-and-tables',
         component: MoreStuffComponent,
-        data: { title: 'More Stuff'}
+        data: { title: 'Infographics'}
       }
     ],
   }

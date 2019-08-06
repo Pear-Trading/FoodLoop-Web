@@ -15,6 +15,37 @@ export class OrgPiePanel implements OnInit {
   public chartType = 'doughnut';
   public chartLegend = true;
   public doughnutChartDataLocal: number[] = [];
+  public doughnutChartColors: any[] = [
+    {
+       backgroundColor: [
+         'red',
+         'green',
+         'pink',
+         'purple',
+         'yellow',
+         'brown',
+         'magenta',
+         'cyan',
+         'orange',
+         'blue'
+    ]
+  },
+  {
+    borderColor: [
+      'red',
+      'green',
+      'pink',
+      'purple',
+      'yellow',
+      'brown',
+      'magenta',
+      'cyan',
+      'orange',
+      'blue'
+    ]
+  }
+];
+
   public doughnutChartLabelsLocal: string[] = [];
 
   constructor(

@@ -46,6 +46,13 @@ export class DashboardComponent {
     },
     {
       type: 'graph',
+      name: 'sales_last_365_days',
+      icon: 'icon-diamond',
+      title: 'Sales Last Year',
+      dataType: DataType.currency,
+    },
+    {
+      type: 'graph',
       name: 'purchases_last_7_days',
       title: 'Purchases Last 7 Days',
       dataType: DataType.currency,
@@ -54,6 +61,12 @@ export class DashboardComponent {
       type: 'graph',
       name: 'purchases_last_30_days',
       title: 'Purchases Last 30 Days',
+      dataType: DataType.currency,
+    },
+    {
+      type: 'graph',
+      name: 'purchases_last_365_days;',
+      title: 'Purchases Last Year',
       dataType: DataType.currency,
     },
   ];
