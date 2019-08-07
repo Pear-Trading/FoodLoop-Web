@@ -46,9 +46,9 @@ export class DashboardComponent {
     },
     {
       type: 'graph',
-      name: 'sales_last_365_days',
+      name: 'sales_all',
       icon: 'icon-diamond',
-      title: 'Sales Last Year',
+      title: 'All Sales',
       dataType: DataType.currency,
     },
     {
@@ -65,8 +65,8 @@ export class DashboardComponent {
     },
     {
       type: 'graph',
-      name: 'purchases_last_365_days;',
-      title: 'Purchases Last Year',
+      name: 'purchases_all;',
+      title: 'All Purchases',
       dataType: DataType.currency,
     },
   ];
@@ -76,7 +76,7 @@ export class DashboardComponent {
   public bootstrapColours: string[] = ['bg-primary', 'bg-secondary', 'bg-success',
 'bg-danger', 'bg-warning', 'bg-info'];
 
-  public chartType = 'doughnut';
+  public chartType = 'pie';
   public chartLegend = true;
   public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
@@ -118,6 +118,21 @@ export class DashboardComponent {
       }
     };
   public barChartTypeEssential:string = 'horizontalBar';
+  public barChartColoursCategory: any[] = [
+    {
+      backgroundColor:[
+        'red',
+        'green',
+        'blue',
+        'purple',
+        'yellow',
+        'brown',
+        'magenta',
+        'cyan',
+        'orange',
+        'pink'
+      ]
+    }];
 
   public barChartOptionsCategory:any = {
     scaleShowVerticalLines: false,
