@@ -35,7 +35,7 @@ export class DashboardCustomerComponent implements OnInit {
   public bootstrapColours: string[] = ['bg-primary', 'bg-secondary', 'bg-success',
 'bg-danger', 'bg-warning', 'bg-info'];
 
-  public chartType = 'doughnut';
+  public chartType = 'bar';
   public chartLegend = true;
   public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
@@ -69,10 +69,19 @@ export class DashboardCustomerComponent implements OnInit {
       responsive: true,
       scales:{
           xAxes:[{
-              stacked:true
+            scaleLabel: {
+              display:true,
+              labelString: 'Category'
+            },
+              stacked:true,
+
           }],
           yAxes:[{
-              stacked:true
+            scaleLabel: {
+              display:true,
+              labelString: 'Organisation purchase amount'
+            },
+              stacked:true,
           }]
       }
     };

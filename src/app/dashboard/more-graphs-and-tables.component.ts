@@ -85,9 +85,18 @@ export class MoreStuffComponent implements OnInit {
         type: 'time',
         time: {
           unit: 'month'
+        },
+        scaleLabel:{
+          display:true,
+          labelString:'Date'
         }
       }],
-      yAxes: []
+      yAxes: [{
+        scaleLabel: {
+          display:true,
+          labelString:'Number of purchases'
+        }
+      }]
     },
     tooltips: {
       callbacks: {
@@ -133,7 +142,7 @@ export class MoreStuffComponent implements OnInit {
   public yearSpendChartData: any[] = [
     {
       data: [],
-      label: ["Value"],
+      label: ["Value £"],
       fill: false,
       borderColor: 'red',
       hoverBackgroundColor: '#ffa1b5',
@@ -157,6 +166,10 @@ export class MoreStuffComponent implements OnInit {
         type: 'time',
         time: {
           unit: 'month'
+        },
+        scaleLabel: {
+          display:true,
+          labelString: 'Date'
         }
       }],
       yAxes: [
@@ -238,8 +251,18 @@ export class MoreStuffComponent implements OnInit {
     //maintainAspectRatio: false,
     responsive: true,
     scales: {
-      xAxes: [],
-      yAxes: []
+      xAxes: [{
+        scaleLabel: {
+          display:true,
+          labelString: 'Spend amount £'
+        }
+      }],
+      yAxes: [{
+        scaleLabel: {
+          display:true,
+          labelString: 'Supplier Names'
+        }
+      }]
     },
   };
   public supplierMonthChartLabels: string[] = [];

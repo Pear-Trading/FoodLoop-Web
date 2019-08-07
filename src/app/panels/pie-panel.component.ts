@@ -16,6 +16,19 @@ export class PiePanel implements OnInit {
   public chartLegend = true;
   public doughnutChartDataLocal: number[] = [];
   public doughnutChartLabelsLocal: string[] = [];
+  public doughnutChartColors: any[] = [{ backgroundColor: [
+    'red',
+    'green',
+    'blue',
+    'purple',
+    'yellow',
+    'brown',
+    'magenta',
+    'cyan',
+    'orange',
+    'pink'
+  ]
+ }];
 
   constructor(
     private api: ApiService,
