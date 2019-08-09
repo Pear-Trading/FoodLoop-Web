@@ -12,11 +12,12 @@ import { ChartData } from '../_interfaces/chart-data';
 
 export class PiePanel implements OnInit {
 
-  public chartType = 'doughnut';
+  public chartType = 'pie';
   public chartLegend = true;
   public doughnutChartDataLocal: number[] = [];
   public doughnutChartLabelsLocal: string[] = [];
-  public doughnutChartColors: any[] = [{ backgroundColor: [
+  public doughnutChartColors: any[] = [
+    { backgroundColor: [
     'red',
     'green',
     'blue',
@@ -28,7 +29,21 @@ export class PiePanel implements OnInit {
     'orange',
     'pink'
   ]
- }];
+},
+  { borderColor:[
+    'red',
+    'green',
+    'blue',
+    'purple',
+    'yellow',
+    'brown',
+    'magenta',
+    'cyan',
+    'orange',
+    'pink'
+    ]
+  }
+];
 
   constructor(
     private api: ApiService,

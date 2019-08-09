@@ -76,13 +76,6 @@ export class DashboardCustomerComponent implements OnInit {
               stacked:true,
 
           }],
-          yAxes:[{
-            scaleLabel: {
-              display:true,
-              labelString: 'Organisation purchase amount'
-            },
-              stacked:true,
-          }]
       }
     };
   public barChartTypeEssential:string = 'horizontalBar';

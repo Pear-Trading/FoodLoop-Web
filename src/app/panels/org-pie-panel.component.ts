@@ -12,7 +12,7 @@ import { ChartData } from '../_interfaces/chart-data';
 
 export class OrgPiePanel implements OnInit {
 
-  public chartType = 'doughnut';
+  public chartType = 'pie';
   public chartLegend = true;
   public doughnutChartDataLocal: number[] = [];
   public doughnutChartColors: any[] = [
