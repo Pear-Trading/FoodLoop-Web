@@ -65,66 +65,7 @@
         <div class="card-block">
           <div class="row">
             <div class="col-12">
-              <h4 class="card-title float-left mb-0">Weekly Purchase No.</h4>
-            </div><!--/.col-->
-          </div><!--/.row-->
-          <div class="chart-wrapper">
-            <ul class="horizontal-bars type-2">
-              <li>
-                <span class="title">This Week</span>
-                <span class="value">{{ (weekPurchaseList.first  || 0 ) }} <span class="text-muted small">
-                  ({{ (weekPurchaseList.first || 0 ) / weekPurchaseList.max | percent:'1.0-0' }})</span></span>
-                <div class="bars">
-                  <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-success" role="progressbar"
-                    [style.width]="(weekPurchaseList.first || 0 ) / weekPurchaseList.max | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <span class="title">Last Week</span>
-                <span class="value">{{ weekPurchaseList.second || 0 }} <span class="text-muted small">
-                  ({{ (weekPurchaseList.second || 0 ) / weekPurchaseList.max | percent:'1.0-0' }})</span></span>
-                <div class="bars">
-                  <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-success" role="progressbar"
-                    [style.width]="(weekPurchaseList.second || 0 ) / weekPurchaseList.max | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <span class="title">Week Maximum</span>
-                <span class="value">{{ weekPurchaseList.max || 0 }} <span class="text-muted small">
-                  (100%)</span></span>
-                <div class="bars">
-                  <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-success" role="progressbar"
-                    style="width: 100%" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <span class="title">Weekly Average</span>
-                <span class="value">{{ (weekPurchaseList.sum / weekPurchaseList.count) || 0  | number:'1.0-0'}} <span class="text-muted small">
-                  ({{ ((weekPurchaseList.sum / weekPurchaseList.count) || 0) / weekPurchaseList.max | percent:'1.0-0' }})</span></span>
-                <div class="bars">
-                  <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-success" role="progressbar"
-                    [style.width]="((weekPurchaseList.sum / weekPurchaseList.count) || 0) / weekPurchaseList.max | percent:'1.0-0'" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div><!--/.col-->
-    <div class="col-xl-6">
-      <div class="card">
-        <div class="card-block">
-          <div class="row">
-            <div class="col-12">
-              <h4 class="card-title float-left mb-0">All Purchases by Category</h4>
+              <h4 class="card-title float-left mb-0">Your Purchases by Category</h4>
             </div><!--/.col-->
           </div><!--/.row-->
           <div class="chart-wrapper">
@@ -137,26 +78,37 @@
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"></canvas>
           </div>
-          <div *ngIf="showTotalCategoryList" class="chart-wrapper">
-            <ul class="icons-list">
-              <!-- New loop  -->
-              <li *ngFor="let category of totalCategoryList | slice:0:totalCategoryLimit; let i=index">
-                <i [ngClass]="['icon-' + category.icon, getBootstrapColour(i)]"></i>
-                <div class="desc">
-                  <div class="title">{{ category.category || 'N/A' }}</div>
-                </div>
-                <div class="value">
-                  <div class="small text-muted">Bought</div>
-                  <strong>{{ category.value || 'N/A' }}</strong>
-                </div>
-              </li>
-              <li *ngIf="totalCategoryList.length > totalCategoryLimit && disableCategoryButton == false" class="divider text-center">
-                <button type="button" class="btn btn-sm btn-link text-muted" (click)="categoryLoadMore()"><i class="icon-options"></i></button>
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div><!--/.col-->
-  </div><!--/.row-->
-</div>
+    <div class="col-xl-6">
+      <div class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="card-title float-left mb-0"> Global Puchases by Category</h4>
+            </div>
+            <div class="col-12">
+              <div *ngIf="showTotalCategoryList" class="chart-wrapper">
+                <ul class="icons-list">
+                  <!-- New loop  -->
+                  <li *ngFor="let category of totalCategoryList | slice:0:totalCategoryLimit; let i=index">
+                    <i [ngClass]="['icon-' + category.icon, getBootstrapColour(i)]"></i>
+                    <div class="desc">
+                      <div class="title">{{ category.category || 'N/A' }}</div>
+                    </div>
+                  <div class="value">
+                    <div class="small text-muted">Bought</div>
+                    <strong>{{ category.value || 'N/A' }}</strong>
+                  </div>
+                  </li>
+                  <li *ngIf="totalCategoryList.length > totalCategoryLimit && disableCategoryButton == false" class="divider text-center">
+                    <button type="button" class="btn btn-sm btn-link text-muted" (click)="categoryLoadMore()"><i class="icon-options"></i></button>
+                  </li>
+                </ul>
+            </div>
+          </div>
+        </div><!--/.row-->
+      </div>
+    </div>
+  </div>

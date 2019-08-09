@@ -215,12 +215,6 @@ export class MoreStuffComponent implements OnInit {
       }
     )
   }
-  public newGroup() {
-        this.supplierMonthChartData[0].data = quarter.slice(0,15);
-        this.supplierMonthChartData[1].data = half.slice(0,15);
-        this.supplierMonthChartData[2].data = year.slice(0,15);
-        this.supplierMonthChartLabels = labels.slice(0,15);
-      }
   public supplierMonthChartData: any[] = [
     {
       data: [],
