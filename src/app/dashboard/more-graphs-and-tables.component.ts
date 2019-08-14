@@ -51,11 +51,11 @@ export class MoreStuffComponent implements OnInit {
    * Supplier Bubble Chart Setup
    */
 
-  private loadSupplierBubble(bool useRange, Date start_range, Date end_range) {
+  private loadSupplierBubble(useRange: Bool, start_range : Date, end_range : Date) {
     this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
       result => {
 
-	if (useRange) {
+	if (useRange == true) {
 	  let ranged_data = [];
 	
 	  for (var i = 0; i < ranged_data.data.count; i++) {
@@ -68,9 +68,9 @@ export class MoreStuffComponent implements OnInit {
                       y: item.count,
               	      value: item.value,
                       count: item.count,
-            	  });
+            	   });
 	        }
-	     }
+	     });
 	  }
 
         this.supplierBubbleChartData[0].data = ranged_data;
@@ -171,7 +171,8 @@ export class MoreStuffComponent implements OnInit {
   }
 
   bubbleChartUpdate() {
-
+	// this is called when daterange is changed
+	console.log("yeeeee");
   }
 
   public yearSpendChartData: any[] = [
