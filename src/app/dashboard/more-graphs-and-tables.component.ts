@@ -54,7 +54,7 @@ export class MoreStuffComponent implements OnInit {
         result.data.map(item => {
           graph_data.push({
             t: item.date,
-            r: (item.value / 100000) + 5,
+            r: (item.value / 100000) + 4,
             supplier: item.seller,
             y: item.count,
             value: item.value,
@@ -75,6 +75,7 @@ export class MoreStuffComponent implements OnInit {
       borderColor: 'blue',
       hoverBackgroundColor: 'blue',
       hoverBorderColor: 'blue',
+      radius: 5,
     },
   ];
   public supplierBubbleChartLabels: string[] = [];

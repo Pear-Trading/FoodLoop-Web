@@ -47,6 +47,7 @@
     "ng2-charts": "^2.3.0",
     "ng2-validation-manager": "0.5.3",
     "ngx-bootstrap": "^5.0.0",
+    "ngx-daterangepicker-material": "^2.1.8",
     "ngx-pagination": "^4.0.0",
     "popper.js": "^1.15.0",
     "rxjs": "6.5.2",
