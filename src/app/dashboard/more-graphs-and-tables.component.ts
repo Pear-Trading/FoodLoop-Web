@@ -3,6 +3,7 @@ import {ApiService} from '../providers/api-service';
 import {BaseChartDirective, Color} from 'ng2-charts';
 import {CurrencyPipe} from '@angular/common';
 import {ChartType} from "chart.js";
+import * as moment from 'moment';
 
 @Component({
   templateUrl: 'more-graphs-and-tables.component.html',
@@ -10,11 +11,14 @@ import {ChartType} from "chart.js";
 export class MoreStuffComponent implements OnInit {
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
-
+  bubbleChartBegin: any;
+  bubbleChartEnd: any;
   constructor(
     private api: ApiService,
     private currencyPipe: CurrencyPipe,
   ) {
+    this.bubbleChartBegin = moment().format('YYYY-MM-DD');
+    this.bubbleChartEnd = moment().format('YYYY-MM-DD');
   }
 
   ngOnInit(): void {
@@ -54,7 +58,7 @@ export class MoreStuffComponent implements OnInit {
         result.data.map(item => {
           graph_data.push({
             t: item.date,
-            r: (item.value / 100000) + 4,
+            r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
             supplier: item.seller,
             y: item.count,
             value: item.value,
@@ -138,6 +142,10 @@ export class MoreStuffComponent implements OnInit {
         this.yearSpendChartData[1].data = count_data;
       }
     )
+  }
+
+  bubbleChartUpdate() {
+
   }
 
   public yearSpendChartData: any[] = [
