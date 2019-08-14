@@ -22,8 +22,21 @@
           <!-- <body style="background-color:rgb(0,0,0);"> -->
             <div class="card-block">
               <div class="row">
-                <div class="col-12">
-                  <h4 class="card-title mb-0">Weekly Spending by Category</h4>
+                <div class="col-7">
+                  <h4 class="card-title mb-0">Spending by Category</h4>
+                </div>
+                <div class="col-sm-5 hidden-sm-down">
+                  <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
+                      <select>
+                        <option value="Day">Day</option>
+                        <option value="Week">Week</option>
+                        <option value="Month">Month</option>
+                        <option value="Year">Year</option>
+                        <option value="All Time">All Time</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="chart-wrapper">
@@ -44,8 +57,21 @@
       <div class="card">
         <div class="card-block">
           <div class="row">
-            <div class="col-12">
+            <div class="col-7">
               <h4 class="card-title mb-0">No. of Essential Purchases</h4>
+            </div>
+            <div class="col-sm-5 hidden-sm-down">
+              <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
+                  <select>
+                    <option value="Day">Day</option>
+                    <option value="Week">Week</option>
+                    <option value="Month">Month</option>
+                    <option value="Year">Year</option>
+                    <option value="All Time">All Time</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <div class="chart-wrapper">
@@ -64,9 +90,22 @@
       <div class="card">
         <div class="card-block">
           <div class="row">
-            <div class="col-12">
+            <div class="col-8">
               <h4 class="card-title float-left mb-0">Your Purchases by Category</h4>
             </div><!--/.col-->
+            <div class="col-sm-4 hidden-sm-down">
+              <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
+                  <select>
+                    <option value="Day">Day</option>
+                    <option value="Week">Week</option>
+                    <option value="Month">Month</option>
+                    <option value="Year">Year</option>
+                    <option value="All Time">All Time</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div><!--/.row-->
           <div class="chart-wrapper">
             <canvas baseChart class="chart"

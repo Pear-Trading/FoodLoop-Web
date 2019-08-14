@@ -43,6 +43,8 @@ export class OrgPiePanel implements OnInit {
       'orange',
       'blue'
     ]
+  },
+  { borderWidth: [10]
   }
 ];
 

@@ -6,17 +6,8 @@
           <h4 class="card-title mb-0">Spend amount and number of purchases by supplier name</h4>
         </div>
         <div class="col-sm-5 hidden-sm-down">
-          <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
-              <select>
-                <option value="Day">Day</option>
-                <option value="Week">Week</option>
-                <option value="Month">Month</option>
-                <option value="Year">Year</option>
-                <option value="All Time">All Time</option>
-              </select>
-            </div>
-          </div>
+          <input type="date" id="bubbleChartBegin" name="bubbleChartBegin" [(ngModel="bubbleChartBegin")] (ngModelChange)="bubbleChartUpdate">
+          <input type="date" id="bubbleChartEnd" name="bubbleChartEnd" [(ngModel="bubbleChartEnd")] (ngModelChange)="bubbleChartUpdate">
         </div>
       </div>
       <div>
@@ -37,17 +28,8 @@
           <h4 class="card-title mb-0">Spend amount and number of organisations</h4>
         </div>
         <div class="col-sm-5 hidden-sm-down">
-          <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group mr-3" data-toggle="buttons" aria-label="First group">
-              <select>
-                <option value="Day">Day</option>
-                <option value="Week">Week</option>
-                <option value="Month">Month</option>
-                <option value="Year">Year</option>
-                <option value="All Time">All Time</option>
-              </select>
-            </div>
-          </div>
+          <input type="date" id="yearSpendChartBegin" name="yearSpendChartBegin" ng-model="yearSpendChartBegin" ng-change="yearSpendChartBegin">
+          <input type="date" id="yearSpendChartEnd" name="yearSpendChartEnd" ng-model="yearSpendChartEnd" ng-change="yearSpendChartEnd">
         </div>
       </div>
       <div>

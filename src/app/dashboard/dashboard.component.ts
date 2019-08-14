@@ -76,7 +76,7 @@ export class DashboardComponent {
   public bootstrapColours: string[] = ['bg-primary', 'bg-secondary', 'bg-success',
 'bg-danger', 'bg-warning', 'bg-info'];
 
-  public chartType = 'pie';
+  public chartType = 'doughnut';
   public chartLegend = true;
   public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
