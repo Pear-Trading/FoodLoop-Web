@@ -121,6 +121,14 @@ export class DashboardCustomerComponent implements OnInit {
 
   // Graph widgets
   public widgetList = [
+   {
+      type: 'graph',
+      name: 'total_duration',
+      duration: '400',
+      icon: 'icon-diamond',
+      title: '(test) last 400 days',
+      dataType: DataType.currency,
+    },
     {
       type: 'graph',
       name: 'total_last_week',
