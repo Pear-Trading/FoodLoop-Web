@@ -13,7 +13,7 @@ export class MoreStuffComponent implements OnInit {
   @Input() public categories: any;
   bubbleChartBegin: any;
   bubbleChartEnd: any;
-  
+
   constructor(
     private api: ApiService,
     private currencyPipe: CurrencyPipe,
@@ -59,7 +59,7 @@ export class MoreStuffComponent implements OnInit {
         result.data.map(item => {
           graph_data.push({
             t: item.date,
-            r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
+            r: item.value > 1000000 ? (item.value / 100000) + 5 : (item.value / 100000) + 1,
             supplier: item.seller,
             y: item.count,
             value: item.value,
@@ -71,7 +71,9 @@ export class MoreStuffComponent implements OnInit {
       }
     )
   }
-
+  private bubbleChartUpdate() {
+    console.log("test change");
+  }
   public supplierBubbleChartType: ChartType = 'bubble';
   public supplierBubbleChartData: any[] = [
     {
