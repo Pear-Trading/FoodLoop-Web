@@ -63,9 +63,9 @@ export class MoreStuffComponent implements OnInit {
 	if (useRange == true) {
 	  let ranged_data = [];
 	
-	  for (var i = 0; i < ranged_data.data.count; i++) {
+	  for (var i = 0; i < result.data.count; i++) {
 	     result.data.map(item => {
-	        if (ranged_data.data[i].date >= start_range && ranged_data.data[i].date <= end_range) {
+	        if (result.data[i].date >= start_range && result.data[i].date <= end_range) {
 	           ranged_data.push({
 		      t: item.date,
 		      r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
