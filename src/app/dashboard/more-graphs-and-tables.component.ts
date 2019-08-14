@@ -24,7 +24,7 @@ export class MoreStuffComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadYearSpend();
-    this.loadSupplierBubble();
+    this.loadSupplierBubble(true, new Date('January 1, 2018'), new Date('January 1, 2019')); // pass start and end date ranges to this as Date()s
     this.loadSupplierHistory();
   }
 
@@ -51,9 +51,32 @@ export class MoreStuffComponent implements OnInit {
    * Supplier Bubble Chart Setup
    */
 
-  private loadSupplierBubble() {
+  private loadSupplierBubble(bool useRange, Date start_range, Date end_range) {
     this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
       result => {
+
+	if (useRange) {
+	  let ranged_data = [];
+	
+	  for (var i = 0; i < ranged_data.data.count; i++) {
+	     result.data.map(item => {
+	        if (ranged_data.data[i].date >= start_range && ranged_data.data[i].date <= end_range) {
+	           ranged_data.push({
+		      t: item.date,
+		      r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
+                      supplier: item.seller,
+                      y: item.count,
+              	      value: item.value,
+                      count: item.count,
+            	  });
+	        }
+	     }
+	  }
+
+        this.supplierBubbleChartData[0].data = ranged_data;
+
+	} else {
+
         console.log(result.data);
         let graph_data = [];
         result.data.map(item => {
@@ -68,6 +91,8 @@ export class MoreStuffComponent implements OnInit {
         });
         console.log(graph_data);
         this.supplierBubbleChartData[0].data = graph_data;
+	
+	}
       }
     )
   }
