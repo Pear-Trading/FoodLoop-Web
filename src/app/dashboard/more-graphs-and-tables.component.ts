@@ -13,6 +13,7 @@ export class MoreStuffComponent implements OnInit {
   @Input() public categories: any;
   bubbleChartBegin: any;
   bubbleChartEnd: any;
+  
   constructor(
     private api: ApiService,
     private currencyPipe: CurrencyPipe,
