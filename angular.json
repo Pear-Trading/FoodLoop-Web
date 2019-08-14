@@ -112,9 +112,6 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [
-              "node_modules/moment/min/moment.min.js"
-            ],
             "styles": [
               "src/scss/style.scss"
             ],
