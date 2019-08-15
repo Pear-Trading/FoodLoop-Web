@@ -185,7 +185,7 @@ export class MoreStuffComponent implements OnInit {
   }
 
   bubbleChartUpdate() {
-    console.log("start_range input box: " + this.bubbleChartBegin.date);
+    console.log("start_range input box: " + this.bubbleChartBegin);
     console.log("start_range : " + new Date(this.bubbleChartBegin));
     console.log("end_range input box: " + this.bubbleChartEnd);
     console.log("end_range : " + new Date(this.bubbleChartEnd));
