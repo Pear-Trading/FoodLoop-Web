@@ -4,6 +4,7 @@ import {BaseChartDirective, Color} from 'ng2-charts';
 import {CurrencyPipe} from '@angular/common';
 import {ChartType} from "chart.js";
 import * as moment from 'moment';
+import { NgModel } from '@angular/forms';
 
 @Component({
   templateUrl: 'more-graphs-and-tables.component.html',
@@ -24,8 +25,8 @@ export class MoreStuffComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadYearSpend();
-//    this.loadSupplierBubble(true, new Date('January 1, 2018'), new Date('January 1, 2019')); // pass start and end date ranges to this as Date()s
-    this.loadSupplierBubble(true, ('01-01-2018'), ('06-08-2018')); // pass start and end date ranges to this as Date()s
+   this.loadSupplierBubble(true, ('January 1, 2018'), ('January 1, 2019')); // pass start and end date ranges to this as Date()s
+    // this.loadSupplierBubble(false, ('00-00-0000'), ('00-00-0000')); // pass start and end date ranges to this as Date()s
     this.loadSupplierHistory();
   }
 
@@ -53,7 +54,7 @@ export class MoreStuffComponent implements OnInit {
    */
 
   private loadSupplierBubble(useRange: boolean, start_range : string, end_range : string) {
-    console.log("fetching data for bubble chart... this will take a while. custom range = " + useRange);
+    console.log("Fetching data for bubble chart... this will take a while. custom range = " + useRange);
 
     this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
       result => {
@@ -61,11 +62,11 @@ export class MoreStuffComponent implements OnInit {
 
         if (useRange == true) {
           console.log("using range " + start_range + " : " + end_range);
-          let start_date = new Date(start_range);
-          let end_date = new Date(end_range);
           result.data.map(item=> {
             let is_item_in_range = (new Date(item.date) >=  new Date(start_range) && new Date(item.date) <= new Date(end_range));
 
+            // IT WORKS!!!!!!!!!
+            
             console.log("item.date : " + new Date(item.date));
             console.log("start_range : " + new Date(start_range));
             console.log("end_range : " + new Date(end_range));
@@ -73,7 +74,7 @@ export class MoreStuffComponent implements OnInit {
             console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
             console.log("is_item_in_range: " + is_item_in_range);
             console.log("----------------------");
-
+            
             if (is_item_in_range) {
               graph_data.push({
                 t: item.date,
@@ -98,9 +99,12 @@ export class MoreStuffComponent implements OnInit {
               count: item.count,
             });
           });
+
+          this.supplierBubbleChartData[0].data = graph_data;
         }
 
         this.supplierBubbleChartData[0].data = graph_data;
+        console.log("Graph fetched with " + graph_data.length + " items.");
       }
     )
   }
@@ -159,7 +163,7 @@ export class MoreStuffComponent implements OnInit {
         let value_data = [];
         let count_data = [];
 
-        console.log("Result being fetched.");
+        console.log("Graph being fetched.");
         result.data.map(item => {
           value_data.push({
             t: item.date,
@@ -179,8 +183,14 @@ export class MoreStuffComponent implements OnInit {
   }
 
   bubbleChartUpdate() {
-	// this is called when daterange is changed
-	console.log("Bubble chart updated.");
+    console.log("updating");
+  // this is called when daterange is changed
+    this.loadSupplierBubble(true, (this.bubbleChartBegin), (this.bubbleChartEnd));
+    console.log("Bubble chart updating...");
+  /*
+    bubbleChartBegin: any;
+    bubbleChartEnd: any;
+  */
   }
 
   public yearSpendChartData: any[] = [
