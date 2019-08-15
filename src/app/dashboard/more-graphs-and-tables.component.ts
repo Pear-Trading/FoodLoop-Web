@@ -25,7 +25,7 @@ export class MoreStuffComponent implements OnInit {
   ngOnInit(): void {
     this.loadYearSpend();
 //    this.loadSupplierBubble(true, new Date('January 1, 2018'), new Date('January 1, 2019')); // pass start and end date ranges to this as Date()s
-    this.loadSupplierBubble(true, ('01-01-2018'), ('01-01-2019')); // pass start and end date ranges to this as Date()s
+    this.loadSupplierBubble(true, ('01-01-2018'), ('06-08-2018')); // pass start and end date ranges to this as Date()s
     this.loadSupplierHistory();
   }
 
@@ -53,7 +53,7 @@ export class MoreStuffComponent implements OnInit {
    */
 
   private loadSupplierBubble(useRange: boolean, start_range : string, end_range : string) {
-    console.log("fetching data for bubble chart... this will take a while. custom range: " + useRange);
+    console.log("fetching data for bubble chart... this will take a while. custom range = " + useRange);
 
     this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
       result => {
@@ -64,11 +64,17 @@ export class MoreStuffComponent implements OnInit {
           let start_date = new Date(start_range);
           let end_date = new Date(end_range);
           result.data.map(item=> {
-            console.log(new Date(item.date));
-            console.log(start_date);
-            console.log(item.date >=  start_date);
+            let is_item_in_range = (new Date(item.date) >=  new Date(start_range) && new Date(item.date) <= new Date(end_range));
 
-            if (new Date(item.date) >=  start_date && new Date(item.date) <= end_date) {
+            console.log("item.date : " + new Date(item.date));
+            console.log("start_range : " + new Date(start_range));
+            console.log("end_range : " + new Date(end_range));
+            console.log("item.date >= start_range: " + (new Date(item.date) >=  new Date(start_range)));
+            console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
+            console.log("is_item_in_range: " + is_item_in_range);
+            console.log("----------------------");
+
+            if (is_item_in_range) {
               graph_data.push({
                 t: item.date,
                 r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
