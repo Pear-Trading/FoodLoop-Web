@@ -183,7 +183,6 @@ export class MoreStuffComponent implements OnInit {
   }
 
   bubbleChartUpdate() {
-    console.log("updating");
   // this is called when daterange is changed
     this.loadSupplierBubble(true, (this.bubbleChartBegin), (this.bubbleChartEnd));
     console.log("Bubble chart updating...");
