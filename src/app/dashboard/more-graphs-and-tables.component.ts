@@ -25,7 +25,7 @@ export class MoreStuffComponent implements OnInit {
   ngOnInit(): void {
     this.loadYearSpend();
 //    this.loadSupplierBubble(true, new Date('January 1, 2018'), new Date('January 1, 2019')); // pass start and end date ranges to this as Date()s
-    this.loadSupplierBubble(false, new Date('January 1, 2018'), new Date('January 1, 2019')); // pass start and end date ranges to this as Date()s
+    this.loadSupplierBubble(true, ('01-01-2018'), ('01-01-2019')); // pass start and end date ranges to this as Date()s
     this.loadSupplierHistory();
   }
 
@@ -52,51 +52,49 @@ export class MoreStuffComponent implements OnInit {
    * Supplier Bubble Chart Setup
    */
 
-  private loadSupplierBubble(useRange: boolean, start_range : Date, end_range : Date) {
-    console.log("fetching data for bubble chart... (this takes a while)");
+  private loadSupplierBubble(useRange: boolean, start_range : string, end_range : string) {
+    console.log("fetching data for bubble chart... this will take a while. custom range: " + useRange);
 
     this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
       result => {
-	console.log("data fetched:");
-        console.log(result.data);
-
-	if (useRange == true) {
-	  let ranged_data = [];
-	
-	  for (var i = 0; i < result.data.count; i++) {
-	     result.data.map(item => {
-	        if (result.data[i].date >= start_range && result.data[i].date <= end_range) {
-	           ranged_data.push({
-		      t: item.date,
-		      r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
-                      supplier: item.seller,
-                      y: item.count,
-              	      value: item.value,
-                      count: item.count,
-            	   });
-	        }
-	     });
-	  }
-
-        this.supplierBubbleChartData[0].data = ranged_data;
-
-	} else {
-
         let graph_data = [];
-        result.data.map(item => {
-          graph_data.push({
-            t: item.date,
-            r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
-            supplier: item.seller,
-            y: item.count,
-            value: item.value,
-            count: item.count,
+
+        if (useRange == true) {
+          console.log("using range " + start_range + " : " + end_range);
+          let start_date = new Date(start_range);
+          let end_date = new Date(end_range);
+          result.data.map(item=> {
+            console.log(new Date(item.date));
+            console.log(start_date);
+            console.log(item.date >=  start_date);
+
+            if (new Date(item.date) >=  start_date && new Date(item.date) <= end_date) {
+              graph_data.push({
+                t: item.date,
+                r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
+                supplier: item.seller,
+                y: item.count,
+                value: item.value,
+                count: item.count,
+              });
+            }
           });
-        });
-        console.log(graph_data);
+
+          this.supplierBubbleChartData[0].data = graph_data;
+        } else {
+          result.data.map(item => {
+            graph_data.push({
+              t: item.date,
+              r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
+              supplier: item.seller,
+              y: item.count,
+              value: item.value,
+              count: item.count,
+            });
+          });
+        }
+
         this.supplierBubbleChartData[0].data = graph_data;
-	
-	}
       }
     )
   }
@@ -155,7 +153,7 @@ export class MoreStuffComponent implements OnInit {
         let value_data = [];
         let count_data = [];
 
-        console.log(result.data);
+        console.log("Result being fetched.");
         result.data.map(item => {
           value_data.push({
             t: item.date,
@@ -176,7 +174,7 @@ export class MoreStuffComponent implements OnInit {
 
   bubbleChartUpdate() {
 	// this is called when daterange is changed
-	console.log("yeeeee");
+	console.log("Bubble chart updated.");
   }
 
   public yearSpendChartData: any[] = [
