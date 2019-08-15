@@ -6,9 +6,9 @@
           <h4 class="card-title mb-0">Spend amount and number of purchases by supplier name</h4>
         </div>
         <div class="col-sm-5 hidden-sm-down">
-          <input type="date" (ngModel)="bubbleChartBegin" (ngModelChange)="bubbleChartUpdate()">
+          <input type="date" (ngModel)="bubbleChartBegin" (ngModelChange)="bubbleChartUpdate()" (change)="bubbleChartUpdate()">
           <!-- THESE INPUT BOXES DO NOT WORK. Their value remains the client machine's date/time despite changing. -->
-          <input type="date" (ngModel)="bubbleChartEnd" (ngModelChange)="bubbleChartUpdate()">
+          <input type="date" (ngModel)="bubbleChartEnd" (ngModelChange)="bubbleChartUpdate()" (change)="bubbleChartUpdate()">
         </div>
       </div>
       <div>
