@@ -25,8 +25,7 @@ export class MoreStuffComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadYearSpend();
-   this.loadSupplierBubble(true, ('January 1, 2018'), ('January 1, 2019')); // pass start and end date ranges to this as Date()s
-    // this.loadSupplierBubble(false, ('00-00-0000'), ('00-00-0000')); // pass start and end date ranges to this as Date()s
+   this.loadSupplierBubble(false, ('January 1, 2018'), ('January 1, 2019')); // pass start and end date ranges to this as Date()s
     this.loadSupplierHistory();
   }
 
