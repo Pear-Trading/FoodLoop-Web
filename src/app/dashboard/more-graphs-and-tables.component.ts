@@ -63,11 +63,14 @@ export class MoreStuffComponent implements OnInit {
           console.log("using range " + start_range + " : " + end_range);
           result.data.map(item=> {
             let is_item_in_range = (new Date(item.date) >=  new Date(start_range) && new Date(item.date) <= new Date(end_range));
+            // there are a lot of `new Date(blah)` but that is what works for some reason.
 
             // IT WORKS!!!!!!!!!
             
             console.log("item.date : " + new Date(item.date));
+            console.log("start_range input box: " + start_range);
             console.log("start_range : " + new Date(start_range));
+            console.log("end_range input box: " + end_range);
             console.log("end_range : " + new Date(end_range));
             console.log("item.date >= start_range: " + (new Date(item.date) >=  new Date(start_range)));
             console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
@@ -182,6 +185,11 @@ export class MoreStuffComponent implements OnInit {
   }
 
   bubbleChartUpdate() {
+    console.log("start_range input box: " + this.bubbleChartBegin);
+    console.log("start_range : " + new Date(this.bubbleChartBegin));
+    console.log("end_range input box: " + this.bubbleChartEnd);
+    console.log("end_range : " + new Date(this.bubbleChartEnd));
+
   // this is called when daterange is changed
     this.loadSupplierBubble(true, (this.bubbleChartBegin), (this.bubbleChartEnd));
     console.log("Bubble chart updating...");

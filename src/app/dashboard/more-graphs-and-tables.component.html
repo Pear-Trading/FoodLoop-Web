@@ -7,6 +7,7 @@
         </div>
         <div class="col-sm-5 hidden-sm-down">
           <input type="date" (ngModel)="bubbleChartBegin" (ngModelChange)="bubbleChartUpdate()">
+          <!-- THESE INPUT BOXES DO NOT WORK. Their value remains the client machine's date/time despite changing. -->
           <input type="date" (ngModel)="bubbleChartEnd" (ngModelChange)="bubbleChartUpdate()">
         </div>
       </div>
