@@ -57,19 +57,20 @@ export class MoreStuffComponent implements OnInit {
     let graph_data = [];
 
     if (useRange == true) {
-      console.log("using range " + start_range + " : " + end_range);
+      // console.log("using range " + start_range + " : " + end_range);
       passed_graph_data.data.map(item=> {
         let is_item_in_range = (new Date(item.date) >=  new Date(start_range) && new Date(item.date) <= new Date(end_range));
         // there are a lot of `new Date(blah)` but that is what works for some reason.
         
-        console.log("item.date : " + new Date(item.date));
-        console.log("start_range input box: " + start_range);
-        console.log("start_range : " + new Date(start_range));
-        console.log("end_range input box: " + end_range);
-        console.log("end_range : " + new Date(end_range));
-        console.log("item.date >= start_range: " + (new Date(item.date) >=  new Date(start_range)));
-        console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
-        console.log("is_item_in_range: " + is_item_in_range);
+        console.log("item.date : " + (item.date));
+        console.log("Date(item.date) : " + new Date(item.date));
+        // console.log("start_range input box: " + start_range);
+        // console.log("start_range : " + new Date(start_range));
+        // console.log("end_range input box: " + end_range);
+        // console.log("end_range : " + new Date(end_range));
+        // console.log("item.date >= start_range: " + (new Date(item.date) >=  new Date(start_range)));
+        // console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
+        // console.log("is_item_in_range: " + is_item_in_range);
         console.log("----------------------");
         
         if (is_item_in_range) {
@@ -104,7 +105,17 @@ export class MoreStuffComponent implements OnInit {
   private loadSupplierBubble(useRange: boolean, start_range : string, end_range : string) {
     console.log("Fetching data for bubble chart... this will take a while. custom range = " + useRange);
 
-    if (this.cached_graph_data) {
+    var is_cached = false;
+
+    try {
+      if (this.cached_graph_data.length > 0) {
+        is_cached = true;
+      }
+    } catch {
+      // not cached
+    }
+
+    if (is_cached) {
       this.supplierBubbleChartData[0].data = this.formatGraphData(this.cached_graph_data, useRange, start_range, end_range);
     }
     else {
@@ -112,7 +123,7 @@ export class MoreStuffComponent implements OnInit {
         result => {
           this.cached_graph_data = result;
   
-          this.supplierBubbleChartData[0].data = this.formatGraphData(this.cached_graph_data, useRange, start_range, end_range);
+          this.supplierBubbleChartData[0].data = this.formatGraphData(result, useRange, start_range, end_range);
           console.log("Graph fetched with " + this.cached_graph_data.length + " items.");
         }
       )
