@@ -22,10 +22,12 @@ export class MoreStuffComponent implements OnInit {
   ) {
     this.bubbleChartBegin = moment().format('YYYY-MM-DD');
     this.bubbleChartEnd = moment().format('YYYY-MM-DD');
+    this.lineChartBegin = moment().format('YYYY-MM-DD');
+    this.lineChartEnd = moment().format('YYYY-MM-DD');
   }
 
   ngOnInit(): void {
-    this.loadYearSpend();
+    this.loadYearSpend(false, ('January 1, 2018'), ('January 1, 2019'));
    this.loadSupplierBubble(false, ('January 1, 2018'), ('January 1, 2019')); // pass start and end date ranges to this as Date()s
     this.loadSupplierHistory();
   }
@@ -273,6 +275,17 @@ export class MoreStuffComponent implements OnInit {
 
   randomData() {
     return Math.random();
+  }
+
+  lineChartUpdate() {
+    console.log("start_range input box: " + this.lineChartBegin.date);
+    console.log("start_range : " + new Date(this.lineChartBegin));
+    console.log("end_range input box: " + this.lineChartEnd);
+    console.log("end_range : " + new Date(this.lineChartEnd));
+
+    this.loadSupplierBubble(true, (this.bubbleChartBegin), (this.bubbleChartEnd));
+    console.log("Bubble chart updating...");
+
   }
 
   @ViewChild('supplierChart', {read: BaseChartDirective, static: false}) supplierChart: BaseChartDirective;
