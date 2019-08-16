@@ -108,8 +108,10 @@ export class MoreStuffComponent implements OnInit {
 
     var is_cached = false;
 
+    console.log(this.cached_graph_data);
+
     try {
-      if (this.cached_graph_data.length > 0) {
+      if (this.cached_graph_data) {
         is_cached = true;
       }
     } catch {
@@ -117,15 +119,17 @@ export class MoreStuffComponent implements OnInit {
     }
 
     if (is_cached) {
+      console.log("Using cached data of " + this.cached_graph_data.length + " items.");
       this.supplierBubbleChartData[0].data = this.formatGraphData(this.cached_graph_data, useRange, start_range, end_range);
     }
     else {
+      console.log("Not using cached data.");
       this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
         result => {
           this.cached_graph_data = result;
   
           this.supplierBubbleChartData[0].data = this.formatGraphData(result, useRange, start_range, end_range);
-          console.log("Graph fetched with " + this.cached_graph_data.length + " items.");
+          console.log("Graph fetched with " + this.supplierBubbleChartData[0].data.length + " items.");
         }
       )
     }
