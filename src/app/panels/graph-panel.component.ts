@@ -82,12 +82,12 @@ export class GraphPanel implements OnInit {
       pointHoverBackgroundColor: '#fff'
     },
     { // brandSuccess
-      backgroundColor: 'transparent',
+      backgroundColor: this.convertHex(this.brandInfo, 10),
       borderColor: this.brandSuccess,
       pointHoverBackgroundColor: '#fff'
     },
     { // brandDanger
-      backgroundColor: 'transparent',
+      backgroundColor: this.convertHex(this.brandDanger, 10),
       borderColor: this.brandDanger,
       pointHoverBackgroundColor: '#fff',
       borderWidth: 1,

@@ -12,6 +12,8 @@ import { NgModel } from '@angular/forms';
 export class MoreStuffComponent implements OnInit {
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
+  lineChartBegin: any;
+  lineChartEnd: any;
   bubbleChartBegin: any;
   bubbleChartEnd: any;
   cached_graph_data: any;
@@ -27,8 +29,8 @@ export class MoreStuffComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadYearSpend(false, ('January 1, 2018'), ('January 1, 2019'));
-   this.loadSupplierBubble(false, ('January 1, 2018'), ('January 1, 2019')); // pass start and end date ranges to this as Date()s
+    this.loadYearSpend();
+    this.loadSupplierBubble(false, ('January 1, 2018'), ('January 1, 2019')); // pass start and end date ranges to this as Date()s
     this.loadSupplierHistory();
   }
 
@@ -63,7 +65,7 @@ export class MoreStuffComponent implements OnInit {
       passed_graph_data.data.map(item=> {
         let is_item_in_range = (new Date(item.date.substring(0, 10)) >=  new Date(start_range) && new Date(item.date.substring(0, 10)) <= new Date(end_range));
         // there are a lot of `new Date(blah)` but that is what works for some reason.
-        
+
         console.log("item.date : " + (item.date));
         console.log("Date(item.date) : " + new Date(item.date));
         console.log("Date(item.date.substring(0, 10)) : " + new Date(item.date.substring(0, 10)));
@@ -75,7 +77,7 @@ export class MoreStuffComponent implements OnInit {
         // console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
         // console.log("is_item_in_range: " + is_item_in_range);
         console.log("----------------------");
-        
+
         if (is_item_in_range) {
           graph_data.push({
             t: new Date(item.date.substring(0, 10)),
@@ -129,7 +131,7 @@ export class MoreStuffComponent implements OnInit {
       this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
         result => {
           this.cached_graph_data = result;
-  
+
           this.supplierBubbleChartData[0].data = this.formatGraphData(result, useRange, start_range, end_range);
           console.log("Graph fetched with " + this.supplierBubbleChartData[0].data.length + " items.");
         }
@@ -283,8 +285,8 @@ export class MoreStuffComponent implements OnInit {
     console.log("end_range input box: " + this.lineChartEnd);
     console.log("end_range : " + new Date(this.lineChartEnd));
 
-    this.loadSupplierBubble(true, (this.bubbleChartBegin), (this.bubbleChartEnd));
-    console.log("Bubble chart updating...");
+    this.loadYearSpend();
+    console.log("Line chart updating...");
 
   }
 
