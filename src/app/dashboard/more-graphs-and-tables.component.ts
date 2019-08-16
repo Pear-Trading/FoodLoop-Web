@@ -14,7 +14,8 @@ export class MoreStuffComponent implements OnInit {
   @Input() public categories: any;
   bubbleChartBegin: any;
   bubbleChartEnd: any;
-  
+  cached_graph_data: any;
+
   constructor(
     private api: ApiService,
     private currencyPipe: CurrencyPipe,
@@ -52,63 +53,71 @@ export class MoreStuffComponent implements OnInit {
    * Supplier Bubble Chart Setup
    */
 
+  private formatGraphData(passed_graph_data: any, useRange : boolean, start_range: string, end_range: string) : any[] {
+    let graph_data = [];
+
+    if (useRange == true) {
+      console.log("using range " + start_range + " : " + end_range);
+      passed_graph_data.data.map(item=> {
+        let is_item_in_range = (new Date(item.date) >=  new Date(start_range) && new Date(item.date) <= new Date(end_range));
+        // there are a lot of `new Date(blah)` but that is what works for some reason.
+        
+        console.log("item.date : " + new Date(item.date));
+        console.log("start_range input box: " + start_range);
+        console.log("start_range : " + new Date(start_range));
+        console.log("end_range input box: " + end_range);
+        console.log("end_range : " + new Date(end_range));
+        console.log("item.date >= start_range: " + (new Date(item.date) >=  new Date(start_range)));
+        console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
+        console.log("is_item_in_range: " + is_item_in_range);
+        console.log("----------------------");
+        
+        if (is_item_in_range) {
+          graph_data.push({
+            t: item.date,
+            r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
+            supplier: item.seller,
+            y: item.count,
+            value: item.value,
+            count: item.count,
+          });
+        }
+      });
+
+      return graph_data;
+    } else {
+      passed_graph_data.data.map(item => {
+        graph_data.push({
+          t: item.date,
+          r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
+          supplier: item.seller,
+          y: item.count,
+          value: item.value,
+          count: item.count,
+        });
+      });
+
+      return graph_data;
+    }
+  }
+
   private loadSupplierBubble(useRange: boolean, start_range : string, end_range : string) {
     console.log("Fetching data for bubble chart... this will take a while. custom range = " + useRange);
 
-    this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
-      result => {
-        let graph_data = [];
-
-        if (useRange == true) {
-          console.log("using range " + start_range + " : " + end_range);
-          result.data.map(item=> {
-            let is_item_in_range = (new Date(item.date) >=  new Date(start_range) && new Date(item.date) <= new Date(end_range));
-            // there are a lot of `new Date(blah)` but that is what works for some reason.
-
-            // IT WORKS!!!!!!!!!
-            
-            console.log("item.date : " + new Date(item.date));
-            console.log("start_range input box: " + start_range);
-            console.log("start_range : " + new Date(start_range));
-            console.log("end_range input box: " + end_range);
-            console.log("end_range : " + new Date(end_range));
-            console.log("item.date >= start_range: " + (new Date(item.date) >=  new Date(start_range)));
-            console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
-            console.log("is_item_in_range: " + is_item_in_range);
-            console.log("----------------------");
-            
-            if (is_item_in_range) {
-              graph_data.push({
-                t: item.date,
-                r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
-                supplier: item.seller,
-                y: item.count,
-                value: item.value,
-                count: item.count,
-              });
-            }
-          });
-
-          this.supplierBubbleChartData[0].data = graph_data;
-        } else {
-          result.data.map(item => {
-            graph_data.push({
-              t: item.date,
-              r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
-              supplier: item.seller,
-              y: item.count,
-              value: item.value,
-              count: item.count,
-            });
-          });
-
-          this.supplierBubbleChartData[0].data = graph_data;
+    if (this.cached_graph_data) {
+      this.supplierBubbleChartData[0].data = this.formatGraphData(this.cached_graph_data, useRange, start_range, end_range);
+    }
+    else {
+      this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
+        result => {
+          this.cached_graph_data = result;
+  
+          this.supplierBubbleChartData[0].data = this.formatGraphData(this.cached_graph_data, useRange, start_range, end_range);
+          console.log("Graph fetched with " + this.cached_graph_data.length + " items.");
         }
+      )
+    }
 
-        this.supplierBubbleChartData[0].data = graph_data;
-        console.log("Graph fetched with " + graph_data.length + " items.");
-      }
-    )
   }
 
   public supplierBubbleChartType: ChartType = 'bubble';
@@ -165,7 +174,7 @@ export class MoreStuffComponent implements OnInit {
         let value_data = [];
         let count_data = [];
 
-        console.log("Graph being fetched.");
+        console.log("Graph being fetched from server.");
         result.data.map(item => {
           value_data.push({
             t: item.date,
@@ -186,13 +195,10 @@ export class MoreStuffComponent implements OnInit {
 
   bubbleChartUpdate() {
     console.log("start_range input box: " + this.bubbleChartBegin);
-    console.log("start_range : " + new Date(this.bubbleChartBegin));
     console.log("end_range input box: " + this.bubbleChartEnd);
-    console.log("end_range : " + new Date(this.bubbleChartEnd));
 
   // this is called when daterange is changed
     this.loadSupplierBubble(true, (this.bubbleChartBegin), (this.bubbleChartEnd));
-    console.log("Bubble chart updating...");
   /*
     bubbleChartBegin: any;
     bubbleChartEnd: any;
