@@ -44,8 +44,8 @@ export class OrgPiePanel implements OnInit {
       'blue'
     ]
   },
-  { borderWidth: [10]
-  }
+  { borderWidth: [100]
+  },
 ];
 
   public doughnutChartLabelsLocal: string[] = [];
