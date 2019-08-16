@@ -2,13 +2,13 @@
   <div class="card">
     <div class="card-block">
       <div class="row">
-        <div class="col-sm-7">
-          <h4 class="card-title mb-0">Spend amount and number of purchases by supplier name</h4>
+        <div class="col-sm-8">
+          <h4 class="card-title mb-0">Supplier spend amount and number of purchases</h4>
         </div>
-        <div class="col-sm-5 hidden-sm-down">
-          <input type="date" (ngModel)="bubbleChartBegin" (ngModelChange)="bubbleChartUpdate()" (change)="bubbleChartUpdate()">
+        <div class="col-sm-4 hidden-sm-down">
+          <input type="date" ([value])="bubbleChartBegin" (change)="bubbleChartUpdate()">
           <!-- THESE INPUT BOXES DO NOT WORK. Their value remains the client machine's date/time despite changing. -->
-          <input type="date" (ngModel)="bubbleChartEnd" (ngModelChange)="bubbleChartUpdate()" (change)="bubbleChartUpdate()">
+          <input type="date" ([value])="bubbleChartEnd" (change)="bubbleChartUpdate()">
         </div>
       </div>
       <div>
@@ -25,12 +25,12 @@
   <div class="card">
     <div class="card-block">
       <div class="row">
-        <div class="col-sm-7">
+        <div class="col-sm-8">
           <h4 class="card-title mb-0">Spend amount and number of organisations</h4>
         </div>
-        <div class="col-sm-5 hidden-sm-down">
-    <!--      <input type="date" id="yearSpendChartBegin" name="yearSpendChartBegin" ng-model="yearSpendChartBegin" ng-change="yearSpendChartBegin"> -->
-    <!--      <input type="date" id="yearSpendChartEnd" name="yearSpendChartEnd" ng-model="yearSpendChartEnd" ng-change="yearSpendChartEnd"> -->
+        <div class="col-sm-4 hidden-sm-down">
+          <input type="date" ([value])="lineChartBegin" (change)="lineChartUpdate()">
+          <input type="date" ([value])="lineChartEnd" (change)="lineChartUpdate()">
         </div>
       </div>
       <div>

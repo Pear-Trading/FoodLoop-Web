@@ -14,17 +14,19 @@ export class MoreStuffComponent implements OnInit {
   @Input() public categories: any;
   bubbleChartBegin: any;
   bubbleChartEnd: any;
-  
+
   constructor(
     private api: ApiService,
     private currencyPipe: CurrencyPipe,
   ) {
     this.bubbleChartBegin = moment().format('YYYY-MM-DD');
     this.bubbleChartEnd = moment().format('YYYY-MM-DD');
+    this.lineChartBegin = moment().format('YYYY-MM-DD');
+    this.lineChartEnd = moment().format('YYYY-MM-DD');
   }
 
   ngOnInit(): void {
-    this.loadYearSpend();
+    this.loadYearSpend(false, ('January 1, 2018'), ('January 1, 2019'));
    this.loadSupplierBubble(false, ('January 1, 2018'), ('January 1, 2019')); // pass start and end date ranges to this as Date()s
     this.loadSupplierHistory();
   }
@@ -66,7 +68,7 @@ export class MoreStuffComponent implements OnInit {
             // there are a lot of `new Date(blah)` but that is what works for some reason.
 
             // IT WORKS!!!!!!!!!
-            
+
             console.log("item.date : " + new Date(item.date));
             console.log("start_range input box: " + start_range);
             console.log("start_range : " + new Date(start_range));
@@ -76,11 +78,11 @@ export class MoreStuffComponent implements OnInit {
             console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
             console.log("is_item_in_range: " + is_item_in_range);
             console.log("----------------------");
-            
+
             if (is_item_in_range) {
               graph_data.push({
                 t: item.date,
-                r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
+                r: item.value > 1000000 ? (item.value / 100000) : (item.value / 100000) + 5,
                 supplier: item.seller,
                 y: item.count,
                 value: item.value,
@@ -94,7 +96,7 @@ export class MoreStuffComponent implements OnInit {
           result.data.map(item => {
             graph_data.push({
               t: item.date,
-              r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
+              r: item.value > 1000000 ? (item.value / 100000) : (item.value / 100000) + 5,
               supplier: item.seller,
               y: item.count,
               value: item.value,
@@ -251,6 +253,17 @@ export class MoreStuffComponent implements OnInit {
 
   randomData() {
     return Math.random();
+  }
+
+  lineChartUpdate() {
+    console.log("start_range input box: " + this.lineChartBegin.date);
+    console.log("start_range : " + new Date(this.lineChartBegin));
+    console.log("end_range input box: " + this.lineChartEnd);
+    console.log("end_range : " + new Date(this.lineChartEnd));
+
+    this.loadSupplierBubble(true, (this.bubbleChartBegin), (this.bubbleChartEnd));
+    console.log("Bubble chart updating...");
+
   }
 
   @ViewChild('supplierChart', {read: BaseChartDirective, static: false}) supplierChart: BaseChartDirective;

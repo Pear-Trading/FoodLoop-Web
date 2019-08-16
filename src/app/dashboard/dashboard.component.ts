@@ -46,9 +46,9 @@ export class DashboardComponent {
     },
     {
       type: 'graph',
-      name: 'sales_all',
+      name: 'sales_last_year',
       icon: 'icon-diamond',
-      title: 'All Sales',
+      title: 'Sales Last Year',
       dataType: DataType.currency,
     },
     {
@@ -65,8 +65,8 @@ export class DashboardComponent {
     },
     {
       type: 'graph',
-      name: 'purchases_all;',
-      title: 'All Purchases',
+      name: 'purchases_last_year;',
+      title: 'Purchases Last Year',
       dataType: DataType.currency,
     },
   ];
