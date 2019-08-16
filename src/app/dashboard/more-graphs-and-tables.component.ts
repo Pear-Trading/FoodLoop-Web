@@ -15,6 +15,7 @@ export class MoreStuffComponent implements OnInit {
   bubbleChartBegin: any;
   bubbleChartEnd: any;
   cached_graph_data: any;
+  isBubbleChartLoaded = false;
 
   constructor(
     private api: ApiService,
@@ -26,7 +27,7 @@ export class MoreStuffComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadYearSpend();
-   this.loadSupplierBubble(false, ('January 1, 2018'), ('January 1, 2019')); // pass start and end date ranges to this as Date()s
+    this.loadSupplierBubble(false, ('0'), ('0'));
     this.loadSupplierHistory();
   }
 
@@ -104,11 +105,10 @@ export class MoreStuffComponent implements OnInit {
   }
 
   private loadSupplierBubble(useRange: boolean, start_range : string, end_range : string) {
-    console.log("Fetching data for bubble chart... this will take a while. custom range = " + useRange);
+    this.isBubbleChartLoaded = false;
+    // console.log("Fetching data for bubble chart... this will take a while. custom range = " + useRange);
 
     var is_cached = false;
-
-    console.log(this.cached_graph_data);
 
     try {
       if (this.cached_graph_data) {
@@ -121,6 +121,8 @@ export class MoreStuffComponent implements OnInit {
     if (is_cached) {
       console.log("Using cached data of " + this.cached_graph_data.length + " items.");
       this.supplierBubbleChartData[0].data = this.formatGraphData(this.cached_graph_data, useRange, start_range, end_range);
+      this.isBubbleChartLoaded = true;
+      console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
     }
     else {
       console.log("Not using cached data.");
@@ -130,10 +132,13 @@ export class MoreStuffComponent implements OnInit {
   
           this.supplierBubbleChartData[0].data = this.formatGraphData(result, useRange, start_range, end_range);
           console.log("Graph fetched with " + this.supplierBubbleChartData[0].data.length + " items.");
+          this.isBubbleChartLoaded = true;
+          console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
         }
       )
     }
 
+    console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
   }
 
   public supplierBubbleChartType: ChartType = 'bubble';
@@ -215,6 +220,8 @@ export class MoreStuffComponent implements OnInit {
 
   // this is called when daterange is changed
     this.loadSupplierBubble(true, (this.bubbleChartBegin), (this.bubbleChartEnd));
+
+    console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
   /*
     bubbleChartBegin: any;
     bubbleChartEnd: any;
