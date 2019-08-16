@@ -59,11 +59,12 @@ export class MoreStuffComponent implements OnInit {
     if (useRange == true) {
       // console.log("using range " + start_range + " : " + end_range);
       passed_graph_data.data.map(item=> {
-        let is_item_in_range = (new Date(item.date) >=  new Date(start_range) && new Date(item.date) <= new Date(end_range));
+        let is_item_in_range = (new Date(item.date.substring(0, 10)) >=  new Date(start_range) && new Date(item.date.substring(0, 10)) <= new Date(end_range));
         // there are a lot of `new Date(blah)` but that is what works for some reason.
         
         console.log("item.date : " + (item.date));
         console.log("Date(item.date) : " + new Date(item.date));
+        console.log("Date(item.date.substring(0, 10)) : " + new Date(item.date.substring(0, 10)));
         // console.log("start_range input box: " + start_range);
         // console.log("start_range : " + new Date(start_range));
         // console.log("end_range input box: " + end_range);
@@ -75,7 +76,7 @@ export class MoreStuffComponent implements OnInit {
         
         if (is_item_in_range) {
           graph_data.push({
-            t: item.date,
+            t: new Date(item.date.substring(0, 10)),
             r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
             supplier: item.seller,
             y: item.count,
