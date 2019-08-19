@@ -71,7 +71,6 @@ export class DashboardCustomerComponent implements OnInit {
           xAxes:[{
             scaleLabel: {
               display:true,
-              labelString: 'Category'
             },
               stacked:true,
 
