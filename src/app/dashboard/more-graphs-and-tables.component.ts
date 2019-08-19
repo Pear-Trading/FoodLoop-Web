@@ -17,6 +17,7 @@ export class MoreStuffComponent implements OnInit {
   bubbleChartBegin: any;
   bubbleChartEnd: any;
   cached_graph_data: any;
+  isBubbleChartLoaded = false;
 
   constructor(
     private api: ApiService,
@@ -30,7 +31,7 @@ export class MoreStuffComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadYearSpend();
-    this.loadSupplierBubble(false, ('January 1, 2018'), ('January 1, 2019')); // pass start and end date ranges to this as Date()s
+    this.loadSupplierBubble(false, ('0'), ('0'));
     this.loadSupplierHistory();
   }
 
@@ -65,10 +66,10 @@ export class MoreStuffComponent implements OnInit {
       passed_graph_data.data.map(item=> {
         let is_item_in_range = (new Date(item.date.substring(0, 10)) >=  new Date(start_range) && new Date(item.date.substring(0, 10)) <= new Date(end_range));
         // there are a lot of `new Date(blah)` but that is what works for some reason.
-
-        console.log("item.date : " + (item.date));
-        console.log("Date(item.date) : " + new Date(item.date));
-        console.log("Date(item.date.substring(0, 10)) : " + new Date(item.date.substring(0, 10)));
+        
+        // console.log("item.date : " + (item.date));
+        // console.log("Date(item.date) : " + new Date(item.date));
+        // console.log("Date(item.date.substring(0, 10)) : " + new Date(item.date.substring(0, 10)));
         // console.log("start_range input box: " + start_range);
         // console.log("start_range : " + new Date(start_range));
         // console.log("end_range input box: " + end_range);
@@ -76,8 +77,8 @@ export class MoreStuffComponent implements OnInit {
         // console.log("item.date >= start_range: " + (new Date(item.date) >=  new Date(start_range)));
         // console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
         // console.log("is_item_in_range: " + is_item_in_range);
-        console.log("----------------------");
-
+        // console.log("----------------------");
+        
         if (is_item_in_range) {
           graph_data.push({
             t: new Date(item.date.substring(0, 10)),
@@ -108,11 +109,10 @@ export class MoreStuffComponent implements OnInit {
   }
 
   private loadSupplierBubble(useRange: boolean, start_range : string, end_range : string) {
-    console.log("Fetching data for bubble chart... this will take a while. custom range = " + useRange);
+    this.isBubbleChartLoaded = false;
+    // console.log("Fetching data for bubble chart... this will take a while. custom range = " + useRange);
 
     var is_cached = false;
-
-    console.log(this.cached_graph_data);
 
     try {
       if (this.cached_graph_data) {
@@ -123,21 +123,26 @@ export class MoreStuffComponent implements OnInit {
     }
 
     if (is_cached) {
-      console.log("Using cached data of " + this.cached_graph_data.length + " items.");
+      // console.log("Using cached data of " + this.cached_graph_data.length + " items.");
       this.supplierBubbleChartData[0].data = this.formatGraphData(this.cached_graph_data, useRange, start_range, end_range);
+      this.isBubbleChartLoaded = true;
+      // console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
     }
     else {
-      console.log("Not using cached data.");
+      // console.log("Not using cached data.");
       this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
         result => {
           this.cached_graph_data = result;
 
           this.supplierBubbleChartData[0].data = this.formatGraphData(result, useRange, start_range, end_range);
-          console.log("Graph fetched with " + this.supplierBubbleChartData[0].data.length + " items.");
+          // console.log("Graph fetched with " + this.supplierBubbleChartData[0].data.length + " items.");
+          this.isBubbleChartLoaded = true;
+          // console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
         }
       )
     }
 
+    // console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
   }
 
   public supplierBubbleChartType: ChartType = 'bubble';
@@ -194,7 +199,7 @@ export class MoreStuffComponent implements OnInit {
         let value_data = [];
         let count_data = [];
 
-        console.log("Graph being fetched from server.");
+        console.log("The server is UP");
         result.data.map(item => {
           value_data.push({
             t: item.date,
@@ -214,11 +219,13 @@ export class MoreStuffComponent implements OnInit {
   }
 
   bubbleChartUpdate() {
-    console.log("start_range input box: " + this.bubbleChartBegin);
-    console.log("end_range input box: " + this.bubbleChartEnd);
+    // console.log("start_range input box: " + this.bubbleChartBegin);
+    // console.log("end_range input box: " + this.bubbleChartEnd);
 
   // this is called when daterange is changed
     this.loadSupplierBubble(true, (this.bubbleChartBegin), (this.bubbleChartEnd));
+
+    // console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
   /*
     bubbleChartBegin: any;
     bubbleChartEnd: any;
