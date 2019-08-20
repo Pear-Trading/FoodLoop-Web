@@ -97,13 +97,13 @@ export class DashboardComponent {
 
   public purchaseNotEssential: number;
   public purchaseEssential: number;
-  public showEssentialBarChart = false;
+  public showEssentialBarChart:boolean = false;
   public showCategoryBarChart = false;
   public showCategoryDoughnutChart = false;
 
-  public barChartDataEssential:any[]=[
-    {data: 0, label: 'Essential', stack: '1'},
-    {data: 0, label: 'Non-Essential', stack: '1'},
+  public barChartDataEssential: ChartDataSets[] = [
+    {data: [0], label: 'Essential', stack: '1'},
+    {data: [0], label: 'Non-Essential', stack: '1'},
   ];
   public barChartLabelsEssential:string[] = ['All Purchases'];
   public barChartOptionsEssential:any = {
@@ -247,23 +247,28 @@ export class DashboardComponent {
         this.setWeekPurchaseList(result.weeks);
         this.setWeekData(result);
         this.setChartDataCat(result.data.cat_total);
+        this.setChartDataEssential(result.data.essentials);
         this.totalCategoryList = result.data.cat_list;
         if (this.totalCategoryList) {
           this.showTotalCategoryList = true;
         }
-        this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
-        this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
-        this.barChartDataEssential = [
-          {data: this.purchaseEssential, label: 'Essential', stack: '1'},
-          {data: this.purchaseNotEssential, label: 'Non-Essential', stack: '1'},
-        ];
-        this.showEssentialBarChart = true;
       },
       error => {
         console.log('Retrieval Error');
         console.log( error._body );
       }
     );
+  }
+
+  private setChartDataEssential (dataEs: any) {
+    this.purchaseEssential = dataEs.purchase_no_essential_total;
+    this.purchaseNotEssential = dataEs.purchase_no_total - this.purchaseEssential;
+    this.barChartDataEssential = [
+      {data: [this.purchaseEssential], label: 'Essential', stack: '1'},
+      {data: [this.purchaseNotEssential], label: 'Non-Essential', stack: '1'},
+    ];
+    this.showEssentialBarChart = true;
+    console.log(this.barChartDataEssential);
   }
 
   private setChartDataCat(dataCat: any) {
