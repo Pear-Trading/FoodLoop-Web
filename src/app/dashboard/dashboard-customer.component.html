@@ -17,10 +17,10 @@
           <div id="stacked-bar" dx-chart="chartOptions"></div>
       </div> -->
     </div><!--/.col-->
-    <div *ngIf="showCategoryDoughnutChart" class="col-xl-6">
-      <div class="card">
+    <!--<div *ngIf="showCategoryDoughnutChart" class="col-xl-6">
+      <div class="card"> -->
           <!-- <body style="background-color:rgb(0,0,0);"> -->
-            <div class="card-block">
+      <!--      <div class="card-block">
               <div class="row">
                 <div class="col-12">
                   <h4 class="card-title mb-0">Spending by Category</h4>
@@ -31,15 +31,15 @@
                 [datasets]="doughnutChartDataCategory"
                 [labels]="doughnutChartLabelsCategory"
                 [options]="doughnutChartOptionsCategory"
+                [colors]= "doughnutChartColoursCategory"
                 [legend]="chartLegend"
                 [chartType]="chartType"
                 (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
               </div>
-            </div>
+            </div> -->
           <!-- </body> -->
-        </div>
-    </div><!--/.col-->
+    <!--    </div> --><!--/.col-->
     <div *ngIf="showEssentialBarChart" class="col-xl-6">
       <div class="card">
         <div class="card-block">

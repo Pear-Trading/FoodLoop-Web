@@ -41,7 +41,7 @@ export class MoreStuffComponent implements OnInit {
       backgroundColor: [
         'red',
         'green',
-        'blue',
+        '#52afed',
         'purple',
         'yellow',
         'brown',
@@ -66,7 +66,7 @@ export class MoreStuffComponent implements OnInit {
       passed_graph_data.data.map(item=> {
         let is_item_in_range = (new Date(item.date.substring(0, 10)) >=  new Date(start_range) && new Date(item.date.substring(0, 10)) <= new Date(end_range));
         // there are a lot of `new Date(blah)` but that is what works for some reason.
-        
+
         // console.log("item.date : " + (item.date));
         // console.log("Date(item.date) : " + new Date(item.date));
         // console.log("Date(item.date.substring(0, 10)) : " + new Date(item.date.substring(0, 10)));
@@ -78,11 +78,11 @@ export class MoreStuffComponent implements OnInit {
         // console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
         // console.log("is_item_in_range: " + is_item_in_range);
         // console.log("----------------------");
-        
+
         if (is_item_in_range) {
           graph_data.push({
             t: new Date(item.date.substring(0, 10)),
-            r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
+            r: item.value > 1000000 ? (item.value / 100000) : (item.value / 100000) + 5,
             supplier: item.seller,
             y: item.count,
             value: item.value,
@@ -96,7 +96,7 @@ export class MoreStuffComponent implements OnInit {
       passed_graph_data.data.map(item => {
         graph_data.push({
           t: item.date,
-          r: item.value > 1000000 ? (item.value / 1000000) + 10 : (item.value / 100000) + 5,
+          r: item.value > 1000000 ? (item.value / 200000) : (item.value / 100000) + 5,
           supplier: item.seller,
           y: item.count,
           value: item.value,
