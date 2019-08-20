@@ -5,12 +5,12 @@
         <div class="col-sm-8">
           <h4 class="card-title mb-0">Supplier spend amount and number of purchases</h4>
         </div>
-        <div class="col-sm-5 hidden-sm-down"  *ngIf="isBubbleChartLoaded">
+        <div class="col-sm-4 hidden-sm-down"  *ngIf="isBubbleChartLoaded">
           <input type="date" [(ngModel)]="bubbleChartBegin" (change)="bubbleChartUpdate()">
           <input type="date" [(ngModel)]="bubbleChartEnd" (change)="bubbleChartUpdate()">
         </div>
       </div>
-      <div class="col-sm-7"  *ngIf="!isBubbleChartLoaded">
+      <div class="col-sm-12"  *ngIf="!isBubbleChartLoaded">
         <div class="spinner"></div>
       </div>
       <div *ngIf="isBubbleChartLoaded">
@@ -29,10 +29,6 @@
       <div class="row">
         <div class="col-sm-8">
           <h4 class="card-title mb-0">Spend amount and number of organisations</h4>
-        </div>
-        <div class="col-sm-5 hidden-sm-down">
-    <!--      <input type="date" id="yearSpendChartBegin" name="yearSpendChartBegin" ng-model="yearSpendChartBegin" ng-change="yearSpendChartBegin"> -->
-    <!--      <input type="date" id="yearSpendChartEnd" name="yearSpendChartEnd" ng-model="yearSpendChartEnd" ng-change="yearSpendChartEnd"> -->
         </div>
       </div>
       <div>

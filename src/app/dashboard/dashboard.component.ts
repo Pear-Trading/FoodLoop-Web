@@ -46,9 +46,9 @@ export class DashboardComponent {
     },
     {
       type: 'graph',
-      name: 'sales_last_year',
+      name: 'sales_last_quart',
       icon: 'icon-diamond',
-      title: 'Sales Last Year',
+      title: 'Sales Last Quart',
       dataType: DataType.currency,
     },
     {
@@ -65,8 +65,8 @@ export class DashboardComponent {
     },
     {
       type: 'graph',
-      name: 'purchases_last_year;',
-      title: 'Purchases Last Year',
+      name: 'purchases_last_quart;',
+      title: 'Purchases Last Quart',
       dataType: DataType.currency,
     },
   ];

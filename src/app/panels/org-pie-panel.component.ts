@@ -18,30 +18,30 @@ export class OrgPiePanel implements OnInit {
   public doughnutChartColors: any[] = [
     {
        backgroundColor: [
-         'red',
+         '#ffa1b5',
          'green',
-         'pink',
+         '#52afed',
          'purple',
          'yellow',
          'brown',
          'magenta',
          'cyan',
          'orange',
-         'blue'
+         'pink'
     ]
   },
   {
     borderColor: [
       'red',
       'green',
-      'pink',
+      'blue',
       'purple',
       'yellow',
       'brown',
       'magenta',
       'cyan',
       'orange',
-      'blue'
+      'pink'
     ]
   },
   { borderWidth: [100]

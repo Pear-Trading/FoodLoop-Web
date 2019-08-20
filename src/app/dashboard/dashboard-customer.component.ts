@@ -35,10 +35,25 @@ export class DashboardCustomerComponent implements OnInit {
   public bootstrapColours: string[] = ['bg-primary', 'bg-secondary', 'bg-success',
 'bg-danger', 'bg-warning', 'bg-info'];
 
-  public chartType = 'bar';
+  public chartType = 'doughnut';
   public chartLegend = true;
   public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
+  public doughnutChartColoursCategory: any[] = [
+               {
+                 backgroundColor:[
+                   'red',
+                   'green',
+                   'blue',
+                   'purple',
+                   'yellow',
+                   'brown',
+                   'magenta',
+                   'cyan',
+                   'orange',
+                   'pink'
+                 ]
+               }];
 
   public doughnutChartOptionsCategory:any = {
     tooltips: {
