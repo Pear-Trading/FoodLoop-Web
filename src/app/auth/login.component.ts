@@ -40,15 +40,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signin.value);
-
     this.api
     .login(this.signin.value)
     .subscribe(
       result => {
-        console.log('logged in!');
         this.loginStatus = 'success';
-        console.log(this.loginStatus);
         this.router.navigate([this.returnUrl]);
       },
       error => {
