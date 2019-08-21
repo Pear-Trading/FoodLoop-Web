@@ -27,7 +27,7 @@ export class PiePanel implements OnInit {
     'magenta',
     'cyan',
     'orange',
-    'pink'
+    'pink',
     ]
   },
   { borderColor:[
