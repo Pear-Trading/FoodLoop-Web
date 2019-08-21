@@ -42,16 +42,17 @@ export class DashboardCustomerComponent implements OnInit {
   public doughnutChartColoursCategory: any[] = [
                {
                  backgroundColor:[
-                   'red',
+                   '#ffa1b5',
                    'green',
-                   'blue',
+                   '#52afed',
                    'purple',
                    'yellow',
                    'brown',
                    'magenta',
                    'cyan',
                    'orange',
-                   'pink'
+                   'red',
+                   '#000000'
                  ]
                }];
 
@@ -117,7 +118,22 @@ export class DashboardCustomerComponent implements OnInit {
   public barChartLegendCategory:boolean = false;
   public barChartDataCategory:any[]=[];
   public barChartLabelsCategory:string[] = [];
-
+  public barChartColoursCategory: any[] = [
+    {
+      backgroundColor:[
+        '#ffa1b5',
+        'green',
+        '#52afed',
+        'purple',
+        'yellow',
+        'brown',
+        'magenta',
+        'cyan',
+        'orange',
+        'red',
+        '#000000'
+      ]
+    }];
 
 
   weekPurchaseList = {

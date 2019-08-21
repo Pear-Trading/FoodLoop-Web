@@ -80,6 +80,23 @@ export class DashboardComponent {
   public chartLegend = true;
   public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
+  public doughnutChartColoursCategory: any[] = [
+               {
+                 backgroundColor:[
+                   '#ffa1b5',
+                   'green',
+                   '#52afed',
+                   'purple',
+                   'yellow',
+                   'brown',
+                   'magenta',
+                   'cyan',
+                   'orange',
+                   'red',
+                   '#000000'
+                 ]
+               }];
+
 
   public doughnutChartOptionsCategory:any = {
     tooltips: {
@@ -121,16 +138,17 @@ export class DashboardComponent {
   public barChartColoursCategory: any[] = [
     {
       backgroundColor:[
-        'red',
+        '#ffa1b5',
         'green',
-        'blue',
+        '#52afed',
         'purple',
         'yellow',
         'brown',
         'magenta',
         'cyan',
         'orange',
-        'pink'
+        'red',
+        '#000000'
       ]
     }];
 
