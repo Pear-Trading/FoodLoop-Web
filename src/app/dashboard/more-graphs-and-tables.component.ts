@@ -82,7 +82,7 @@ export class MoreStuffComponent implements OnInit {
         if (is_item_in_range) {
           graph_data.push({
             t: new Date(item.date.substring(0, 10)),
-            r: item.value > 1000000 ? (item.value / 100000) : (item.value / 100000) + 5,
+            r: item.value > 1000000 ? (item.value / 200000) : (item.value / 100000) + 5,
             supplier: item.seller,
             y: item.count,
             value: item.value,
@@ -151,8 +151,7 @@ export class MoreStuffComponent implements OnInit {
       data: [],
       label: ["Spend"],
       borderColor: 'blue',
-      hoverBackgroundColor: 'blue',
-      hoverBorderColor: 'blue',
+      hoverBorderColor: 'black',
       radius: 5,
     },
   ];
@@ -287,19 +286,33 @@ export class MoreStuffComponent implements OnInit {
   }
 
   lineChartUpdate() {
-    console.log("start_range input box: " + this.lineChartBegin.date);
-    console.log("start_range : " + new Date(this.lineChartBegin));
-    console.log("end_range input box: " + this.lineChartEnd);
-    console.log("end_range : " + new Date(this.lineChartEnd));
-
-    this.loadYearSpend();
-    console.log("Line chart updating...");
+    this.loadYearSpend(true, (this.lineChartBegin), (this.lineChartEnd));
 
   }
 
   @ViewChild('supplierChart', {read: BaseChartDirective, static: false}) supplierChart: BaseChartDirective;
 
   private loadSupplierHistory() {
+    this.api.loadMiscUrl('organisation/external/supplier_history').subscribe(
+      result => {
+        let labels = [];
+        let year = [];
+        let half = [];
+        let quarter = [];
+        result.data.map(item => {
+          labels.push(item.name);
+          year.push(item.year_total);
+          half.push(item.half_total);
+          quarter.push(item.quarter_total);
+        });
+        this.supplierMonthChartData[0].data = quarter.slice(0,15);
+        this.supplierMonthChartData[1].data = half.slice(0,15);
+        this.supplierMonthChartData[2].data = year.slice(0,15);
+        this.supplierMonthChartLabels = labels.slice(0,15);
+      }
+    )
+  }
+  supplierChartUpdate() {
     this.api.loadMiscUrl('organisation/external/supplier_history').subscribe(
       result => {
         let labels = [];

@@ -84,16 +84,16 @@ export class DashboardComponent {
                {
                  backgroundColor:[
                    '#ffa1b5',
-                   'green',
+                   '#3cde52',
                    '#52afed',
-                   'purple',
-                   'yellow',
-                   'brown',
-                   'magenta',
-                   'cyan',
-                   'orange',
-                   'red',
-                   '#000000'
+                   '#c133e3',
+                   '#f7fa08',
+                   '#75152d',
+                   '#ee12ee',
+                   '#15eaea',
+                   '#eaa015',
+                   '#ea1515',
+                   '#2d4fcc'
                  ]
                }];
 
@@ -138,17 +138,17 @@ export class DashboardComponent {
   public barChartColoursCategory: any[] = [
     {
       backgroundColor:[
-        '#ffa1b5',
-        'green',
-        '#52afed',
-        'purple',
-        'yellow',
-        'brown',
-        'magenta',
-        'cyan',
-        'orange',
-        'red',
-        '#000000'
+          '#ffa1b5',
+          '#3cde52',
+          '#52afed',
+          '#c133e3',
+          '#f7fa08',
+          '#75152d',
+          '#ee12ee',
+          '#15eaea',
+          '#eaa015',
+          '#ea1515',
+          '#2d4fcc'
       ]
     }];
 

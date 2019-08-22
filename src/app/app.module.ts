@@ -41,7 +41,6 @@ import { P500Component } from './pages/500.component';
 // Submodules
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-
 import { ChartsModule } from 'ng2-charts';
 // import { StackedBarChartComponent } from './panels/stacked-bar.component';
 import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component';

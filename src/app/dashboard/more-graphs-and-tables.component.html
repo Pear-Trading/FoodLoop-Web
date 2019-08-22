@@ -30,6 +30,10 @@
         <div class="col-sm-8">
           <h4 class="card-title mb-0">Spend amount and number of organisations</h4>
         </div>
+        <div class="col-sm-4 hidden-sm-down">
+          <input type="date" [(ngModel)]="lineChartBegin" (change)="lineChartUpdate()">
+          <input type="date" [(ngModel)]="lineChartEnd" (change)="lineChartUpdate()">
+        </div>
       </div>
       <div>
         <canvas baseChart
@@ -45,8 +49,11 @@
   <div class="card">
     <div class="card-block">
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-8">
           <h4 class="card-title mb-0">Supplier Spend History</h4>
+        </div>
+        <div class="col-sm-4 hidden-sm-down">
+          <button (click)="supplierChartUpdate()">New Suppliers</button>
         </div>
       </div>
       <div>

@@ -18,16 +18,17 @@ export class PiePanel implements OnInit {
   public doughnutChartLabelsLocal: string[] = [];
   public doughnutChartColors: any[] = [
     { backgroundColor: [
-    '#ffa1b5',
-    'green',
-    '#52afed',
-    'purple',
-    'yellow',
-    'brown',
-    'magenta',
-    'cyan',
-    'orange',
-    'pink',
+        '#ffa1b5',
+        '#3cde52',
+        '#52afed',
+        '#c133e3',
+        '#f7fa08',
+        '#75152d',
+        '#ee12ee',
+        '#15eaea',
+        '#eaa015',
+        '#ea1515',
+        '#2d4fcc'
     ]
   },
   { borderColor:[
