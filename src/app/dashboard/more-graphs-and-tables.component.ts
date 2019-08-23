@@ -144,7 +144,9 @@ export class MoreStuffComponent implements OnInit {
 
     // console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
   }
-
+  private bubbleChartUpdate() {
+    console.log("test change");
+  }
   public supplierBubbleChartType: ChartType = 'bubble';
   public supplierBubbleChartData: any[] = [
     {
