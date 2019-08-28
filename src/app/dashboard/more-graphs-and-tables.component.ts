@@ -18,6 +18,7 @@ export class MoreStuffComponent implements OnInit {
   bubbleChartEnd: any;
   cached_graph_data: any;
   isBubbleChartLoaded = false;
+  isLineChartLoaded = false;
 
   constructor(
     private api: ApiService,
@@ -30,7 +31,7 @@ export class MoreStuffComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadYearSpend();
+    this.loadYearSpend(false, ('0'), ('0'));
     this.loadSupplierBubble(false, ('0'), ('0'));
     this.loadSupplierHistory();
   }
@@ -62,22 +63,8 @@ export class MoreStuffComponent implements OnInit {
     let graph_data = [];
 
     if (useRange == true) {
-      // console.log("using range " + start_range + " : " + end_range);
       passed_graph_data.data.map(item=> {
         let is_item_in_range = (new Date(item.date.substring(0, 10)) >=  new Date(start_range) && new Date(item.date.substring(0, 10)) <= new Date(end_range));
-        // there are a lot of `new Date(blah)` but that is what works for some reason.
-
-        // console.log("item.date : " + (item.date));
-        // console.log("Date(item.date) : " + new Date(item.date));
-        // console.log("Date(item.date.substring(0, 10)) : " + new Date(item.date.substring(0, 10)));
-        // console.log("start_range input box: " + start_range);
-        // console.log("start_range : " + new Date(start_range));
-        // console.log("end_range input box: " + end_range);
-        // console.log("end_range : " + new Date(end_range));
-        // console.log("item.date >= start_range: " + (new Date(item.date) >=  new Date(start_range)));
-        // console.log("item.date <= end_range: " + (new Date(item.date) <=  new Date(end_range)));
-        // console.log("is_item_in_range: " + is_item_in_range);
-        // console.log("----------------------");
 
         if (is_item_in_range) {
           graph_data.push({
