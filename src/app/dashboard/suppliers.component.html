@@ -3,6 +3,23 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
+          <strong>Search list of suppliers</strong>
+          <small>Search by name or postcode of suppliers here</small>
+        </div>
+          <div *ngIf="supplierListAvailable" class="card-block">
+            <div class="search-hero">
+              <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search for a supplier here">
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
           <strong>List of Suppliers</strong>
           <small>This lists all suppliers that have been submitted.</small>
         </div>

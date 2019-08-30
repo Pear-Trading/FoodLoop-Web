@@ -4,7 +4,7 @@ import { AgmCoreModule } from '@agm/core';
 import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { PaginationInstance } from 'ngx-pagination';
-
+import { FilterPipeModule } from 'ngx-filter-pipe'; 
 @Component({
   templateUrl: 'suppliers.component.html',
 })
