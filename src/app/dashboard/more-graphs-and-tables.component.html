@@ -10,6 +10,7 @@
           <input type="date" [(ngModel)]="bubbleChartEnd" (change)="bubbleChartUpdate()">
         </div>
       </div>
+      <small>vertical shows number of purchases, size of bubble shows the total spend amount, horizontal shows date</small>
       <div class="col-sm-12"  *ngIf="!isBubbleChartLoaded">
         <div class="spinner"></div>
       </div>
@@ -27,12 +28,9 @@
   <div class="card">
     <div class="card-block">
       <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
           <h4 class="card-title mb-0">Spend amount and number of organisations</h4>
-        </div>
-        <div class="col-sm-4 hidden-sm-down">
-          <input type="date" [(ngModel)]="lineChartBegin" (change)="lineChartUpdate()">
-          <input type="date" [(ngModel)]="lineChartEnd" (change)="lineChartUpdate()">
+          <small>horizontal axis shows date, vertical axis shows total number of orgs and amount spent</small>
         </div>
       </div>
       <div>
@@ -49,14 +47,15 @@
   <div class="card">
     <div class="card-block">
       <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-6">
           <h4 class="card-title mb-0">Supplier Spend History</h4>
         </div>
-        <div class="col-sm-4 hidden-sm-down">
-          <button type="button" class="btn btn-info" (click)="supplierChartUpdate()">New Suppliers</button>
+        <div class="col-sm-6 hidden-sm-down">
+          <button type="button" class="btn btn-danger" (click)="supplierChartPrevious()">Previous Suppliers</button>
+          <button type="button" class="btn btn-info" (click)="supplierChartNext()">Next Suppliers</button>
         </div>
       </div>
-      <div>
+      <div *ngIf="isSupplierChartLoaded">
         <canvas baseChart #supplierChart
                 [datasets]="supplierMonthChartData"
                 [options]="supplierMonthChartOptions"

@@ -44,6 +44,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ChartsModule } from 'ng2-charts';
 // import { StackedBarChartComponent } from './panels/stacked-bar.component';
 import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    FilterPipeModule,
     ReactiveFormsModule,
     NgxPaginationModule,
     BsDropdownModule.forRoot(),

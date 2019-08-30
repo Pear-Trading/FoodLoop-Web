@@ -17,8 +17,9 @@ export class MoreStuffComponent implements OnInit {
   bubbleChartBegin: any;
   bubbleChartEnd: any;
   cached_graph_data: any;
-  isBubbleChartLoaded = false;
-  isLineChartLoaded = false;
+  isBubbleChartLoaded:boolean = false;
+  isLineChartLoaded:boolean = false;
+  isSupplierChartLoaded:boolean = false;
 
   constructor(
     private api: ApiService,
@@ -31,7 +32,7 @@ export class MoreStuffComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadYearSpend(false, ('0'), ('0'));
+    this.loadYearSpend();
     this.loadSupplierBubble(false, ('0'), ('0'));
     this.loadSupplierHistory();
   }
@@ -130,9 +131,6 @@ export class MoreStuffComponent implements OnInit {
     }
 
     // console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
-  }
-  private bubbleChartUpdate() {
-    console.log("test change");
   }
   public supplierBubbleChartType: ChartType = 'bubble';
   public supplierBubbleChartData: any[] = [
@@ -275,7 +273,7 @@ export class MoreStuffComponent implements OnInit {
   }
 
   lineChartUpdate() {
-    this.loadYearSpend(true, (this.lineChartBegin), (this.lineChartEnd));
+    this.loadYearSpend();
 
   }
 
@@ -300,27 +298,48 @@ export class MoreStuffComponent implements OnInit {
         this.supplierMonthChartLabels = labels.slice(0,15);
       }
     )
+    this.isSupplierChartLoaded = true;
   }
-  supplierChartUpdate() {
-    this.api.loadMiscUrl('organisation/external/supplier_history').subscribe(
-      result => {
-        let labels = [];
-        let year = [];
-        let half = [];
-        let quarter = [];
-        result.data.map(item => {
-          labels.push(item.name);
-          year.push(item.year_total);
-          half.push(item.half_total);
-          quarter.push(item.quarter_total);
-        });
-        this.supplierMonthChartData[0].data = quarter.slice(0,15);
-        this.supplierMonthChartData[1].data = half.slice(0,15);
-        this.supplierMonthChartData[2].data = year.slice(0,15);
-        this.supplierMonthChartLabels = labels.slice(0,15);
-      }
-    )
+
+  private supplierChartNext() {
+    result => {
+      let labels = [];
+      let year = [];
+      let half = [];
+      let quarter = [];
+      result.data.map(item => {
+        labels.push(item.name);
+        year.push(item.year_total);
+        half.push(item.half_total);
+        quarter.push(item.quarter_total);
+      });
+      this.supplierMonthChartData[0].data = quarter.slice(16,30);
+      this.supplierMonthChartData[1].data = half.slice(16,30);
+      this.supplierMonthChartData[2].data = year.slice(16,30);
+      this.supplierMonthChartLabels = labels.slice(16,30);
+    }
+    this.isSupplierChartLoaded = true;
   }
+  private supplierChartPrevious() {
+    result => {
+      let labels = [];
+      let year = [];
+      let half = [];
+      let quarter = [];
+      result.data.map(item => {
+        labels.push(item.name);
+        year.push(item.year_total);
+        half.push(item.half_total);
+        quarter.push(item.quarter_total);
+      });
+      this.supplierMonthChartData[0].data = quarter.slice(0,15);
+      this.supplierMonthChartData[1].data = half.slice(0,15);
+      this.supplierMonthChartData[2].data = year.slice(0,15);
+      this.supplierMonthChartLabels = labels.slice(0,15);
+    }
+    this.isSupplierChartLoaded = true;
+  }
+
   public supplierMonthChartData: any[] = [
     {
       data: [],
