@@ -38,6 +38,7 @@ import { RecurResultComponent } from '../shared/recur-result.component';
 import { RecurTableComponent } from '../shared/recur-table.component';
 import { TransactionResultComponent } from '../shared/transaction-result.component';
 import { SupplierResultComponent } from '../shared/supplier-result.component';
+import { WardResultComponent } from '../shared/ward-result.component';
 import { PayrollResultComponent } from '../shared/payroll-result.component';
 import { LeaderboardResultComponent } from '../shared/leaderboard-result.component';
 
@@ -73,6 +74,7 @@ import { environment } from '../../environments/environment';
     CategoryMonthComponent,
     TransactionResultComponent,
     SupplierResultComponent,
+    WardResultComponent,
     PayrollLogComponent,
     PayrollResultComponent,
     LeaderboardComponent,

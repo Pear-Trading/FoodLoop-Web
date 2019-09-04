@@ -20,11 +20,14 @@ export class MoreStuffComponent implements OnInit {
   isBubbleChartLoaded:boolean = false;
   isLineChartLoaded:boolean = false;
   isSupplierChartLoaded:boolean = false;
+  wardList: any;
+  wardListAvailable = false;
 
   constructor(
     private api: ApiService,
     private currencyPipe: CurrencyPipe,
   ) {
+    this.tableSummary();
     this.bubbleChartBegin = moment().format('YYYY-MM-DD');
     this.bubbleChartEnd = moment().format('YYYY-MM-DD');
     this.lineChartBegin = moment().format('YYYY-MM-DD');
@@ -176,6 +179,21 @@ export class MoreStuffComponent implements OnInit {
     let dataset = data.datasets[tooltipItem.datasetIndex];
     let value = dataset.data[tooltipItem.index];
     return `${value.supplier}: ${this.currencyPipe.transform(value.value, 'GBP', 'symbol', '1.2-2')} over ${value.count} purchases`;
+  }
+
+  private tableSummary() {
+    this.api.loadMiscUrl('organisation/external/lcc_tables').subscribe(
+      result => {
+        this.wardList = result.wards;
+        if (this.wardList) {
+          this.wardListAvailable = true;
+        }
+      },
+      error => {
+        console.log('Retrieval Error');
+        console.log( error._body );
+      }
+    )
   }
 
 
