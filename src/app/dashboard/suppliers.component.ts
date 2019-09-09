@@ -4,7 +4,7 @@ import { AgmCoreModule } from '@agm/core';
 import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { PaginationInstance } from 'ngx-pagination';
-import { FilterPipeModule } from 'ngx-filter-pipe'; 
+import { FilterPipeModule } from 'ngx-filter-pipe';
 @Component({
   templateUrl: 'suppliers.component.html',
 })
@@ -12,6 +12,8 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
   public perPage: number = 10;
+
+  searchText: string;
 
   supplierList: any;
   supplierListAvailable = false;
@@ -25,10 +27,6 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
     totalItems: 0
   };
 
-  public recurClick(event: any): void {
-    this.onClick.emit( event );
-  }
-
   constructor(
     private api: ApiService,
   ) { }
@@ -38,7 +36,7 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
   }
 
   loadSuppliers(logPage: number) {
-    this.api.externalSuppliers(logPage, this.sortBy, this.sortDir, this.perPage).subscribe(
+    this.api.externalSuppliers(logPage, this.sortBy, this.sortDir, this.perPage, this.searchText).subscribe(
       result => {
         this.supplierList = result.suppliers;
         if (this.supplierList) {
@@ -63,6 +61,11 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
       this.sortBy = name;
       this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
       this.loadSuppliers(1);
+  }
+
+  searchSuppliers() {
+    // Go back to page 1 when searching
+    this.loadSuppliers(1);
   }
 
   ngAfterViewInit() {
