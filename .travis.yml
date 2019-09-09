@@ -2,7 +2,7 @@ addons:
   chrome: stable
 language: node_js
 node_js:
-  - 8
+  - node
 before_install:
   - openssl aes-256-cbc -K $encrypted_9d2af3734b6c_key -iv $encrypted_9d2af3734b6c_iv -in src/environments/environments.tar.enc -out src/environments/environments.tar -d
   - tar xf src/environments/environments.tar -C src/environments
