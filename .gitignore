@@ -22,7 +22,6 @@ $RECYCLE.BIN/
 /bower_components
 
 # IDEs and editors
-/.idea
 .project
 .classpath
 *.launch

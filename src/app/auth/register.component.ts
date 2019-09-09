@@ -116,7 +116,6 @@ export class RegisterComponent {
     town:         organisationForm.town,
     postcode:     organisationForm.postcode,
   };
-  console.log(data);
   this.api
       .register(data)
       .subscribe(

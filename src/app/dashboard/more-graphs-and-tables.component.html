@@ -1,0 +1,136 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>Filter</h4>
+        </div>
+        <div class="card-block">
+          <form class="form-inline">
+            <label class="mr-2" for="filter-from">From</label>
+            <input id="filter-from" class="form-control" type="date" [(ngModel)]="filterFrom" name="from">
+            <label class="mx-2" for="filter-to">To</label>
+            <input class="form-control" id="filter-to" type="date" [(ngModel)]="filterTo" name="to">
+            <button type="submit" class="btn btn-primary ml-2" (click)="loadData()">Filter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Transaction Types</strong>
+        </div>
+        <div *ngIf="metaTypeListAvailable" class="card-block">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Ward</th>
+                <th>Amount of Transactions</th>
+                <th>Sum of Transactions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr meta-type-result *ngFor="let type of metaTypeList" [type]="type"></tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngIf="!metaTypeListAvailable" class="card-block">
+          No Data available.
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Ward Spending</strong>
+        </div>
+        <div *ngIf="wardListAvailable" class="card-block">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Ward</th>
+                <th>Amount of Transactions</th>
+                <th>Sum of Transactions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ward-result *ngFor="let ward of wardList" [ward]="ward"></tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngIf="!wardListAvailable" class="card-block">
+          No Data available.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-block">
+      <div class="row">
+        <div class="col-sm-8">
+          <h4 class="card-title mb-0">Supplier spend amount and number of purchases</h4>
+        </div>
+      </div>
+      <small>vertical shows number of purchases, size of bubble shows the total spend amount, horizontal shows date</small>
+      <div class="col-sm-12"  *ngIf="!isBubbleChartLoaded">
+        <div class="spinner"></div>
+      </div>
+      <div *ngIf="isBubbleChartLoaded">
+        <canvas baseChart
+                [datasets]="supplierBubbleChartData"
+                [options]="supplierBubbleChartOptions"
+                [labels]="supplierBubbleChartLabels"
+                [legend]="showLegend"
+                [chartType]="supplierBubbleChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-block">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4 class="card-title mb-0">Spend & Number of Transactions</h4>
+          <small>Date against Value and Number of Transactions</small>
+        </div>
+      </div>
+      <div>
+        <canvas baseChart
+                [datasets]="yearSpendChartData"
+                [options]="yearSpendChartOptions"
+                [labels]="yearSpendChartLabels"
+                [legend]="showLegend"
+                [chartType]="yearSpendChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-block">
+      <div class="row">
+        <div class="col-sm-6">
+          <h4 class="card-title mb-0">Supplier Spend History</h4>
+        </div>
+        <div class="col-sm-6 hidden-sm-down">
+          <button type="button" class="btn btn-danger" (click)="previousSupplierHistoryPage()">Previous Page</button>
+          <button type="button" class="btn btn-info" (click)="nextSupplierHistoryPage()">Next Page</button>
+          <span class="ml-2">Page {{ _supplierHistoryPage }} of {{ _supplierHistoryPages }}</span>
+        </div>
+      </div>
+      <div *ngIf="isSupplierChartLoaded">
+        <canvas baseChart #supplierChart
+                [datasets]="supplierMonthChartData"
+                [options]="supplierMonthChartOptions"
+                [labels]="supplierMonthChartLabels"
+                [legend]="showLegend"
+                [chartType]="supplierMonthChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>

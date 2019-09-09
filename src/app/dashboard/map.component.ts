@@ -9,7 +9,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   templateUrl: 'map.component.html',
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  @ViewChild('statusModal') myStatusModal: ModalDirective;
+  @ViewChild('statusModal', { static: true }) myStatusModal: ModalDirective;
   lat: number = 54.0466;
   lng: number = -2.8007;
   zoom: number = 12;

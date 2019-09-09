@@ -17,6 +17,8 @@ import { PayrollLogComponent } from './payroll-log.component';
 import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
 import { TrailMapComponent } from './trail-map.component';
+import { MoreStuffComponent } from './more-graphs-and-tables.component';
+import { SuppliersComponent } from './suppliers.component';
 
 // Using child path to allow for FullLayout theming
 const routes: Routes = [
@@ -84,6 +86,16 @@ const routes: Routes = [
         path: 'feedback',
         component: FeedbackComponent,
         data: { title: 'Give Feedback' },
+      },
+      {
+        path: 'suppliers',
+        component: SuppliersComponent,
+        data: { title: 'Suppliers' }
+      },
+      {
+        path: 'more-graphs-and-tables',
+        component: MoreStuffComponent,
+        data: { title: 'Infographics'}
       }
     ],
   }
