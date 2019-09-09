@@ -22,6 +22,8 @@ export class MoreStuffComponent implements OnInit {
   isSupplierChartLoaded:boolean = false;
   wardList: any;
   wardListAvailable = false;
+  metaTypeList: any;
+  metaTypeListAvailable = false;
 
   constructor(
     private api: ApiService,
@@ -185,8 +187,12 @@ export class MoreStuffComponent implements OnInit {
     this.api.loadMiscUrl('organisation/external/lcc_tables').subscribe(
       result => {
         this.wardList = result.wards;
+        this.metaTypeList = Object.keys(result.types).map(key => result.types[key]);
         if (this.wardList) {
           this.wardListAvailable = true;
+        }
+        if (this.metaTypeList) {
+          this.metaTypeListAvailable = true;
         }
       },
       error => {
@@ -196,14 +202,12 @@ export class MoreStuffComponent implements OnInit {
     )
   }
 
-
   private loadYearSpend() {
     this.api.loadMiscUrl('organisation/external/year_spend').subscribe(
       result => {
         let value_data = [];
         let count_data = [];
 
-        console.log("The server is UP");
         result.data.map(item => {
           value_data.push({
             t: item.date,

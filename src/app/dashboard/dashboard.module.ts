@@ -40,6 +40,7 @@ import { RecurTableComponent } from '../shared/recur-table.component';
 import { TransactionResultComponent } from '../shared/transaction-result.component';
 import { SupplierResultComponent } from '../shared/supplier-result.component';
 import { WardResultComponent } from '../shared/ward-result.component';
+import { MetaTypeResultComponent } from '../shared/meta-type-result.component';
 import { PayrollResultComponent } from '../shared/payroll-result.component';
 import { LeaderboardResultComponent } from '../shared/leaderboard-result.component';
 
@@ -76,6 +77,7 @@ import { environment } from '../../environments/environment';
     TransactionResultComponent,
     SupplierResultComponent,
     WardResultComponent,
+    MetaTypeResultComponent,
     PayrollLogComponent,
     PayrollResultComponent,
     LeaderboardComponent,
