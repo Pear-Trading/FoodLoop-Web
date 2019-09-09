@@ -12,13 +12,13 @@ echo "Building releases for $VERSION"
 
 echo "Building Prod Release..."
 
-ng build --prod
+ng build --configuration=prod
 
 tar -czf ../WebApp-Releases/LocalLoop-Web-prod-$VERSION.tar.gz dist
 
 echo "Building Dev Release..."
 
-ng build --dev
+ng build --configuration=dev
 
 tar -czf ../WebApp-Releases/LocalLoop-Web-dev-$VERSION.tar.gz dist
 
