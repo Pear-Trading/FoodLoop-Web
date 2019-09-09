@@ -38,7 +38,7 @@ export class MoreStuffComponent implements OnInit {
     this.loadData();
   }
 
-  private loadData() {
+  public loadData() {
     this.tableSummary();
     this.loadYearSpend();
     this.loadSupplierBubble();
@@ -284,8 +284,8 @@ export class MoreStuffComponent implements OnInit {
 
   private _supplierHistoryData: any[];
   private _supplierHistoryPerPage: number = 15;
-  private _supplierHistoryPage: number = 1;
-  private _supplierHistoryPages: number = 1;
+  public _supplierHistoryPage: number = 1;
+  public _supplierHistoryPages: number = 1;
   public supplierMonthChartData: any[] = [
     {
       data: [],
