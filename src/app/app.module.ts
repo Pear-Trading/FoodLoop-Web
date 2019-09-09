@@ -43,7 +43,6 @@ import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ChartsModule } from 'ng2-charts';
 // import { StackedBarChartComponent } from './panels/stacked-bar.component';
-//import { MoreStuffComponent } from './dashboard/more-graphs-and-tables.component';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 
 
@@ -72,10 +71,8 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
-    //MoreStuffComponent,
     P404Component,
     P500Component,
-
   ],
   providers: [
     AuthGuard,
