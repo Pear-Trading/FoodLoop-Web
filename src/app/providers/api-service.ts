@@ -144,26 +144,28 @@ export class ApiService {
     );
   }
 
-  public loadMiscUrl(extra_url) {
+  public loadMiscUrl(extra_url, extraArgs = {}) {
     const key = this.sessionKey;
     return this.http.post<any>(
       this.apiUrl + '/v1/' + extra_url,
       {
         session_key : key,
+        ...extraArgs,
       }
     );
   }
 
-  public externalSuppliers(data, sortBy, sortDir, perPage) {
+  public externalSuppliers(page, sortBy, sortDir, perPage, search) {
     const key = this.sessionKey;
     return this.http.post<any>(
       this.apiUrl + '/v1/organisation/external/suppliers',
       {
         session_key : key,
-        page : data,
+        page : page,
         sort_by : sortBy,
         sort_dir : sortDir,
-        per_page : perPage
+        per_page : perPage,
+        search : search,
       }
     );
   }

@@ -1,10 +1,9 @@
-import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import {ApiService} from '../providers/api-service';
-import {BaseChartDirective, Color} from 'ng2-charts';
+import {BaseChartDirective} from 'ng2-charts';
 import {CurrencyPipe} from '@angular/common';
 import {ChartType} from "chart.js";
 import * as moment from 'moment';
-import { NgModel } from '@angular/forms';
 
 @Component({
   templateUrl: 'more-graphs-and-tables.component.html',
@@ -12,14 +11,13 @@ import { NgModel } from '@angular/forms';
 export class MoreStuffComponent implements OnInit {
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
-  lineChartBegin: any;
-  lineChartEnd: any;
-  bubbleChartBegin: any;
-  bubbleChartEnd: any;
-  cached_graph_data: any;
-  isBubbleChartLoaded:boolean = false;
-  isLineChartLoaded:boolean = false;
-  isSupplierChartLoaded:boolean = false;
+
+  // Global Filter Setup
+  filterFrom: any;
+  filterTo: any;
+
+  isBubbleChartLoaded: boolean = false;
+  isSupplierChartLoaded: boolean = false;
   wardList: any;
   wardListAvailable = false;
   metaTypeList: any;
@@ -29,114 +27,59 @@ export class MoreStuffComponent implements OnInit {
     private api: ApiService,
     private currencyPipe: CurrencyPipe,
   ) {
+    let now = moment();
+    this.filterTo = now.format('YYYY-MM-DD');
+    now.subtract(1, 'months');
+    this.filterFrom = now.format('YYYY-MM-DD');
     this.tableSummary();
-    this.bubbleChartBegin = moment().format('YYYY-MM-DD');
-    this.bubbleChartEnd = moment().format('YYYY-MM-DD');
-    this.lineChartBegin = moment().format('YYYY-MM-DD');
-    this.lineChartEnd = moment().format('YYYY-MM-DD');
   }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  private loadData() {
+    this.tableSummary();
     this.loadYearSpend();
-    this.loadSupplierBubble(false, ('0'), ('0'));
+    this.loadSupplierBubble();
     this.loadSupplierHistory();
   }
 
   public showLegend = true;
-  public sampleColours: Color[] = [
-    {
-      backgroundColor: [
-        'red',
-        'green',
-        '#52afed',
-        'purple',
-        'yellow',
-        'brown',
-        'magenta',
-        'cyan',
-        'orange',
-        'pink'
-      ]
-    }
-  ];
-
 
   /*
    * Supplier Bubble Chart Setup
    */
 
-  private formatGraphData(passed_graph_data: any, useRange : boolean, start_range: string, end_range: string) : any[] {
+  private formatGraphData(data: any): any[] {
     let graph_data = [];
 
-    if (useRange == true) {
-      passed_graph_data.data.map(item=> {
-        let is_item_in_range = (new Date(item.date.substring(0, 10)) >=  new Date(start_range) && new Date(item.date.substring(0, 10)) <= new Date(end_range));
-
-        if (is_item_in_range) {
-          graph_data.push({
-            t: new Date(item.date.substring(0, 10)),
-            r: item.value > 1000000 ? (item.value / 200000) : (item.value / 100000) + 5,
-            supplier: item.seller,
-            y: item.count,
-            value: item.value,
-            count: item.count,
-          });
-        }
+    data.data.map(item => {
+      graph_data.push({
+        t: item.date,
+        r: item.value > 1000000 ? (item.value / 200000) : (item.value / 100000) + 5,
+        supplier: item.seller,
+        y: item.count,
+        value: item.value,
+        count: item.count,
       });
+    });
 
-      return graph_data;
-    } else {
-      passed_graph_data.data.map(item => {
-        graph_data.push({
-          t: item.date,
-          r: item.value > 1000000 ? (item.value / 200000) : (item.value / 100000) + 5,
-          supplier: item.seller,
-          y: item.count,
-          value: item.value,
-          count: item.count,
-        });
-      });
-
-      return graph_data;
-    }
+    return graph_data;
   }
 
-  private loadSupplierBubble(useRange: boolean, start_range : string, end_range : string) {
-    this.isBubbleChartLoaded = false;
-    // console.log("Fetching data for bubble chart... this will take a while. custom range = " + useRange);
-
-    var is_cached = false;
-
-    try {
-      if (this.cached_graph_data) {
-        is_cached = true;
+  private loadSupplierBubble() {
+    this.api.loadMiscUrl('organisation/external/supplier_count', {
+      from: this.filterFrom,
+      to: this.filterTo,
+    }).subscribe(
+      result => {
+        this.supplierBubbleChartData[0].data = this.formatGraphData(result);
+        this.isBubbleChartLoaded = true;
       }
-    } catch {
-      // not cached
-    }
-
-    if (is_cached) {
-      // console.log("Using cached data of " + this.cached_graph_data.length + " items.");
-      this.supplierBubbleChartData[0].data = this.formatGraphData(this.cached_graph_data, useRange, start_range, end_range);
-      this.isBubbleChartLoaded = true;
-      // console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
-    }
-    else {
-      // console.log("Not using cached data.");
-      this.api.loadMiscUrl('organisation/external/supplier_count').subscribe(
-        result => {
-          this.cached_graph_data = result;
-
-          this.supplierBubbleChartData[0].data = this.formatGraphData(result, useRange, start_range, end_range);
-          // console.log("Graph fetched with " + this.supplierBubbleChartData[0].data.length + " items.");
-          this.isBubbleChartLoaded = true;
-          // console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
-        }
-      )
-    }
-
-    // console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
+    )
   }
+
   public supplierBubbleChartType: ChartType = 'bubble';
   public supplierBubbleChartData: any[] = [
     {
@@ -156,15 +99,15 @@ export class MoreStuffComponent implements OnInit {
         time: {
           unit: 'month'
         },
-        scaleLabel:{
-          display:true,
-          labelString:'Date'
+        scaleLabel: {
+          display: true,
+          labelString: 'Date'
         }
       }],
       yAxes: [{
         scaleLabel: {
-          display:true,
-          labelString:'Number of purchases'
+          display: true,
+          labelString: 'Number of purchases'
         }
       }]
     },
@@ -184,7 +127,10 @@ export class MoreStuffComponent implements OnInit {
   }
 
   private tableSummary() {
-    this.api.loadMiscUrl('organisation/external/lcc_tables').subscribe(
+    this.api.loadMiscUrl('organisation/external/lcc_tables', {
+      from: this.filterFrom,
+      to: this.filterTo,
+    }).subscribe(
       result => {
         this.wardList = result.wards;
         this.metaTypeList = Object.keys(result.types).map(key => result.types[key]);
@@ -197,13 +143,16 @@ export class MoreStuffComponent implements OnInit {
       },
       error => {
         console.log('Retrieval Error');
-        console.log( error._body );
+        console.log(error._body);
       }
     )
   }
 
   private loadYearSpend() {
-    this.api.loadMiscUrl('organisation/external/year_spend').subscribe(
+    this.api.loadMiscUrl('organisation/external/year_spend', {
+      from: this.filterFrom,
+      to: this.filterTo,
+    }).subscribe(
       result => {
         let value_data = [];
         let count_data = [];
@@ -224,20 +173,6 @@ export class MoreStuffComponent implements OnInit {
         this.yearSpendChartData[1].data = count_data;
       }
     )
-  }
-
-  bubbleChartUpdate() {
-    // console.log("start_range input box: " + this.bubbleChartBegin);
-    // console.log("end_range input box: " + this.bubbleChartEnd);
-
-  // this is called when daterange is changed
-    this.loadSupplierBubble(true, (this.bubbleChartBegin), (this.bubbleChartEnd));
-
-    // console.log("variable \"this.isBubbleChartLoaded\": " + this.isBubbleChartLoaded);
-  /*
-    bubbleChartBegin: any;
-    bubbleChartEnd: any;
-  */
   }
 
   public yearSpendChartData: any[] = [
@@ -261,6 +196,7 @@ export class MoreStuffComponent implements OnInit {
     },
   ];
   public yearSpendChartOptions: any = {
+    elements: {line: {tension: 0}},
     responsive: true,
     scales: {
       xAxes: [{
@@ -269,24 +205,16 @@ export class MoreStuffComponent implements OnInit {
           unit: 'month'
         },
         scaleLabel: {
-          display:true,
+          display: true,
           labelString: 'Date'
         }
       }],
       yAxes: [
-        {id: 'y-value', position: 'left', beginAtZero: true},
-        {id: 'y-count', position: 'right', beginAtZero: true},
+        {id: 'y-value', position: 'left', beginAtZero: true, type: 'linear'},
+        {id: 'y-count', position: 'right', beginAtZero: true, type: 'linear'},
       ]
     },
   };
-  public yearSpendChartColors: Color[] = [
-    {
-      backgroundColor: [
-        '#ffa1b5',
-        '#52afed'
-      ]
-    }
-  ];
   public yearSpendChartLabels: string[] = [];
   public yearSpendChartType: ChartType = 'line';
 
@@ -304,64 +232,60 @@ export class MoreStuffComponent implements OnInit {
   private loadSupplierHistory() {
     this.api.loadMiscUrl('organisation/external/supplier_history').subscribe(
       result => {
-        let labels = [];
-        let year = [];
-        let half = [];
-        let quarter = [];
-        result.data.map(item => {
-          labels.push(item.name);
-          year.push(item.year_total);
-          half.push(item.half_total);
-          quarter.push(item.quarter_total);
-        });
-        this.supplierMonthChartData[0].data = quarter.slice(0,15);
-        this.supplierMonthChartData[1].data = half.slice(0,15);
-        this.supplierMonthChartData[2].data = year.slice(0,15);
-        this.supplierMonthChartLabels = labels.slice(0,15);
+        this._supplierHistoryData = result.data;
+        this._supplierHistoryPage = 1;
+        this._supplierHistoryPages = Math.ceil(this._supplierHistoryData.length / this._supplierHistoryPerPage);
+        this.updateSupplierHistoryData();
+
+        this.isSupplierChartLoaded = true;
       }
-    )
-    this.isSupplierChartLoaded = true;
+    );
   }
 
-  private supplierChartNext() {
-    result => {
-      let labels = [];
-      let year = [];
-      let half = [];
-      let quarter = [];
-      result.data.map(item => {
-        labels.push(item.name);
-        year.push(item.year_total);
-        half.push(item.half_total);
-        quarter.push(item.quarter_total);
-      });
-      this.supplierMonthChartData[0].data = quarter.slice(16,30);
-      this.supplierMonthChartData[1].data = half.slice(16,30);
-      this.supplierMonthChartData[2].data = year.slice(16,30);
-      this.supplierMonthChartLabels = labels.slice(16,30);
-    }
-    this.isSupplierChartLoaded = true;
-  }
-  private supplierChartPrevious() {
-    result => {
-      let labels = [];
-      let year = [];
-      let half = [];
-      let quarter = [];
-      result.data.map(item => {
-        labels.push(item.name);
-        year.push(item.year_total);
-        half.push(item.half_total);
-        quarter.push(item.quarter_total);
-      });
-      this.supplierMonthChartData[0].data = quarter.slice(0,15);
-      this.supplierMonthChartData[1].data = half.slice(0,15);
-      this.supplierMonthChartData[2].data = year.slice(0,15);
-      this.supplierMonthChartLabels = labels.slice(0,15);
-    }
-    this.isSupplierChartLoaded = true;
+  private updateSupplierHistoryData() {
+
+    const lastResult = this._supplierHistoryPerPage * this._supplierHistoryPage;
+    console.log(this._supplierHistoryPage);
+    const firstResult = lastResult - this._supplierHistoryPerPage;
+
+    const pageData = this._supplierHistoryData.slice(firstResult, lastResult);
+    console.log(pageData);
+
+    let labels = [];
+    let year = [];
+    let half = [];
+    let quarter = [];
+    pageData.map(item => {
+      labels.push(item.name);
+      year.push(item.year_total);
+      half.push(item.half_total);
+      quarter.push(item.quarter_total);
+    });
+
+    this.supplierMonthChartData[0].data = quarter;
+    this.supplierMonthChartData[1].data = half;
+    this.supplierMonthChartData[2].data = year;
+    this.supplierMonthChartLabels = labels;
   }
 
+  public nextSupplierHistoryPage() {
+    if (this._supplierHistoryPage < this._supplierHistoryPages) {
+      this._supplierHistoryPage++;
+    }
+    this.updateSupplierHistoryData();
+  }
+
+  public previousSupplierHistoryPage() {
+    if (this._supplierHistoryPage > 1) {
+      this._supplierHistoryPage--;
+    }
+    this.updateSupplierHistoryData();
+  }
+
+  private _supplierHistoryData: any[];
+  private _supplierHistoryPerPage: number = 15;
+  private _supplierHistoryPage: number = 1;
+  private _supplierHistoryPages: number = 1;
   public supplierMonthChartData: any[] = [
     {
       data: [],
@@ -394,13 +318,13 @@ export class MoreStuffComponent implements OnInit {
     scales: {
       xAxes: [{
         scaleLabel: {
-          display:true,
+          display: true,
           labelString: 'Spend amount £'
         }
       }],
       yAxes: [{
         scaleLabel: {
-          display:true,
+          display: true,
           labelString: 'Supplier Names'
         }
       }]
