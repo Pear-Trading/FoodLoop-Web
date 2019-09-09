@@ -133,6 +133,43 @@ export class ApiService {
     );
   }
 
+  // LCC data
+  public externalTransactions() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/v1/organisation/external/transactions',
+      {
+        session_key : key,
+      }
+    );
+  }
+
+  public loadMiscUrl(extra_url, extraArgs = {}) {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/v1/' + extra_url,
+      {
+        session_key : key,
+        ...extraArgs,
+      }
+    );
+  }
+
+  public externalSuppliers(page, sortBy, sortDir, perPage, search) {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/v1/organisation/external/suppliers',
+      {
+        session_key : key,
+        page : page,
+        sort_by : sortBy,
+        sort_dir : sortDir,
+        per_page : perPage,
+        search : search,
+      }
+    );
+  }
+
   // Searches organisations used for transaction submission
 
   public search(data) {
@@ -319,6 +356,17 @@ export class ApiService {
     const key = this.sessionKey;
     return this.http.post<any>(
       this.apiUrl + '/stats/customer',
+      {
+        session_key : key,
+      }
+    );
+  }
+
+  // Basic Customer User stats API
+  public orgStats() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/stats/organisation',
       {
         session_key : key,
       }

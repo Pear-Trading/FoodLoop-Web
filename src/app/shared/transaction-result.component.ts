@@ -14,6 +14,7 @@ interface TransactionData {
 })
 export class TransactionResultComponent implements OnInit {
   @Input() public transaction: TransactionData;
+  @Input() public showMeta: boolean;
   public transactionDate: string;
 
   ngOnInit(): void {

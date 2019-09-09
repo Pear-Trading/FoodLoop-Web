@@ -1,3 +1,6 @@
 <td>{{transaction.seller}}</td>
-<td>{{transaction.value | currency:'GBP':'symbol':'1.2-2' }}</td>
+<td *ngIf="!showMeta">{{transaction.value | currency:'GBP':'symbol':'1.2-2' }}</td>
+<td *ngIf="showMeta">{{transaction.net_value | currency:'GBP':'symbol':'1.2-2' }}</td>
+<td *ngIf="showMeta">{{transaction.sales_tax_value | currency:'GBP':'symbol':'1.2-2' }}</td>
+<td *ngIf="showMeta">{{transaction.gross_value | currency:'GBP':'symbol':'1.2-2' }}</td>
 <td>{{transactionDate}}</td>

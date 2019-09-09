@@ -29,13 +29,14 @@ export class TransactionLogComponent implements OnInit {
   transactionFormStatusSuccess: string;
   transactionFormStatusError = 'Error received, please try again.';
   updatedTime: string;
+  showMeta = false;
 
   public paginateConfig: PaginationInstance = {
-        id: 'transpaginate',
-        itemsPerPage: 10,
-        currentPage: 1,
-        totalItems: 0
-    };
+    id: 'transpaginate',
+    itemsPerPage: 10,
+    currentPage: 1,
+    totalItems: 0
+  };
 
   constructor(
   private api: ApiService,
@@ -86,6 +87,7 @@ export class TransactionLogComponent implements OnInit {
       }
     );
   }
+
 
   recurringTransactionDetails(clicked, template: TemplateRef<any>) {
     this.clickedRecur = clicked;
@@ -161,4 +163,7 @@ export class TransactionLogComponent implements OnInit {
     );
   }
 
+  toggleShowMeta() {
+    this.showMeta = !this.showMeta;
+  }
 }

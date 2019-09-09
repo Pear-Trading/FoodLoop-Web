@@ -9,12 +9,44 @@ import { ChartData } from '../_interfaces/chart-data';
   selector: 'panel-pie',
   templateUrl: 'pie-panel.component.html',
 })
+
 export class PiePanel implements OnInit {
 
-  public chartType = 'doughnut';
+  public chartType = 'pie';
   public chartLegend = true;
   public doughnutChartDataLocal: number[] = [];
   public doughnutChartLabelsLocal: string[] = [];
+  public doughnutChartColors: any[] = [
+    { backgroundColor: [
+        '#ffa1b5',
+        '#3cde52',
+        '#52afed',
+        '#c133e3',
+        '#f7fa08',
+        '#75152d',
+        '#ee12ee',
+        '#15eaea',
+        '#eaa015',
+        '#ea1515',
+        '#2d4fcc'
+    ]
+  },
+  { borderColor:[
+    'red',
+    'green',
+    'blue',
+    'purple',
+    'yellow',
+    'brown',
+    'magenta',
+    'cyan',
+    'orange',
+    'pink'
+    ]
+  },
+  { borderWidth: [10]
+  }
+];
 
   constructor(
     private api: ApiService,

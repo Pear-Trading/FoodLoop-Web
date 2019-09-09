@@ -2,12 +2,19 @@ import { Directive, Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ApiService } from '../providers/api-service';
 import { Router } from '@angular/router';
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { GraphWidget } from '../widgets/graph-widget.component';
+import { Color, Label } from 'ng2-charts';
 import { CustBarSnippetComponent } from '../snippets/cust-snippet-bar.component';
 import { PiePanel } from '../panels/pie-panel.component';
 import { DataType } from '../shared/data-types.enum';
 import * as moment from 'moment';
+import { MoreStuffComponent } from '../dashboard/more-graphs-and-tables.component';
+// import { StackedBarChartComponent } from '../panels/stacked-bar.component';
 
+interface SuppliersComponent {
+  name : string;
+}
 
 @Component({
   templateUrl: 'dashboard-customer.component.html'
@@ -32,6 +39,22 @@ export class DashboardCustomerComponent implements OnInit {
   public chartLegend = true;
   public doughnutChartDataCategory: any[] = [];
   public doughnutChartLabelsCategory: string[] = [];
+  public doughnutChartColoursCategory: any[] = [
+               {
+                 backgroundColor:[
+                     '#ffa1b5',
+                     '#3cde52',
+                     '#52afed',
+                     '#c133e3',
+                     '#f7fa08',
+                     '#75152d',
+                     '#ee12ee',
+                     '#15eaea',
+                     '#eaa015',
+                     '#ea1515',
+                     '#2d4fcc'
+                 ]
+               }];
 
   public doughnutChartOptionsCategory:any = {
     tooltips: {
@@ -62,11 +85,12 @@ export class DashboardCustomerComponent implements OnInit {
       responsive: true,
       scales:{
           xAxes:[{
-              stacked:true
+            scaleLabel: {
+              display:true,
+            },
+              stacked:true,
+
           }],
-          yAxes:[{
-              stacked:true
-          }]
       }
     };
   public barChartTypeEssential:string = 'horizontalBar';
@@ -94,6 +118,23 @@ export class DashboardCustomerComponent implements OnInit {
   public barChartLegendCategory:boolean = false;
   public barChartDataCategory:any[]=[];
   public barChartLabelsCategory:string[] = [];
+  public barChartColoursCategory: any[] = [
+    {
+      backgroundColor:[
+          '#ffa1b5',
+          '#3cde52',
+          '#52afed',
+          '#c133e3',
+          '#f7fa08',
+          '#75152d',
+          '#ee12ee',
+          '#15eaea',
+          '#eaa015',
+          '#ea1515',
+          '#2d4fcc'
+      ]
+    }];
+
 
   weekPurchaseList = {
     first: 0,
@@ -106,6 +147,7 @@ export class DashboardCustomerComponent implements OnInit {
   showTotalCategoryList: boolean = false;
   totalCategoryLimit: number = 10;
   totalCategoryList: any[]=[];
+
 
   // Graph widgets
   public widgetList = [
@@ -148,7 +190,9 @@ export class DashboardCustomerComponent implements OnInit {
         this.setWeekData(result);
         this.setChartData(result.data.cat_total);
         this.totalCategoryList = result.data.cat_list;
-        this.showTotalCategoryList = true;
+        if (this.totalCategoryList) {
+          this.showTotalCategoryList = true;
+        }
         this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
         this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
         this.barChartDataEssential = [
