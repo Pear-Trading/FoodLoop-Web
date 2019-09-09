@@ -14,7 +14,7 @@
     "build:dev": "ng build --configuration=dev",
     "build:prod": "ng build --configuration=prod",
     "test": "ng test",
-    "test:ci": "ng test --watch=false",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless --configuration=ci",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "e2e:ci": "ng e2e --configuration=ci",
