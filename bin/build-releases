@@ -1,4 +1,5 @@
 #! /bin/bash
+set -e
 
 VERSION=`git describe --tags`
 
@@ -11,13 +12,13 @@ echo "Building releases for $VERSION"
 
 echo "Building Prod Release..."
 
-ng build --prod
+npm run build:prod
 
 tar -czf ../WebApp-Releases/LocalLoop-Web-prod-$VERSION.tar.gz dist
 
 echo "Building Dev Release..."
 
-ng build --dev
+npm run build:dev
 
 tar -czf ../WebApp-Releases/LocalLoop-Web-dev-$VERSION.tar.gz dist
 

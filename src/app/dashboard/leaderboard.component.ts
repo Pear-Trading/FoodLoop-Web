@@ -5,7 +5,7 @@ import {PaginationInstance} from 'ngx-pagination';
 // import { PaginationControlsComponent } from 'ngx-pagination';
 // import { PaginationControlsDirective } from 'ngx-pagination';
 // import { TransactionResultComponent } from '../shared/transaction-result.component';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'leaderboard.component.html',
@@ -22,7 +22,7 @@ export class LeaderboardComponent implements OnInit {
 
   public paginateConfig: PaginationInstance = {
         id: 'leadpaginate',
-        itemsPerPage: 10,
+        itemsPerPage: 20,
         currentPage: 1,
         totalItems: 0
     };
@@ -70,7 +70,7 @@ export class LeaderboardComponent implements OnInit {
         console.log(error);
       }
     );
-  }
+  }org
 
   // // dynamically changes the row style based on  player's position
   // // for instance, top three player and the player him/herself should

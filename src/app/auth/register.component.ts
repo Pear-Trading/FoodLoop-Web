@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ValidationManager } from 'ng2-validation-manager';
 import { ApiService } from '../providers/api-service';
 import {Router } from '@angular/router';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'register.component.html',
@@ -78,24 +78,18 @@ export class RegisterComponent {
       .register(data)
       .subscribe(
         result => {
-          console.log('registered!');
           this.registerStatus = 'success';
-          console.log(this.registerStatus);
       this.router.navigate(['/dashboard']);
         },
         error => {
           console.log('Register Error');
           console.log(error);
           try {
-            console.log(error.error);
-            const jsonError = error.json();
-            console.log('boop');
-            this.registerStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
+            this.registerStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
           } catch (e) {
             this.registerStatusError = 'There was a server error, please try again later.';
           }
           this.registerStatus = 'send_failed';
-          console.log(this.registerStatus);
         }
       );
   }
@@ -122,24 +116,17 @@ export class RegisterComponent {
     town:         organisationForm.town,
     postcode:     organisationForm.postcode,
   };
-  console.log(data);
   this.api
       .register(data)
       .subscribe(
         result => {
-          console.log('registered!');
           this.registerStatus = 'success';
-          console.log(this.registerStatus);
         this.router.navigate(['/dashboard']);
         },
         error => {
-          console.log('Register Error');
           console.log(error);
           try {
-            console.log(error.error);
-            const jsonError = error.json();
-            console.log('boop');
-            this.registerStatusError = '"' + jsonError.error + '" Error, ' + jsonError.message;
+            this.registerStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
           } catch (e) {
             this.registerStatusError = 'There was a server error, please try again later.';
           }

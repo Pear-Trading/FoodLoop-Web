@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-12">
+        <h4 class="card-title mb-0">All Purchases by Category</h4>
+      </div>
+    </div>
+    <div class="chart-wrapper">
+      <canvas baseChart class="chart"
+      [data]="doughnutChartDataLocal"
+      [labels]="doughnutChartLabelsLocal"
+      [colors]="doughnutChartColors"
+      [legend]="chartLegend"
+      [chartType]="chartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+</div>

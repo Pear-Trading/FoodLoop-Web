@@ -12,10 +12,13 @@ import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 import { FeedbackComponent } from './feedback.component';
 import { TransactionLogComponent } from './transaction-log.component';
+import { CategoryMonthComponent } from './category-month.component';
 import { PayrollLogComponent } from './payroll-log.component';
 import { LeaderboardComponent } from './leaderboard.component';
 import { MapComponent } from './map.component';
 import { TrailMapComponent } from './trail-map.component';
+import { MoreStuffComponent } from './more-graphs-and-tables.component';
+import { SuppliersComponent } from './suppliers.component';
 
 // Using child path to allow for FullLayout theming
 const routes: Routes = [
@@ -59,6 +62,11 @@ const routes: Routes = [
         data: { title: 'Transaction Log' },
       },
       {
+        path: 'category-month',
+        component: CategoryMonthComponent,
+        data: { title: 'Budget' },
+      },
+      {
         path: 'map',
         component: MapComponent,
         data: { title: 'Purchase Map' },
@@ -66,7 +74,7 @@ const routes: Routes = [
       {
         path: 'story-trail',
         component: TrailMapComponent,
-        data: { title: 'Lancaster Independent Story' },
+        data: { title: 'Story Trail' },
       },
       {
         path: 'payroll-log',
@@ -78,6 +86,16 @@ const routes: Routes = [
         path: 'feedback',
         component: FeedbackComponent,
         data: { title: 'Give Feedback' },
+      },
+      {
+        path: 'suppliers',
+        component: SuppliersComponent,
+        data: { title: 'Suppliers' }
+      },
+      {
+        path: 'more-graphs-and-tables',
+        component: MoreStuffComponent,
+        data: { title: 'Infographics'}
       }
     ],
   }

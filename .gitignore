@@ -22,7 +22,6 @@ $RECYCLE.BIN/
 /bower_components
 
 # IDEs and editors
-/.idea
 .project
 .classpath
 *.launch
@@ -41,11 +40,15 @@ testem.log
 /e2e/*.js
 /e2e/*.map
 
+# build 
+/dist
+
 # local env variable
 /src/environments/environment.local.ts
 /src/environments/environment.prod.ts
 /src/environments/environment.dev.ts
 /src/environments/environment.ci.ts
+/src/environments/environments.tar
 
 # =========================
 # Operating System Files

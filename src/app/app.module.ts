@@ -1,7 +1,10 @@
+import { environment } from '../environments/environment';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -21,7 +24,11 @@ import { CustomerGuard } from './_guards/customer.guard';
 import { ApiService } from './providers/api-service';
 
 import { OrgGraphsService } from './providers/org-graphs.service';
+import { CustGraphsService } from './providers/cust-graphs.service';
 import { OrgSnippetsService } from './providers/org-snippets.service';
+import { CustSnippetsService } from './providers/cust-snippets.service';
+import { CustPiesService } from './providers/cust-pies.service';
+import { OrgPiesService } from './providers/org-pies.service';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
@@ -34,21 +41,30 @@ import { P500Component } from './pages/500.component';
 // Submodules
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ChartsModule } from 'ng2-charts';
+// import { StackedBarChartComponent } from './panels/stacked-bar.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    FilterPipeModule,
+    ReactiveFormsModule,
     NgxPaginationModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     AuthModule,
+    ChartsModule,
     DashboardModule,
     // Loaded last to allow for 404 catchall
     AppRoutingModule,
   ],
   declarations: [
     AppComponent,
+    // StackedBarChartComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,
     NAV_DROPDOWN_DIRECTIVES,
@@ -65,6 +81,10 @@ import { DashboardModule } from './dashboard/dashboard.module';
     ApiService,
     OrgGraphsService,
     OrgSnippetsService,
+    CustGraphsService,
+    CustSnippetsService,
+    CustPiesService,
+    OrgPiesService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
@@ -72,4 +92,10 @@ import { DashboardModule } from './dashboard/dashboard.module';
   ],
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+  constructor () {
+    if (environment.enableAnalytics) {
+      (<any>window).ga('create', environment.analyticsKey, 'auto');
+    }
+  }
+}

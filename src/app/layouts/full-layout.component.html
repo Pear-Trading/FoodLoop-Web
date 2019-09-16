@@ -26,45 +26,98 @@
     <nav class="sidebar-nav">
       <ul class="nav">
         <li class="nav-item">
+          <div class="row no-gutters mt-1 d-lg-none small text-center text-muted">
+            <div class="col-12">Click &#9776; to Close Menu</div>
+          </div>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']">
-            <i class="icon-speedometer"></i> Dashboard
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-speedometer"></i></div>
+              <div class="col-10">Dashboard</div>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/more-graphs-and-tables']">
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-map"></i></div>
+              <div class="col-10">Infographics</div>
+            </div>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/add-data']">
-            <i class="icon-basket"></i> Add Transaction
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-basket"></i></div>
+              <div class="col-10">Add Transaction</div>
+            </div>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/feedback']">
-            <i class="icon-envelope-letter"></i> Enter Feedback
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-envelope-letter"></i></div>
+              <div class="col-10">Enter Feedback</div>
+            </div>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/map']">
-            <i class="icon-map"></i> Purchase Map
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-map"></i></div>
+              <div class="col-10">Purchase Map</div>
+            </div>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/story-trail']">
-            <i class="icon-map"></i> Lancaster Independent Story
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-map"></i></div>
+              <div class="col-10">Story Trail</div>
+            </div>
           </a>
         </li>
         <li *ngIf="accountType == 'customer'" class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/leaderboard']">
-            <i class="icon-basket"></i> Leaderboard
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-basket"></i></div>
+              <div class="col-10">Leaderboard</div>
+            </div>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/transaction-log']">
-            <i class="icon-basket"></i> Transaction Log
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-basket"></i></div>
+              <div class="col-10">Transaction Log</div>
+            </div>
           </a>
         </li>
-        <li  *ngIf="accountType == 'organisation'" class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/payroll-log']">
-            <i class="icon-basket"></i> Payroll Log
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/category-month']">
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-basket"></i></div>
+              <div class="col-10">Budget</div>
+            </div>
           </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/suppliers']">
+              <div class="row no-gutters align-items-center">
+                <div class="col-2"><i class="icon-speedometer"></i></div>
+                <div class="col-10">Suppliers</div>
+              </div>
+            </a>
+          </li>
+          <li  *ngIf="accountType == 'organisation'" class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['/payroll-log']">
+              <div class="row no-gutters align-items-center">
+                <div class="col-2"><i class="icon-basket"></i></div>
+                <div class="col-10">Payroll Log</div>
+              </div>
+            </a>
+          </li>
       </ul>
     </nav>
   </div>

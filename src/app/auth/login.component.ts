@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from '../providers/api-service';
 import { Router, ActivatedRoute } from '@angular/router';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'login.component.html',
@@ -40,15 +40,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signin.value);
-
     this.api
     .login(this.signin.value)
     .subscribe(
       result => {
-        console.log('logged in!');
         this.loginStatus = 'success';
-        console.log(this.loginStatus);
         this.router.navigate([this.returnUrl]);
       },
       error => {
