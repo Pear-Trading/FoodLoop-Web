@@ -12,6 +12,7 @@ interface ChartData {
   selector: 'widget-graph',
   templateUrl: 'graph-widget.component.html',
 })
+
 export class GraphWidget implements OnInit {
   @Input() public graphName: string;
   @Input() public graphTitle = 'Graph';
@@ -24,7 +25,7 @@ export class GraphWidget implements OnInit {
   public graphSum: Number = 0;
   public availableDataTypes = DataType;
 
-  public lineChartData: Array<ChartData> = [
+  public lineGraphChartData: Array<ChartData> = [
     {
       data: [],
       label: 'Series A'
@@ -35,12 +36,21 @@ export class GraphWidget implements OnInit {
     maintainAspectRatio: false,
     scales: {
       xAxes: [{
+        type: 'time',
+        time: {
+          unit: 'day',
+          displayFormats: {
+            day: 'MMM D',
+          },
+          tooltipFormat: 'MMM D',
+        },
         gridLines: {
           color: 'transparent',
           zeroLineColor: 'transparent'
         },
         ticks: {
           fontSize: 2,
+          source: 'data',
           fontColor: 'transparent',
         }
 
@@ -54,7 +64,7 @@ export class GraphWidget implements OnInit {
     },
     elements: {
       line: {
-        borderWidth: 1
+        borderWidth: 2
       },
       point: {
         radius: 4,
@@ -106,10 +116,16 @@ export class GraphWidget implements OnInit {
   private setData(data: any) {
     this.setChartData(data.data);
     this.setChartLabels(data.labels);
+    this.setChartBounds(data.bounds);
+  }
+
+  private setChartBounds(data) {
+    this.lineChartOptions.scales.xAxes[0].time.max = data.max;
+    this.lineChartOptions.scales.xAxes[0].time.min = data.min;
   }
 
   private setChartData(data: Array<number>) {
-    this.lineChartData[0].data = data;
+    this.lineGraphChartData[0].data = data;
     this.graphSum = data.reduce((a, b) => a + b, 0);
     // Set point size based on data
     if ( data.length < 15 ) {

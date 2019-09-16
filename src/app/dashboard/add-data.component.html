@@ -24,6 +24,74 @@
               <span class="help-block">Enter the amount spent, such as 5.35 for £5.35.</span>
             </div>
           </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="text-input">Essential Purchase</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <input type="checkbox" class="mr-auto" [(ngModel)]="essentialPurchase" (ngModelChange)="transactionFormValidate()">
+                <span class="help-block">Tick if the purchase is deemed an essential purchase for budgeting purposes.</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="text-input">Recurring Purchase</label>
+            <div class="col-md-9">
+              <div class="input-group">
+                <input type="checkbox" class="mr-auto" [(ngModel)]="recurringPurchase" (ngModelChange)="transactionFormValidate()">
+                <span class="help-block">Tick if the purchase frequently recurs, such as monthly.</span>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="recurringPurchase" class="form-group row">
+            <label class="col-md-3 form-control-label" for="text-input"><strong>Recurring Period</strong></label>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-md-6 btn-group-vertical">
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'daily'">
+                    <input value="daily" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Daily
+                  </label>
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'weekly'">
+                    <input value="weekly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Weekly
+                  </label>
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'fortnightly'">
+                    <input value="fortnightly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Fortnightly
+                  </label>
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'monthly'">
+                    <input value="monthly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Monthly
+                  </label>
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'quarterly'">
+                    <input value="quarterly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Quarterly
+                  </label>
+                  <label class="btn btn-secondary mb-0" [class.active]="recurringType == 'yearly'">
+                    <input value="yearly" type="radio" name="radios" style="display:none;" [(ngModel)]="recurringType" (ngModelChange)="transactionFormValidate()">Yearly
+                  </label>
+                </div>
+              </div>
+              <span class="help-block">Please give the period of time the purchase will recur from "Time of Transaction".</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" for="text-input">Budget Type</label>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-md-6 btn-group-vertical">
+                  <label class="btn btn-secondary mb-0" [class.active]="categoryId == null">
+                    <input value="" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">Uncategorised
+                  </label>
+                  <label *ngFor="let category of leftCategoryList" class="btn btn-secondary mb-0" [class.active]="categoryId == category">
+                    <input [value]="category" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ categoryList[category] }}
+                  </label>
+                </div>
+                <div class="col-md-6 btn-group-vertical">
+                  <label *ngFor="let category2 of rightCategoryList" class="btn btn-secondary mb-0" [class.active]=" categoryId == category2">
+                    <input [value]="category2" type="radio" name="radios" style="display:none;" [(ngModel)]="categoryId">{{ categoryList[category2] }}
+                  </label>
+                </div>
+              </div>
+              <span class="help-block"><strong>Optional:</strong> Choose the Budget Type for the majority of the purchase.</span>
+            </div>
+          </div>
           <div class="form-group row">
             <label class="col-md-3 form-control-label" for="text-input"><strong>Organisation Name</strong></label>
             <div class="col-md-9">
@@ -34,21 +102,21 @@
           <org-table *ngIf="storeList.length > 0" [orgList]="storeList" (onClick)="addStore($event)"></org-table>
           <div *ngIf="showAddStore">
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Organisation Street Name</strong></label>
+              <label class="col-md-3 form-control-label" for="text-input">Organisation Street Name</label>
               <div class="col-md-9">
                 <input type="text" class="form-control" placeholder="Which Street?" [(ngModel)]="submitOrg.street_name" (ngModelChange)="transactionFormValidate()">
                 <span class="help-block">Enter the street name where the organisation is located at.</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Organisation Town</strong></label>
+              <label class="col-md-3 form-control-label" for="text-input">Organisation Town</label>
               <div class="col-md-9">
                 <input type="text" class="form-control" placeholder="Which Town?" [(ngModel)]="submitOrg.town" (ngModelChange)="transactionFormValidate()">
                 <span class="help-block">Enter the name of the town where the organisation is located at.</span>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-md-3 form-control-label" for="text-input"><strong>Organisation Postcode</strong></label>
+              <label class="col-md-3 form-control-label" for="text-input">Organisation Postcode</label>
               <div class="col-md-9">
                 <input type="text" class="form-control" placeholder="Postcode if known" [(ngModel)]="submitOrg.postcode" (ngModelChange)="transactionFormValidate()">
                 <span class="help-block">Enter the postcode where the organisation is located at.</span>
@@ -89,14 +157,14 @@
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="text-input"><strong>Total amount of Employees</strong></label>
               <div class="col-md-9">
-                <input type="number" class="form-control" formControlName="employee_amount" placeholder="0">
+                <input type="number" class="form-control" formControlName="employee_amount" placeholder="0" min="0">
                 <span class="help-block">Enter the amount of employees the organisation has for the entry month.</span>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="text-input"><strong>Total amount of local Employees</strong></label>
               <div class="col-md-9">
-                <input type="number" class="form-control" formControlName="local_employee_amount" placeholder="0">
+                <input type="number" class="form-control" formControlName="local_employee_amount" placeholder="0" min="0">
                 <span class="help-block">Enter the amount of employees that live locally to the organisation for the entry month.</span>
               </div>
             </div>

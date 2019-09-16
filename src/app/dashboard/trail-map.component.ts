@@ -3,18 +3,21 @@ import { ApiService } from '../providers/api-service';
 import { AgmCoreModule } from '@agm/core';
 import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'trail-map.component.html',
 })
 export class TrailMapComponent implements OnInit, AfterViewInit {
-  @ViewChild('statusModal') myStatusModal: ModalDirective;
+  @ViewChild('statusModal', { static: true }) myStatusModal: ModalDirective;
   lat: number = 54.0466;
   lng: number = -2.8007;
   zoom: number = 12;
   public modalRef: BsModalRef;
+  public modalRef2: BsModalRef;
   clickedMarker: any;
+  assocMap = 'lis';
+  assocLogo: string;
 
   dataReceived: string = 'loading';
 
@@ -25,7 +28,9 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
   constructor(
     private api: ApiService,
     private modalService: BsModalService,
-  ) {}
+  ) {
+    this.assocLogo = 'assets/img/association/' + this.assocMap + '-logo.png';
+  }
 
   ngOnInit(): void { }
 
@@ -41,9 +46,13 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
     this.modalRef = this.modalService.show(template);
   }
 
+  openModalAssoc(templateAssoc: TemplateRef<any>) {
+    this.modalRef2 = this.modalService.show(templateAssoc);
+  }
+
   public onMarkerClick(clickedMarker, template: TemplateRef<any>) {
-    console.log(clickedMarker);
     this.clickedMarker = clickedMarker;
+    this.assocLogo = 'assets/img/association/' + this.assocMap + '-logo.png';
     this.openModal(template);
   }
 
@@ -64,8 +73,9 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
         latitude:  resp.getSouthWest().lat(),
         longitude: resp.getSouthWest().lng()
       },
+      association: this.assocMap,
     }
-    this.api.getLisData(mapData).subscribe(
+    this.api.getAssocData(mapData).subscribe(
       result => {
         this.myStatusModal.hide();
         this.markers = result.locations;

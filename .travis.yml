@@ -2,14 +2,24 @@ addons:
   chrome: stable
 language: node_js
 node_js:
-  - 8
+  - node
 before_install:
-  -  openssl aes-256-cbc -K $encrypted_9d2af3734b6c_key -iv $encrypted_9d2af3734b6c_iv -in src/environments/environment.ci.ts.enc -out src/environments/environment.ci.ts -d
+  - openssl aes-256-cbc -K $encrypted_17157b34afc7_key -iv $encrypted_17157b34afc7_iv -in src/environments/environments.tar.enc -out src/environments/environments.tar -d
+  - tar xf src/environments/environments.tar -C src/environments
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
   - npm config set spin false
 install:
-    - npm install
+  - npm install
 script:
-    - npm run ci
+  - npm run ci
+before_deploy:
+  - ./bin/build-releases
+deploy:
+  provider: releases
+  api_key:
+    secure: "Ke27Qm16uRgfX+ZVAq92Suu0ZpLOG9TGXDD8ndKNQZ4zl80DOmePoKvVpk/5Ip3H57Me2seqtCwgjeUCfW0dX3KayPoNmGVxWXCsZCH3MZWuaMnGk/Zc1Ef8P3L1sTEG4LD6+59RaOiMwIrMtLPjSlzvV2gc+002O7MHoudx/qZl47L+T01B0Ovh1AueSVN224Q79NrBnbgTtMqaS3x2avLkJmdZpneafqeO5OusOFcvsHvBr7ca0qKv5yIpn4eotK2bo6TFuaC9e9i7gUgPKHb1/GXAK1DcteUDF3AzK/b7T+dqTS+1vowuNKjMZ+ecyB8VDXQlWnBcv/IGn/C3nBmtp2oN97BFQtHguCY42Qk9LZxIu9o0mpOt6aMRiIsfbWstgONKaLzgt4Ce3DFlJ7YR5BFRaoKDdGHoCW+tcucQ/o9vFCbBVZ8sol2aYJOiNHYxlC8A7NLs6YEjyckVAa3q1l6CddnSjrFA5oe9fsLdzUDGhJ57Nv7kF9v6jjsTlZtucrzf8ix9+vNKNfWLQ6K86UIeBT40pPYHLBmWEsiGai+s4IWrYjTscT4zQDHcfQCMuQbbb3NTEfy9Fwv0VQdIR/cKsQgUCZwwlv3RBImryuDFqY2pNOqvnGIcr/OJ/MmY9bbCYEp55dxrZ50dNBbtR4O8IyUDte/ycU4OKbE="
+  file_glob: true
+  file: "../WebApp-Releases/*"
+  skip_cleanup: true
+  on:
+    tags: true

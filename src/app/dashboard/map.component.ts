@@ -3,13 +3,13 @@ import { ApiService } from '../providers/api-service';
 import { AgmCoreModule } from '@agm/core';
 import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import 'rxjs/add/operator/map';
+
 
 @Component({
   templateUrl: 'map.component.html',
 })
 export class MapComponent implements OnInit, AfterViewInit {
-  @ViewChild('statusModal') myStatusModal: ModalDirective;
+  @ViewChild('statusModal', { static: true }) myStatusModal: ModalDirective;
   lat: number = 54.0466;
   lng: number = -2.8007;
   zoom: number = 12;
