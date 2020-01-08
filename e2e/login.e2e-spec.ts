@@ -1,12 +1,22 @@
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TestBed, ComponentFixture, async } from '@angular/core/testing';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { LoginPageObject } from './login.po';
+import { ApiService } from '../src/app/providers/api-service';
 
 describe('Login Page', () => {
   let page: LoginPageObject;
+  let api: ApiService;
+  let apiSpy: jasmine.SpyObj<ApiService>;
 
   beforeEach(() => {
     page = new LoginPageObject();
-    page.navigateTo();
+    const spy = jasmine.createSpyObj
+    TestBed.configureTestingModule({ providers: [ApiService] });
   });
+
+  api = TestBed.get(ApiService);
+  apiSpy = TestBed.get(ApiService);
 
   it('should have a header saying login', () => {
     expect(page.getLoginHeaderText()).toEqual('Login');
