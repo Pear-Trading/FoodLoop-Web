@@ -5,7 +5,7 @@ import { ChartsModule } from 'ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
-import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
+import { AgmJsMarkerClustererModule } from '@agm/markerclusterer';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { CurrencyPipe } from '@angular/common';
