@@ -54,7 +54,7 @@
     "ngx-filter-pipe": "^2.1.2",
     "ngx-pagination": "^4.0.0",
     "popper.js": "^1.15.0",
-    "rxjs": "6.5.2",
+    "rxjs": "6.6.0",
     "stream": "0.0.2",
     "ts-helpers": "1.1.2",
     "tslib": "^1.10.0",
