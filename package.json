@@ -43,7 +43,7 @@
     "devextreme": "^19.1.4",
     "devextreme-angular": "^19.1.4",
     "jasmine": "^3.4.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.1",
     "js-marker-clusterer": "1.0.0",
     "jszip": "^3.2.2",
     "luxon": "^1.16.1",
@@ -59,11 +59,11 @@
     "ts-helpers": "1.1.2",
     "tslib": "^1.10.0",
     "web-animations-js": "^2.3.2",
-    "webpack-dev-server": "^3.7.2",
+    "webpack-dev-server": "^3.11.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.803.21",
+    "@angular-devkit/build-angular": "^0.1000.4",
     "@angular/cli": "^8.1.0",
     "@angular/compiler-cli": "8.1.0",
     "@types/jasmine": "3.3.13",
