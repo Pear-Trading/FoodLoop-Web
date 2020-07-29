@@ -227,7 +227,7 @@ export class MoreStuffComponent implements OnInit {
 
   }
 
-  @ViewChild('supplierChart', {read: BaseChartDirective, static: false}) supplierChart: BaseChartDirective;
+  @ViewChild('supplierChart', { read: BaseChartDirective }) supplierChart: BaseChartDirective;
 
   private loadSupplierHistory() {
     this.api.loadMiscUrl('organisation/external/supplier_history').subscribe(

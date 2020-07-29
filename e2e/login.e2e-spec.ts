@@ -15,8 +15,8 @@ describe('Login Page', () => {
     TestBed.configureTestingModule({ providers: [ApiService] });
   });
 
-  api = TestBed.get(ApiService);
-  apiSpy = TestBed.get(ApiService);
+  api = TestBed.inject(ApiService);
+  apiSpy = TestBed.inject(ApiService);
 
   it('should have a header saying login', () => {
     expect(page.getLoginHeaderText()).toEqual('Login');
