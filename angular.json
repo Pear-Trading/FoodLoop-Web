@@ -17,7 +17,12 @@
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "assets": [
-              "src/assets"
+              "src/assets",
+              {"input":
+                "./node_modules/@google/markerclustererplus/images",
+                "glob": "*", 
+                "output": "/images"
+              },
             ],
             "styles": [
               "src/scss/style.scss"
