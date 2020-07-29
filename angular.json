@@ -22,7 +22,7 @@
                 "./node_modules/@google/markerclustererplus/images",
                 "glob": "*", 
                 "output": "/images"
-              },
+              }
             ],
             "styles": [
               "src/scss/style.scss"
