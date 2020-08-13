@@ -35,12 +35,34 @@ npm install
 The app defaults to using the development server. For other options, see
 `src/environments/environments.ts`
 
+## Testing
+
+There are two types of test in this codebase, unit tests (using Karma) and E2E tests (using Protractor).
+
+### Karma Unit Tests
+
+To run these, you just need to run `npm run test` - this should work without any further configuration. These run the `*.spec.ts` files next to the normal source files, and are for basic tests for each function on their own.
+
+These tests are a long-running process, and will automatically run on file changes. Just run the command above, and then check back to the browser window that appears to see any errors as you work!
+
+### Protractor E2E Tests
+
+To run these, you will need to run the following:
+
+```
+webdriver-manager update
+```
+
+This will download the correct webdriver for you (we use chromedriver), and any other dependencies it needs. After that, you can run the tests with `npm run e2e`. Note these run once, and will need to be re-run every time you want to run an e2e test. You will also need to run the 
+
+These tests are best run regularly, and should show if any issues have emerged in other parts of the application that you are not aware of, or if some part of the flow through the app has changed sufficiently. 
+
 ## Licences
 
 ### CoreUI
 
 The interface itself is based off of [CoreUI][core-ui] which is MIT Licenced.
-For information, see [MIT Licence](./LICENCE.MIT) included in this repo.
+For information, see `LICENCE.MIT` included in this repo.
 
 [core-ui]: http://coreui.io
 
