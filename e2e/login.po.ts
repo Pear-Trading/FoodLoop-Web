@@ -9,12 +9,23 @@ export class LoginPageObject {
     return element(by.css('app-root h1')).getText();
   }
 
-  getUsernameField() { return element(by.id('username')); }
+  getEmailField() { return element(by.id('username')); }
   getPasswordField() { return element(by.id('password')); }
+  getLoginButton() { return element(by.id('login')); }
 
-  isUsernameFieldPresent() { return this.getUsernameField().isPresent(); }
+  isEmailFieldPresent() { return this.getEmailField().isPresent(); }
   isPasswordFieldPresent() { return this.getPasswordField().isPresent(); }
+  isLoginButtonPresent() { return this.getLoginButton().isPresent(); }
 
-  getUsernameFieldType() { return this.getUsernameField().getAttribute('type'); }
+  getEmailFieldType() { return this.getEmailField().getAttribute('type'); }
   getPasswordFieldType() { return this.getPasswordField().getAttribute('type'); }
+  getLoginButtonType() { return this.getLoginButton().getAttribute('type'); }
+
+  isLoginButtonEnabled() { return this.getLoginButton().isEnabled(); }
+
+  clearEmailField() { return this.getEmailField().clear() };
+  clearPasswordField() { return this.getPasswordField().clear() };
+
+  fillEmailFieldWith(text) { return this.getEmailField().sendKeys(text) };
+  fillPasswordFieldWith(text) { return this.getPasswordField().sendKeys(text) };
 }
