@@ -2,6 +2,17 @@
 
 # Next Release
 
+# 0.1.13
+
+* Added new graphs for organisation view, for better breakdown of spending
+* Added Suppliers spend search page
+* Updated and fixes numerous graphs on dashboard
+
+## Minor
+
+* *Dev Fixes* Updated Travis config
+
+
 # 0.1.12
 
 * Fixed accidentally added app-root
