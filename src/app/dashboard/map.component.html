@@ -39,9 +39,8 @@
           [latitude]="lat"
           [longitude]="lng"
           [zoom]="zoom"
-          [scaleControl]="true"
           (idle)="viewBoundsChanged()">
-          <agm-marker-cluster maxZoom="13" imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
+          <agm-marker-cluster maxZoom="13">
             <agm-marker
                 *ngFor="let m of markers"
                 [latitude]="m.latitude"
