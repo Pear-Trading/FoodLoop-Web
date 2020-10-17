@@ -1,6 +1,6 @@
 <div class="animated fadeIn">
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-6 col-md-8">
       <div class="card">
         <div class="card-header">
           <strong>Submit Transaction</strong>
@@ -21,7 +21,7 @@
                 <span class="input-group-addon"><i class="fa fa-gbp"></i></span>
                 <input type="number" min="0.00" step="0.01" class="form-control" placeholder="0.00" [(ngModel)]="amount" (ngModelChange)="transactionFormValidate()">
               </div>
-              <span class="help-block">Enter the amount spent, such as 5.35 for £5.35.</span>
+              <span class="help-block">Enter the amount spent, such as &lsquo;5.35&rsquo; for &pound;5.35.</span>
             </div>
           </div>
 
@@ -29,7 +29,7 @@
             <label class="col-md-3 form-control-label" for="text-input">Essential Purchase</label>
             <div class="col-md-9">
               <div class="input-group">
-                <input type="checkbox" class="mr-auto" [(ngModel)]="essentialPurchase" (ngModelChange)="transactionFormValidate()">
+                <input type="checkbox" class="mr-1" [(ngModel)]="essentialPurchase" (ngModelChange)="transactionFormValidate()">
                 <span class="help-block">Tick if the purchase is deemed an essential purchase for budgeting purposes.</span>
               </div>
             </div>
@@ -38,7 +38,7 @@
             <label class="col-md-3 form-control-label" for="text-input">Recurring Purchase</label>
             <div class="col-md-9">
               <div class="input-group">
-                <input type="checkbox" class="mr-auto" [(ngModel)]="recurringPurchase" (ngModelChange)="transactionFormValidate()">
+                <input type="checkbox" class="mr-1" [(ngModel)]="recurringPurchase" (ngModelChange)="transactionFormValidate()">
                 <span class="help-block">Tick if the purchase frequently recurs, such as monthly.</span>
               </div>
             </div>
