@@ -70,7 +70,7 @@ export class RegisterComponent {
     password:      signupForm.password,
     display_name:  customerForm.display_name,
     full_name:     customerForm.full_name,
-    postcode:      customerForm.postcode,
+    postcode:      customerForm.postcode.toUpperCase(),
     year_of_birth: customerForm.year_of_birth,
   };
   console.log(data);
@@ -114,7 +114,7 @@ export class RegisterComponent {
     sector:       organisationForm.sector,
     street_name:  organisationForm.street_name,
     town:         organisationForm.town,
-    postcode:     organisationForm.postcode,
+    postcode:     organisationForm.postcode.toUpperCase(),
   };
   this.api
       .register(data)
