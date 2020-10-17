@@ -101,7 +101,7 @@
         <div class="card-header">
           <strong>Log of Outgoing Transactions</strong>
           <small>This lists all purchases that have been submitted.</small>
-            <button class="btn pull-right btn-sm" (click)="toggleShowMeta()">
+            <button *ngIf="accountType == 'organisation'" class="btn pull-right btn-sm" (click)="toggleShowMeta()">
               <span *ngIf="!showMeta">Show</span><span *ngIf="showMeta">Hide</span> Details
             </button>
         </div>
