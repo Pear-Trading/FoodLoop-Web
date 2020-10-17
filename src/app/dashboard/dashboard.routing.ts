@@ -48,7 +48,7 @@ const routes: Routes = [
       {
         path: 'add-data',
         component: AddDataComponent,
-        data: { title: 'Add Transaction' },
+        data: { title: 'Record Transaction' },
       },
       {
         path: 'leaderboard',

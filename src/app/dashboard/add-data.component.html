@@ -3,14 +3,20 @@
     <div class="col-lg-6 col-md-8">
       <div class="card">
         <div class="card-header">
-          <strong>Submit Transaction</strong>
+          <strong>Record Transaction</strong>
           <small>Required Data marked in <strong>bold</strong>.</small>
         </div>
         <div class="card-block">
           <div class="form-group row">
             <label class="col-md-3 form-control-label" for="text-input"><strong>Time of Transaction</strong></label>
             <div class="col-md-9">
-              <input type="datetime-local" class="form-control" [min]="minDate" [(ngModel)]="myDate" (ngModelChange)="transactionFormValidate()">
+              <input 
+                type="datetime-local" 
+                class="form-control" 
+                [min]="minDate" 
+                [(ngModel)]="myDate" 
+                (ngModelChange)="transactionFormValidate()"
+              >
               <span class="help-block">Enter the date and time the transaction occurred.</span>
             </div>
           </div>
