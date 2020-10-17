@@ -1,30 +1,34 @@
-# LocalLoop Web Interface
+# LocalSpend - Web Application
 
-This is the repository for the LocalLoop web interface, for traders and
-customers to see and submit data to the service.
+This repository contains the Web application for the LocalSpend system.
+
+## Current Status
 
 | Branch | Status |
 | --- | --- |
-| *Master:* | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=master)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
-| *Development:* | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=development)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
+| Master: | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=master)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
+| Development: | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=development)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
 
 ## Getting Started
 
-To get started with development, you will need an up to date version of
-node.js, git, and access to either the backend dev server, or a local running
-copy of the backend server from [LocalLoop Server][LocalLoop-Server].
+To get started with development, you will need an up-to-date version of
+Node.js, git, and access to either the backend dev. server or a local
+copy of it from the [LocalSpend Server][LocalLoop-Server] repo.
 
-For your local node.js, We reccomend using [n][tj/n] on \*nix and Mac, for
-Windows take a look at [nodist][marcelklehr/nodist] - although other options
-exist. We reccomend Node.js version 8.0.0+ and npm version 5.3.0+.
+For your local Node.js, we recommend using:
+- [n][tj/n] for \*nix and Mac; and
+- [nodist][marcelklehr/nodist] for Windows.
 
-To get this repository set up, first clone it and then run the following
-commands:
+We reccomend Node.js version 8.0.0+ and npm version 5.3.0+.
 
-```
-npm install -g @angular/cli
-npm install
-```
+To get this repository set up:
+
+1. Clone it
+1. Install the dependencies:
+  - `npm install -g @angular/cli`
+  - `npm install`
+1. Start the application:
+  - `npm start`
 
 [LocalLoop-Server]:https://github.com/Pear-Trading/Foodloop-Server
 [tj/n]:https://github.com/tj/n
@@ -32,12 +36,14 @@ npm install
 
 ## Environments
 
-The app defaults to using the development server. For other options, see
-`src/environments/environments.ts`
+The app defaults to using the development server. For other options, see 
+`src/environments/environments.ts`.
 
 ## Testing
 
-There are two types of test in this codebase, unit tests (using Karma) and E2E tests (using Protractor).
+There are two types of test in this codebase:
+- unit tests (using Karma); and
+- E2E tests (using Protractor).
 
 ### Karma Unit Tests
 
@@ -47,15 +53,25 @@ These tests are a long-running process, and will automatically run on file chang
 
 ### Protractor E2E Tests
 
-To run these, you will need to run the following:
+To run these, you will need to run the following command:
 
-```
-webdriver-manager update
-```
+- `webdriver-manager update`
 
-This will download the correct webdriver for you (we use chromedriver), and any other dependencies it needs. After that, you can run the tests with `npm run e2e`. Note these run once, and will need to be re-run every time you want to run an e2e test. You will also need to run the 
+This will download the correct webdriver for you (we use chromedriver), and 
+any other dependencies it needs.
+After that, you can run the tests with `npm run e2e`.
+Note these run once, and will need to be re-run every time you want to run an 
+e2e test.
 
-These tests are best run regularly, and should show if any issues have emerged in other parts of the application that you are not aware of, or if some part of the flow through the app has changed sufficiently. 
+These tests are best run regularly, and should show if any issues have emerged 
+in other parts of the application that you are not aware of, or if some part 
+of the flow through the app has changed significantly. 
+
+## Troubleshooting
+
+### ‘Error: EACCES: permission denied, access '/usr/local/lib'’ when installing dependencies
+
+Change npm's default directory by following [these steps](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally#manually-change-npms-default-directory).
 
 ## Licences
 
@@ -66,11 +82,13 @@ For information, see `LICENCE.MIT` included in this repo.
 
 [core-ui]: http://coreui.io
 
-# Old README
+___
+
+## Old README
 
 This is the old README with some minor tips on getting started, and more reading.
 
-## Angular2DevelopmentCLI
+### Angular2DevelopmentCLI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-beta.32.3.
 
