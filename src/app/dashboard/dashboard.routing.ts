@@ -85,7 +85,7 @@ const routes: Routes = [
       {
         path: 'feedback',
         component: FeedbackComponent,
-        data: { title: 'Give Feedback' },
+        data: { title: 'Submit Feedback' },
       },
       {
         path: 'suppliers',
