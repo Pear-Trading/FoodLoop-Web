@@ -9,6 +9,14 @@ This repository contains the Web application for the LocalSpend system.
 | Master: | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=master)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
 | Development: | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=development)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
 
+## Contents
+
+1. [Getting Started](#getting-started)
+1. [Environments](#environments)
+1. [Testing](#testing)
+1. [Troubleshooting](#troubleshooting)
+1. [Licences](#licenses)
+
 ## Getting Started
 
 To get started with development, you will need an up-to-date version of
@@ -24,10 +32,10 @@ We reccomend Node.js version 8.0.0+ and npm version 5.3.0+.
 To get this repository set up:
 
 1. Clone it
-1. Install the dependencies:
+2. Install the dependencies:
   - `npm install -g @angular/cli`
   - `npm install`
-1. Start the application:
+3. Start the application:
   - `npm start`
 
 [LocalLoop-Server]:https://github.com/Pear-Trading/Foodloop-Server
