@@ -29,6 +29,7 @@ export class TransactionLogComponent implements OnInit {
   transactionFormStatusSuccess: string;
   transactionFormStatusError = 'Error received, please try again.';
   updatedTime: string;
+  accountType: any;
   showMeta = false;
 
   public paginateConfig: PaginationInstance = {
@@ -58,6 +59,7 @@ export class TransactionLogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTransactions(1);
+    this.accountType = localStorage.getItem('usertype');
   }
 
   loadTransactions(logPage: number) {
