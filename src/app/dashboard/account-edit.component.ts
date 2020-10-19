@@ -89,7 +89,7 @@ export class AccountEditComponent implements OnInit {
 
   const submitData = {
     email:        settingForm.email,
-    postcode:     settingForm.postcode,
+    postcode:     settingForm.postcode.toUpperCase(),
     password:     settingForm.password,
     new_password: settingForm.new_password,
     name:         settingOrganisationForm.name,
@@ -142,7 +142,7 @@ export class AccountEditComponent implements OnInit {
 
   const submitData = {
     email:        settingForm.email,
-    postcode:     settingForm.postcode,
+    postcode:     settingForm.postcode.toUpperCase(),
     password:     settingForm.password,
     new_password: settingForm.new_password,
     full_name:    settingCustomerForm.full_name,
