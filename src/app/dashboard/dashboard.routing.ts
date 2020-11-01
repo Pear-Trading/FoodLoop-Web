@@ -48,7 +48,7 @@ const routes: Routes = [
       {
         path: 'add-data',
         component: AddDataComponent,
-        data: { title: 'Add Transaction' },
+        data: { title: 'Record Transaction' },
       },
       {
         path: 'leaderboard',
@@ -85,7 +85,7 @@ const routes: Routes = [
       {
         path: 'feedback',
         component: FeedbackComponent,
-        data: { title: 'Give Feedback' },
+        data: { title: 'Submit Feedback' },
       },
       {
         path: 'suppliers',
