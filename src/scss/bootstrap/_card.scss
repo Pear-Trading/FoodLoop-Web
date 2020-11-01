@@ -70,6 +70,10 @@
   &:first-child {
     @include border-radius($card-border-radius-inner $card-border-radius-inner 0 0);
   }
+
+  small {
+    padding-left: 1em;
+  }
 }
 
 .card-footer {
