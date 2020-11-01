@@ -80,6 +80,8 @@
 
 .table-hover {
   tbody tr {
+    cursor: pointer;
+  
     @include hover {
       background-color: $table-bg-hover;
     }
