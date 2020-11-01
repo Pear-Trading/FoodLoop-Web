@@ -92,10 +92,20 @@ export class ApiService {
     data.package_name = 'Foodloop Web';
     data.version_code = 'dev';
     data.version_number = 'dev';
-      return this.http.post<any>(
+    console.log(this.apiUrl + '/feedback');
+    return this.http.post<any>(
         this.apiUrl + '/feedback',
         data
       );
+  }
+
+  // Sends push notifications
+
+  public sendMessage(data) {
+    return this.http.post<any>(
+      this.apiUrl + '/send-message',
+      data
+    );
   }
 
   // gets transaction list for log
