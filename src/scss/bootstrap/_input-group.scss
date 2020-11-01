@@ -23,6 +23,16 @@
       z-index: 3;
     }
   }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    cursor: pointer;
+  }
+}
+
+.help-block {
+  font-size: 0.8em;
+  font-style: italic;
 }
 
 .input-group-addon,
