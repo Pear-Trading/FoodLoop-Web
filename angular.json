@@ -29,6 +29,10 @@
             ],
             "scripts": [
               "node_modules/moment/min/moment.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "chart.js",
+              "ng2-validation-manager"
             ]
           },
           "configurations": {
