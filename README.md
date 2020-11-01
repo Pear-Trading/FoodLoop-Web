@@ -36,7 +36,7 @@ To get this repository set up:
   - `npm install -g @angular/cli`
   - `npm install`
 3. Start the application:
-  - `npm start`
+  - `npm run start:local`
   - The app. will automatically reload after source file changes
 
 [LocalLoop-Server]:https://github.com/Pear-Trading/Foodloop-Server
@@ -45,8 +45,7 @@ To get this repository set up:
 
 ## Environments
 
-The app defaults to using the development server. For other options, see 
-`src/environments/environments.ts`.
+The app defaults to using the production environment. For other options, see `angular.json`.
 
 ## Build
 
