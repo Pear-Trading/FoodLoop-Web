@@ -19,6 +19,7 @@ import { MapComponent } from './map.component';
 import { TrailMapComponent } from './trail-map.component';
 import { MoreStuffComponent } from './more-graphs-and-tables.component';
 import { SuppliersComponent } from './suppliers.component';
+import { SendPushNotificationComponent } from './send-push-notification.component';
 
 // Using child path to allow for FullLayout theming
 const routes: Routes = [
@@ -49,6 +50,11 @@ const routes: Routes = [
         path: 'add-data',
         component: AddDataComponent,
         data: { title: 'Record Transaction' },
+      },
+      {
+        path: 'notify',
+        component: SendPushNotificationComponent,
+        data: { title: 'Send Message' },
       },
       {
         path: 'leaderboard',
