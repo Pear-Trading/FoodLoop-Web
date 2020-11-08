@@ -22,7 +22,9 @@
                 "./node_modules/@google/markerclustererplus/images",
                 "glob": "*", 
                 "output": "/images"
-              }
+              },
+              "src/firebase-messaging-sw.js",
+              "src/manifest.json"
             ],
             "styles": [
               "src/scss/style.scss"
