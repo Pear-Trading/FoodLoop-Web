@@ -55,18 +55,19 @@ export class ApiService {
         this.apiUrl + '/login',
         data
       ).pipe(
-      map(
-        result => {
-          const json = result;
-          this.setSessionKey(json.session_key);
-          this.setUserInfo(
-          json.email,
-          json.display_name || json.name
-        );
-        this.setUserType(json.user_type);
-        return json;
-        }
-      ));
+        map(
+          result => {
+            const json = result;
+            this.setSessionKey(json.session_key);
+            this.setUserInfo(
+              json.email,
+              json.display_name || json.name,
+            );
+            this.setUserType(json.user_type);
+            return json;
+          }
+        )
+      );
   }
 
   public logout() {
@@ -92,16 +93,28 @@ export class ApiService {
     data.package_name = 'Foodloop Web';
     data.version_code = 'dev';
     data.version_number = 'dev';
-    console.log(this.apiUrl + '/feedback');
     return this.http.post<any>(
         this.apiUrl + '/feedback',
         data
       );
   }
 
-  // Sends push notifications
+  // Push notifications
+
+  public addDeviceToken(data) {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/add-device-token',
+      {
+        session_key: key,
+        token: data
+      }
+    );
+  }
 
   public sendMessage(data) {
+    data.devicetoken = environment.deviceToken;
+    data.sender = localStorage.getItem('displayname');
     return this.http.post<any>(
       this.apiUrl + '/send-message',
       data
@@ -269,9 +282,7 @@ export class ApiService {
 
   // Pulls user info to store locally on login
 
-  public setUserInfo(
-    email: string,
-    display_name: string) {
+  public setUserInfo(email: string, display_name: string) {
     localStorage.setItem('email', email);
     localStorage.setItem('displayname', display_name);
   }
