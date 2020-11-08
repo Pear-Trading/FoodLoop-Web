@@ -16,7 +16,7 @@ export class SendPushNotificationComponent implements OnInit {
 
   constructor(private api: ApiService) {
     this.sendMessageForm = new FormGroup({
-      messagetext:    new FormControl('', Validators.required),
+      messagetext: new FormControl('', Validators.required),
     });
   }
 
