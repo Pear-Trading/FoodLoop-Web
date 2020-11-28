@@ -42,9 +42,10 @@ export class ApiService {
   }
 
   public checkDatabaseConnection() {
+    const key = this.sessionKey;
     return this.http.post<any>(
-      this.apiUrl,
-      null
+      this.apiUrl + '/test-connection',
+      { session_key: key }
     );
   }
 
