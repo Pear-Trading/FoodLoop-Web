@@ -9,6 +9,14 @@
         <form class="form-horizontal" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
           <div class="card-block">
             <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="select-input"><strong>Select Recipients</strong></label>
+              <select required class="form-control" type="text" formControlName="devicetokens" multiple>
+                <option *ngFor="let deviceToken of deviceTokenIdList" [ngValue]="deviceTokenList[deviceToken].token">
+                {{ deviceTokenList[deviceToken].user }} <{{deviceTokenList[deviceToken].token}}>
+                </option>
+              </select>
+            </div>
+            <div class="form-group row">
               <label class="col-md-3 form-control-label" for="text-input"><strong>Enter Message Here</strong></label>
               <div class="col-md-9">
                 <textarea rows="7" class="form-control" formControlName="messagetext"></textarea>

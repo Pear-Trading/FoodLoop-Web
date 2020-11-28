@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-
 /* this provider handles the interaction between server and client */
 
 @Injectable()
@@ -102,18 +101,23 @@ export class ApiService {
   // Push notifications
 
   public addDeviceToken(data) {
-    const key = this.sessionKey;
+    data.session_key = this.sessionKey;
     return this.http.post<any>(
       this.apiUrl + '/add-device-token',
-      {
-        session_key: key,
-        token: data
-      }
+      data
+    );
+  }
+
+  public getDeviceTokens() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/get-device-tokens',
+      { session_key : key }
     );
   }
 
   public sendMessage(data) {
-    data.devicetoken = environment.deviceToken;
+    data.devicetoken = localStorage.getItem('devicetoken');
     data.sender = localStorage.getItem('displayname');
     return this.http.post<any>(
       this.apiUrl + '/send-message',
@@ -358,8 +362,8 @@ export class ApiService {
   public getMapData(data) {
     data.session_key = this.sessionKey;
     return this.http.post<any>(
-    this.apiUrl + '/v1/supplier/location',
-    data
+      this.apiUrl + '/v1/supplier/location',
+      data
     );
   }
 

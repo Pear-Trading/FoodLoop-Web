@@ -13,10 +13,24 @@ export class SendPushNotificationComponent implements OnInit {
   noEmail = false;
   sendMessageFormStatus: any;
   sendMessageFormStatusError = 'Error received, please try again.';
+  deviceTokenList: any;
+  deviceTokenIdList: any;
 
   constructor(private api: ApiService) {
+    this.api.getDeviceTokens().subscribe(
+      result => {
+        console.log(result);
+        this.deviceTokenList = result.tokens;
+        this.deviceTokenIdList = Object.keys(this.deviceTokenList);
+      },
+      error => {
+        console.log("Couldn't get device token");
+        console.log(error._body);
+      }
+    );
     this.sendMessageForm = new FormGroup({
       messagetext: new FormControl('', Validators.required),
+      devicetokens: new FormControl('', Validators.required),
     });
   }
 
