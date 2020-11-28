@@ -42,6 +42,13 @@ export class ApiService {
     localStorage.removeItem('sessionKey');
   }
 
+  public checkDatabaseConnection() {
+    return this.http.post<any>(
+      this.apiUrl,
+      null
+    );
+  }
+
   public register(data) {
     return this.http.post<any>(
       this.apiUrl + '/register',

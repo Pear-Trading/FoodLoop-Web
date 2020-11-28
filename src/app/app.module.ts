@@ -93,7 +93,18 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
   bootstrap: [ AppComponent ]
 })
 export class AppModule {
-  constructor () {
+  constructor (
+    private api: ApiService,
+  ) {
+    this.api.checkDatabaseConnection().subscribe(
+      result => {
+      },
+      error => {
+        document.location = '#/500';
+        throw new Error('Server connection fail');
+      }
+    );
+
     if (environment.enableAnalytics) {
       (<any>window).ga('create', environment.analyticsKey, 'auto');
     }
