@@ -100,7 +100,7 @@ export class AppModule {
       result => {
       },
       error => {
-        document.location = '#/500';
+        document.location.href = '#/500';
         throw new Error('Server connection fail');
       }
     );
