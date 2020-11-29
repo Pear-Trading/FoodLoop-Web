@@ -20,7 +20,6 @@ export class MessagingService {
 
   requestPermission() {
     this.angularFireMessaging.requestToken.subscribe((token) => {
-      console.log("Device token: " + token);
       this.api.addDeviceToken({'token': token, 'email': localStorage.getItem('email')}).subscribe(
         result => {
           console.log("Device registered successfully!");

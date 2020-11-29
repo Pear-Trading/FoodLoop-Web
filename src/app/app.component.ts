@@ -12,8 +12,10 @@ export class AppComponent {
   constructor(private messagingService: MessagingService) { }
 
   ngOnInit() {
-    this.messagingService.requestPermission();
-    this.messagingService.receiveMessage();
-    this.message = this.messagingService.currentMessage;
+    if (localStorage.getItem('usertype') === 'customer') {
+      this.messagingService.requestPermission();
+      this.messagingService.receiveMessage();
+      this.message = this.messagingService.currentMessage;
+    }
   }
 }
