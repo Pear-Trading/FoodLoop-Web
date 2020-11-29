@@ -109,8 +109,10 @@ export class GraphWidget implements OnInit {
     if ( !( this.dataType in DataType ) ) {
       console.warn('Unknown DataType for graph \'' + this.graphName + '\' - defaulting to number');
     }
-    this.graphService.getGraph(this.graphName)
-      .subscribe( result => this.setData(result.graph) );
+    if (localStorage.getItem('usertype') === 'organisation') {
+      this.graphService.getGraph(this.graphName)
+        .subscribe( result => this.setData(result.graph) );
+    }
   }
 
   private setData(data: any) {
