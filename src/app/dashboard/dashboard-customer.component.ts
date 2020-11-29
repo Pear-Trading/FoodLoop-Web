@@ -9,7 +9,7 @@ import { CustBarSnippetComponent } from '../snippets/cust-snippet-bar.component'
 import { PiePanel } from '../panels/pie-panel.component';
 import { DataType } from '../shared/data-types.enum';
 import * as moment from 'moment';
-import { MoreStuffComponent } from '../dashboard/more-graphs-and-tables.component';
+//import { MoreStuffComponent } from '../dashboard/more-graphs-and-tables.component';
 // import { StackedBarChartComponent } from '../panels/stacked-bar.component';
 
 interface SuppliersComponent {
@@ -186,20 +186,22 @@ export class DashboardCustomerComponent implements OnInit {
     this.setDate();
     this.api.customerStats().subscribe(
       result => {
-        this.setWeekPurchaseList(result.weeks);
-        this.setWeekData(result);
-        this.setChartData(result.data.cat_total);
-        this.totalCategoryList = result.data.cat_list;
-        if (this.totalCategoryList) {
-          this.showTotalCategoryList = true;
+        if (result.data.cat_list.length > 0) {
+          this.setWeekPurchaseList(result.weeks);
+          this.setWeekData(result);
+          this.setChartData(result.data.cat_total);
+          this.totalCategoryList = result.data.cat_list;
+          if (this.totalCategoryList) {
+            this.showTotalCategoryList = true;
+          }
+          this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
+          this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
+          this.barChartDataEssential = [
+            {data: [this.purchaseEssential], label: 'Essential', stack: '1'},
+            {data: [this.purchaseNotEssential], label: 'Non-Essential', stack: '1'},
+          ];
+          this.showEssentialBarChart = true;
         }
-        this.purchaseEssential = result.data.essentials.purchase_no_essential_total;
-        this.purchaseNotEssential = result.data.essentials.purchase_no_total - this.purchaseEssential;
-        this.barChartDataEssential = [
-          {data: [this.purchaseEssential], label: 'Essential', stack: '1'},
-          {data: [this.purchaseNotEssential], label: 'Non-Essential', stack: '1'},
-        ];
-        this.showEssentialBarChart = true;
       },
       error => {
         console.log('Retrieval Error');

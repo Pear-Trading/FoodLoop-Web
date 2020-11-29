@@ -10,7 +10,7 @@
       </widget-graph>
     </div><!--/.col-->
   </div><!--/.row-->
-  <div class=row>
+  <div *ngIf="showEssentialBarChart" class=row>
     <div class="col-xl-6">
       <panel-pie></panel-pie><!--All Purchases -->
       <!-- <div class="demo-container" ng-app="stacked-bar" ng-controller="stacked-bar">
@@ -40,7 +40,7 @@
             </div> -->
           <!-- </body> -->
     <!--    </div> --><!--/.col-->
-    <div *ngIf="showEssentialBarChart" class="col-xl-6">
+    <div class="col-xl-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -82,15 +82,15 @@
         </div>
       </div>
     </div><!--/.col-->
-    <div class="col-xl-6">
+    <div *ngIf="showTotalCategoryList" class="col-xl-6">
       <div class="card">
         <div class="card-block">
-          <div class="row">
+          <div lass="row">
             <div class="col-12">
               <h4 class="card-title float-left mb-0"> Global Puchases by Category</h4>
             </div>
             <div class="col-12">
-              <div *ngIf="showTotalCategoryList" class="chart-wrapper">
+              <div class="chart-wrapper">
                 <ul class="icons-list">
                   <!-- New loop  -->
                   <li *ngFor="let category of totalCategoryList | slice:0:totalCategoryLimit; let i=index">
