@@ -266,13 +266,15 @@ export class DashboardComponent {
     this.setDate();
     this.api.orgStats().subscribe(
       result => {
-        this.setWeekPurchaseList(result.weeks);
-        this.setWeekData(result);
-        this.setChartDataCat(result.data.cat_total);
-        this.setChartDataEssential(result.data.essentials);
-        this.totalCategoryList = result.data.cat_list;
-        if (this.totalCategoryList) {
-          this.showTotalCategoryList = true;
+        if (result.data.cat_list.length > 0) {
+          this.setWeekPurchaseList(result.weeks);
+          this.setWeekData(result);
+          this.setChartDataCat(result.data.cat_total);
+          this.setChartDataEssential(result.data.essentials);
+          this.totalCategoryList = result.data.cat_list;
+          if (this.totalCategoryList) {
+            this.showTotalCategoryList = true;
+          }
         }
       },
       error => {
