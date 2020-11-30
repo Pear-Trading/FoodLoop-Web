@@ -9,24 +9,48 @@ export class MessagingService {
   currentMessage = new BehaviorSubject(null);
 
   constructor(
-    private angularFireMessaging: AngularFireMessaging,
+    private readonly angularFireMessaging: AngularFireMessaging,
     private api: ApiService
-  ) {
-    this.angularFireMessaging.messages.subscribe((_messaging: AngularFireMessaging) => {
-      _messaging.onMessage = _messaging.onMessage.bind(_messaging);
-      _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
-    })
-  }
+  ) { }
 
   requestPermission() {
+    if (!('Notification' in window)) {
+      alert("This browser does not support notifications.");
+      return;
+    } else if (Notification.permission === 'granted') {
+      console.log("Push notification permission granted");
+      this.registerDeviceToken();
+    } else if (Notification.permission === 'denied' ||
+               Notification.permission === 'default') {
+      console.log("Push notification permission not granted");
+      Notification.requestPermission().then(function(permission) {
+        if (permission === 'granted') {
+          console.log("Push notification permission granted");
+          this.registerDeviceToken();
+        }
+      });
+    }
+  }
+
+  registerDeviceToken() {
     this.angularFireMessaging.requestToken.subscribe((token) => {
-      this.api.addDeviceToken({'token': token, 'email': localStorage.getItem('email')}).subscribe(
+      this.api.checkDeviceToken({'token': token}).subscribe(
         result => {
-          console.log("Device registered successfully!");
-          localStorage.setItem('devicetoken', token);
+          if (result.exists) console.log("Device already registered!");
+          else {
+            this.api.addDeviceToken({'token': token, 'email': localStorage.getItem('email')}).subscribe(
+              result => {
+                console.log("Device registered successfully!");
+                localStorage.setItem('devicetoken', token);
+              },
+              error => {
+                console.error("Device could not be registered!", error._body);
+              }
+            );
+          }
         },
         error => {
-          console.error("Device could not be registered!", error._body);
+          console.error(error._body);
         }
       );
     }, (err) => {
@@ -35,9 +59,9 @@ export class MessagingService {
   }
 
   receiveMessage() {
-    this.angularFireMessaging.messages.subscribe((payload) => {
-      console.log("new message received. ", payload);
-      this.currentMessage.next(payload);
+    this.angularFireMessaging.messages.subscribe((message) => {
+      console.log("show message!", message);
+      this.currentMessage.next(message);
     });
   }
 }

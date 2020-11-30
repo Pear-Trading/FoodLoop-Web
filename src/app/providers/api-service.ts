@@ -108,6 +108,14 @@ export class ApiService {
 
   // Push notifications
 
+  public checkDeviceToken(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/check-device-token',
+      data
+    );
+  }
+
   public addDeviceToken(data) {
     data.session_key = this.sessionKey;
     return this.http.post<any>(
@@ -124,8 +132,15 @@ export class ApiService {
     );
   }
 
+  public getTopics() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/get-topics',
+      { session_key : key }
+    );
+  }
+
   public sendMessage(data) {
-    data.devicetoken = localStorage.getItem('devicetoken');
     data.sender = localStorage.getItem('displayname');
     return this.http.post<any>(
       this.apiUrl + '/send-message',

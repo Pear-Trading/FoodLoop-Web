@@ -10,9 +10,9 @@
           <div class="card-block">
             <div class="form-group row">
               <label class="col-md-3 form-control-label" for="select-input"><strong>Select Recipients</strong></label>
-              <select required class="form-control" type="text" formControlName="devicetokens" multiple>
-                <option *ngFor="let deviceToken of deviceTokenIdList" [ngValue]="deviceTokenList[deviceToken].token">
-                {{ deviceTokenList[deviceToken].user }} <{{deviceTokenList[deviceToken].token}}>
+              <select required class="form-control" type="text" formControlName="topic">
+                <option *ngFor="let topic of topicIdList" [ngValue]="topicList[topic].name">
+                {{ topicList[topic].name }} <strong>({{topicList[topic].numberOfSubscribers}} subscribers)</strong>
                 </option>
               </select>
             </div>
