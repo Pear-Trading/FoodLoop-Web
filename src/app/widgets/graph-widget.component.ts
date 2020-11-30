@@ -145,11 +145,9 @@ export class GraphWidget implements OnInit {
 
   // events
   public chartClicked(e: any): void {
-    console.log(e);
   }
 
   public chartHovered(e: any): void {
-    console.log(e);
   }
 
   private tooltipLabelCallback(tooltipItem: any, data: any) {
