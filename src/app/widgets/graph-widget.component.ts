@@ -109,8 +109,10 @@ export class GraphWidget implements OnInit {
     if ( !( this.dataType in DataType ) ) {
       console.warn('Unknown DataType for graph \'' + this.graphName + '\' - defaulting to number');
     }
-    this.graphService.getGraph(this.graphName)
-      .subscribe( result => this.setData(result.graph) );
+    if (localStorage.getItem('usertype') === 'organisation') {
+      this.graphService.getGraph(this.graphName)
+        .subscribe( result => this.setData(result.graph) );
+    }
   }
 
   private setData(data: any) {
@@ -143,11 +145,9 @@ export class GraphWidget implements OnInit {
 
   // events
   public chartClicked(e: any): void {
-    console.log(e);
   }
 
   public chartHovered(e: any): void {
-    console.log(e);
   }
 
   private tooltipLabelCallback(tooltipItem: any, data: any) {

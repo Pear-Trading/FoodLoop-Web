@@ -38,19 +38,25 @@
             </div>
           </a>
         </li>
-        <li *ngIf="accountType == 'organisation'" class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/more-graphs-and-tables']">
-            <div class="row no-gutters align-items-center">
-              <div class="col-2"><i class="icon-map"></i></div>
-              <div class="col-10">Infographics</div>
-            </div>
-          </a>
-        </li>
+      </ul>
+
+      <hr>
+
+      <ul class="nav">
+        <strong class="nav-title">Actions</strong>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/add-data']">
             <div class="row no-gutters align-items-center">
               <div class="col-2"><i class="icon-basket"></i></div>
-              <div class="col-10">Add Transaction</div>
+              <div class="col-10">Record Transaction</div>
+            </div>
+          </a>
+        </li>
+        <li *ngIf="accountType == 'organisation'" class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/notify']">
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-microphone"></i></div>
+              <div class="col-10">Send Message</div>
             </div>
           </a>
         </li>
@@ -58,7 +64,21 @@
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/feedback']">
             <div class="row no-gutters align-items-center">
               <div class="col-2"><i class="icon-envelope-letter"></i></div>
-              <div class="col-10">Enter Feedback</div>
+              <div class="col-10">Submit Feedback</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+
+      <hr>
+
+      <ul class="nav">
+        <strong class="nav-title">Info</strong>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/more-graphs-and-tables']">
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-map"></i></div>
+              <div class="col-10">Infographics</div>
             </div>
           </a>
         </li>
@@ -139,6 +159,6 @@
 </div>
 
 <footer class="app-footer">
-  <a href="http://www.peartrade.org" target="_blank">&copy; 2017 Pear Trading Ltd.</a>
+  <a href="http://www.peartrade.org" target="_blank">&copy; 2020 Pear Trading Ltd.</a>
   <span class="float-right">Powered by <a href="http://coreui.io">CoreUI</a></span>
 </footer>

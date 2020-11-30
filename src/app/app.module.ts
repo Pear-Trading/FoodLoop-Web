@@ -23,6 +23,11 @@ import { OrgGuard } from './_guards/org.guard';
 import { CustomerGuard } from './_guards/customer.guard';
 import { ApiService } from './providers/api-service';
 
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireModule } from '@angular/fire';
+import { MessagingService } from './service/messaging.service';
+import { AsyncPipe } from '../../node_modules/@angular/common';
+
 import { OrgGraphsService } from './providers/org-graphs.service';
 import { CustGraphsService } from './providers/cust-graphs.service';
 import { OrgSnippetsService } from './providers/org-snippets.service';
@@ -51,6 +56,8 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
     FilterPipeModule,
     ReactiveFormsModule,
     NgxPaginationModule,
@@ -76,6 +83,8 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
   ],
   providers: [
     AuthGuard,
+    MessagingService,
+    AsyncPipe,
     OrgGuard,
     CustomerGuard,
     ApiService,
@@ -92,8 +101,20 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
   ],
   bootstrap: [ AppComponent ]
 })
+
 export class AppModule {
-  constructor () {
+  constructor (
+    private api: ApiService,
+  ) {
+    this.api.checkDatabaseConnection().subscribe(
+      result => {
+      },
+      error => {
+        document.location.href = '#/500';
+        throw new Error('Server connection fail');
+      }
+    );
+
     if (environment.enableAnalytics) {
       (<any>window).ga('create', environment.analyticsKey, 'auto');
     }

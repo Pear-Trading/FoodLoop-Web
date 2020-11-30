@@ -27,16 +27,17 @@ For your local Node.js, we recommend using:
 - [n][tj/n] for \*nix and Mac; and
 - [nodist][marcelklehr/nodist] for Windows.
 
-We reccomend Node.js version 8.0.0+ and npm version 5.3.0+.
+We recommend Node.js version 8.0.0+ and npm version 5.3.0+.
 
 To get this repository set up:
 
 1. Clone it
-2. Install the dependencies:
+1. Install the dependencies:
   - `npm install -g @angular/cli`
   - `npm install`
-3. Start the application:
-  - `npm start`
+1. Set up the `src/environments/environment.⟨environment⟩.ts` file
+1. Start the application:
+  - `npm run start:local` if running the app. locally
   - The app. will automatically reload after source file changes
 
 [LocalLoop-Server]:https://github.com/Pear-Trading/Foodloop-Server
@@ -45,8 +46,8 @@ To get this repository set up:
 
 ## Environments
 
-The app defaults to using the development server. For other options, see 
-`src/environments/environments.ts`.
+The app defaults to using the production environment.
+For other options, see `angular.json`.
 
 ## Build
 

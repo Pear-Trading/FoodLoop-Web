@@ -15,6 +15,7 @@ import { DashboardCustomerComponent } from './dashboard-customer.component';
 import { AccountEditComponent } from './account-edit.component';
 import { AddDataComponent } from './add-data.component';
 import { FeedbackComponent } from './feedback.component';
+import { SendPushNotificationComponent } from './send-push-notification.component';
 import { TransactionLogComponent } from './transaction-log.component';
 import { CategoryMonthComponent } from './category-month.component';
 import { PayrollLogComponent } from './payroll-log.component';
@@ -85,6 +86,7 @@ import { environment } from '../../environments/environment';
     MapComponent,
     TrailMapComponent,
     FeedbackComponent,
+    SendPushNotificationComponent,
     GraphWidget,
     OrgBarSnippetComponent,
     CustBarSnippetComponent,

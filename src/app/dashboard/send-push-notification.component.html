@@ -1,0 +1,46 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-6 col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <strong>Send Message</strong>
+          <small>Required Data marked in <strong>bold</strong>.</small>
+        </div>
+        <form class="form-horizontal" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
+          <div class="card-block">
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="select-input"><strong>Select Recipients</strong></label>
+              <select required class="form-control" type="text" formControlName="topic">
+                <option *ngFor="let topic of topicIdList" [ngValue]="topicList[topic].name">
+                {{ topicList[topic].name }} <strong>({{topicList[topic].numberOfSubscribers}} subscribers)</strong>
+                </option>
+              </select>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Enter Message Here</strong></label>
+              <div class="col-md-9">
+                <textarea rows="7" class="form-control" formControlName="messagetext"></textarea>
+                <span class="help-block">Please enter your message in this textbox.</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-9">
+                <div [ngSwitch]="sendMessageFormStatus">
+                  <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+                    Your message has been sent successfully!
+                  </div>
+                  <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
+                    {{sendMessageFormStatusError}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" [disabled]="!sendMessageForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><!--/.row-->
+</div>

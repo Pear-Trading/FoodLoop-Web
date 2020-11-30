@@ -13,7 +13,7 @@
   </div><!--/.row-->
   <panel-graph></panel-graph>
   <div class=row>
-    <div class="col-xl-6">
+    <div *ngIf="showEssentialBarChart" class="col-xl-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -21,7 +21,7 @@
               <h4 class="card-title mb-0">Number of Essential Purchases</h4>
             </div>
           </div>
-          <div *ngIf="showEssentialBarChart" class="chart-wrapper">
+          <div class="chart-wrapper">
             <canvas baseChart class="chart"
             [datasets]="barChartDataEssential"
             [labels]="barChartLabelsEssential"
@@ -33,7 +33,7 @@
         </div>
       </div>
     </div><!--/.col-->
-    <div class="col-xl-6">
+    <div *ngIf="showEssentialBarChart" class="col-xl-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -80,15 +80,15 @@
     <div class="col-xl-6">
       <org-pie-panel></org-pie-panel>
     </div>
-    <div class="col-xl-6">
+    <div *ngIf="showTotalCategoryList" class="col-xl-6">
       <div class="card">
         <div class="card-block">
           <div class="row">
             <div class="col-12">
-              <h4 class="card-title float-left mb-0"> Global Puchases by Category</h4>
+              <h4 class="card-title float-left mb-0"> Global Purchases by Category</h4>
             </div>
             <div class="col-12">
-              <div *ngIf="showTotalCategoryList" class="chart-wrapper">
+              <div class="chart-wrapper">
                 <ul class="icons-list">
                   <!-- New loop  -->
                   <li *ngFor="let category of totalCategoryList | slice:0:totalCategoryLimit; let i=index">

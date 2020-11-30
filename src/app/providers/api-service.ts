@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-
 /* this provider handles the interaction between server and client */
 
 @Injectable()
@@ -42,6 +41,14 @@ export class ApiService {
     localStorage.removeItem('sessionKey');
   }
 
+  public checkDatabaseConnection() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/test-connection',
+      { session_key: key }
+    );
+  }
+
   public register(data) {
     return this.http.post<any>(
       this.apiUrl + '/register',
@@ -55,18 +62,19 @@ export class ApiService {
         this.apiUrl + '/login',
         data
       ).pipe(
-      map(
-        result => {
-          const json = result;
-          this.setSessionKey(json.session_key);
-          this.setUserInfo(
-          json.email,
-          json.display_name || json.name
-        );
-        this.setUserType(json.user_type);
-        return json;
-        }
-      ));
+        map(
+          result => {
+            const json = result;
+            this.setSessionKey(json.session_key);
+            this.setUserInfo(
+              json.email,
+              json.display_name || json.name,
+            );
+            this.setUserType(json.user_type);
+            return json;
+          }
+        )
+      );
   }
 
   public logout() {
@@ -92,10 +100,52 @@ export class ApiService {
     data.package_name = 'Foodloop Web';
     data.version_code = 'dev';
     data.version_number = 'dev';
-      return this.http.post<any>(
+    return this.http.post<any>(
         this.apiUrl + '/feedback',
         data
       );
+  }
+
+  // Push notifications
+
+  public checkDeviceToken(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/check-device-token',
+      data
+    );
+  }
+
+  public addDeviceToken(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/add-device-token',
+      data
+    );
+  }
+
+  public getDeviceTokens() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/get-device-tokens',
+      { session_key : key }
+    );
+  }
+
+  public getTopics() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/get-topics',
+      { session_key : key }
+    );
+  }
+
+  public sendMessage(data) {
+    data.sender = localStorage.getItem('displayname');
+    return this.http.post<any>(
+      this.apiUrl + '/send-message',
+      data
+    );
   }
 
   // gets transaction list for log
@@ -259,9 +309,7 @@ export class ApiService {
 
   // Pulls user info to store locally on login
 
-  public setUserInfo(
-    email: string,
-    display_name: string) {
+  public setUserInfo(email: string, display_name: string) {
     localStorage.setItem('email', email);
     localStorage.setItem('displayname', display_name);
   }
@@ -337,8 +385,8 @@ export class ApiService {
   public getMapData(data) {
     data.session_key = this.sessionKey;
     return this.http.post<any>(
-    this.apiUrl + '/v1/supplier/location',
-    data
+      this.apiUrl + '/v1/supplier/location',
+      data
     );
   }
 

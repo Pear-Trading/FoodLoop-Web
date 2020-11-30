@@ -1,0 +1,4 @@
+<router-outlet></router-outlet>
+<div *ngIf="userType === 'customer' && message.value" style="position: fixed; padding:1em; right: 2em; bottom: 2em; background-color: grey;">
+  {{ message | async | json }}
+</div>

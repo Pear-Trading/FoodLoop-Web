@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../providers/api-service';
-
 
 @Component({
   templateUrl: 'feedback.component.html',
 })
+
 export class FeedbackComponent implements OnInit {
   feedbackForm: FormGroup;
   loggedInEmail: string;
@@ -14,23 +14,19 @@ export class FeedbackComponent implements OnInit {
   feedbackFormStatus: any;
   feedbackFormStatusError = 'Error received, please try again.';
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private api: ApiService,
-  ) {
-    this.feedbackForm = this.formBuilder.group({
-      email:           ['', [Validators.required]],
-      feedbacktext:    ['', [Validators.required]],
+  constructor(private api: ApiService) {
+    this.feedbackForm = new FormGroup({
+      email:           new FormControl({value: this.loggedInEmail, disabled: this.noEmail}, Validators.required),
+      feedbacktext:    new FormControl('', Validators.required),
     });
   }
 
   ngOnInit(): void {
-
     if (localStorage.getItem('email')) {
       this.loggedInEmail = localStorage.getItem('email');
     }
-    console.log('loggedInEmail: ' + this.loggedInEmail);
-    if (this.loggedInEmail) {
+
+    if (!this.loggedInEmail) {
       console.log('email not found in storage');
       this.api.accountFullLoad().subscribe(
         result => {
@@ -48,7 +44,7 @@ export class FeedbackComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.api
       .feedback(this.feedbackForm.value)
       .subscribe(
@@ -76,5 +72,4 @@ export class FeedbackComponent implements OnInit {
         }
       );
   }
-
 }

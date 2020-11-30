@@ -44,6 +44,7 @@ export class DashboardComponent {
       title: 'Sales Last 30 Days',
       dataType: DataType.currency,
     },
+    /* Not implemented on server
     {
       type: 'graph',
       name: 'sales_last_quart',
@@ -51,6 +52,7 @@ export class DashboardComponent {
       title: 'Sales Last Quart',
       dataType: DataType.currency,
     },
+    */
     {
       type: 'graph',
       name: 'purchases_last_7_days',
@@ -63,12 +65,14 @@ export class DashboardComponent {
       title: 'Purchases Last 30 Days',
       dataType: DataType.currency,
     },
+    /* Not implemented on server
     {
       type: 'graph',
       name: 'purchases_last_quart;',
       title: 'Purchases Last Quart',
       dataType: DataType.currency,
     },
+    */
   ];
 
   disableCategoryButton: boolean = false;
@@ -262,13 +266,15 @@ export class DashboardComponent {
     this.setDate();
     this.api.orgStats().subscribe(
       result => {
-        this.setWeekPurchaseList(result.weeks);
-        this.setWeekData(result);
-        this.setChartDataCat(result.data.cat_total);
-        this.setChartDataEssential(result.data.essentials);
-        this.totalCategoryList = result.data.cat_list;
-        if (this.totalCategoryList) {
-          this.showTotalCategoryList = true;
+        if (result.data.cat_list.length > 0) {
+          this.setWeekPurchaseList(result.weeks);
+          this.setWeekData(result);
+          this.setChartDataCat(result.data.cat_total);
+          this.setChartDataEssential(result.data.essentials);
+          this.totalCategoryList = result.data.cat_list;
+          if (this.totalCategoryList) {
+            this.showTotalCategoryList = true;
+          }
         }
       },
       error => {
@@ -286,7 +292,6 @@ export class DashboardComponent {
       {data: [this.purchaseNotEssential], label: 'Non-Essential', stack: '1'},
     ];
     this.showEssentialBarChart = true;
-    console.log(this.barChartDataEssential);
   }
 
   private setChartDataCat(dataCat: any) {
