@@ -9,10 +9,10 @@ import * as moment from 'moment';
 })
 export class CategoryMonthComponent implements OnInit {
 
-  disableCategoryButton1: boolean = false;
-  disableCategoryButton2: boolean = false;
-  disableCategoryButton3: boolean = false;
-  disableCategoryButton4: boolean = false;
+  disableCategoryButton1 = false;
+  disableCategoryButton2 = false;
+  disableCategoryButton3 = false;
+  disableCategoryButton4 = false;
 
   weekPurchaseList = {
     first: 0,
@@ -22,14 +22,14 @@ export class CategoryMonthComponent implements OnInit {
   weekList2 = [];
   weekList3 = [];
   weekList4 = [];
-  weekListValueSum1: number = 0;
-  weekListValueSum2: number = 0;
-  weekListValueSum3: number = 0;
-  weekListValueSum4: number = 0;
-  weekEssential1: number = 0;
-  weekEssential2: number = 0;
-  weekEssential3: number = 0;
-  weekEssential4: number = 0;
+  weekListValueSum1 = 0;
+  weekListValueSum2 = 0;
+  weekListValueSum3 = 0;
+  weekListValueSum4 = 0;
+  weekEssential1 = 0;
+  weekEssential2 = 0;
+  weekEssential3 = 0;
+  weekEssential4 = 0;
 
   dayList: any[] = [];
   valueList: number[] = [];
@@ -37,10 +37,10 @@ export class CategoryMonthComponent implements OnInit {
   myWeek2: any;
   myWeek3: any;
   myWeek4: any;
-  categoryLimit1: number = 6;
-  categoryLimit2: number = 6;
-  categoryLimit3: number = 6;
-  categoryLimit4: number = 6;
+  categoryLimit1 = 6;
+  categoryLimit2 = 6;
+  categoryLimit3 = 6;
+  categoryLimit4 = 6;
 
   constructor(
   private api: ApiService,
@@ -87,16 +87,16 @@ export class CategoryMonthComponent implements OnInit {
     data3: any,
     data4: any) {
     if (data1) {
-      this.weekListValueSum1 = data1.reduce(function (s, a) {return s + a.value;}, 0);
+      this.weekListValueSum1 = data1.reduce(function (s, a) {return s + a.value; }, 0);
     }
     if (data2) {
-      this.weekListValueSum2 = data2.reduce(function (s, a) {return s + a.value;}, 0);
+      this.weekListValueSum2 = data2.reduce(function (s, a) {return s + a.value; }, 0);
     }
     if (data3) {
-      this.weekListValueSum3 = data3.reduce(function (s, a) {return s + a.value;}, 0);
+      this.weekListValueSum3 = data3.reduce(function (s, a) {return s + a.value; }, 0);
     }
     if (data4) {
-      this.weekListValueSum4 = data4.reduce(function (s, a) {return s + a.value;}, 0);
+      this.weekListValueSum4 = data4.reduce(function (s, a) {return s + a.value; }, 0);
     }
   }
 

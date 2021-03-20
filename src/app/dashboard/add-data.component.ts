@@ -91,7 +91,7 @@ export class AddDataComponent implements OnInit {
   }
 
   private setCategoryList(data: any) {
-    let halfLength = Math.floor(data.length / 2);
+    const halfLength = Math.floor(data.length / 2);
     this.leftCategoryList = data.splice(0, halfLength);
     this.rightCategoryList = data;
   }

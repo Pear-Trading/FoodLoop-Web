@@ -37,12 +37,12 @@ export class PayrollLogComponent implements OnInit {
     this.loadPayrolls(1);
   }
 
-  getMinDate(){
+  getMinDate() {
     // gets the April 1st date of the current year
-    let aprilDate = moment().month(3).date(1);
-    let now = moment();
+    const aprilDate = moment().month(3).date(1);
+    const now = moment();
     // Checks if current time is before April 1st, if so returns true
-    let beforeApril = now.isBefore(aprilDate);
+    const beforeApril = now.isBefore(aprilDate);
     if ( beforeApril == true ) {
       this.minDate = aprilDate.subtract(2, 'years').format('YYYY-MM-DD');
     } else {
@@ -54,9 +54,9 @@ export class PayrollLogComponent implements OnInit {
     console.log(logPage);
     this.api.payrollList(logPage).subscribe(
       result => {
-        if(result.payrolls.length > 0) {
+        if (result.payrolls.length > 0) {
           this.payrollList = result.payrolls;
-          //TODO Rename in server
+          // TODO Rename in server
           this.paginateConfig.totalItems = result.page_no;
           this.paginateConfig.currentPage = logPage;
           this.noPayrollList = false;

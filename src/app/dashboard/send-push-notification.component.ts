@@ -23,11 +23,11 @@ export class SendPushNotificationComponent implements OnInit {
 		      this.topicList = result.topics;
 		      this.topicIdList = Object.keys(this.topicList);
 		    } else {
-		    	console.warn("No topics returned from server");
+		    	console.warn('No topics returned from server');
 		    }
       },
       error => {
-        console.error("Couldn't get topics");
+        console.error('Couldn\'t get topics');
         console.error(error._body);
       }
     );

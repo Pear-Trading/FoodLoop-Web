@@ -36,8 +36,7 @@ export class MessagingService {
     this.angularFireMessaging.requestToken.subscribe((token) => {
       this.api.checkDeviceToken({'token': token}).subscribe(
         result => {
-          if (result.exists) { console.log('Device already registered!'); }
-          else {
+          if (result.exists) { console.log('Device already registered!'); } else {
             this.api.addDeviceToken({'token': token, 'email': localStorage.getItem('email')}).subscribe(
               result => {
                 console.log('Device registered successfully!');
@@ -61,7 +60,7 @@ export class MessagingService {
   receiveMessage() {
     this.angularFireMessaging.messages.subscribe((message) => {
       console.log('show message!', message);
-	    let notification = new Notification(message.notification.title, { body: message.notification.body });
+	    const notification = new Notification(message.notification.title, { body: message.notification.body });
       this.currentMessage.next(message);
     });
   }

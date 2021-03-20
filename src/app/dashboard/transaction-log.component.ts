@@ -102,9 +102,9 @@ export class TransactionLogComponent implements OnInit {
   }
 
   editRecurringTransaction() {
-    let updatedTimeSubmit = moment(this.updatedTime, 'YYYY-MM-DD[T]HH:mm').local().format('YYYY-MM-DD[T]HH:mm:ss.SSSZ');
+    const updatedTimeSubmit = moment(this.updatedTime, 'YYYY-MM-DD[T]HH:mm').local().format('YYYY-MM-DD[T]HH:mm:ss.SSSZ');
     this.clickedRecur.display_time = moment(this.updatedTime).format('llll');
-    let myParams = {
+    const myParams = {
       category: (this.clickedRecur.category == 0 ? undefined : this.clickedRecur.category),
       essential: this.clickedRecur.essential,
       id: this.clickedRecur.id,
@@ -138,7 +138,7 @@ export class TransactionLogComponent implements OnInit {
   }
 
   deleteRecurringTransaction() {
-    let myParams = {
+    const myParams = {
       id: this.clickedRecur.id,
     };
     this.api

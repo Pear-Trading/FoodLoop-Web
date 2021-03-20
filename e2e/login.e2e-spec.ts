@@ -1,5 +1,5 @@
 import { LoginPageObject } from './login.po';
-import { browser } from "protractor";
+import { browser } from 'protractor';
 
 describe('Login Page', () => {
   let page: LoginPageObject;

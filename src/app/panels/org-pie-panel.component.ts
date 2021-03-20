@@ -17,7 +17,7 @@ export class OrgPiePanel implements OnInit {
   public doughnutChartDataLocal: number[] = [];
   public doughnutChartColors: any[] = [
     {
-      backgroundColor:[
+      backgroundColor: [
         '#ffa1b5',
         '#3cde52',
         '#52afed',

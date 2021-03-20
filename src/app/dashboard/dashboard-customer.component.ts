@@ -9,11 +9,11 @@ import { CustBarSnippetComponent } from '../snippets/cust-snippet-bar.component'
 import { PiePanel } from '../panels/pie-panel.component';
 import { DataType } from '../shared/data-types.enum';
 import * as moment from 'moment';
-//import { MoreStuffComponent } from '../dashboard/more-graphs-and-tables.component';
+// import { MoreStuffComponent } from '../dashboard/more-graphs-and-tables.component';
 // import { StackedBarChartComponent } from '../panels/stacked-bar.component';
 
 interface SuppliersComponent {
-  name : string;
+  name: string;
 }
 
 @Component({
@@ -28,9 +28,9 @@ export class DashboardCustomerComponent implements OnInit {
   trends: any;
   myRank: any;
   username: any;
-  maxPurchase: number = 0;
+  maxPurchase = 0;
 
-  disableCategoryButton: boolean = false;
+  disableCategoryButton = false;
 
   public bootstrapColours: string[] = ['bg-primary', 'bg-secondary', 'bg-success',
 'bg-danger', 'bg-warning', 'bg-info'];
@@ -41,7 +41,7 @@ export class DashboardCustomerComponent implements OnInit {
   public doughnutChartLabelsCategory: string[] = [];
   public doughnutChartColoursCategory: any[] = [
                {
-                 backgroundColor:[
+                 backgroundColor: [
                      '#ffa1b5',
                      '#3cde52',
                      '#52afed',
@@ -56,7 +56,7 @@ export class DashboardCustomerComponent implements OnInit {
                  ]
                }];
 
-  public doughnutChartOptionsCategory:any = {
+  public doughnutChartOptionsCategory: any = {
     tooltips: {
       callbacks: {
         label: (tooltip, data) => {
@@ -76,26 +76,26 @@ export class DashboardCustomerComponent implements OnInit {
   public showCategoryBarChart = false;
   public showCategoryDoughnutChart = false;
 
-  public barChartDataEssential:any[]=[
+  public barChartDataEssential: any[] = [
     {data: 0, label: 'Essential', stack: '1'},
     {data: 0, label: 'Non-Essential', stack: '1'},
   ];
-  public barChartLabelsEssential:string[] = ['All Purchases'];
-  public barChartOptionsEssential:any = {
+  public barChartLabelsEssential: string[] = ['All Purchases'];
+  public barChartOptionsEssential: any = {
       responsive: true,
-      scales:{
-          xAxes:[{
+      scales: {
+          xAxes: [{
             scaleLabel: {
-              display:true,
+              display: true,
             },
-              stacked:true,
+              stacked: true,
 
           }],
       }
     };
-  public barChartTypeEssential:string = 'horizontalBar';
+  public barChartTypeEssential = 'horizontalBar';
 
-  public barChartOptionsCategory:any = {
+  public barChartOptionsCategory: any = {
     scaleShowVerticalLines: false,
     responsive: true,
     scales: {
@@ -114,13 +114,13 @@ export class DashboardCustomerComponent implements OnInit {
       },
     },
   };
-  public barChartTypeCategory:string = 'bar';
-  public barChartLegendCategory:boolean = false;
-  public barChartDataCategory:any[]=[];
-  public barChartLabelsCategory:string[] = [];
+  public barChartTypeCategory = 'bar';
+  public barChartLegendCategory = false;
+  public barChartDataCategory: any[] = [];
+  public barChartLabelsCategory: string[] = [];
   public barChartColoursCategory: any[] = [
     {
-      backgroundColor:[
+      backgroundColor: [
           '#ffa1b5',
           '#3cde52',
           '#52afed',
@@ -144,9 +144,9 @@ export class DashboardCustomerComponent implements OnInit {
     count: 0,
   };
 
-  showTotalCategoryList: boolean = false;
-  totalCategoryLimit: number = 10;
-  totalCategoryList: any[]=[];
+  showTotalCategoryList = false;
+  totalCategoryLimit = 10;
+  totalCategoryList: any[] = [];
 
 
   // Graph widgets
@@ -212,18 +212,18 @@ export class DashboardCustomerComponent implements OnInit {
 
   private setChartData(dataCat: any) {
     this.barChartLabelsCategory = Object.keys(dataCat);
-    let barChartDataCategoryInitial = Object.keys(dataCat).map(key => dataCat[key]);
+    const barChartDataCategoryInitial = Object.keys(dataCat).map(key => dataCat[key]);
     this.barChartDataCategory = [
       {data: barChartDataCategoryInitial, label: 'Series A'},
     ];
     this.showCategoryBarChart = true;
     if (this.weekList1) {
-      let doughnutChartDataCategoryInitial = this.weekList1.map(function(a) {return a.value;});
+      const doughnutChartDataCategoryInitial = this.weekList1.map(function(a) {return a.value; });
       this.doughnutChartDataCategory = [
         {data: doughnutChartDataCategoryInitial, label: 'Series A'},
       ];
       // setTimeout is currently a workaround for ng2-charts labels
-      setTimeout(() => this.doughnutChartLabelsCategory = this.weekList1.map(function(a) {return a.category;}), 0);
+      setTimeout(() => this.doughnutChartLabelsCategory = this.weekList1.map(function(a) {return a.category; }), 0);
       this.showCategoryDoughnutChart = true;
     }
   }
@@ -269,8 +269,8 @@ export class DashboardCustomerComponent implements OnInit {
   }
 
   private tooltipLabelCallback(tooltipItem: any, data: any) {
-    var dataset = data.datasets[tooltipItem.datasetIndex];
-    var value = dataset.data[tooltipItem.index];
+    const dataset = data.datasets[tooltipItem.datasetIndex];
+    const value = dataset.data[tooltipItem.index];
     return this.currencyPipe.transform(value, 'GBP', 'symbol', '1.2-2');
   }
 

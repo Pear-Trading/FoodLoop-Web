@@ -26,6 +26,7 @@ export class LeaderboardComponent implements OnInit {
         currentPage: 1,
         totalItems: 0
     };
+org
 
   constructor(
   private api: ApiService,
@@ -52,7 +53,7 @@ export class LeaderboardComponent implements OnInit {
 
   loadLeaderboard(leadPage: number) {
     console.log(leadPage, this.listType);
-    this.api.leaderboard_fetch(this.listType,leadPage).subscribe(
+    this.api.leaderboard_fetch(this.listType, leadPage).subscribe(
       result => {
         if (result.leaderboard.length > 0) {
           this.leaderboardList = result.leaderboard;
@@ -70,8 +71,7 @@ export class LeaderboardComponent implements OnInit {
         console.log(error);
       }
     );
-  }org
-
+  }
   // // dynamically changes the row style based on  player's position
   // // for instance, top three player and the player him/herself should
   // // be hightlighted

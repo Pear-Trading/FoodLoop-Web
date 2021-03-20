@@ -31,7 +31,7 @@ export class PiePanel implements OnInit {
         '#2d4fcc'
     ]
   },
-  { borderColor:[
+  { borderColor: [
     'red',
     'green',
     'blue',

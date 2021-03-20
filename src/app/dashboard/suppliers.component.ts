@@ -11,7 +11,7 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 export class SuppliersComponent implements OnInit, AfterViewInit {
   @Output() public onClick = new EventEmitter();
   @Input() public categories: any;
-  public perPage: number = 10;
+  public perPage = 10;
 
   searchText: string;
 

@@ -10,16 +10,16 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 })
 export class TrailMapComponent implements OnInit, AfterViewInit {
   @ViewChild('statusModal', { static: true }) myStatusModal: ModalDirective;
-  lat: number = 54.0466;
-  lng: number = -2.8007;
-  zoom: number = 12;
+  lat = 54.0466;
+  lng = -2.8007;
+  zoom = 12;
   public modalRef: BsModalRef;
   public modalRef2: BsModalRef;
   clickedMarker: any;
   assocMap = 'lis';
   assocLogo: string;
 
-  dataReceived: string = 'loading';
+  dataReceived = 'loading';
 
   markers: Array<{latitude: number, longitude: number, name: string}>;
 
@@ -57,9 +57,9 @@ export class TrailMapComponent implements OnInit, AfterViewInit {
   }
 
   public viewBoundsChanged() {
-    console.log("finding bounds");
+    console.log('finding bounds');
     const resp = this.map.getBounds();
-    console.log("found bounds");
+    console.log('found bounds');
     console.log(resp.getNorthEast().lat());
     console.log(resp.getNorthEast().lng());
     console.log(resp.getSouthWest().lat());
