@@ -85,10 +85,6 @@ Environment variables are found in `src/environments/environment.‚ü®environment‚
 - Run `npm run start:dev` to start in development mode using Angular.
 - Run `npm run build:dev` to build in development mode using Angular.
 
-### Local
-
-- Run `npm run start:local` to start in local mode using Angular.
-
 ### Production
 
 - Run `npm run start:prod` to start in production mode using Angular.
