@@ -5,8 +5,18 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://dev.localspend.co.uk/api',
+  apiUrl: 'https://CHANGEME/api',
   mapApiKey: 'CHANGEME',
   enableAnalytics: false,
   analyticsKey: 'CHANGEME',
+  firebase: {
+		apiKey: 'CHANGEME',
+		authDomain: 'CHANGEME.firebaseapp.com',
+		databaseURL: 'CHANGEME.firebaseio.com',
+		projectId: 'CHANGEME',
+		storageBucket: 'CHANGEME.appspot.com',
+		messagingSenderId: 'CHANGEME',
+		appId: 'CHANGEME',
+		measurementId: 'G-CHANGEME'
+	}
 };
