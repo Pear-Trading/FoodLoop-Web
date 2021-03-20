@@ -19,12 +19,16 @@ export class SendPushNotificationComponent implements OnInit {
   constructor(private api: ApiService) {
     this.api.getTopics().subscribe(
       result => {
-        this.topicList = result.topics;
-        this.topicIdList = Object.keys(this.topicList);
+      	if (result.topics.length > 0) {
+		      this.topicList = result.topics;
+		      this.topicIdList = Object.keys(this.topicList);
+		    } else {
+		    	console.warn("No topics returned from server");
+		    }
       },
       error => {
-        console.log("Couldn't get topics");
-        console.log(error._body);
+        console.error("Couldn't get topics");
+        console.error(error._body);
       }
     );
     this.sendMessageForm = new FormGroup({
@@ -49,7 +53,7 @@ export class SendPushNotificationComponent implements OnInit {
           this.api.setUserInfo( result.email, result.display_name || result.name );
         },
         error => {
-          console.log( error._body );
+          console.error( error._body );
           this.noEmail = true;
         }
       );
@@ -68,13 +72,13 @@ export class SendPushNotificationComponent implements OnInit {
               messagetext: '',
             });
           } else {
-            console.log('Upload Error');
+            console.error('Upload Error');
             this.sendMessageFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
             this.sendMessageFormStatus = 'send_failed';
           }
         },
         error => {
-          console.log('Upload Error');
+          console.error('Upload Error');
           try {
             this.sendMessageFormStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
           } catch (e) {

@@ -19,7 +19,10 @@ export class AppComponent {
       this.messagingService.requestPermission();
       this.messagingService.receiveMessage();
       this.message = this.messagingService.currentMessage;
+      console.log(this.message);
+      if (this.message.notification) {
+	console.log('Notification waiting');
+      }
     }
-    console.log(this.message);
   }
 }
