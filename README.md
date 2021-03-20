@@ -1,97 +1,152 @@
-# LocalSpend - Web Application
+# LocalSpend (Web App.)
 
-This repository contains the Web application for the LocalSpend system.
+Looking to discover if the value of spending local can be measured, understood and shown.
+
+This repository contains the Web application for the LocalSpend system. See also:
+
+* the [server](https://github.com/Pear-Trading/Foodloop-Server); and
+* the [mobile application](https://github.com/Pear-Trading/LocalSpend-Tracker).
 
 ## Current Status
 
-| Branch | Status |
-| --- | --- |
-| `master` | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=master)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
+| Branch        | Status            |
+|---------------|------------------ |
+| `master`      | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=master)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
 | `development` | [![Build Status](https://travis-ci.org/Pear-Trading/FoodLoop-Web.svg?branch=development)](https://travis-ci.org/Pear-Trading/FoodLoop-Web) |
 
-## Contents
+## Table of Contents
 
-1. [Getting Started](#getting-started)
-1. [Environments](#environments)
-1. [Testing](#testing)
-1. [Troubleshooting](#troubleshooting)
-1. [Licences](#licenses)
+* [Tech Stack](#tech-stack)
+* [Features](#features)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [Usage](#usage)
+* [Testing](#testing)
+* [Code Formatting](#code-formatting)
+* [Documentation](#documentation)
+* [Acknowledgments](#acknowledgements)
+* [License](#license)
+* [Contact](#contact)
 
-## Getting Started
+## Technology Stack
 
-To get started with development, you will need an up-to-date version of
-Node.js, git, and access to either the backend dev. server or a local
-copy of it from the [LocalSpend Server][LocalLoop-Server] repo.
+The Web app. is written in [TypeScript](https://www.typescriptlang.org/).
+
+The stylesheets are written in [SCSS](https://sass-lang.com).
+
+| Technology | Description                | Link            |
+|------------|----------------------------|-----------------|
+| Node.js    | JavaScript server runtime 	| [Link][node]    |
+| AngularJS  | JavaScript MVW framework	  | [Link][angular] |
 
 For your local Node.js, we recommend using:
-- [n][tj/n] for \*nix and Mac; and
-- [nodist][marcelklehr/nodist] for Windows.
+
+- [n][https://github.com/tj/n] for \*nix and Mac; and
+- [nodist][https://github.com/marcelklehr/nodist] for Windows.
 
 We recommend Node.js version 8.0.0+ and npm version 5.3.0+.
 
-To get this repository set up:
+[node]: https://nodejs.org/
+[angular]: https://angularjs.org/
 
-1. Clone it
-1. Install the dependencies:
-  - `npm install -g @angular/cli`
-  - `npm install`
-1. Set up the `src/environments/environment.⟨environment⟩.ts` file
-1. Start the application:
-  - `npm run start:local` if running the app. locally
-  - The app. will automatically reload after source file changes
+## Features
 
-[LocalLoop-Server]:https://github.com/Pear-Trading/Foodloop-Server
-[tj/n]:https://github.com/tj/n
-[marcelklehr/nodist]:https://github.com/marcelklehr/nodist
+This client app. provides:
 
-## Environments
+- user authorisation (but not registration);
+- transaction logging;
+- presentation of transaction history analysis; and
+- presentation of leaderboard.
 
-The app defaults to using the production environment.
-For other options, see `angular.json`.
+## Installation
 
-## Build
+1. Clone the repo. to your dev. environment (`git clone git@github.com:Pear-Trading/FoodLoop-Web.git`);
+1. enter the new directory (`cd FoodLoop-Web`); and
+1. install the dependencies:
+    - `npm install -g @angular/cli`; and
+    - `npm install`.
 
-Run `ng build` to build the project; the resulting files will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Configuration
+
+The app. defaults to using the ‘production’ environment.
+
+App. configuration settings are found in `package.json`.
+
+TypeScript configuration settings are found in `tsconfig.json`.
+
+Angular configuration settings are found in `angular.json`.
+
+Environment variables are found in `src/environments/environment.⟨environment⟩.ts`.
+
+## Usage
+
+### Development
+
+- Run `npm run start:dev` to start in development mode using Angular.
+- Run `npm run build:dev` to build in development mode using Angular.
+
+### Local
+
+- Run `npm run start:local` to start in local mode using Angular.
+
+### Production
+
+- Run `npm run start:prod` to start in production mode using Angular.
+- Run `npm run build:prod` to build in production mode using Angular.
 
 ## Testing
 
 There are two types of test in this codebase:
-- unit tests (using Karma); and
-- E2E tests (using Protractor).
 
-### Karma Unit Tests
+- unit tests; and
+- end-to-end (E2E) tests.
 
-To run these, you just need to run `npm run test` - this should work without any further configuration. These run the `*.spec.ts` files next to the normal source files, and are for basic tests for each function on their own.
+### Unit Tests
 
-These tests are a long-running process, and will automatically run on file changes. Just run the command above, and then check back to the browser window that appears to see any errors as you work!
+Run `npm run test` to run the full test suite using [Karma](https://karma-runner.github.io/latest/index.html).
 
-### Protractor E2E Tests
+Unit tests re-run automatically on source changes.
 
-To run these, you will need to run the following command:
+Tests are found in `*.spec.ts` files alongside normal source files.
 
-- `webdriver-manager update`
+Karma configuration settings are found in `karma.conf.js`.
 
-This will download the correct webdriver for you (we use chromedriver), and 
-any other dependencies it needs.
-After that, you can run the tests with `npm run e2e`.
-Note these run once, and will need to be re-run every time you want to run an 
-e2e test.
+### End-to-End (E2E) Tests
 
-These tests are best run regularly, and should show if any issues have emerged 
-in other parts of the application that you are not aware of, or if some part 
-of the flow through the app has changed significantly. 
+Run `npm run e2e` to run the full E2E test suite using (Selenium WebDriver](https://www.selenium.dev/documentation/en/webdriver/).
 
-## Troubleshooting
+You may need to run `webdriver-manager update` to install the correct WebDriver and dependencies first.
 
-### ‘Error: EACCES: permission denied, access '/usr/local/lib'’ when installing dependencies
+E2E tests run only once and will need to be re-run manually after source changes.
 
-Change npm's default directory by following [these steps](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally#manually-change-npms-default-directory).
+## Code formatting
 
-## Licences
+### JavaScript/TypeScript Code
 
-### CoreUI
+- Run `npm run lint` to format all JS/TS files with [Codelyzer](http://codelyzer.com/).
 
-The interface itself is based off of [CoreUI][core-ui] which is MIT Licenced.
-For information, see `LICENCE.MIT` included in this repo.
+Codelyzer configuration settings are found in `tslint.json`.
 
-[core-ui]: http://coreui.io
+## Documentation
+
+TODO
+
+## Acknowledgements
+
+LocalLoop is the result of collaboration between the [Small Green Consultancy](http://www.smallgreenconsultancy.co.uk/), [Shadowcat Systems](https://shadow.cat/), [Independent Lancaster](http://www.independent-lancaster.co.uk/) and the [Ethical Small Traders Association](http://www.lancasteresta.org/).
+
+The Web client interface is based off of [CoreUI](https://coreui.io/).
+
+## License
+
+This project is released under the [MIT license](https://mit-license.org/).
+
+## Contact
+
+| Name           | Link(s)           |
+|----------------|-------------------|
+| Mark Keating   | [Email][mkeating] |
+| Michael Hallam | [Email][mhallam]  |
+
+[mkeating]: mailto:m.keating@shadowcat.co.uk
+[mhallam]: mailto:info@lancasteresta.org
