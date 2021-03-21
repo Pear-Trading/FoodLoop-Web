@@ -43,10 +43,10 @@ export class SendPushNotificationComponent implements OnInit {
     }
 
     if (!this.loggedInEmail) {
-      console.log('email not found in storage');
+      console.warn('email not found in storage');
       this.api.accountFullLoad().subscribe(
         result => {
-          console.log(result);
+          console.debug(result);
           this.sendMessageForm.patchValue({
             email:        result.email,
           });

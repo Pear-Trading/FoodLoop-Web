@@ -53,6 +53,14 @@
           </a>
         </li>
         <li *ngIf="accountType == 'organisation'" class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/edit-topics']">
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-feed"></i></div>
+              <div class="col-10">Manage Topics</div>
+            </div>
+          </a>
+        </li>
+        <li *ngIf="accountType == 'organisation'" class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/notify']">
             <div class="row no-gutters align-items-center">
               <div class="col-2"><i class="icon-microphone"></i></div>

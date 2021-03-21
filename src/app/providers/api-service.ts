@@ -111,7 +111,7 @@ export class ApiService {
   public checkDeviceToken(data) {
     data.session_key = this.sessionKey;
     return this.http.post<any>(
-      this.apiUrl + '/check-device-token',
+      this.apiUrl + '/device-token/check',
       data
     );
   }
@@ -119,7 +119,7 @@ export class ApiService {
   public addDeviceToken(data) {
     data.session_key = this.sessionKey;
     return this.http.post<any>(
-      this.apiUrl + '/add-device-token',
+      this.apiUrl + '/device-token/add',
       data
     );
   }
@@ -127,15 +127,23 @@ export class ApiService {
   public getDeviceTokens() {
     const key = this.sessionKey;
     return this.http.post<any>(
-      this.apiUrl + '/get-device-tokens',
+      this.apiUrl + '/device-tokens',
       { session_key : key }
     );
   }
-
+  
+  public createTopic(data) {
+    data.session_key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/topic/add',
+      data
+    );
+  }
+  
   public getTopics() {
     const key = this.sessionKey;
     return this.http.post<any>(
-      this.apiUrl + '/get-topics',
+      this.apiUrl + '/topics',
       { session_key : key }
     );
   }

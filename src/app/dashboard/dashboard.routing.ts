@@ -19,6 +19,7 @@ import { MapComponent } from './map.component';
 import { TrailMapComponent } from './trail-map.component';
 import { MoreStuffComponent } from './more-graphs-and-tables.component';
 import { SuppliersComponent } from './suppliers.component';
+import { TopicsEditComponent } from './topics-edit.component';
 import { SendPushNotificationComponent } from './send-push-notification.component';
 
 // Using child path to allow for FullLayout theming
@@ -55,6 +56,16 @@ const routes: Routes = [
         path: 'notify',
         component: SendPushNotificationComponent,
         data: { title: 'Send Message' },
+      },
+      {
+        path: 'edit-topics',
+        component: TopicsEditComponent,
+        data: { title: 'Edit Topics' },
+      },
+      {
+        path: 'edit-subscriptions',
+        component: SubscriptionsEditComponent,
+        data: { title: 'Edit Subscriptions' },
       },
       {
         path: 'leaderboard',

@@ -1,0 +1,37 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-6 col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <strong>Create New Topic</strong>
+          <small>Required Data marked in <strong>bold</strong>.</small>
+        </div>
+        <form class="form-horizontal" [formGroup]="createTopicForm" (ngSubmit)="onSubmit()">
+          <div class="card-block">
+            <div class="form-group row">
+              <label class="col-md-3 form-control-label" for="text-input"><strong>Enter Topic Name Here</strong></label>
+              <div class="col-md-9">
+              	<input type="text" class="form-control" formControlName="topic" placeholder="Topic name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-9">
+                <div [ngSwitch]="createTopicFormStatus">
+                  <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+                    Topic has been created successfully!
+                  </div>
+                  <div *ngSwitchCase="'send_failed'" class="alert alert-danger" role="alert">
+                    {{createTopicFormStatusError}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" [disabled]="!createTopicForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><!--/.row-->
+</div>
