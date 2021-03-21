@@ -6,7 +6,6 @@
   "url": "http://www.peartrade.org",
   "copyright": "Copyright 2021 Pear Trading Ltd",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve --optimization=false",
     "build": "ng build",
     "start:dev": "npm run start -- --configuration=dev",
@@ -15,7 +14,8 @@
     "build:prod": "npm run build -- --configuration=production",
     "test": "ng test",
     "test:ci": "npm run test -- --watch=false --browsers=ChromeHeadless",
-    "lint": "ng lint",
+    "lint-js": "ng lint",
+    "lint-js:fix": "npm run lint -- --fix",
     "e2e": "ng e2e",
     "e2e:ci": "npm run e2e -- --configuration=ci",
     "ci": "npm run test:ci && npm run e2e:ci"
