@@ -45,7 +45,8 @@ export class LoginComponent implements OnInit {
     .subscribe(
       result => {
         this.loginStatus = 'success';
-        this.router.navigate([this.returnUrl]);
+        this.router.navigate([this.returnUrl])
+        	.then(() => { window.location.reload() });
       },
       error => {
         console.log( error._body );

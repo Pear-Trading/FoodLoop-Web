@@ -34,13 +34,14 @@ export class FullLayoutComponent implements OnInit {
   }
 
   userLogout() {
-    console.log('logout clicked');
+    console.debug('logout clicked');
     this.api
     .logout()
     .subscribe(
       result => {
         localStorage.clear();
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'])
+        	.then(() => { window.location.reload() });
       }
     );
   }
