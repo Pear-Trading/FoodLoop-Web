@@ -10,13 +10,13 @@ export const environment = {
   enableAnalytics: false,
   analyticsKey: 'CHANGEME',
   firebase: {
-		apiKey: 'CHANGEME',
-		authDomain: 'CHANGEME.firebaseapp.com',
-		databaseURL: 'CHANGEME.firebaseio.com',
-		projectId: 'CHANGEME',
-		storageBucket: 'CHANGEME.appspot.com',
-		messagingSenderId: 'CHANGEME',
-		appId: 'CHANGEME',
-		measurementId: 'G-CHANGEME'
+		apiKey: "AIzaSyB-iIcMH_eyfFT043_8pSGX3YYugpjm3Fg",
+		authDomain: "localspend-47012.firebaseapp.com",
+		databaseURL: "https://localspend-47012.firebaseio.com",
+		projectId: "localspend-47012",
+		storageBucket: "localspend-47012.appspot.com",
+		messagingSenderId: "469562689216",
+		appId: "1:469562689216:web:567a20c57c123f17354f25",
+		measurementId: "G-KL7BGT2EW0"
 	}
 };

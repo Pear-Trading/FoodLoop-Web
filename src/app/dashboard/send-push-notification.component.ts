@@ -66,19 +66,19 @@ export class SendPushNotificationComponent implements OnInit {
       .subscribe(
         result => {
           if ( result.success === true ) {
-            console.log('Successful Upload');
+            console.debug('Message successfully sent.');
             this.sendMessageFormStatus = 'success';
             this.sendMessageForm.patchValue({
               messagetext: '',
             });
           } else {
-            console.error('Upload Error');
+            console.error('Message send failed (1).');
             this.sendMessageFormStatusError = JSON.stringify(result.status) + 'Error, ' + JSON.stringify(result.message);
             this.sendMessageFormStatus = 'send_failed';
           }
         },
         error => {
-          console.error('Upload Error');
+          console.error('Message send failed (0).');
           try {
             this.sendMessageFormStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
           } catch (e) {

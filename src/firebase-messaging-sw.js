@@ -1,3 +1,8 @@
+/**
+ * A Web Worker for sending and receiving messages using the Firebase Cloud
+ * Messaging (FCM) service.
+ */
+
 importScripts('https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.0.0/firebase-messaging.js');
 

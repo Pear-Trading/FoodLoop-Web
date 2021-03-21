@@ -13,16 +13,14 @@ export class AppComponent {
 
   constructor(private messagingService: MessagingService) { }
 
-  ngOnInit() {
-    this.userType = localStorage.getItem('usertype');
-    if (this.userType === 'customer') {
+	/**
+	 * Checks for push notification permissions and subscribes to messages.
+	 */
+  ngOnInit(): void {
+    if (localStorage.getItem('usertype') === 'customer') {
       this.messagingService.requestPermission();
       this.messagingService.receiveMessage();
       this.message = this.messagingService.currentMessage;
-      console.log(this.message);
-      if (this.message.notification) {
-	console.log('Notification waiting');
-      }
     }
   }
 }
