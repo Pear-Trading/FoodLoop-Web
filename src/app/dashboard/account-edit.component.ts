@@ -100,7 +100,7 @@ export class AccountEditComponent implements OnInit {
 
   // data.append('form', JSON.stringify(submitData));
 
-  console.log(submitData);
+  console.debug(submitData);
   this.api
     .accountEditUpdate(submitData)
     .subscribe(
@@ -108,8 +108,8 @@ export class AccountEditComponent implements OnInit {
         this.submitStatus = 'success';
       },
       error => {
-        console.log('Edit Error');
-        console.log(error);
+        console.error('Edit Error');
+        console.error(error);
         try {
           this.submitStatusError = '"' + error.error.error + '" Error, ' + error.error.message;
         } catch (e) {
