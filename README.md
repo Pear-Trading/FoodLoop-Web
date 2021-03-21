@@ -62,9 +62,7 @@ This client app. provides:
 
 1. Clone the repo. to your dev. environment (`git clone git@github.com:Pear-Trading/FoodLoop-Web.git`);
 1. enter the new directory (`cd FoodLoop-Web`); and
-1. install the dependencies:
-    - `npm install -g @angular/cli`; and
-    - `npm install`.
+1. install the dependencies (`npm install`).
 
 ## Configuration
 
@@ -119,7 +117,8 @@ E2E tests run only once and will need to be re-run manually after source changes
 
 ### JavaScript/TypeScript Code
 
-- Run `npm run lint` to format all JS/TS files with [Codelyzer](http://codelyzer.com/).
+- Run `npm run lint` to format all JS/TS files with [Codelyzer](http://codelyzer.com/); and
+- run `npm run lint-js:fix` to attempt to automatically fix errors and warnings.
 
 Codelyzer configuration settings are found in `tslint.json`.
 
