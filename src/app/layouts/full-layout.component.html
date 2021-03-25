@@ -68,6 +68,14 @@
             </div>
           </a>
         </li>
+        <li *ngIf="accountType == 'customer'" class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/edit-subscriptions']">
+            <div class="row no-gutters align-items-center">
+              <div class="col-2"><i class="icon-feed"></i></div>
+              <div class="col-10">Topic Subscriptions</div>
+            </div>
+          </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/feedback']">
             <div class="row no-gutters align-items-center">

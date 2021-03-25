@@ -147,8 +147,26 @@ export class ApiService {
       { session_key : key }
     );
   }
+  
+  public getTopicsAndSubscriptions() {
+    const key = this.sessionKey;
+    return this.http.post<any>(
+      this.apiUrl + '/topics/subscriptions',
+      { session_key : key }
+    );
+  }
+  
+  public updateSubscriptions(data) {
+    data.session_key = this.sessionKey;
+    data.test = "Foo";
+    return this.http.post<any>(
+      this.apiUrl + '/topics/update',
+      data
+    );
+  }
 
   public sendMessage(data) {
+    data.session_key = this.sessionKey;
     data.sender = localStorage.getItem('displayname');
     return this.http.post<any>(
       this.apiUrl + '/send-message',

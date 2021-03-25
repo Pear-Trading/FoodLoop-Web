@@ -5,7 +5,7 @@ import { ApiService } from '../providers/api-service';
 @Component({
   templateUrl: 'topics-edit.component.html',
 })
-export class TopicsEditComponen {
+export class TopicsEditComponent {
   createTopicForm: FormGroup;
   loggedInEmail: string;
   createTopicFormStatus: string;

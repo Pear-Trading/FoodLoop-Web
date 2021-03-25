@@ -51,6 +51,7 @@ export class MessagingService {
         result => {
           if (result.exists) { 
           	console.debug('Device already registered.'); 
+            localStorage.setItem('devicetoken', token);
           } else {
             this.api.addDeviceToken({'token': token, 'email': localStorage.getItem('email')}).subscribe(
               result => {

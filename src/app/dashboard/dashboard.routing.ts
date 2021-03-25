@@ -20,6 +20,7 @@ import { TrailMapComponent } from './trail-map.component';
 import { MoreStuffComponent } from './more-graphs-and-tables.component';
 import { SuppliersComponent } from './suppliers.component';
 import { TopicsEditComponent } from './topics-edit.component';
+import { SubscriptionsUpdateComponent } from './subscriptions-edit.component';
 import { SendPushNotificationComponent } from './send-push-notification.component';
 
 // Using child path to allow for FullLayout theming
@@ -64,8 +65,8 @@ const routes: Routes = [
       },
       {
         path: 'edit-subscriptions',
-        component: SubscriptionsEditComponent,
-        data: { title: 'Edit Subscriptions' },
+        component: SubscriptionsUpdateComponent,
+        data: { title: 'Update Subscriptions' },
       },
       {
         path: 'leaderboard',

@@ -1,0 +1,62 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-6 col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <strong>View Subscriptions</strong>
+          <small>Required Data marked in <strong>bold</strong>.</small>
+        </div>
+        <form class="form-horizontal" [formGroup]="updateSubscriptionsForm" (ngSubmit)="onSubmit()">
+          <div class="card-block">
+            <div class="form-group row">
+            	<fieldset>      
+        				<div class="col-md-9">
+		      				<div *ngFor="let topic of topicList" class="input-group">
+						        <input 
+						        	type="checkbox" 
+						        	class="mr-1"
+						        	[id]="topic.id"
+						        	[value]="topic.id"
+						        	[name]="topic.name"
+						        	[checked]="topic.isSubscribed"
+						        	(change)="onCheckChange($event)"
+						       	>
+						       	<label class="label--valign" [for]="topic.id">{{ topic.name }}</label>
+				         	</div>
+				        </div>
+		         	</fieldset>
+		           	
+              <!--
+              For reasons unknown, this fails to correctly set the selected options (it selects nothing)
+              when `[selected]="topicList[topic].isSubscribed"` or `"!!topicList[topic].isSubscribed"`,
+              but when `"!topicLIst[topic].isSubscribed"` is the test it will happily select all of the
+              incorrect ones. I've bodged it with checkboxes for now instead.
+              
+              <select required class="form-control" type="text" formControlName="topicSubscriptions" multiple>
+                <option *ngFor="let topic of topicIdList" [ngValue]="topicList[topic].name" [selected]="topicList[topic].isSubscribed">
+                {{ topicList[topic].name }} <strong>({{topicList[topic].numberOfSubscribers}} subscribers)</strong>
+                </option>
+              </select>
+              -->
+            </div>
+            <div class="form-group row">
+              <div class="col-md-9">
+                <div [ngSwitch]="updateSubscriptionsFormStatus">
+                  <div *ngSwitchCase="'success'" class="alert alert-success" role="alert">
+                    Subscriptions have been updated successfully!
+                  </div>
+                  <div *ngSwitchCase="'update_failed'" class="alert alert-danger" role="alert">
+                    {{updateSubscriptionsFormError}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" [disabled]="!updateSubscriptionsForm.valid" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><!--/.row-->
+</div>
