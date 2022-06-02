@@ -26,7 +26,7 @@
     "@agm/markerclusterer": "^3.0.0-beta.0",
     "@angular/common": "10.0.6",
     "@angular/compiler": "10.0.6",
-    "@angular/core": "10.0.6",
+    "@angular/core": "11.0.5",
     "@angular/forms": "10.0.6",
     "@angular/platform-browser": "10.0.6",
     "@angular/platform-browser-dynamic": "10.0.6",
