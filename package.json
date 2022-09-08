@@ -45,7 +45,7 @@
     "devextreme-angular": "^19.1.4",
     "jasmine": "^3.4.0",
     "jquery": "^3.5.1",
-    "jszip": "^3.2.2",
+    "jszip": "^3.7.0",
     "luxon": "^1.16.1",
     "moment": "^2.24.0",
     "ng2-charts": "^2.3.2",
