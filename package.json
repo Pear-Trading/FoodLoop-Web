@@ -46,7 +46,7 @@
     "jasmine": "^3.4.0",
     "jquery": "^3.5.1",
     "jszip": "^3.2.2",
-    "luxon": "^1.16.1",
+    "luxon": "^1.28.1",
     "moment": "^2.24.0",
     "ng2-charts": "^2.3.2",
     "ng2-validation-manager": "0.5.3",
